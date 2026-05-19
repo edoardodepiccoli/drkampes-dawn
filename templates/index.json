@@ -118,15 +118,15 @@
         "text_nTKyet": {
           "type": "text",
           "settings": {
-            "text": "<p>Addio ai lacci: basta perdere tempo a slacciare e riallacciare. Il nostro tallone rinforzato e flessibile ti permette di infilare la Dr Kampes come una pantofola, ma ti garantisce la stabilità di uno stivale non appena fai un passo.</p><p>Ci metti di più a dire “FAST WEAR” che a indossare le tue Dr Kampes e diventare subito operativo.</p><p><strong>L'efficienza è al tuo servizio. Sempre.</strong></p>",
+            "text": "<p><strong>Addio ai lacci</strong>: basta perdere tempo a slacciare e riallacciare. Il nostro tallone rinforzato e flessibile ti permette di infilare la Dr Kampes come una pantofola, ma ti garantisce la stabilità di uno stivale non appena fai un passo.</p><p><strong>L'efficienza è al tuo servizio. Sempre.</strong></p>",
             "text_style": "body"
           }
         },
         "button_9VAQiL": {
           "type": "button",
           "settings": {
-            "button_label": "Etichetta pulsante",
-            "button_link": "",
+            "button_label": "Acquista Ora",
+            "button_link": "shopify://products/dr-kampes-s3s-nero-copia",
             "button_style_secondary": false
           }
         }
