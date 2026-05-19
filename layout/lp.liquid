@@ -15,11 +15,10 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-    {% comment %}
-      No <title> tag here on purpose. Landing pages are fully custom; let each page (or the section it renders)
-      own its title — either via page SEO in admin surfaced through `content_for_header`, or via a section
-      that injects its own <title>. Avoid the auto-built "Page name – Shop name" pattern that theme.liquid uses.
-    {% endcomment %}
+    <title>
+      {{ page_title }}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
