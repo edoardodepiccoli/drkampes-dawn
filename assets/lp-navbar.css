@@ -1,0 +1,136 @@
+.lp-navbar {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.lp-navbar__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+}
+
+.lp-navbar__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
+.lp-navbar__logo {
+  display: block;
+  max-height: calc(var(--lp-navbar-logo-h, 56px) * 0.7);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lp-navbar__logo-fallback {
+  font-family: 'Archivo Black', sans-serif;
+  color: #fff;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lp-navbar__marquee {
+  overflow: hidden;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.lp-navbar__track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.lp-navbar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* Mobile: hide items flagged desktop-only */
+.lp-navbar__item--desktop-only {
+  display: none;
+}
+
+.lp-navbar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.lp-navbar__icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.lp-navbar__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.lp-navbar__line1,
+.lp-navbar__line2 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+
+@media (min-width: 750px) {
+  .lp-navbar__inner {
+    gap: 32px;
+    padding: 18px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .lp-navbar__logo {
+    max-height: calc(var(--lp-navbar-logo-h, 56px) + 8px);
+  }
+  .lp-navbar__item--desktop-only {
+    display: inline-flex;
+  }
+  .lp-navbar__track {
+    gap: 40px;
+  }
+  .lp-navbar__item {
+    gap: 12px;
+  }
+  .lp-navbar__icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  .lp-navbar__line1,
+  .lp-navbar__line2 {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+}
+
+@media (min-width: 1100px) {
+  .lp-navbar__track {
+    gap: 56px;
+  }
+}
