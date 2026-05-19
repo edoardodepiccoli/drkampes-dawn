@@ -33,7 +33,7 @@
 .lp-navbar__logo-fallback {
   font-family: 'Archivo Black', sans-serif;
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 2.24rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -91,7 +91,7 @@
 .lp-navbar__line2 {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 1.36rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #fff;
@@ -123,7 +123,7 @@
   }
   .lp-navbar__line1,
   .lp-navbar__line2 {
-    font-size: 1rem;
+    font-size: 1.6rem;
     letter-spacing: 0.08em;
     font-weight: 600;
   }
