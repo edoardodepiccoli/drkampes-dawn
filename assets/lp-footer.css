@@ -1,0 +1,63 @@
+/*
+  LP — Footer
+
+  Scoped under .lp-footer. Rems multiplied by 1.6x to match Dawn's
+  10px root (see .claude/decisions/002-rem-scaling-dawn-root.md).
+*/
+
+.lp-footer {
+  background: #000;
+  color: #fff;
+  padding: 56px 24px 64px;
+}
+
+.lp-footer__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.lp-footer__logo {
+  display: block;
+  width: auto;
+  height: 80px;
+  max-width: 60%;
+  object-fit: contain;
+}
+
+.lp-footer__legal {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.76rem;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.lp-footer__legal p {
+  margin: 0 0 8px;
+}
+
+.lp-footer__legal p:last-child {
+  margin-bottom: 0;
+}
+
+.lp-footer__legal strong {
+  font-weight: 700;
+}
+
+@media (min-width: 750px) {
+  .lp-footer {
+    padding: 72px 32px 80px;
+  }
+
+  .lp-footer__logo {
+    height: 96px;
+  }
+
+  .lp-footer__legal {
+    font-size: 1.92rem;
+  }
+}
