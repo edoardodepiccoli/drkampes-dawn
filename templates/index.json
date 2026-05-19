@@ -270,6 +270,54 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "image_with_text_YK7wAE": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_CKKyGt": {
+          "type": "heading",
+          "settings": {
+            "heading": "La Tradizione incontra l’Asfalto.",
+            "heading_size": "h1"
+          }
+        },
+        "text_C9UtWP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Siamo figli di tre generazioni di calzolai, partner del Calzaturificio La Paganella di Altivole. Abbiamo preso il saper fare del distretto calzaturiero più importante d'Italia, Montebelluna, <strong>60 anni di storia</strong>, e lo abbiamo messo al servizio dei camionisti.</p><p><strong>La nostra missione</strong>: trasformare la scarpa antinfortunistica da \"male necessario\" a \"gioia quotidiana\". <strong>Chi guida per ore merita la stessa qualità di chi scala le vette più alte del mondo.</strong></p>",
+            "text_style": "body"
+          }
+        },
+        "button_9GNTqC": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_CKKyGt",
+        "text_C9UtWP",
+        "button_9GNTqC"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/claudio-1-optimized.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -277,6 +325,7 @@
     "image_with_text_KMgCPn",
     "image_with_text_iFMhM7",
     "featured_product_Jt7WGx",
-    "multicolumn_83pCGA"
+    "multicolumn_83pCGA",
+    "image_with_text_YK7wAE"
   ]
 }
