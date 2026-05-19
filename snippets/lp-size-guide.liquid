@@ -1,0 +1,84 @@
+{% comment %}
+  LP — Size Guide (B2C landing page)
+
+  Code-only LP element. Edit this file to change copy or step images.
+  Not editable through the Shopify theme editor by design.
+
+  Step images live on the Shopify CDN. Update URLs inline to swap them.
+  The "Consulta la tabella taglie" button opens the size-guide popup
+  that ships inside lp-offerta (triggered via lp-size-guide.js).
+{% endcomment %}
+
+{{ 'lp-size-guide.css' | asset_url | stylesheet_tag }}
+
+<section class="lp-sg" id="size-guide">
+  <div class="lp-sg__inner">
+
+    <p class="lp-sg__eyebrow">IL CONSIGLIO DEL DR. KAMPES</p>
+    <h2 class="lp-sg__h2">TROVA LA TUA TAGLIA PERFETTA</h2>
+
+    <ol class="lp-sg__steps">
+
+      <li class="lp-sg__step">
+        <div class="lp-sg__step-head">
+          <span class="lp-sg__step-num" aria-hidden="true">1</span>
+          <div class="lp-sg__step-title-wrap">
+            <h3 class="lp-sg__step-title">PRENDI UNA SOLETTA INTERNA</h3>
+          </div>
+        </div>
+        <p class="lp-sg__step-text">Rimuovi la soletta interna di una scarpa che usi abitualmente.</p>
+        <div class="lp-sg__step-img">
+          <img src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta.png?v=1777976336" alt="PRENDI UNA SOLETTA INTERNA" loading="lazy">
+        </div>
+      </li>
+
+      <li class="lp-sg__step">
+        <div class="lp-sg__step-head">
+          <span class="lp-sg__step-num" aria-hidden="true">2</span>
+          <div class="lp-sg__step-title-wrap">
+            <h3 class="lp-sg__step-title">MISURA LA LUNGHEZZA</h3>
+          </div>
+        </div>
+        <p class="lp-sg__step-text">Misura la lunghezza della soletta da punta a tallone come indicato.</p>
+        <div class="lp-sg__step-img">
+          <img src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta_cm.png?v=1777976337" alt="MISURA LA LUNGHEZZA" loading="lazy">
+        </div>
+      </li>
+
+      <li class="lp-sg__step">
+        <div class="lp-sg__step-head">
+          <span class="lp-sg__step-num" aria-hidden="true">3</span>
+          <div class="lp-sg__step-title-wrap">
+            <h3 class="lp-sg__step-title">TROVA LA TUA TAGLIA IN TABELLA</h3>
+          </div>
+        </div>
+        <p class="lp-sg__step-text">Usa la lunghezza in cm per trovare la tua taglia nella tabella qui sotto.</p>
+        <div class="lp-sg__step-img">
+          <img src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/tabella.png?v=1777976337" alt="TROVA LA TUA TAGLIA IN TABELLA" loading="lazy">
+        </div>
+      </li>
+
+      <li class="lp-sg__step">
+        <div class="lp-sg__step-head">
+          <span class="lp-sg__step-num" aria-hidden="true">4</span>
+          <div class="lp-sg__step-title-wrap">
+            <h3 class="lp-sg__step-title">SCEGLI LA TUA TAGLIA PERFETTA</h3>
+          </div>
+        </div>
+        <p class="lp-sg__step-text">Scegli la taglia che corrisponde alla tua misura per il massimo comfort.</p>
+        <div class="lp-sg__step-img">
+          <img src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scarpa_profilo.png?v=1777976337" alt="SCEGLI LA TUA TAGLIA PERFETTA" loading="lazy">
+        </div>
+      </li>
+
+    </ol>
+
+    <button type="button" class="lp-sg__back" data-lp-sg-open-popup>
+      <span>Consulta la tabella taglie</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+    </button>
+
+  </div>
+</section>
+
+<script src="{{ 'lp-size-guide.js' | asset_url }}" defer></script>
