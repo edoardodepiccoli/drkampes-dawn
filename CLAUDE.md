@@ -1,5 +1,21 @@
 # CLAUDE.md — Dr. Kampes Shopify Theme
 
+## Project memory (`.claude/`)
+
+Before starting any LP-related task, read these in order:
+
+1. `.claude/README.md` — index of the project's persistent memory.
+2. `.claude/architecture/landing-pages.md` — the LP architecture, end-to-end.
+3. `.claude/rules.md` — hardened do / don't rules surfaced from past sessions.
+4. `.claude/decisions/000-index.md` — log of architectural choices, with links to ADR-style entries.
+5. `.claude/patterns/porting-horizon-section.md` — step-by-step recipe for porting a Horizon section to a Dawn LP snippet.
+
+Whenever a non-obvious architectural choice is made during a session, add a new file under `.claude/decisions/` with the next sequential number, and update the index. Never let a decision live only in chat history.
+
+User-preference / cross-session memory that does not ship in the repo lives at `~/.claude/projects/-Users-edoardo-main-repos-drkampes-dawn/memory/`.
+
+---
+
 ## What this project is
 
 **Store:** Dr. Kampes
