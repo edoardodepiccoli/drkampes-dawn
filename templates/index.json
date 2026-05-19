@@ -363,6 +363,54 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "image_with_text_KBWbwN": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_nENxFh": {
+          "type": "heading",
+          "settings": {
+            "heading": "Qualche dubbio?",
+            "heading_size": "h1"
+          }
+        },
+        "text_83GTMU": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Chatta direttamente con me</strong>, Claudio, fondatore di Dr Kampes.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_hTGXyc": {
+          "type": "button",
+          "settings": {
+            "button_label": "Chatta con me",
+            "button_link": "https://wa.me/393516515219",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_nENxFh",
+        "text_83GTMU",
+        "button_hTGXyc"
+      ],
+      "name": "whatsapp",
+      "settings": {
+        "image": "shopify://shop_images/whatsapp_logo.webp",
+        "height": "small",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -374,6 +422,7 @@
     "rich_text_K4RX8T",
     "custom_liquid_CDG7FM",
     "custom_liquid_RUa7aM",
-    "image_with_text_YK7wAE"
+    "image_with_text_YK7wAE",
+    "image_with_text_KBWbwN"
   ]
 }
