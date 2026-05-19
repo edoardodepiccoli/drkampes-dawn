@@ -1,0 +1,89 @@
+{% comment %}
+  LP B2B — Quiz (B2B landing page)
+
+  Code-only LP element. Hero image + TOP10 badge + dual-color headline
+  + 4 trust items + CTA + helper link + reassure pill. Hard-coded content.
+
+  Bg + badge loaded from store Files section:
+    - proud_fleet_manager_wallpaper.png
+    - first_10_businesses_badge.png
+
+  CTA links to #candida (anchor lives on lp-b2b-quiz-form, ported next).
+{% endcomment %}
+
+{{ 'lp-b2b-quiz.css' | asset_url | stylesheet_tag }}
+
+<section class="lp-b2b-quiz">
+
+  <div class="lp-b2b-quiz__visual">
+    <img
+      class="lp-b2b-quiz__bg"
+      src="{{ 'proud_fleet_manager_wallpaper.png' | file_url }}"
+      alt="Fleet manager Dr Kampes"
+      loading="lazy"
+    >
+    <div class="lp-b2b-quiz__badge">
+      <img
+        src="{{ 'first_10_businesses_badge.png' | file_url }}"
+        alt="TOP 10 PRIME AZIENDE"
+        loading="lazy"
+      >
+    </div>
+  </div>
+
+  <div class="lp-b2b-quiz__content">
+
+    <h2 class="lp-b2b-quiz__heading">
+      <span class="lp-b2b-quiz__heading-line lp-b2b-quiz__heading-line--silver">STIAMO SELEZIONANDO</span>
+      <span class="lp-b2b-quiz__heading-line lp-b2b-quiz__heading-line--gold">LE PRIME 10 AZIENDE.</span>
+    </h2>
+
+    <ul class="lp-b2b-quiz__trust">
+
+      <li class="lp-b2b-quiz__trust-item">
+        <span class="lp-b2b-quiz__trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/><path d="M12 2v3"/></svg>
+        </span>
+        <span class="lp-b2b-quiz__trust-text">Quiz di 3 minuti</span>
+      </li>
+
+      <li class="lp-b2b-quiz__trust-item">
+        <span class="lp-b2b-quiz__trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg>
+        </span>
+        <span class="lp-b2b-quiz__trust-text">Nessun impegno d'acquisto</span>
+      </li>
+
+      <li class="lp-b2b-quiz__trust-item">
+        <span class="lp-b2b-quiz__trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </span>
+        <span class="lp-b2b-quiz__trust-text">Accesso riservato alle prime 10 aziende selezionate</span>
+      </li>
+
+      <li class="lp-b2b-quiz__trust-item">
+        <span class="lp-b2b-quiz__trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/><path d="m11.2 14.5.8-1.5.8 1.5 1.6.25-1.2 1.15.3 1.6L12 16.7l-1.5.8.3-1.6-1.2-1.15z"/></svg>
+        </span>
+        <span class="lp-b2b-quiz__trust-text">Bonus quiz: 2 strategie pratiche per ridurre sprechi e sostituzioni DPI</span>
+      </li>
+
+    </ul>
+
+    <a class="lp-b2b-quiz__cta" href="#candida" data-quiz-trigger>
+      <span class="lp-b2b-quiz__cta-text">COMPILA IL QUIZ DI CANDIDATURA</span>
+    </a>
+
+    <a class="lp-b2b-quiz__helper" href="#candida" data-quiz-trigger>
+      <span>Scopri se la tua flotta può entrare</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </a>
+
+    <div class="lp-b2b-quiz__reassure">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg>
+      <span>Meno di 3 minuti. Nessun obbligo di acquisto.</span>
+    </div>
+
+  </div>
+
+</section>
