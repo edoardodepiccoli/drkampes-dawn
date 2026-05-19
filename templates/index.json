@@ -152,11 +152,131 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "featured_product_Jt7WGx": {
+      "type": "featured-product",
+      "blocks": {
+        "title_rQrTap": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_riX7Gy": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_MJmM4m": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_qzE8Xa": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons_V8Nfai": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "share_neKpYY": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Condividi"
+          }
+        }
+      },
+      "block_order": [
+        "title_rQrTap",
+        "price_riX7Gy",
+        "variant_picker_MJmM4m",
+        "quantity_selector_qzE8Xa",
+        "buy_buttons_V8Nfai",
+        "share_neKpYY"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "dr-kampes-s3s-nero-copia",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "multicolumn_83pCGA": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_BCGEyL": {
+          "type": "column",
+          "settings": {
+            "title": "Garanzia REALE di 3 Anni",
+            "text": "<p>Mentre le altre scarpe finiscono nella spazzatura, le tue Dr Kampes sono coperte. <strong>Ci fidiamo così tanto del nostro prodotto che lo garantiamo per 1095 giorni di lavoro. </strong>Se per 3 ANNI hanno un cedimento strutturale, le ripariamo o sostituiamo. Fine.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_zVAX4i": {
+          "type": "column",
+          "settings": {
+            "title": "100% Artigianale Made in Italy",
+            "text": "<p><strong>Non usiamo catene di montaggio.</strong> Ogni Dr Kampes è assemblata e cucita a mano da artigiani italiani, fatta in vera pelle idrorepellente, per piedi SEMPRE asciutti e protetti. È la qualità che puoi toccare e che dura nel tempo, non un prodotto di massa che si sfalda.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_pTU84A": {
+          "type": "column",
+          "settings": {
+            "title": "Certificazione S3S Totale",
+            "text": "<p>Puntale in composito (leggero), lamina anti-perforazione, impermeabilità totale e suola anti-scivolo SRC. <strong>La tua sicurezza non è un optional, è il nostro standard minimo. </strong>Conformi alla EN ISO 20345:2022+A1:2024, le Dr Kampes rispettano il massimo standard di protezione oggi disponibile.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_BCGEyL",
+        "column_zVAX4i",
+        "column_pTU84A"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Multicolonna",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Etichetta pulsante",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "image_banner",
     "image_with_text_KMgCPn",
-    "image_with_text_iFMhM7"
+    "image_with_text_iFMhM7",
+    "featured_product_Jt7WGx",
+    "multicolumn_83pCGA"
   ]
 }
