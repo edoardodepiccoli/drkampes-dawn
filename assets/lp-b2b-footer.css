@@ -1,0 +1,63 @@
+/*
+  LP B2B — Footer
+  Scoped under .lp-b2b-footer. Rems pre-scaled for Dawn 10px root.
+  Bottom padding sized to clear the sticky .lp-b2b-sticky-cta (~80px + safe-area)
+  so the legal text is never covered by the floating button.
+*/
+
+.lp-b2b-footer {
+  background: #000;
+  color: #fff;
+  padding: 40px 24px calc(120px + env(safe-area-inset-bottom, 0px));
+}
+
+.lp-b2b-footer__inner {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.lp-b2b-footer__logo {
+  display: block;
+  width: auto;
+  height: 44px;
+  max-width: 50%;
+  object-fit: contain;
+}
+
+.lp-b2b-footer__legal {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.lp-b2b-footer__legal p {
+  margin: 0 0 6px;
+}
+
+.lp-b2b-footer__legal p:last-child {
+  margin-bottom: 0;
+}
+
+.lp-b2b-footer__legal strong {
+  font-weight: 700;
+}
+
+@media (min-width: 750px) {
+  .lp-b2b-footer {
+    padding: 56px 32px calc(120px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .lp-b2b-footer__logo {
+    height: 52px;
+  }
+
+  .lp-b2b-footer__legal {
+    font-size: 1.28rem;
+  }
+}

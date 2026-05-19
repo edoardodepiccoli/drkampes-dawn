@@ -1,0 +1,28 @@
+{% comment %}
+  LP B2B — Footer (B2B landing page)
+
+  Code-only LP element. Black bg, centered logo, 4-line legal block.
+  Parallel to lp-footer (B2C) but kept separate so B2B can diverge.
+{% endcomment %}
+
+{{ 'lp-b2b-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="lp-b2b-footer">
+  <div class="lp-b2b-footer__inner">
+    <img
+      class="lp-b2b-footer__logo"
+      src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/logo_white_transparent.png?v=1762537461"
+      alt="Dr. Kampes — Italian Trucker Shoes"
+      loading="lazy"
+      width="180"
+      height="60"
+    >
+
+    <div class="lp-b2b-footer__legal">
+      <p><strong>CAMPES S.r.l.</strong> Sede legale e amministrativa: Via Noalese 84/E, 31100 Treviso (TV), Italia</p>
+      <p>C.F. e P.IVA 05496370262</p>
+      <p>Iscritta al Registro delle Imprese di Treviso-Belluno - REA TV-448699</p>
+      <p>Capitale sociale &euro; 4.000,00 interamente versato</p>
+    </div>
+  </div>
+</footer>
