@@ -30,7 +30,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Acquista Ora",
-            "button_link_1": "shopify://collections/all",
+            "button_link_1": "shopify://products/dr-kampes-s3s-nero-copia",
             "button_style_secondary_1": false,
             "button_label_2": "Scopri di più",
             "button_link_2": "shopify://collections/all",
@@ -56,9 +56,107 @@
         "mobile_content_alignment": "left",
         "show_text_below": false
       }
+    },
+    "image_with_text_KMgCPn": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_NULJby": {
+          "type": "heading",
+          "settings": {
+            "heading": "La Scarpa Che Hai Sempre Desiderato.",
+            "heading_size": "h1"
+          }
+        },
+        "text_gyqcA7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Immagina di finire il tuo viaggio sentendo i piedi leggeri come quando sei partito. Immagina di indossare una scarpa S3S che non sacrifichi lo stile, ma lo celebri. Immagina di infilarla in 2 secondi netti.</p><p><strong>Non è un'altra scarpa. È la tua nuova compagna di viaggio.</strong></p>",
+            "text_style": "body"
+          }
+        },
+        "button_6BdJcK": {
+          "type": "button",
+          "settings": {
+            "button_label": "Scopri di più",
+            "button_link": "shopify://products/dr-kampes-s3s-nero-copia",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_NULJby",
+        "text_gyqcA7",
+        "button_6BdJcK"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/scarpa-profilo-landing-cropped.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_iFMhM7": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_UEYJj6": {
+          "type": "heading",
+          "settings": {
+            "heading": "Infila. Scendi. Via. Il Sistema FAST WEAR: Sei pronto in 2 secondi.",
+            "heading_size": "h1"
+          }
+        },
+        "text_nTKyet": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Addio ai lacci: basta perdere tempo a slacciare e riallacciare. Il nostro tallone rinforzato e flessibile ti permette di infilare la Dr Kampes come una pantofola, ma ti garantisce la stabilità di uno stivale non appena fai un passo.</p><p>Ci metti di più a dire “FAST WEAR” che a indossare le tue Dr Kampes e diventare subito operativo.</p><p><strong>L'efficienza è al tuo servizio. Sempre.</strong></p>",
+            "text_style": "body"
+          }
+        },
+        "button_9VAQiL": {
+          "type": "button",
+          "settings": {
+            "button_label": "Etichetta pulsante",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_UEYJj6",
+        "text_nTKyet",
+        "button_9VAQiL"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/fast-wear.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "image_banner"
+    "image_banner",
+    "image_with_text_KMgCPn",
+    "image_with_text_iFMhM7"
   ]
 }
