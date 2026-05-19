@@ -255,11 +255,11 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "Multicolonna",
+        "title": "",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Etichetta pulsante",
+        "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
