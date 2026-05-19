@@ -1,0 +1,302 @@
+{% comment %}
+  LP B2B — Quiz Form (B2B landing page)
+
+  Code-only LP element. Multi-step modal form. Triggered by any
+  [data-quiz-trigger] click (hero CTA, quiz CTA, sticky CTA).
+
+  Webhook (Make.com) is set via data-webhook on the modal root.
+  Field names are a contract with the automation: do not rename.
+
+  Sticky CTA renders inside this snippet so the IntersectionObserver in
+  lp-b2b-quiz-form.js can show it only when hero + quiz CTAs are both off-screen.
+{% endcomment %}
+
+{{ 'lp-b2b-quiz-form.css' | asset_url | stylesheet_tag }}
+
+<div class="lp-b2b-quiz-form" id="lpQuizModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lpQuizTitle" data-webhook="https://automations.drkampes.com/webhook/30ee9913-9a98-4d05-8432-9f8a56533175">
+  <div class="lp-b2b-quiz-form__overlay"></div>
+
+  <div class="lp-b2b-quiz-form__dialog" role="document">
+
+    <div class="lp-b2b-quiz-form__progress" data-quiz-progress aria-hidden="true">
+      <div class="lp-b2b-quiz-form__progress-track">
+        <div class="lp-b2b-quiz-form__progress-fill" data-quiz-progress-fill></div>
+      </div>
+      <span class="lp-b2b-quiz-form__progress-label" data-quiz-progress-label>Step 1 di 5</span>
+    </div>
+
+    <form class="lp-b2b-quiz-form__form" data-quiz-form novalidate>
+
+      {%- comment -%} INTRO {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step is-active" data-quiz-step="intro">
+        <div class="lp-b2b-quiz-form__step-inner lp-b2b-quiz-form__step-inner--centered">
+          <span class="lp-b2b-quiz-form__eyebrow">Candidatura riservata</span>
+          <h2 id="lpQuizTitle" class="lp-b2b-quiz-form__title">Candidatura Dr Kampes</h2>
+          <p class="lp-b2b-quiz-form__lead">Vuoi essere tra le prime 10 aziende in Italia?</p>
+          <p class="lp-b2b-quiz-form__body">Rispondi a poche domande e scopri se la tua azienda può accedere al programma Dr Kampes dedicato alle aziende di autotrasporto. Meno di 3 minuti.</p>
+          <ul class="lp-b2b-quiz-form__perks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/><path d="M12 2v3"/></svg><span>Meno di 3 minuti</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg><span>Nessun impegno di acquisto</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Riservato a 10 aziende selezionate</span></li>
+          </ul>
+        </div>
+        <div class="lp-b2b-quiz-form__nav">
+          <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--primary" data-quiz-start>
+            INIZIA LA CANDIDATURA
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      {%- comment -%} STEP 1 {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="1" data-step-index="1">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 1 · La tua azienda</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Che ruolo hai in azienda?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Ruolo in azienda">
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="ruolo" value="Titolare / socio" data-required><span class="lp-b2b-quiz-form__option-text">Titolare / socio</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="ruolo" value="Responsabile parco mezzi" data-required><span class="lp-b2b-quiz-form__option-text">Responsabile parco mezzi</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="ruolo" value="Responsabile sicurezza / RSPP" data-required><span class="lp-b2b-quiz-form__option-text">Responsabile sicurezza / RSPP</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="ruolo" value="Responsabile acquisti" data-required><span class="lp-b2b-quiz-form__option-text">Responsabile acquisti</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="ruolo" value="Amministrazione" data-required><span class="lp-b2b-quiz-form__option-text">Amministrazione</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="ruolo" value="Autista" data-required><span class="lp-b2b-quiz-form__option-text">Autista</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="ruolo" value="Altro" data-required><span class="lp-b2b-quiz-form__option-text">Altro</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="ruolo">Seleziona un ruolo</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q lp-b2b-quiz-form__q--grid2">
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizAzienda">Nome azienda</label>
+              <input class="lp-b2b-quiz-form__input" id="lpQuizAzienda" name="azienda" type="text" autocomplete="organization" data-required placeholder="Es. Trasporti Rossi srl">
+              <p class="lp-b2b-quiz-form__error" data-error-for="azienda">Inserisci il nome azienda</p>
+            </div>
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizProvincia">Provincia</label>
+              <input class="lp-b2b-quiz-form__input" id="lpQuizProvincia" name="provincia" type="text" autocomplete="address-level2" data-required placeholder="Es. TV" maxlength="40">
+              <p class="lp-b2b-quiz-form__error" data-error-for="provincia">Inserisci la provincia</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} STEP 2 {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="2" data-step-index="2">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 2 · La tua flotta</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Quanti camion gestite?</label>
+            <div class="lp-b2b-quiz-form__chips" role="radiogroup" aria-label="Numero camion">
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="camion" value="1-4" data-required><span>1-4</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="camion" value="5-10" data-required><span>5-10</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="camion" value="11-20" data-required><span>11-20</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="camion" value="21-50" data-required><span>21-50</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="camion" value="Oltre 50" data-required><span>Oltre 50</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="camion">Seleziona un'opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Quanti autisti lavorano stabilmente con voi?</label>
+            <div class="lp-b2b-quiz-form__chips" role="radiogroup" aria-label="Numero autisti">
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="autisti" value="1-4" data-required><span>1-4</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="autisti" value="5-10" data-required><span>5-10</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="autisti" value="11-20" data-required><span>11-20</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="autisti" value="21-50" data-required><span>21-50</span></label>
+              <label class="lp-b2b-quiz-form__chip"><input type="radio" name="autisti" value="Oltre 50" data-required><span>Oltre 50</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="autisti">Seleziona un'opzione</p>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} STEP 3 {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="3" data-step-index="3">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 3 · Come gestite le scarpe</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Oggi chi fornisce le scarpe antinfortunistiche?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Fornitore scarpe">
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="fornitore" value="Le fornisce l'azienda" data-required><span class="lp-b2b-quiz-form__option-text">Le fornisce l'azienda</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="fornitore" value="Ogni autista compra le proprie" data-required><span class="lp-b2b-quiz-form__option-text">Ogni autista compra le proprie</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="fornitore" value="Dipende dai casi" data-required><span class="lp-b2b-quiz-form__option-text">Dipende dai casi</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="fornitore" value="Non abbiamo una gestione precisa" data-required><span class="lp-b2b-quiz-form__option-text">Non abbiamo una gestione precisa</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="fornitore">Seleziona un'opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Qual è il problema principale oggi? <span class="lp-b2b-quiz-form__hint">(max 2)</span></label>
+            <div class="lp-b2b-quiz-form__options" data-multi-max="2" aria-label="Problema principale">
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Costano troppo nel tempo" data-required-multi><span class="lp-b2b-quiz-form__option-text">Costano troppo nel tempo</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Durano poco" data-required-multi><span class="lp-b2b-quiz-form__option-text">Durano poco</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Gli autisti le trovano scomode" data-required-multi><span class="lp-b2b-quiz-form__option-text">Gli autisti le trovano scomode</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Gli autisti le usano malvolentieri" data-required-multi><span class="lp-b2b-quiz-form__option-text">Gli autisti le usano malvolentieri</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Gestire le taglie è complicato" data-required-multi><span class="lp-b2b-quiz-form__option-text">Gestire le taglie è complicato</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Si perdono o si rovinano facilmente" data-required-multi><span class="lp-b2b-quiz-form__option-text">Si perdono o si rovinano facilmente</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Sono anonime e poco curate" data-required-multi><span class="lp-b2b-quiz-form__option-text">Sono anonime e poco curate</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="problema" value="Nessun problema particolare" data-required-multi><span class="lp-b2b-quiz-form__option-text">Nessun problema particolare</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="problema">Seleziona almeno una opzione</p>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} STEP 4 {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="4" data-step-index="4">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 4 · Cosa ti interessa di Dr Kampes</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Quale vantaggio ti interessa di più? <span class="lp-b2b-quiz-form__hint">(max 2)</span></label>
+            <div class="lp-b2b-quiz-form__options" data-multi-max="2" aria-label="Vantaggio">
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="vantaggio" value="Personalizzazione con colori/logo aziendale" data-required-multi><span class="lp-b2b-quiz-form__option-text">Personalizzazione con colori/logo aziendale</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="vantaggio" value="Maggiore comfort per gli autisti" data-required-multi><span class="lp-b2b-quiz-form__option-text">Maggiore comfort per gli autisti</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="vantaggio" value="Fast Wear per scendere dal camion con più praticità" data-required-multi><span class="lp-b2b-quiz-form__option-text">Fast Wear per scendere dal camion con più praticità</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="vantaggio" value="Risparmio sul costo reale nei 2 anni" data-required-multi><span class="lp-b2b-quiz-form__option-text">Risparmio sul costo reale nei 2 anni</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="vantaggio" value="Gestione taglie e storico ordini" data-required-multi><span class="lp-b2b-quiz-form__option-text">Gestione taglie e storico ordini</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="checkbox" name="vantaggio" value="Supporto diretto per l'azienda" data-required-multi><span class="lp-b2b-quiz-form__option-text">Supporto diretto per l'azienda</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="vantaggio">Seleziona almeno una opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Che soluzione vorresti valutare?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Soluzione">
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="soluzione" value="Versione nera" data-required><span class="lp-b2b-quiz-form__option-text">Versione nera</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="soluzione" value="Versione testa di moro" data-required><span class="lp-b2b-quiz-form__option-text">Versione testa di moro</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="soluzione" value="Versione personalizzata" data-required><span class="lp-b2b-quiz-form__option-text">Versione personalizzata</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="soluzione" value="Prima voglio capire quale soluzione è più adatta" data-required><span class="lp-b2b-quiz-form__option-text">Prima voglio capire quale soluzione è più adatta</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="soluzione" value="Mi interessa soprattutto il test iniziale" data-required><span class="lp-b2b-quiz-form__option-text">Mi interessa soprattutto il test iniziale</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="soluzione">Seleziona un'opzione</p>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} STEP 5 {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="5" data-step-index="5">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 5 · Candidatura e contatto</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Saresti disponibile a partire con un test iniziale da 5 paia?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Disponibilità test">
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="test" value="Sì, mi interessa" data-required><span class="lp-b2b-quiz-form__option-text">Sì, mi interessa</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="test" value="Sì, ma vorrei prima parlare con voi" data-required><span class="lp-b2b-quiz-form__option-text">Sì, ma vorrei prima parlare con voi</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="test" value="Forse, dipende dalla proposta" data-required><span class="lp-b2b-quiz-form__option-text">Forse, dipende dalla proposta</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="test" value="No, vorrei valutare più di 5 paia" data-required><span class="lp-b2b-quiz-form__option-text">No, vorrei valutare più di 5 paia</span></label>
+              <label class="lp-b2b-quiz-form__option"><input type="radio" name="test" value="Per ora voglio solo informazioni" data-required><span class="lp-b2b-quiz-form__option-text">Per ora voglio solo informazioni</span></label>
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="test">Seleziona un'opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label" for="lpQuizNome">Nome e cognome</label>
+            <input class="lp-b2b-quiz-form__input" id="lpQuizNome" name="nome" type="text" autocomplete="name" data-required placeholder="Mario Rossi">
+            <p class="lp-b2b-quiz-form__error" data-error-for="nome">Inserisci nome e cognome</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q lp-b2b-quiz-form__q--grid2">
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizWhatsappNumber">WhatsApp</label>
+              <div class="lp-b2b-quiz-form__phone">
+                <select class="lp-b2b-quiz-form__input lp-b2b-quiz-form__phone-prefix" id="lpQuizWhatsappPrefix" aria-label="Prefisso internazionale">
+                  <option value="39" data-flag="🇮🇹" selected>🇮🇹 +39</option>
+                  <option value="41" data-flag="🇨🇭">🇨🇭 +41</option>
+                  <option value="33" data-flag="🇫🇷">🇫🇷 +33</option>
+                  <option value="49" data-flag="🇩🇪">🇩🇪 +49</option>
+                  <option value="34" data-flag="🇪🇸">🇪🇸 +34</option>
+                  <option value="43" data-flag="🇦🇹">🇦🇹 +43</option>
+                  <option value="386" data-flag="🇸🇮">🇸🇮 +386</option>
+                  <option value="385" data-flag="🇭🇷">🇭🇷 +385</option>
+                  <option value="32" data-flag="🇧🇪">🇧🇪 +32</option>
+                  <option value="31" data-flag="🇳🇱">🇳🇱 +31</option>
+                  <option value="351" data-flag="🇵🇹">🇵🇹 +351</option>
+                  <option value="48" data-flag="🇵🇱">🇵🇱 +48</option>
+                  <option value="40" data-flag="🇷🇴">🇷🇴 +40</option>
+                  <option value="36" data-flag="🇭🇺">🇭🇺 +36</option>
+                  <option value="420" data-flag="🇨🇿">🇨🇿 +420</option>
+                  <option value="421" data-flag="🇸🇰">🇸🇰 +421</option>
+                  <option value="44" data-flag="🇬🇧">🇬🇧 +44</option>
+                  <option value="30" data-flag="🇬🇷">🇬🇷 +30</option>
+                  <option value="359" data-flag="🇧🇬">🇧🇬 +359</option>
+                  <option value="378" data-flag="🇸🇲">🇸🇲 +378</option>
+                  <option value="377" data-flag="🇲🇨">🇲🇨 +377</option>
+                  <option value="423" data-flag="🇱🇮">🇱🇮 +423</option>
+                </select>
+                <input class="lp-b2b-quiz-form__input lp-b2b-quiz-form__phone-number" id="lpQuizWhatsappNumber" type="tel" inputmode="numeric" autocomplete="tel-national" data-required data-validate="phone" placeholder="333 1234567" maxlength="20">
+              </div>
+              <input type="hidden" id="lpQuizWhatsapp" name="whatsapp">
+              <p class="lp-b2b-quiz-form__error" data-error-for="whatsapp">Numero non valido</p>
+            </div>
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizEmail">Email</label>
+              <input class="lp-b2b-quiz-form__input" id="lpQuizEmail" name="email" type="email" autocomplete="email" data-required data-validate="email" placeholder="nome@azienda.it">
+              <p class="lp-b2b-quiz-form__error" data-error-for="email">Email non valida</p>
+            </div>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label" for="lpQuizMessaggio">Messaggio libero <span class="lp-b2b-quiz-form__hint">(opzionale)</span></label>
+            <textarea class="lp-b2b-quiz-form__input lp-b2b-quiz-form__textarea" id="lpQuizMessaggio" name="messaggio" rows="3" maxlength="600" placeholder="Vuoi aggiungere qualcosa? Scrivilo qui."></textarea>
+          </div>
+
+          <p class="lp-b2b-quiz-form__privacy">
+            Inviando, accetti il trattamento dei dati per essere ricontattato dal team Dr Kampes.
+          </p>
+        </div>
+      </section>
+
+      {%- comment -%} SUCCESS {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step lp-b2b-quiz-form__step--final" data-quiz-step="success">
+        <div class="lp-b2b-quiz-form__success">
+          <div class="lp-b2b-quiz-form__success-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="28"/><path d="m20 33 8 8 16-18"/></svg>
+          </div>
+          <h3 class="lp-b2b-quiz-form__success-title">Candidatura ricevuta</h3>
+          <p class="lp-b2b-quiz-form__success-body">Grazie. Abbiamo ricevuto la candidatura della tua azienda per il programma Dr Kampes dedicato alle prime 10 aziende in Italia.</p>
+          <p class="lp-b2b-quiz-form__success-body">Analizzeremo le risposte e, se il profilo è in linea, ti contatteremo per capire insieme la soluzione migliore.</p>
+          <p class="lp-b2b-quiz-form__success-signoff">Dr Kampes non sono semplici scarpe antinfortunistiche. Sono un sistema pensato per migliorare comfort, immagine e gestione delle scarpe dei tuoi autisti.</p>
+          <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--ghost" data-quiz-close>Chiudi</button>
+        </div>
+      </section>
+
+      {%- comment -%} NAV (steps 1-5) {%- endcomment -%}
+      <div class="lp-b2b-quiz-form__nav lp-b2b-quiz-form__nav--steps" data-quiz-nav>
+        <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--ghost" data-quiz-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+          Indietro
+        </button>
+        <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--primary" data-quiz-next>
+          <span data-quiz-next-label>Avanti</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-quiz-next-arrow><path d="m9 6 6 6-6 6"/></svg>
+          <svg class="lp-b2b-quiz-form__spinner" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" data-quiz-spinner><path d="M12 4a8 8 0 0 1 8 8" stroke="currentColor"/></svg>
+        </button>
+      </div>
+
+      {%- comment -%} RETRY / ERROR BANNERS {%- endcomment -%}
+      <div class="lp-b2b-quiz-form__banner lp-b2b-quiz-form__banner--retry" data-quiz-retry role="status" aria-live="polite" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lp-b2b-quiz-form__banner-spin" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+        <span>Connessione instabile · Nuovo tentativo <strong data-quiz-retry-n>(1/3)</strong> tra <strong data-quiz-retry-s>5</strong>s</span>
+      </div>
+
+      <div class="lp-b2b-quiz-form__banner lp-b2b-quiz-form__banner--error" data-quiz-error role="alert" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/><path d="M10.3 3.9 2.5 18a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <span data-quiz-error-msg>Invio non riuscito. Salviamo le risposte: verranno inviate appena torna la connessione. Puoi anche riprovare ora.</span>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<button type="button" class="lp-b2b-sticky-cta" id="lpB2bStickyCta" data-quiz-trigger aria-label="Candida la tua azienda">
+  <span class="lp-b2b-sticky-cta__label">CANDIDA LA TUA AZIENDA</span>
+  <svg class="lp-b2b-sticky-cta__arrow" viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+</button>
+
+<script src="{{ 'lp-b2b-quiz-form.js' | asset_url }}" defer></script>
