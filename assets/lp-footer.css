@@ -8,36 +8,40 @@
 .lp-footer {
   background: #000;
   color: #fff;
-  padding: 56px 24px 64px;
+  /*
+    Bottom padding sized to clear the sticky .hps-cta-bar (~76px + safe-area)
+    so the legal text is never covered. See assets/lp-offerta.css :: .hps-cta-bar.
+  */
+  padding: 40px 24px calc(120px + env(safe-area-inset-bottom, 0px));
 }
 
 .lp-footer__inner {
-  max-width: 720px;
+  max-width: 560px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
 }
 
 .lp-footer__logo {
   display: block;
   width: auto;
-  height: 80px;
-  max-width: 60%;
+  height: 44px;
+  max-width: 50%;
   object-fit: contain;
 }
 
 .lp-footer__legal {
   text-align: center;
   font-family: 'Inter', sans-serif;
-  font-size: 1.76rem;
+  font-size: 1.12rem;
   line-height: 1.5;
   color: #fff;
 }
 
 .lp-footer__legal p {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 .lp-footer__legal p:last-child {
@@ -50,14 +54,14 @@
 
 @media (min-width: 750px) {
   .lp-footer {
-    padding: 72px 32px 80px;
+    padding: 56px 32px calc(120px + env(safe-area-inset-bottom, 0px));
   }
 
   .lp-footer__logo {
-    height: 96px;
+    height: 52px;
   }
 
   .lp-footer__legal {
-    font-size: 1.92rem;
+    font-size: 1.28rem;
   }
 }
