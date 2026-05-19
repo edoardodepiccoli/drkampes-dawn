@@ -1,0 +1,92 @@
+{% comment %}
+  LP B2B — Hero (B2B landing page)
+
+  Code-only LP element. Hard-coded content per LP architecture.
+  CTA links to #candida (anchor lives on the quiz-form snippet, ported later).
+
+  Background image is loaded from the store Files section as `hero_background.png`.
+  If the image isn't there yet, upload it in Shopify Admin > Content > Files.
+{% endcomment %}
+
+{{ 'lp-b2b-hero.css' | asset_url | stylesheet_tag }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap">
+
+<section class="lp-b2b-hero">
+
+  <div class="lp-b2b-hero__visual">
+    <img
+      class="lp-b2b-hero__bg"
+      src="{{ 'hero_background.png' | file_url }}"
+      alt="FINALMENTE SCARPE ANTINFORTUNISTICHE"
+      loading="eager"
+      fetchpriority="high"
+    >
+  </div>
+
+  <div class="lp-b2b-hero__overlay">
+    <div class="lp-b2b-hero__eyebrow">
+      <span class="lp-b2b-hero__eyebrow-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.44 5h10.67a1 1 0 0 1 1 1v10.83H8.53"/><path d="M2.44 5a1 1 0 0 0-1 1v9.83a1 1 0 0 0 1 1h1.82"/><path d="M14.18 7.62h3.58a2 2 0 0 1 1.96 1.55l0.7 3.16"/><path d="M20.42 12.33l0.29 2.05a2 2 0 0 1-1.98 2.45H18.7"/><path d="M14.18 16.83V7.62"/><circle cx="6.39" cy="16.83" r="2.13"/><circle cx="16.57" cy="16.83" r="2.13"/></svg>
+      </span>
+      <span>PER AZIENDE DI AUTOTRASPORTO</span>
+    </div>
+
+    <h1 class="lp-b2b-hero__h1">
+      <span class="lp-b2b-hero__h1-line">FINALMENTE SCARPE ANTINFORTUNISTICHE</span>
+      <span class="lp-b2b-hero__h1-line lp-b2b-hero__h1-line--gold">PERSONALIZZATE COME VUOI TU</span>
+    </h1>
+
+    <div class="lp-b2b-hero__sub"><p>Fai indossare ai tuoi autisti le scarpe con il logo della tua azienda.</p></div>
+  </div>
+
+  <div class="lp-b2b-hero__content">
+
+    <a href="#candida" class="lp-b2b-hero__cta" data-quiz-trigger>
+      <svg class="lp-b2b-hero__cta-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m9 5 7 7-7 7"/>
+      </svg>
+      <span class="lp-b2b-hero__cta-text">CANDIDA LA TUA AZIENDA</span>
+    </a>
+
+    <ul class="lp-b2b-hero__trust">
+      <li class="lp-b2b-hero__trust-item">
+        <span class="lp-b2b-hero__trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span class="lp-b2b-hero__trust-text">Quiz di 3 minuti</span>
+      </li>
+      <li class="lp-b2b-hero__trust-item">
+        <span class="lp-b2b-hero__trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </span>
+        <span class="lp-b2b-hero__trust-text">Nessun obbligo di acquisto</span>
+      </li>
+      <li class="lp-b2b-hero__trust-item">
+        <span class="lp-b2b-hero__trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M14 19a5 5 0 0 1 7 0"/></svg>
+        </span>
+        <span class="lp-b2b-hero__trust-text">Accesso riservato alle prime 10 aziende selezionate</span>
+      </li>
+    </ul>
+
+    <div class="lp-b2b-hero__bonus">
+      <span class="lp-b2b-hero__bonus-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 12v9H4v-9"/>
+          <rect x="2" y="7" width="20" height="5"/>
+          <line x1="12" y1="22" x2="12" y2="7"/>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+        </svg>
+      </span>
+      <div class="lp-b2b-hero__bonus-text">
+        <strong>Bonus quiz:</strong>
+        <span>2 strategie pratiche per risparmiare sulla gestione DPI</span>
+      </div>
+    </div>
+
+  </div>
+</section>
