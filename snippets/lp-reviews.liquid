@@ -1,0 +1,1156 @@
+{% comment %}
+  LP — Reviews (B2C landing page)
+
+  Code-only LP element. 58 Google reviews hard-coded inline.
+  Edit a review by finding the <li> and changing the text.
+  Add a review by copying any <li> and changing name / time / text.
+  Initial 6 are visible; the rest unhide on "Mostra le altre" click.
+{% endcomment %}
+
+{{ 'lp-reviews.css' | asset_url | stylesheet_tag }}
+
+<section class="lp-reviews" data-lp-reviews-id="lp">
+  <div class="lp-reviews__inner">
+
+    <header class="lp-reviews__head">
+      <div class="lp-reviews__head-left">
+        <div class="lp-reviews__eyebrow">Recensioni Google</div>
+        <h2 class="lp-reviews__h2">Cosa dicono i clienti</h2>
+      </div>
+      <div class="lp-reviews__google">
+        <span class="lp-reviews__google-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+        </span>
+        <div class="lp-reviews__google-meta">
+          <div class="lp-reviews__google-rating">
+            <span class="lp-reviews__google-num">4.9</span>
+            <span class="lp-reviews__google-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="lp-reviews__google-count">68 recensioni Google</div>
+        </div>
+      </div>
+    </header>
+
+    <ul class="lp-reviews__list" data-lp-reviews-list>
+      <li class="lp-rev">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">S</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Stefano Lucarini</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">1 mese fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Azienda seria e di qualità, proprietario gentilissimo e alla mano!</p>
+      </li>
+
+      <li class="lp-rev">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">G</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Giovanni Panzeri</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">1 mese fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ottimo prodotto ho acquistato queste scarpe da lavoro per una questione di praticità e qualità, dopo un mese di utilizzo ne sono soddisfatto al cento per cento.</p>
+      </li>
+
+      <li class="lp-rev">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#bf360c;" aria-hidden="true">A</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Alex Villa</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">2 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ho acquistato le scarpe di Dr kampes all'incirca un mese fa, esperienza positiva, comode e di ottima manifattura Made in italy. Praticamente le indosso tutti i giorni, compreso il week end, anche se non sono sopra il camion…</p>
+      </li>
+
+      <li class="lp-rev">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">P</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Paolo Galardini</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">4 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ottime scarpe. Le uso da una settimana e sono molto comode e soprattutto tengono molto caldo. Si vede che sono fatte veramente bene. Sul bagnato ancora non ho avuto occasione di provarle. Comunque super consigliate</p>
+      </li>
+
+      <li class="lp-rev">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">V</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Valerio Oneda</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">4 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Buongiorno, sono veramente soddisfatto dell'acquisto delle DrKampes, i primi giorni un po' dure sul collo del piede ma ci sta visto che sono fatte di pelle, ora dopo una settimana che le uso, posso dire di aver fatto un ottimo acquisto! Grazie mille, scarpe fantastiche e leggere! Tutto un altro camminare! Super soddisfatto! 💪💪</p>
+      </li>
+
+      <li class="lp-rev">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">N</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Natalia Gotca</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">4 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Migliore scarpa antinfortunistica! Darei più di 5 stelle. Hanno superato le mie aspettative! Comode, facilmente da indossare, valorizza. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#37474f;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Davide Leone</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">4 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe veramente top, come estetica, comodità, qualità e leggerezza... Costeranno un po' di più rispetto ad altre calzature ma ne vale veramente la pena... Sono veramente soddisfatto</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">F</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">franco</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">4 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe ben fatte, confortevoli, il materiale usato è di qualità. Penso che ne acquisto un'altra paio.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">P</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Paolo Montaldo</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">4 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe comode, robuste, facili da pulire, e allo stesso tempo si fanno notare. Soddisfatto alla grande.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">L</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Letizia Birolo</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">4 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Il prodotto è molto valido. Comode e veritiere come descrizione.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">G</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Gianluca Manera</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">5 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpa ottima, comodissima. Usata sia con la linguetta su che giù funziona bene. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire. Perfetta per ogni movimento.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Davide Bernardi</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">5 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ottimo prodotto, proprietario molto cordiale e sempre disponibile.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#37474f;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Denys Orsini</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">6 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Diverse scarpe prese, molto valide. Super contento.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#37474f;" aria-hidden="true">A</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Andrei Oprea</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">7 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">L'unico difetto forse, il prezzo un po' troppo alto. Per il resto mi sono innamorato. Non sudano i piedi, impermeabili e stracomode quando le indossi. Vediamo ora se durano 3 anni!</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">R</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Riccardo Zavatta</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">7 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scuso il ritardo di quasi un mese, le ho provate ieri per la prima volta, le ho tenute tutto il giorno. Si sono subito ammorbidite, plantare comodissimo. Mi trovo veramente bene oltre che comode anche molto molto belle, per me sì.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#37474f;" aria-hidden="true">K</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Klaus Kofler</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">7 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Sono contento dell'acquisto che ho fatto.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Marco Annigoni</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">7 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Molto comode, semplici da indossare. Le consiglio, sono il top 👍👍👍👍</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Maria del Carmen Soto</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">7 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Michele Bello</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">8 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Prodotto di eccellente qualità e di eccellente fattura, molto comode e versatili e facilissime da pulire.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#5d4037;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Denis Sanna</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">8 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro. Grazie mille.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">E</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Elia Miggiano</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">8 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ottime scarpe, comodissime.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Manuel Pegoretti</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">9 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Le ho acquistate 1 mese fa circa e devo dire che mi trovo molto molto bene, a fine giornata non sento il peso di averle addosso, anzi hanno una soletta interna veramente morbida.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">L</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Lorenzo Delussu</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">10 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Primo giorno di utilizzo delle scarpe. Posso solo dire che confermo AMPIAMENTE tutte le recensioni più che positive lasciate dagli altri utenti; io uso la motrice e scendo e salgo dal mezzo…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">P</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Paolo Fioriti</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">10 mesi fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Miglior scarpa da lavoro mai avuta.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">G</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Giuseppe Sciotti</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Perfette, le uso tutti i giorni anche quando sono a casa. Questi giorni di pioggia mi hanno veramente sorpreso: sotto il diluvio e nelle pozzanghere il piede è rimasto asciutto, e a fine giornata una pulita veloce per…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">G</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Giorgio Bubba</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Credo sia necessario ringraziare tutto il team che ha contribuito alla creazione di questi gioielli d'artigianato ITALIANO! Indosso tutti i giorni con orgoglio e fierezza una scarpa che rende ad ogni passo una sensazione di benessere. S-U-P-E-R</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">E</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Enrico Valpiani</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Un anno fa circa ho scoperto Dr Kampes e credo veramente che le altre scarpe antinfortunistiche siano un lontano ricordo… infatti ne ho acquistate ben 2 paia 😁 comodità, praticità voto 100 su 10. Il piede sia in inverno che in estate non…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Mauro Varriale</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ho appena ricevuto le scarpe e ringrazio DR KAMPES per come mi ha assistito telefonicamente per la compera. Da domani iniziamo ad usarle, vi farò sapere.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">P</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Pierantonio De Piccoli</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Da un anno utilizzo queste scarpe durante le mie giornate lavorative da camionista, affrontando ogni condizione meteo e terreno: pioggia, fango, polvere e, naturalmente, le operazioni di carico e scarico, che mettono a dura prova le nostre…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#bf360c;" aria-hidden="true">V</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Vincenzo Di Marco</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Claudio è un genio odierno! È riuscito a creare delle scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear! Che dire io le ho da dicembre e le sto usando nel fango nell'acqua un po' dappertutto…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Diego Cantore</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ciao a tutti, è circa un anno che utilizzo le scarpe del Dr.Kampes e devo dire che mi trovo benissimo. L'unico mio errore è stato prenderle di un numero troppo grosse ma per il resto…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">L</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Liviu Ciornei</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ottime scarpe antinfortunistiche, morbide dentro, in pelle liscia non assorbono l'acqua, comode ed eleganti. Comprate da un po' di mesi, ne ho diverse ma queste sono le mie preferite in assoluto. All'acquisto diversi regalini nel pacco! Un prodotto che le 5 stelle se le merita.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">L</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Lisa Battistella</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Il prodotto che ho acquistato per mio cognato si è rivelato fantastico, infatti è super contento! Ha apprezzato il fatto che fossero anche anti pioggia e super comode per tutto il giorno…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Diego Peregalli</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe fatte bene con materiale di ottima scelta, comode e calzata molto sicura. Ideale per noi camionisti che le togliamo per lasciarle sui scalini. Ottimo acquisto.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Marco Priotto</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#37474f;" aria-hidden="true">R</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Rudy Boscolo</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Le uso da una settimana, il sistema fastwear è veramente comodo e si sente poco sul tallone, ovviamente all'inizio sono dure sia da mettere che da usare ma nel giro di poco si sistema tutto. Approvate 🤙</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#5d4037;" aria-hidden="true">N</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Nicolò Guglielmina</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Comprate da poco, le Dr Kampes sono sicuramente molto comode grazie alla possibilità di calzarle tipo ciabatta. Sono perfette in caso di fango/pioggia perché tengono i piedi all'asciutto e sono facilissime da pulire! Ottimo prodotto.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">I</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Ivano Dettori</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Personale cordiale, mi hanno contattato subito dopo aver effettuato l'ordine e anche una volta arrivate le scarpe per sapere se mi fossi trovato bene.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">F</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Fulvio</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Tutto perfetto come da promozione. Una cosa solo da segnalare, ma forse è solo un mio problema. Ci vorrebbe una soletta più morbida perché io le sento dure in pianta, ripeto che probabilmente è un mio problema. Per il resto ottimo prodotto.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#5d4037;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Maikol Maik</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. Qui trovi l'eccellenza di un prodotto Made in Italy per la sicurezza sul lavoro antinfortunistica.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">T</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Thierry Nardo</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe di altissima qualità!! Consiglio vivamente!! Sono dei professionisti!!</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Danilo La Ferla</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Salve, voglio condividere con tutti i miei colleghi camionisti la mia esperienza positiva con Dr Kampes: scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto anche a mollo, facile…</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#bf360c;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Damiano Montresor</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ho preso le Dr Kampes per vedere come sono e devo dire che mi trovo molto bene. Comode, fatte bene, Made in Italy. Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#bf360c;" aria-hidden="true">M</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Marco Olga</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Le ho comprate vedendo video e pubblicità sui social, devo dire che ho fatto il miglior acquisto per quanto riguarda scarpe da camionista. Ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega così da rendere più semplice lasciarle sulla scaletta… che dire, semplicemente perfette!</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">V</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Valerio Iafrate</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ringraziando Claudio per la sua disponibilità e gentilezza. Che dire, è una scarpa veramente comoda e pratica e soprattutto resistente.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#bf360c;" aria-hidden="true">I</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Igor Rossi</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Per quanto riguarda le scarpe credo di aver fatto la scelta della vita: calzano in maniera perfetta, non puzzano, sono morbide nella camminata ma allo stesso tempo resistenti, la pelle è di vera qualità. Le sto usando in qualsiasi condizione e per adesso non mostrano nessun segno d'usura. Sono veramente soddisfatto 👍🏻😀</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">C</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Claudio Horacio Fidalgo</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Volevo condividere con voi la mia esperienza con queste scarpe per noi autisti. Ero stufo di usare le solite scarpe; cercando ho trovato le Dr Kampes e devo dire che le uso anche per andare in giro: sono molto comode e soprattutto di ottima qualità, come solo l'Italia sa fare le scarpe. Vi consiglio.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">L</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Loris Pizzini</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Sono 7 mesi che indosso le scarpe del Dr Kampes, sono veramente comode e fatte bene. Soldi spesi bene, grazie mille.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#c62828;" aria-hidden="true">S</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Stefano Diodà</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe perfette e molto comode anche per salire e scendere velocemente. Ottimo prodotto e persone molto corrette e cordiali. Consigliatissime.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#1565c0;" aria-hidden="true">L</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Luca Caibugatti</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare!</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">F</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Franco Vitelli</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe fantastiche, ottime per qualsiasi tipo di lavoro. Io faccio rottami.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">E</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Emanuele Galassi</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpa veramente comoda che si adatta a tante situazioni e resistente. Direi un super acquisto!</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">C</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Corrado Crespi</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe top, mai provato un prodotto simile. Straconsigliato.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#5d4037;" aria-hidden="true">A</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Alessandro Margoni</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Comode, sempre i piedi asciutti nonostante fango e pioggia. Si lavano e diventano nuove.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">F</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Federico Baffo</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Prodotto di qualità e resistenza. Straconsigliato 💪🏻</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#bf360c;" aria-hidden="true">G</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Giovanni Maggioni</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Scarpe fantastiche. Comodissime.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#6a1b9a;" aria-hidden="true">D</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Domenico Boscolo</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ottimo prodotto.</p>
+      </li>
+
+      <li class="lp-rev lp-rev--hidden">
+        <header class="lp-rev__head">
+          <span class="lp-rev__avatar lp-rev__avatar--initial" style="background:#2e7d32;" aria-hidden="true">H</span>
+          <div class="lp-rev__id">
+            <p class="lp-rev__name">Hamza Chagdani</p>
+            <p class="lp-rev__meta">
+              <span class="lp-rev__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="lp-rev__sep" aria-hidden="true">&middot;</span>
+              <span class="lp-rev__time">un anno fa</span>
+            </p>
+          </div>
+          <span class="lp-rev__verified" title="Recensione verificata da Google">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Google
+          </span>
+        </header>
+        <p class="lp-rev__text">Ottime scarpe.</p>
+      </li>
+    </ul>
+
+    <button type="button" class="lp-reviews__more" data-lp-reviews-more>
+      Mostra le altre 52 recensioni
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+
+    <a class="lp-reviews__google-link" href="https://www.google.com/search?q=Dr+Kampes+Italian+Trucker+Shoes+Recensioni" target="_blank" rel="noopener">
+      Vedi tutte le recensioni su Google
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<script src="{{ 'lp-reviews.js' | asset_url }}" defer></script>
