@@ -13,6 +13,18 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "text_AGKUFN": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "subtext": "<p><strong>CAMPES S.r.l.</strong>  Sede legale e amministrativa: Via Noalese 84/E, 31100 Treviso (TV), Italia<br/>C.F. e P.IVA 05496370262<br/>Iscritta al Registro delle Imprese di Treviso-Belluno -  REA TV-448699<br/>Capitale sociale € 4.000,00 interamente versato<br/><br/>  PEC: <a href=\"mailto:campessrl@pec.it\">campessrl@pec.it</a>   <br/>Email: <a href=\"mailto:info@drkampes.com\">info@drkampes.com</a></p><p><a href=\"/policies/legal-notice\" title=\"Legal Notice\">Informativa legale</a><br/><a href=\"/policies/privacy-policy\" title=\"Privacy Policy\">Privacy Policy</a><br/><a href=\"/pages/cookie-policy\" title=\"Cookie Policy\">Cookie Policy</a><br/><a href=\"/policies/refund-policy\" title=\"Refund Policy\">Resi e rimborsi</a><br/><a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">Spedizioni</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\" title=\"Garanzia 3 Anni\">Condizioni di Vendita B2C</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\" title=\"Garanzia 3 Anni\">Condizioni di Fornitura B2B</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\">Garanzia 3 Anni</a><br/><a href=\"/pages/contatti\">Contatti</a><br/>  </p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_AGKUFN"
+      ],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": false,
