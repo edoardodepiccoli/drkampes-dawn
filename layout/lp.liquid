@@ -143,6 +143,9 @@
         box-sizing: border-box;
         font-size: calc(var(--font-body-scale) * 62.5%);
         height: 100%;
+        /* Smooth-scroll on in-page anchor links (e.g. hero CTA -> #acquista). */
+        /* Scoped to LP layout only — theme.liquid does not opt into this. */
+        scroll-behavior: smooth;
       }
 
       body {

@@ -516,7 +516,7 @@
 .hps-pop__bg {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.7);
   cursor: pointer;
 }
 
