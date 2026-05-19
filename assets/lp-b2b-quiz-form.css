@@ -562,6 +562,8 @@
   text-transform: uppercase;
   margin: 0;
   letter-spacing: -0.01em;
+  /* Dawn theme defaults darken bare h3 elements; force white on dark modal bg. */
+  color: #fff;
 }
 .lp-b2b-quiz-form__success-body {
   font-family: 'Inter', sans-serif;
