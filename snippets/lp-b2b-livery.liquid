@@ -1,0 +1,99 @@
+{% comment %}
+  LP B2B — Livery (B2B landing page)
+
+  Code-only LP element. Hero band + 4 livery cards stacked below
+  (truck + shoe combo per color scheme). Hard-coded content.
+
+  Background + card images loaded from store Files section:
+    - real_world_use_case_wallpaper.png
+    - CAMION_NERO_E_GIALLO.png
+    - CAMION_BIANCO-ROSSO.png
+    - CAMION_BLU_BIANCO.png
+    - CAMION_VERDE_ORO.png
+{% endcomment %}
+
+{{ 'lp-b2b-livery.css' | asset_url | stylesheet_tag }}
+
+<section class="lp-b2b-livery">
+
+  <div class="lp-b2b-livery__hero">
+    <img
+      class="lp-b2b-livery__bg"
+      src="{{ 'real_world_use_case_wallpaper.png' | file_url }}"
+      alt="LA LIVREA CONTINUA AI PIEDI DEI TUOI AUTISTI."
+      loading="lazy"
+    >
+    <div class="lp-b2b-livery__hero-overlay">
+      <h2 class="lp-b2b-livery__heading">LA LIVREA CONTINUA AI PIEDI DEI TUOI AUTISTI.</h2>
+    </div>
+  </div>
+
+  <div class="lp-b2b-livery__cards">
+
+    <article class="lp-b2b-livery__card">
+      <div class="lp-b2b-livery__card-text">
+        <span class="lp-b2b-livery__badge" style="background-color: #E8B82E; color: #111111;">01</span>
+        <h3 class="lp-b2b-livery__title">NERO + GIALLO</h3>
+        <span class="lp-b2b-livery__rule" aria-hidden="true"></span>
+        <p class="lp-b2b-livery__text">Aggressiva, visibile, stile racing.</p>
+        <div class="lp-b2b-livery__swatches" aria-hidden="true">
+          <span class="lp-b2b-livery__swatch" style="background-color: #000000;"></span>
+          <span class="lp-b2b-livery__swatch" style="background-color: #E8B82E;"></span>
+        </div>
+      </div>
+      <div class="lp-b2b-livery__media">
+        <img class="lp-b2b-livery__img" src="{{ 'CAMION_NERO_E_GIALLO.png' | file_url }}" alt="NERO + GIALLO" loading="lazy">
+      </div>
+    </article>
+
+    <article class="lp-b2b-livery__card">
+      <div class="lp-b2b-livery__card-text">
+        <span class="lp-b2b-livery__badge" style="background-color: #C0192A; color: #FFFFFF;">02</span>
+        <h3 class="lp-b2b-livery__title">BIANCO + ROSSO</h3>
+        <span class="lp-b2b-livery__rule" aria-hidden="true"></span>
+        <p class="lp-b2b-livery__text">Classica, pulita, ad alta visibilità.</p>
+        <div class="lp-b2b-livery__swatches" aria-hidden="true">
+          <span class="lp-b2b-livery__swatch" style="background-color: #FFFFFF;"></span>
+          <span class="lp-b2b-livery__swatch" style="background-color: #C0192A;"></span>
+        </div>
+      </div>
+      <div class="lp-b2b-livery__media">
+        <img class="lp-b2b-livery__img" src="{{ 'CAMION_BIANCO-ROSSO.png' | file_url }}" alt="BIANCO + ROSSO" loading="lazy">
+      </div>
+    </article>
+
+    <article class="lp-b2b-livery__card">
+      <div class="lp-b2b-livery__card-text">
+        <span class="lp-b2b-livery__badge" style="background-color: #1B3D8C; color: #FFFFFF;">03</span>
+        <h3 class="lp-b2b-livery__title">BLU + BIANCO</h3>
+        <span class="lp-b2b-livery__rule" aria-hidden="true"></span>
+        <p class="lp-b2b-livery__text">Professionale, affidabile, istituzionale.</p>
+        <div class="lp-b2b-livery__swatches" aria-hidden="true">
+          <span class="lp-b2b-livery__swatch" style="background-color: #1B3D8C;"></span>
+          <span class="lp-b2b-livery__swatch" style="background-color: #FFFFFF;"></span>
+        </div>
+      </div>
+      <div class="lp-b2b-livery__media">
+        <img class="lp-b2b-livery__img" src="{{ 'CAMION_BLU_BIANCO.png' | file_url }}" alt="BLU + BIANCO" loading="lazy">
+      </div>
+    </article>
+
+    <article class="lp-b2b-livery__card">
+      <div class="lp-b2b-livery__card-text">
+        <span class="lp-b2b-livery__badge" style="background-color: #2D5C3E; color: #FFFFFF;">04</span>
+        <h3 class="lp-b2b-livery__title">VERDE + ORO</h3>
+        <span class="lp-b2b-livery__rule" aria-hidden="true"></span>
+        <p class="lp-b2b-livery__text">Distintiva, ricercata, premium.</p>
+        <div class="lp-b2b-livery__swatches" aria-hidden="true">
+          <span class="lp-b2b-livery__swatch" style="background-color: #2D5C3E;"></span>
+          <span class="lp-b2b-livery__swatch" style="background-color: #C9A227;"></span>
+        </div>
+      </div>
+      <div class="lp-b2b-livery__media">
+        <img class="lp-b2b-livery__img" src="{{ 'CAMION_VERDE_ORO.png' | file_url }}" alt="VERDE + ORO" loading="lazy">
+      </div>
+    </article>
+
+  </div>
+
+</section>

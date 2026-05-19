@@ -1,0 +1,251 @@
+/*
+  LP B2B — Livery
+  Scoped under .lp-b2b-livery. Rems x1.6 for Dawn 10px root.
+*/
+
+.lp-b2b-livery {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.25);
+  background: #000;
+  color: #fff;
+}
+
+/* Hero band (bg + headline) */
+.lp-b2b-livery__hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 260px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.lp-b2b-livery__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 0;
+}
+
+.lp-b2b-livery__hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.5) 0%,
+      rgba(0,0,0,0.15) 25%,
+      rgba(0,0,0,0) 45%,
+      rgba(0,0,0,0.4) 70%,
+      rgba(0,0,0,0.85) 88%,
+      #000 100%);
+}
+
+.lp-b2b-livery__hero-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 24px 20px;
+}
+
+.lp-b2b-livery__heading {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 2.72rem;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  max-width: 14ch;
+  text-align: right;
+}
+
+/* Cards stack */
+.lp-b2b-livery__cards {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 12px;
+  margin-top: -56px;
+}
+
+.lp-b2b-livery__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "text"
+    "media";
+  padding: 14px 16px 16px;
+  border: 1px solid var(--b2b-gold-faint);
+  border-radius: 12px;
+  background: #000;
+  gap: 8px;
+}
+
+.lp-b2b-livery__card-text {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.lp-b2b-livery__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.248rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.lp-b2b-livery__title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.92rem;
+  line-height: 1;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.lp-b2b-livery__rule {
+  display: block;
+  width: 56px;
+  height: 1.5px;
+  background: var(--b2b-gold);
+  margin: 1px 0 2px;
+}
+
+.lp-b2b-livery__text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.36rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #fff;
+  margin: 0;
+  max-width: 38ch;
+}
+
+.lp-b2b-livery__swatches {
+  display: flex;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.lp-b2b-livery__swatch {
+  display: block;
+  width: 38px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+/* Media (truck + shoe combo image) */
+.lp-b2b-livery__media {
+  grid-area: media;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  overflow: hidden;
+}
+
+.lp-b2b-livery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Tablet >= 750px */
+@media (min-width: 750px) {
+  .lp-b2b-livery__hero {
+    aspect-ratio: 21 / 9;
+    min-height: 340px;
+  }
+  .lp-b2b-livery__hero-overlay { padding: 40px 48px; }
+  .lp-b2b-livery__heading {
+    font-size: 4.16rem;
+    max-width: 18ch;
+  }
+
+  .lp-b2b-livery__cards {
+    margin-top: -72px;
+    padding: 0 32px;
+    gap: 16px;
+  }
+
+  .lp-b2b-livery__card {
+    grid-template-columns: minmax(200px, 1fr) 1.8fr;
+    grid-template-areas: "text media";
+    align-items: center;
+    padding: 18px 32px;
+    gap: 20px;
+    border-radius: 14px;
+  }
+
+  .lp-b2b-livery__title { font-size: 2.4rem; }
+  .lp-b2b-livery__text { font-size: 1.52rem; }
+  .lp-b2b-livery__rule { width: 72px; }
+  .lp-b2b-livery__swatch { width: 46px; height: 18px; }
+
+  .lp-b2b-livery__media {
+    aspect-ratio: 16 / 6;
+  }
+}
+
+/* Desktop >= 1100px */
+@media (min-width: 1100px) {
+  .lp-b2b-livery__hero {
+    aspect-ratio: 21 / 7;
+    min-height: 420px;
+  }
+  .lp-b2b-livery__hero-overlay { padding: 56px 64px; }
+  .lp-b2b-livery__heading {
+    font-size: 6.08rem;
+    max-width: 22ch;
+  }
+
+  .lp-b2b-livery__cards {
+    margin-top: -96px;
+    padding: 0 48px;
+    gap: 20px;
+  }
+
+  .lp-b2b-livery__card {
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    grid-template-areas: "text media";
+    padding: 24px 40px;
+    gap: 32px;
+    border-radius: 16px;
+  }
+
+  .lp-b2b-livery__title { font-size: 2.88rem; }
+  .lp-b2b-livery__text { font-size: 1.6rem; }
+  .lp-b2b-livery__rule { width: 84px; height: 2px; }
+  .lp-b2b-livery__badge { font-size: 1.312rem; padding: 4px 11px; }
+  .lp-b2b-livery__swatch { width: 54px; height: 20px; }
+
+  .lp-b2b-livery__media {
+    aspect-ratio: 16 / 6;
+  }
+}
