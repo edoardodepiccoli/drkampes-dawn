@@ -503,6 +503,15 @@
 }
 
 /* Popups */
+/*
+  Dark backdrop applied directly to .hps-pop (the fixed viewport-filler) instead
+  of the nested .hps-pop__bg child. Reason: prior nested approach (absolute bg
+  inside fixed parent) rendered with no visible darkening across all three popups
+  (size-guide, specs, t-shirt) despite correct rgba values. Putting the background
+  on the parent removes that whole class of stacking/containing-block fragility.
+  The __bg child is kept as a transparent click-to-close target above the page
+  and below the box.
+*/
 .hps-pop {
   position: fixed;
   inset: 0;
@@ -510,20 +519,20 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
 }
 .hps-pop[hidden] { display: none; }
 
 .hps-pop__bg {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   cursor: pointer;
+  z-index: 0;
 }
 
 .hps-pop__box {
   position: relative;
+  z-index: 1;
   background: #fff;
   border-radius: 0;
   width: 100%;
