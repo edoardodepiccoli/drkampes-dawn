@@ -1,0 +1,76 @@
+{% comment %}
+  LP B2B — Customization (B2B landing page)
+
+  Code-only LP element. Showcase image + 3 leather swatches + 4 feature cards.
+  Hard-coded content per LP architecture.
+
+  Main image loaded from store Files section as `3d_logo_render.jpg`.
+  Upload it via Shopify Admin > Content > Files if not present.
+{% endcomment %}
+
+{{ 'lp-b2b-customization.css' | asset_url | stylesheet_tag }}
+
+<section class="lp-b2b-custom">
+  <div class="lp-b2b-custom__inner">
+
+    <div class="lp-b2b-custom__showcase">
+      <div class="lp-b2b-custom__main">
+        <img
+          class="lp-b2b-custom__main-img"
+          src="{{ '3d_logo_render.jpg' | file_url }}"
+          alt="Personalizzazione logo scarpe Dr Kampes"
+          loading="lazy"
+        >
+      </div>
+
+      <ul class="lp-b2b-custom__swatches">
+        <li class="lp-b2b-custom__swatch" style="background-color: #B5331E;">
+          <span class="visually-hidden">Pelle rossa</span>
+        </li>
+        <li class="lp-b2b-custom__swatch" style="background-color: #4A4A4A;">
+          <span class="visually-hidden">Pelle grigia</span>
+        </li>
+        <li class="lp-b2b-custom__swatch" style="background-color: #1A1A1A;">
+          <span class="visually-hidden">Pelle nera</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lp-b2b-custom__features">
+
+      <article class="lp-b2b-custom__card">
+        <span class="lp-b2b-custom__card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.44 5h10.67a1 1 0 0 1 1 1v10.83H8.53"/><path d="M2.44 5a1 1 0 0 0-1 1v9.83a1 1 0 0 0 1 1h1.82"/><path d="M14.18 7.62h3.58a2 2 0 0 1 1.96 1.55l0.7 3.16"/><path d="M20.42 12.33l0.29 2.05a2 2 0 0 1-1.98 2.45H18.7"/><path d="M14.18 16.83V7.62"/><circle cx="6.39" cy="16.83" r="2.13"/><circle cx="16.57" cy="16.83" r="2.13"/></svg>
+        </span>
+        <h3 class="lp-b2b-custom__card-title">COLORI DI FLOTTA</h3>
+        <p class="lp-b2b-custom__card-text">Coordiniamo la tua identità su ogni dettaglio.</p>
+      </article>
+
+      <article class="lp-b2b-custom__card">
+        <span class="lp-b2b-custom__card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 2h9v9L11 21z"/><circle cx="16" cy="8" r="1.5"/></svg>
+        </span>
+        <h3 class="lp-b2b-custom__card-title">LOGO AZIENDALE</h3>
+        <p class="lp-b2b-custom__card-text">Il tuo marchio sempre in primo piano.</p>
+      </article>
+
+      <article class="lp-b2b-custom__card">
+        <span class="lp-b2b-custom__card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6L12 8"/><path d="M12 16L12 18"/><path d="M8 12H6"/><path d="M18 12H16"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/></svg>
+        </span>
+        <h3 class="lp-b2b-custom__card-title">DETTAGLI COORDINATI</h3>
+        <p class="lp-b2b-custom__card-text">Cuciture, inserti e finiture in perfetta sintonia.</p>
+      </article>
+
+      <article class="lp-b2b-custom__card">
+        <span class="lp-b2b-custom__card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg>
+        </span>
+        <h3 class="lp-b2b-custom__card-title">3 ANNI DI GARANZIA</h3>
+        <p class="lp-b2b-custom__card-text">1.095 giornate coperte. Risuolatura inclusa.</p>
+      </article>
+
+    </div>
+
+  </div>
+</section>

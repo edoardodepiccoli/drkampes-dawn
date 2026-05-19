@@ -1,0 +1,299 @@
+/*
+  LP B2B — Customization
+  Scoped under .lp-b2b-custom. Rems x1.6 for Dawn 10px root.
+*/
+
+.lp-b2b-custom {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-soft:   rgba(232, 184, 46, 0.55);
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.25);
+  background: #000;
+  color: #fff;
+  padding: 32px 16px 40px;
+}
+
+.lp-b2b-custom__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Showcase (main image + swatches) */
+.lp-b2b-custom__showcase {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+}
+
+.lp-b2b-custom__main {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #111;
+}
+
+.lp-b2b-custom__main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.25);
+  transform-origin: center;
+}
+
+.lp-b2b-custom__swatches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 56px;
+  flex-shrink: 0;
+}
+
+.lp-b2b-custom__swatch {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1.5px solid var(--b2b-gold-faint);
+  background-color: #333;
+  background-image:
+    radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(0,0,0,0.35) 0%, transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-blend-mode: overlay, multiply, overlay;
+  background-size: cover, cover, 180px 180px;
+}
+
+.lp-b2b-custom__swatch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.18' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  background-size: 280px 280px;
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.lp-b2b-custom .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Features (compact horizontal cards on mobile) */
+.lp-b2b-custom__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.lp-b2b-custom__card {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  text-align: left;
+  gap: 0 12px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.55);
+  border: 1.5px solid var(--b2b-gold-faint);
+  border-radius: 10px;
+}
+
+.lp-b2b-custom__card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--b2b-gold);
+  background: rgba(232, 184, 46, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.lp-b2b-custom__card-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--b2b-gold);
+  color: var(--b2b-gold);
+}
+
+.lp-b2b-custom__card-title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.408rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.15;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+}
+
+.lp-b2b-custom__card-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.28rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--b2b-gold);
+  margin: 0;
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+}
+
+/* Tablet >= 750px */
+@media (min-width: 750px) {
+  .lp-b2b-custom { padding: 56px 32px 64px; }
+  .lp-b2b-custom__inner { gap: 28px; }
+
+  .lp-b2b-custom__showcase { gap: 16px; }
+
+  .lp-b2b-custom__main {
+    min-height: 320px;
+    border-radius: 14px;
+  }
+
+  .lp-b2b-custom__swatches {
+    gap: 12px;
+    width: 120px;
+  }
+
+  .lp-b2b-custom__swatch {
+    border-radius: 10px;
+  }
+
+  .lp-b2b-custom__features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 12px;
+  }
+
+  .lp-b2b-custom__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 28px 22px 26px;
+    gap: 0;
+    border-radius: 14px;
+  }
+
+  .lp-b2b-custom__card-icon {
+    width: 64px;
+    height: 64px;
+    grid-column: auto;
+    grid-row: auto;
+    margin-bottom: 14px;
+  }
+  .lp-b2b-custom__card-icon svg { width: 32px; height: 32px; }
+  .lp-b2b-custom__card-title {
+    font-size: 1.76rem;
+    grid-column: auto;
+    grid-row: auto;
+    margin: 0 0 4px;
+    align-self: auto;
+  }
+  .lp-b2b-custom__card-text {
+    font-size: 1.536rem;
+    grid-column: auto;
+    grid-row: auto;
+    align-self: auto;
+  }
+}
+
+/* Desktop >= 1100px (2-col: showcase left, cards right) */
+@media (min-width: 1100px) {
+  .lp-b2b-custom { padding: 56px 48px 64px; }
+
+  .lp-b2b-custom__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    column-gap: 36px;
+    row-gap: 24px;
+    align-items: center;
+  }
+
+  .lp-b2b-custom__showcase {
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .lp-b2b-custom__main {
+    min-height: 300px;
+    border-radius: 14px;
+  }
+
+  .lp-b2b-custom__swatches {
+    width: 110px;
+    gap: 10px;
+  }
+
+  .lp-b2b-custom__features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 0;
+  }
+
+  .lp-b2b-custom__card {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    align-items: center;
+    text-align: left;
+    padding: 12px 18px;
+    gap: 0 16px;
+    border-radius: 12px;
+  }
+
+  .lp-b2b-custom__card-icon {
+    width: 52px;
+    height: 52px;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 0;
+    align-self: center;
+  }
+  .lp-b2b-custom__card-icon svg { width: 26px; height: 26px; }
+
+  .lp-b2b-custom__card-title {
+    font-size: 1.568rem;
+    letter-spacing: 0.02em;
+    margin: 0;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+  }
+
+  .lp-b2b-custom__card-text {
+    font-size: 1.376rem;
+    line-height: 1.35;
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+  }
+}
