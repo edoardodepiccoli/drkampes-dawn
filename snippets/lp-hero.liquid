@@ -1,0 +1,137 @@
+{% comment %}
+  LP — Hero (B2C landing page)
+
+  Code-only LP element. Edit this file to change copy, images, or CTA.
+  Not editable through the Shopify theme editor by design.
+
+  Image files (bg, fastwear circle, banner) live in Shopify admin > Settings > Files.
+  Reference them by filename via the `file_img_url` filter.
+{% endcomment %}
+
+{{ 'lp-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="lp-hero">
+
+  <div class="lp-hero__visual">
+    <img
+      src="{{ 'foto_hero_landing_page_meta.png' | file_img_url: '1600x' }}"
+      class="lp-hero__bg"
+      loading="eager"
+      fetchpriority="high"
+      alt="SCENDI DAL CAMION"
+    >
+    <div class="lp-hero__overlay">
+      <div class="lp-hero__eyebrow">LE SCARPE N°1 PER CAMIONISTI</div>
+
+      <h1 class="lp-hero__h1">
+        <span class="lp-hero__h1-line">SCENDI DAL CAMION</span>
+        <span class="lp-hero__h1-line lp-hero__h1-line--gold">IN 2 SECONDI.</span>
+      </h1>
+
+      <p class="lp-hero__h2">SENZA DOLORE.<br>SENZA SBATTI.</p>
+
+      <div class="lp-hero__sub">
+        <p>Le uniche scarpe antinfortunistiche pensate per chi vive in cabina: <strong>comode</strong>, <strong>veloci</strong> da indossare e sempre <strong>asciutte</strong>.</p>
+      </div>
+
+      <div class="lp-hero__fastwear">
+        <div class="lp-hero__fastwear-circle">
+          <img
+            src="{{ 'dr_kampes_nere_tallone.jpg' | file_img_url: '320x' }}"
+            alt="Sistema FASTWEAR Dr Kampes"
+            loading="lazy"
+          >
+        </div>
+        <div class="lp-hero__fastwear-info">
+          <span class="lp-hero__fastwear-label">FASTWEAR SYSTEM</span>
+          <div class="lp-hero__fastwear-text">
+            <p>Scendi dal camion senza rovinare il tallone della scarpa.</p>
+            <p>Si reclina all'interno in 1 secondo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lp-hero__content">
+
+    <ul class="lp-hero__benefits">
+      <li class="lp-hero__benefit">
+        <span class="lp-hero__benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/><path d="M12 2v3"/></svg>
+        </span>
+        <div class="lp-hero__benefit-text">
+          <strong>Le infili in un attimo</strong> (anche senza usare le mani)
+        </div>
+      </li>
+
+      <li class="lp-hero__benefit">
+        <span class="lp-hero__benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg>
+        </span>
+        <div class="lp-hero__benefit-text">
+          <strong>Niente più scarpe</strong> rigide e pesanti
+        </div>
+      </li>
+
+      <li class="lp-hero__benefit">
+        <span class="lp-hero__benefit-icon" aria-hidden="true">
+          <svg class="lp-hero__benefit-icon-slipper" viewBox="0 0 470 470"><path d="M462.5,274.94h-2.935c-3.589-32.293-29.749-62.722-61.404-69.876l-130.67-29.535c-0.186-17.762-14.686-32.155-32.491-32.155c-16.938,0-30.89,13.023-32.37,29.582c-10.542,4.806-17.797,14.934-18.839,26.642c-10.542,4.805-17.797,14.934-18.839,26.642c-10.541,4.806-17.796,14.934-18.838,26.641c-9.138,4.166-15.794,12.335-18.086,22.061H7.5c-4.143,0-7.5,3.357-7.5,7.5v36.686c0,4.143,3.357,7.5,7.5,7.5h455c4.143,0,7.5-3.357,7.5-7.5V282.44C470,278.298,466.643,274.94,462.5,274.94z M155.409,265.459c3.599-0.894,6.004-4.283,5.659-7.976c-0.056-0.597-0.083-1.147-0.083-1.685c0-8.059,5.453-15.041,13.263-16.981c3.602-0.895,6.008-4.29,5.658-7.985c-0.055-0.58-0.083-1.145-0.083-1.675c0-8.059,5.454-15.041,13.263-16.981c3.602-0.895,6.008-4.29,5.658-7.985c-0.055-0.573-0.082-1.138-0.082-1.675c0-8.058,5.454-15.041,13.263-16.981c3.603-0.895,6.008-4.29,5.658-7.985c-0.055-0.58-0.083-1.145-0.083-1.675c0-9.649,7.851-17.5,17.5-17.5s17.5,7.851,17.5,17.5c0,8.059-5.454,15.041-13.263,16.981c-3.602,0.895-6.008,4.29-5.658,7.985c0.055,0.58,0.083,1.145,0.083,1.675c0,8.059-5.454,15.041-13.264,16.981c-3.602,0.895-6.008,4.29-5.658,7.985c0.055,0.58,0.083,1.145,0.083,1.675c0,8.059-5.453,15.041-13.263,16.981c-3.602,0.895-6.008,4.29-5.658,7.985c0.055,0.58,0.083,1.145,0.083,1.675c0,8.059-5.454,15.041-13.263,16.981c-1.451,0.36-2.703,1.132-3.664,2.16h-35.221C146.026,270.317,150.186,266.757,155.409,265.459z M455,311.626H15V289.94h303.573c4.143,0,7.5-3.357,7.5-7.5s-3.357-7.5-7.5-7.5H204.77c3.393-4.661,5.553-10.235,6.086-16.224c10.541-4.806,17.796-14.935,18.838-26.642c10.541-4.806,17.797-14.935,18.839-26.642c6.911-3.151,12.395-8.6,15.656-15.272l130.665,29.534c24.744,5.593,45.986,29.906,49.598,55.245h-95.879c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5,7.5,7.5H455V311.626z"/></svg>
+        </span>
+        <div class="lp-hero__benefit-text">
+          <strong>Comfort vero:</strong> effetto pantofola ai tuoi piedi
+        </div>
+      </li>
+    </ul>
+
+    <div class="lp-hero__purchase">
+
+      <div class="lp-hero__offer-badge">
+        <span class="lp-hero__offer-badge-main">OFFERTA PRIMAVERA</span>
+        <span class="lp-hero__offer-badge-sub">fino al 30 giugno</span>
+      </div>
+
+      <div class="lp-hero__card">
+
+        <a href="#acquista" class="lp-hero__card-banner">
+          <img
+            src="{{ 'foto_hero_banner_landing_page_meta.png' | file_img_url: '1200x' }}"
+            alt="Scarpe Dr Kampes + T-shirt omaggio + spedizione gratis a 189 euro"
+            loading="lazy"
+          >
+          <span class="lp-hero__risparmi">RISPARMI € 30</span>
+        </a>
+
+        <div class="lp-hero__card-info">
+          <div class="lp-hero__info-cell">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="9" y2="15"/></svg>
+            <div>
+              <strong>PAGA IN 3 RATE</strong>
+              <span>SENZA INTERESSI</span>
+            </div>
+          </div>
+          <div class="lp-hero__info-cell">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="6" width="13" height="11" rx="1.5"/><path d="M14.5 10h4l3 4v3h-7z"/><circle cx="5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></svg>
+            <div>
+              <strong>SPEDIZIONE GRATIS</strong>
+              <span>1-2 GIORNI</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="#acquista" class="lp-hero__cta">
+          <svg class="lp-hero__cta-lock" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span class="lp-hero__cta-text">PRENOTA ORA LA TUA TAGLIA</span>
+          <svg class="lp-hero__cta-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+
+      </div>
+
+      <div class="lp-hero__secure">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span>PAGAMENTO SICURO E GARANTITO</span>
+      </div>
+    </div>
+
+  </div>
+</section>

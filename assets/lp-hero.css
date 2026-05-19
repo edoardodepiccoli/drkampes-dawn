@@ -1,0 +1,587 @@
+.lp-hero {
+  --lp-gold: #D4A017;
+  --lp-gold-light: #E5B433;
+  --lp-gold-dark: #B7860D;
+  --lp-gold-soft: rgba(212, 160, 23, 0.5);
+  background: #000;
+  color: #fff;
+  padding: 0 0 24px;
+}
+
+/* Visual top */
+.lp-hero__visual {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+  min-height: 440px;
+}
+
+.lp-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 75%;
+  display: block;
+}
+
+.lp-hero__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 8%, rgba(0,0,0,0) 28%),
+    linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 45%, rgba(0,0,0,0.25) 75%, rgba(0,0,0,0.05) 100%);
+}
+
+.lp-hero__overlay {
+  position: relative;
+  z-index: 2;
+  padding: 14px 18px 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+}
+
+.lp-hero__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: var(--lp-gold);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+
+.lp-hero__h1 {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 2.1rem;
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  color: #fff;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.lp-hero__h1-line { display: block; max-width: 11ch; }
+.lp-hero__h1-line--gold { color: var(--lp-gold); }
+
+.lp-hero__h2 {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  max-width: 13ch;
+}
+
+/* FASTWEAR card (inside visual hero) */
+.lp-hero__fastwear {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--lp-gold-soft);
+  border-radius: 14px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  max-width: 480px;
+}
+
+.lp-hero__fastwear-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #111;
+  border: 1.5px solid var(--lp-gold-soft);
+  flex-shrink: 0;
+}
+
+.lp-hero__fastwear-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lp-hero__fastwear-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lp-hero__fastwear-label {
+  display: block;
+  color: var(--lp-gold);
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  padding: 0;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.lp-hero__fastwear-text {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.88);
+  margin: 0;
+}
+.lp-hero__fastwear-text p { margin: 0 0 4px; }
+.lp-hero__fastwear-text p:last-child { margin: 0; }
+
+/* Content */
+.lp-hero__content {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 18px 0;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.lp-hero__sub {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.88);
+  margin: 0 0 10px;
+  max-width: 32ch;
+}
+.lp-hero__sub p { margin: 0; }
+.lp-hero__sub strong { color: #fff; font-weight: 700; }
+
+/* Benefits */
+.lp-hero__benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: none;
+}
+
+.lp-hero__benefit {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.lp-hero__benefit + .lp-hero__benefit {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lp-hero__benefit-icon {
+  width: 36px;
+  height: 36px;
+  background: #0a0a0a;
+  border: 1.5px solid var(--lp-gold);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-hero__benefit-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--lp-gold);
+  stroke-width: 1.8;
+}
+
+.lp-hero__benefit-icon svg.lp-hero__benefit-icon-slipper {
+  width: 22px;
+  height: 22px;
+  stroke: none;
+  fill: var(--lp-gold);
+}
+
+.lp-hero__benefit-text {
+  flex: 1;
+  min-width: 0;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.98rem;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+.lp-hero__benefit-text strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Purchase block */
+.lp-hero__purchase {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 4px;
+}
+
+.lp-hero__offer-badge {
+  align-self: center;
+  background: linear-gradient(180deg, var(--lp-gold-light) 0%, var(--lp-gold) 60%, var(--lp-gold-dark) 100%);
+  border: none;
+  border-radius: 14px 14px 0 0;
+  padding: 10px 22px 16px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-bottom: -10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.55),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  max-width: calc(100% - 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1.15;
+}
+
+.lp-hero__offer-badge-main {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.lp-hero__offer-badge-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  line-height: 1.15;
+}
+
+.lp-hero__card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 10px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.lp-hero__card-banner {
+  position: relative;
+  display: block;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  line-height: 0;
+  aspect-ratio: 16 / 8;
+}
+
+.lp-hero__card-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.lp-hero__risparmi {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #d11f2a;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  padding: 6px 9px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.lp-hero__card-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 2px 2px;
+}
+
+.lp-hero__info-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.lp-hero__info-cell svg {
+  width: 26px;
+  height: 26px;
+  stroke: #111;
+  stroke-width: 1.4;
+  flex-shrink: 0;
+}
+
+.lp-hero__info-cell > div { min-width: 0; flex: 1; }
+
+.lp-hero__info-cell strong,
+.lp-hero__info-cell span {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.lp-hero__info-cell strong { color: #111; font-weight: 900; }
+.lp-hero__info-cell span { color: #2a2a2a; font-weight: 700; }
+
+/* CTA */
+.lp-hero__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 14px;
+  background: linear-gradient(180deg, var(--lp-gold-light) 0%, var(--lp-gold) 60%, var(--lp-gold-dark) 100%);
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.55),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 0 rgba(255, 220, 130, 0.3);
+  transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+.lp-hero__cta:hover { filter: brightness(1.04); text-decoration: none; color: #1a1a1a; }
+.lp-hero__cta:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.35),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.lp-hero__cta-text {
+  flex: 1;
+  text-align: center;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.lp-hero__cta-lock,
+.lp-hero__cta-arrow {
+  width: 18px;
+  height: 18px;
+  stroke: #1a1a1a;
+  flex-shrink: 0;
+}
+
+/* Secure (outside card, on dark bg) */
+.lp-hero__secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  padding: 14px 0 0;
+}
+
+.lp-hero__secure svg {
+  width: 13px;
+  height: 13px;
+  stroke: rgba(255,255,255,0.6);
+}
+
+/* Tablet ≥ 750px */
+@media (min-width: 750px) {
+  .lp-hero { padding: 0 0 40px; }
+
+  .lp-hero__visual { min-height: 600px; }
+
+  .lp-hero__bg { object-position: 75% center; }
+
+  .lp-hero__visual::after {
+    background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0) 100%);
+  }
+
+  .lp-hero__overlay {
+    padding: 28px 48px 36px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 600px;
+  }
+
+  .lp-hero__eyebrow { font-size: 0.92rem; margin-bottom: 18px; }
+  .lp-hero__h1 { font-size: 3.2rem; margin-bottom: 18px; }
+  .lp-hero__h2 { font-size: 1.55rem; margin-bottom: 28px; }
+
+  .lp-hero__fastwear {
+    grid-template-columns: 130px 1fr;
+    padding: 16px;
+    gap: 18px;
+    max-width: 520px;
+  }
+
+  .lp-hero__fastwear-circle { width: 130px; height: 130px; }
+  .lp-hero__fastwear-text { font-size: 0.9rem; }
+  .lp-hero__fastwear-label { font-size: 1.08rem; }
+
+  .lp-hero__content {
+    padding: 32px 48px 0;
+    max-width: 1100px;
+    gap: 28px;
+  }
+
+  .lp-hero__sub { font-size: 1.02rem; max-width: 50ch; margin-bottom: 24px; }
+
+  .lp-hero__benefits {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 22px;
+    padding: 0;
+    border: none;
+  }
+
+  .lp-hero__benefit {
+    flex: 1 1 240px;
+    padding: 0;
+  }
+  .lp-hero__benefit + .lp-hero__benefit {
+    border-top: none;
+  }
+
+  .lp-hero__purchase { max-width: 720px; align-self: center; width: 100%; }
+
+  .lp-hero__offer-badge {
+    padding: 12px 30px 18px;
+    border-radius: 16px 16px 0 0;
+    margin-bottom: -12px;
+  }
+  .lp-hero__offer-badge-main { font-size: 1.05rem; }
+  .lp-hero__offer-badge-sub { font-size: 0.78rem; }
+
+  .lp-hero__card { padding: 14px; gap: 10px; border-radius: 16px; }
+  .lp-hero__card-banner { border-radius: 12px; }
+  .lp-hero__card-info { padding: 4px 8px; gap: 16px; }
+  .lp-hero__info-cell { gap: 14px; }
+  .lp-hero__info-cell svg { width: 38px; height: 38px; }
+  .lp-hero__info-cell strong,
+  .lp-hero__info-cell span { font-size: 0.95rem; letter-spacing: 0.03em; }
+
+  .lp-hero__risparmi { top: 18px; right: 18px; font-size: 0.95rem; padding: 8px 12px; }
+
+  .lp-hero__cta { padding: 22px 26px; font-size: 1.15rem; border-radius: 12px; }
+  .lp-hero__cta-text { white-space: normal; }
+  .lp-hero__cta-lock,
+  .lp-hero__cta-arrow { width: 24px; height: 24px; }
+}
+
+/* Desktop ≥ 1100px */
+@media (min-width: 1100px) {
+  .lp-hero { padding: 0 0 64px; }
+
+  .lp-hero__visual { min-height: 660px; }
+  .lp-hero__overlay {
+    min-height: 660px;
+    padding: 40px 64px 44px;
+    max-width: 1320px;
+  }
+
+  .lp-hero__eyebrow { font-size: 1rem; margin-bottom: 22px; }
+  .lp-hero__h1 { font-size: 4rem; margin-bottom: 22px; }
+  .lp-hero__h1-line { max-width: 14ch; }
+  .lp-hero__h2 { font-size: 1.85rem; margin-bottom: 32px; }
+
+  .lp-hero__sub { font-size: 1.08rem; max-width: 56ch; margin-bottom: 28px; }
+
+  .lp-hero__fastwear {
+    grid-template-columns: 150px 1fr;
+    padding: 18px;
+    gap: 22px;
+    max-width: 580px;
+  }
+  .lp-hero__fastwear-circle { width: 150px; height: 150px; }
+  .lp-hero__fastwear-label { font-size: 1.2rem; }
+  .lp-hero__fastwear-text { font-size: 0.98rem; }
+
+  .lp-hero__content {
+    display: grid;
+    grid-template-columns: 1fr minmax(420px, 460px);
+    grid-template-areas: 'benefits purchase';
+    align-items: center;
+    column-gap: 72px;
+    row-gap: 0;
+    max-width: 1280px;
+    padding: 56px 64px 0;
+  }
+
+  .lp-hero__benefits {
+    grid-area: benefits;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .lp-hero__benefit {
+    flex: 0 1 auto;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .lp-hero__benefit:first-child { padding-top: 0; }
+  .lp-hero__benefit:last-child { border-bottom: none; padding-bottom: 0; }
+  .lp-hero__benefit + .lp-hero__benefit { border-top: none; }
+
+  .lp-hero__benefit-icon { width: 56px; height: 56px; }
+  .lp-hero__benefit-icon svg { width: 26px; height: 26px; }
+  .lp-hero__benefit-icon svg.lp-hero__benefit-icon-slipper { width: 32px; height: 32px; }
+  .lp-hero__benefit-text { font-size: 1.18rem; line-height: 1.35; }
+
+  .lp-hero__purchase {
+    grid-area: purchase;
+    max-width: none;
+    width: 100%;
+    align-self: stretch;
+  }
+}
