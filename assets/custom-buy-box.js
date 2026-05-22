@@ -2,10 +2,10 @@
   CUSTOM · Acquista — buy box homepage
   Custom element <custom-buy-box>: selezione variante (colore + taglia),
   aggiornamento prezzo / rata / disponibilita', carousel immagini con filtro
-  per colore (metafield custom.variant_gallery), dots su mobile, e add to cart.
-  Add to cart: fetch /cart/add.js poi apertura del popup carrello nativo Dawn
-  (cart-notification). Niente <form> / <product-form>: nessun reload possibile.
-  Nessuna modifica a cart.js / cart-notification.js / product-form.js.
+  per colore (metafield custom.variant_gallery), dots su mobile.
+  L'add to cart usa lo snippet ufficiale Dawn `buy-buttons` + product-form.js:
+  questo JS aggiorna solo l'input name="id" del form al cambio variante.
+  Nessuna modifica a product-form.js / cart-notification.js / cart.js.
 */
 (function () {
   if (customElements.get('custom-buy-box')) return;
@@ -37,12 +37,10 @@
       this.compareEl = this.querySelector('[data-compare]');
       this.installmentEl = this.querySelector('[data-installment]');
       this.stockEl = this.querySelector('[data-stock]');
-      this.atcBtn = this.querySelector('[data-atc]');
-      this.atcText = this.atcBtn ? this.atcBtn.querySelector('span') : null;
-      this.atcSpinner = this.atcBtn ? this.atcBtn.querySelector('.loading__spinner') : null;
-      this.errorEl = this.querySelector('[data-error]');
-      this.currentVariantId = null;
-      this.adding = false;
+      // Form Dawn (snippet buy-buttons): input variante + bottone submit.
+      // product-form.js gestisce il submit; qui si tiene solo sincronizzato l'input.
+      this.idInput = this.querySelector('.product-variant-id');
+      this.atcBtn = this.querySelector('.product-form__submit');
 
       // carousel
       this.slidesEl = this.querySelector('[data-slides]');
@@ -121,79 +119,6 @@
         }, { passive: true });
       }
 
-      // Add to cart.
-      if (this.atcBtn) {
-        this.atcBtn.addEventListener('click', function () { self.addToCart(); });
-      }
-    }
-
-    // Aggiunge la variante corrente al carrello via Ajax e apre il popup nativo
-    // Dawn (cart-notification). Niente form -> nessun reload, mai.
-    addToCart() {
-      var self = this;
-      if (!this.atcBtn || this.atcBtn.disabled || this.adding) return;
-      if (!this.currentVariantId) return;
-
-      this.adding = true;
-      this.setLoading(true);
-      this.clearError();
-
-      // cart_type del tema = notification; fallback a cart-drawer per sicurezza.
-      var cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
-
-      var body = new FormData();
-      body.append('id', this.currentVariantId);
-      body.append('quantity', '1');
-      // Section Rendering API: il popup ha bisogno dell'HTML carrello aggiornato.
-      if (cart && typeof cart.getSectionsToRender === 'function') {
-        body.append('sections', cart.getSectionsToRender().map(function (s) { return s.id; }).join(','));
-        body.append('sections_url', window.location.pathname);
-      }
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' },
-        body: body,
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (response) {
-          if (response.status) {
-            // Errore Shopify (es. variante esaurita).
-            self.showError(response.description || response.message || 'Impossibile aggiungere al carrello.');
-            return;
-          }
-          if (cart && typeof cart.renderContents === 'function') {
-            cart.renderContents(response); // apre il popup carrello nativo Dawn
-          } else {
-            window.location = '/cart'; // fallback se cart_type = page
-          }
-        })
-        .catch(function () {
-          self.showError('Impossibile aggiungere al carrello. Riprova.');
-        })
-        .finally(function () {
-          self.adding = false;
-          self.setLoading(false);
-        });
-    }
-
-    setLoading(on) {
-      if (!this.atcBtn) return;
-      this.atcBtn.classList.toggle('loading', on);
-      this.atcBtn.setAttribute('aria-busy', on ? 'true' : 'false');
-      if (this.atcSpinner) this.atcSpinner.classList.toggle('hidden', !on);
-    }
-
-    showError(msg) {
-      if (!this.errorEl) return;
-      this.errorEl.textContent = msg;
-      this.errorEl.hidden = false;
-    }
-
-    clearError() {
-      if (!this.errorEl) return;
-      this.errorEl.textContent = '';
-      this.errorEl.hidden = true;
     }
 
     goToSlide(idx, behavior) {
@@ -318,7 +243,8 @@
       }
 
       if (match) {
-        this.currentVariantId = match.id;
+        // Sincronizza l'input del form Dawn: product-form.js lo legge al submit.
+        if (this.idInput) this.idInput.value = match.id;
         if (this.priceEl) this.priceEl.textContent = formatMoney(match.price);
         if (this.compareEl) {
           if (match.compare_at_price && match.compare_at_price > match.price) {
@@ -334,7 +260,6 @@
         this.setButton(match.available);
       } else {
         // Combo colore+taglia inesistente come variante: blocca l'acquisto.
-        this.currentVariantId = null;
         this.setButton(false);
       }
 
@@ -342,11 +267,9 @@
     }
 
     setButton(available) {
-      if (!this.atcBtn) return;
-      this.atcBtn.disabled = !available;
-      if (this.atcText) {
-        this.atcText.textContent = available ? 'Aggiungi al carrello' : 'Non disponibile';
-      }
+      // Abilita/disabilita il bottone submit del form Dawn. Il testo resta quello
+      // di Dawn (locale). product-form.js gestisce loading/errori al submit.
+      if (this.atcBtn) this.atcBtn.disabled = !available;
     }
   }
 
