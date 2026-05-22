@@ -9,6 +9,76 @@
  */
 {
   "sections": {
+    "custom_product_information_cQKTif": {
+      "type": "custom-product-information",
+      "blocks": {
+        "text_d39dbm": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_LmxzwQ": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_QqWUFK": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price_TW7nky": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_CNNztL": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons_7jL3Jq": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description_ArPfT4": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "text_d39dbm",
+        "title_LmxzwQ",
+        "text_QqWUFK",
+        "price_TW7nky",
+        "variant_picker_CNNztL",
+        "buy_buttons_7jL3Jq",
+        "description_ArPfT4"
+      ],
+      "name": "CUSTOM · Prodotto",
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -120,6 +190,7 @@
         "collapsible-row-3",
         "share"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "",
@@ -157,6 +228,7 @@
     }
   },
   "order": [
+    "custom_product_information_cQKTif",
     "main",
     "related-products"
   ]
