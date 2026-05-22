@@ -14,9 +14,12 @@
 
 {%- liquid
   # Swap a 2 vie. Sulla pagina accessori si mostrano le scarpe, altrove gli accessori.
+  # Il titolo segue la collezione mostrata: scarpe -> titolo fisso; accessori -> setting.
   assign target_handle = 'accessori-trucker-shoes'
+  assign heading = section.settings.heading
   if collection.handle == 'accessori-trucker-shoes'
     assign target_handle = 'trucker-shoes'
+    assign heading = 'Dr Kampes — Trucker Shoes'
   endif
   assign featured = collections[target_handle]
 -%}
@@ -29,8 +32,8 @@
   <div class="custom-related-collection color-{{ section.settings.color_scheme }}">
     <div class="custom-related-collection__inner">
 
-      {%- if section.settings.heading != blank -%}
-        <h2 class="custom-related-collection__heading">{{ section.settings.heading | escape }}</h2>
+      {%- if heading != blank -%}
+        <h2 class="custom-related-collection__heading">{{ heading | escape }}</h2>
       {%- endif -%}
 
       <ul class="custom-related-collection__grid" role="list">
