@@ -134,3 +134,14 @@ dopo 200px di scroll e si nasconde quando la sezione stessa (`#acquista`) e' in
 viewport. Logica in `custom-buy-box.js` (`initStickyCta`): `IntersectionObserver`
 sull'elemento `<custom-buy-box>` + listener `scroll`. Testo del bottone: setting
 `sticky_cta_label`.
+
+## Update — 2026-05-22 (rimozione thumbnail desktop)
+
+La striscia di thumbnail desktop (vedi `Update — 2026-05-22` sul carousel) e'
+stata rimossa su richiesta del cliente: ora i **dots del carousel sono l'unica
+navigazione su tutti i viewport** (prima dots su mobile, thumbnail su desktop).
+Una sola UI di navigazione, piu' semplice. Rimossi markup `custom-buy-box__thumbs`,
+CSS `.custom-buy-box__thumb*` e tutta la logica thumbnail in `custom-buy-box.js`
+(nessun dead code). Il filtro galleria per colore (`variant_gallery`) e' invariato:
+`filterGallery` ora riordina solo le slide, poi `renderDots()` rigenera i dots.
+I dots restano 0.7rem, identici al design mobile gia' esistente.

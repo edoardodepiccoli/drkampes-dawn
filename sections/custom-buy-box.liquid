@@ -91,8 +91,8 @@
 
       {%- comment -%}
         ============ COLONNA MEDIA ============
-        Carousel scroll-snap: su mobile e' la galleria (swipe nativo, niente
-        thumbnail). Su desktop le thumbnail compaiono e navigano il carousel.
+        Carousel scroll-snap: swipe nativo su mobile. Dots di navigazione su
+        tutti i viewport (generati da JS), uno per slide visibile.
       {%- endcomment -%}
       <div class="custom-buy-box__media">
         <div class="custom-buy-box__slides" data-slides>
@@ -121,24 +121,8 @@
           {%- endif -%}
         </div>
 
-        {%- comment -%} Dots: solo mobile, generati da JS (uno per slide visibile). {%- endcomment -%}
+        {%- comment -%} Dots: navigazione carousel su tutti i viewport, generati da JS (uno per slide visibile). {%- endcomment -%}
         <div class="custom-buy-box__dots" data-dots></div>
-
-        {%- if image_media.size > 1 -%}
-          <div class="custom-buy-box__thumbs" data-thumbs>
-            {%- for media in image_media -%}
-              <button
-                type="button"
-                class="custom-buy-box__thumb{% if media.id == featured_media.id %} is-active{% endif %}"
-                data-thumb
-                data-media-id="{{ media.id }}"
-                aria-label="{{ media.alt | default: product.title | escape }}"
-              >
-                <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="80" loading="lazy">
-              </button>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
       </div>
 
       {%- comment -%} ============ COLONNA INFO ============ {%- endcomment -%}

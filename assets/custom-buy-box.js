@@ -2,7 +2,7 @@
   CUSTOM · Acquista — buy box homepage
   Custom element <custom-buy-box>: selezione variante (colore + taglia),
   aggiornamento prezzo / rata / disponibilita', carousel immagini con filtro
-  per colore (metafield custom.variant_gallery), dots su mobile, sticky CTA.
+  per colore (metafield custom.variant_gallery), dots di navigazione carousel, sticky CTA.
   L'add to cart usa lo snippet ufficiale Dawn `buy-buttons` + product-form.js:
   questo JS aggiorna solo l'input name="id" del form al cambio variante.
   Nessuna modifica a product-form.js / cart-notification.js / cart.js.
@@ -43,13 +43,10 @@
 
       // carousel
       this.slidesEl = this.querySelector('[data-slides]');
-      this.thumbsEl = this.querySelector('[data-thumbs]');
       this.dotsEl = this.querySelector('[data-dots]');
       // set completo (ordine originale) vs set visibile corrente
       this.allSlides = Array.prototype.slice.call(this.querySelectorAll('.custom-buy-box__slide'));
-      this.allThumbs = Array.prototype.slice.call(this.querySelectorAll('[data-thumb]'));
       this.slides = this.allSlides.slice();
-      this.thumbs = this.allThumbs.slice();
       this.dots = [];
 
       var colorOpt = this.querySelector('[data-color-opt]');
@@ -95,21 +92,8 @@
         });
       });
 
-      // Thumbnail: delega sul contenitore (resiste al riordino del filtro).
-      // Match per media-id, non per indice.
-      if (this.thumbsEl) {
-        this.thumbsEl.addEventListener('click', function (e) {
-          var btn = e.target.closest('[data-thumb]');
-          if (!btn) return;
-          var idx = self.slides.findIndex(function (s) {
-            return s.dataset.mediaId === btn.dataset.mediaId;
-          });
-          if (idx >= 0) self.goToSlide(idx);
-        });
-      }
-
       // Swipe mobile: lo scroll-snap nativo muove il carousel; qui si tiene solo
-      // sincronizzata thumbnail/dot attivi con lo slide visibile.
+      // sincronizzato il dot attivo con lo slide visibile.
       if (this.slidesEl) {
         this.slidesEl.addEventListener('scroll', function () {
           if (!self.slidesEl.clientWidth) return;
@@ -125,7 +109,6 @@
     }
 
     setActive(idx) {
-      this.thumbs.forEach(function (t, i) { t.classList.toggle('is-active', i === idx); });
       this.dots.forEach(function (d, i) { d.classList.toggle('is-active', i === idx); });
     }
 
@@ -139,31 +122,23 @@
       if (!ids || !ids.length) {
         // Fallback: ripristina tutte le immagini nell'ordine originale.
         this.allSlides.forEach(function (s) { s.style.display = ''; self.slidesEl.appendChild(s); });
-        this.allThumbs.forEach(function (t) {
-          t.style.display = '';
-          if (self.thumbsEl) self.thumbsEl.appendChild(t);
-        });
       } else {
         this.allSlides.forEach(function (s) { s.style.display = 'none'; });
-        this.allThumbs.forEach(function (t) { t.style.display = 'none'; });
         ids.forEach(function (id) {
           var sid = String(id);
           var slide = self.allSlides.find(function (s) { return s.dataset.mediaId === sid; });
-          var thumb = self.allThumbs.find(function (t) { return t.dataset.mediaId === sid; });
           if (slide) { slide.style.display = ''; self.slidesEl.appendChild(slide); }
-          if (thumb && self.thumbsEl) { thumb.style.display = ''; self.thumbsEl.appendChild(thumb); }
         });
       }
 
-      // Ricalcola i set visibili nell'ordine DOM corrente.
+      // Ricalcola il set di slide visibili nell'ordine DOM corrente.
       this.slides = this.allSlides.filter(function (s) { return s.style.display !== 'none'; });
-      this.thumbs = this.allThumbs.filter(function (t) { return t.style.display !== 'none'; });
 
       this.renderDots();
       this.goToSlide(0, 'auto');
     }
 
-    // Un dot per slide visibile (solo mobile via CSS). <=1 slide -> nessun dot.
+    // Un dot per slide visibile. <=1 slide -> nessun dot.
     renderDots() {
       if (!this.dotsEl) return;
       this.dotsEl.innerHTML = '';
