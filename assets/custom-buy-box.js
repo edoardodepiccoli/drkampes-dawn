@@ -118,7 +118,6 @@
           self.setActive(Math.round(self.slidesEl.scrollLeft / self.slidesEl.clientWidth));
         }, { passive: true });
       }
-
     }
 
     goToSlide(idx, behavior) {

@@ -113,6 +113,8 @@
               data-media-id="{{ featured_media.id }}"
               src="{{ featured_media | image_url: width: 800 }}"
               alt="{{ featured_media.alt | default: product.title | escape }}"
+              width="{{ featured_media.preview_image.width }}"
+              height="{{ featured_media.preview_image.height }}"
               loading="lazy"
             >
           {%- endif -%}
