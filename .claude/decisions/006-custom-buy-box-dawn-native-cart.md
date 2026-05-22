@@ -145,3 +145,13 @@ CSS `.custom-buy-box__thumb*` e tutta la logica thumbnail in `custom-buy-box.js`
 (nessun dead code). Il filtro galleria per colore (`variant_gallery`) e' invariato:
 `filterGallery` ora riordina solo le slide, poi `renderDots()` rigenera i dots.
 I dots restano 0.7rem, identici al design mobile gia' esistente.
+
+## Update — 2026-05-22 (rimosso avviso disponibilita, taglie circolari)
+
+Su richiesta del cliente: rimosso l'avviso disponibilita' ("Meno di 8 paia in
+magazzino"). Eliminati markup `custom-buy-box__stock`, CSS relativo e il setting
+`stock_label` dallo schema (rule 7: niente setting non usati) — i setting di
+sezione ora sono `product`, `color_scheme`, `reviews_text`, `sticky_cta_label`.
+Le pill della taglia sono ora **bottoni circolari** (`border-radius: 50%`,
+width = height = 4.4rem); il contenitore `__pills` passa da grid a flex-wrap
+(la grid con `1fr` stirava i cerchi in ellissi).
