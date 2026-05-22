@@ -25,6 +25,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  /* Modale a tutto schermo: lo sfondo del contenitore fa da backdrop scuro
+     mentre il dialog scorre su. Nessun overlay separato. */
+  background: var(--b2b-bg);
   pointer-events: none;
   visibility: hidden;
   transition: visibility 0s linear 0.5s;
@@ -35,21 +38,6 @@
   visibility: visible;
   transition: visibility 0s linear 0s;
 }
-
-.lp-b2b-quiz-form__overlay {
-  /* position: fixed (non absolute): l'overlay deve essere un layer ancorato al
-     viewport, fuori dal box `overflow: hidden` del modale. Da `absolute` veniva
-     clippato dentro quel box e, combinato col `backdrop-filter`, non veniva
-     dipinto affatto (sfondo incluso) -> pagina dietro restava chiara. */
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-.lp-b2b-quiz-form.is-open .lp-b2b-quiz-form__overlay { opacity: 1; }
 
 .lp-b2b-quiz-form__dialog {
   position: relative;
@@ -594,17 +582,7 @@ body.lp-b2b-quiz-open { overflow: hidden; }
 
 /* Tablet >= 750px */
 @media (min-width: 750px) {
-  .lp-b2b-quiz-form { padding: 24px; }
-
-  .lp-b2b-quiz-form__dialog {
-    max-width: 720px;
-    max-height: min(880px, 92vh);
-    height: auto;
-    border-radius: 16px;
-    border: 1px solid var(--b2b-border);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-  }
-
+  /* Niente card centrata: il dialog resta a tutto schermo come su mobile. */
   .lp-b2b-quiz-form__progress { padding: 22px 72px 0 22px; }
 
   .lp-b2b-quiz-form__step { padding: 18px 28px 28px; }
@@ -621,7 +599,6 @@ body.lp-b2b-quiz-open { overflow: hidden; }
 
 /* Desktop >= 1100px */
 @media (min-width: 1100px) {
-  .lp-b2b-quiz-form__dialog { max-width: 780px; }
   .lp-b2b-quiz-form__title { font-size: 4.16rem; }
   .lp-b2b-quiz-form__step { padding: 22px 36px 32px; }
   .lp-b2b-quiz-form__progress { padding: 26px 84px 0 36px; }
@@ -638,7 +615,6 @@ body.lp-b2b-quiz-open { overflow: hidden; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .lp-b2b-quiz-form__overlay,
   .lp-b2b-quiz-form__dialog,
   .lp-b2b-quiz-form__progress-fill { transition: none; }
   .lp-b2b-quiz-form__banner-spin,

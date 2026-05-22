@@ -1,7 +1,7 @@
-# 014 — B2B quiz overlay: position fixed, niente portal
+# 014 — B2B quiz modal a tutto schermo, niente overlay
 
 **Date:** 2026-05-22
-**Status:** Active
+**Status:** Active (overlay rimosso, vedi Update)
 
 ## Context
 
@@ -45,3 +45,20 @@ non viene dipinto affatto, sfondo incluso.
   `absolute` dentro un contenitore `overflow: hidden` quando portano `backdrop-filter`.
 - Su mobile il dialog resta full-screen (100%x100%) per design: l'overlay c'e' ma
   non e' visibile perche' coperto. Nessun cambiamento.
+
+## Update — 2026-05-22
+
+Il fix `position: fixed` non ha risolto: su desktop l'overlay continuava a non
+comparire. Approccio abbandonato su richiesta del cliente.
+
+Il dialog del quiz e' ora a tutto schermo anche su desktop, come su mobile:
+- Rimosse le regole "card" dalle media query `>=750px` / `>=1100px` del dialog
+  (`max-width`, `max-height`, `height: auto`, `border`, `border-radius`,
+  `box-shadow`) e il `padding: 24px` del contenitore.
+- Rimosso del tutto l'overlay: elemento `.lp-b2b-quiz-form__overlay` dallo
+  snippet, regole CSS relative, niente piu' `backdrop-filter`.
+- `.lp-b2b-quiz-form` ha ora `background: var(--b2b-bg)`: il contenitore stesso
+  fa da backdrop scuro mentre il dialog scorre su.
+
+Risultato: il modale e' una schermata piena su ogni viewport, niente overlay da
+mantenere.

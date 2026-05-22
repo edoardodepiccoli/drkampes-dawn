@@ -17,7 +17,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 011 | custom-video-feature: sezione video singola, semplice | 2026-05-22 | Active |
 | 012 | custom-hero: hero custom, doppia altezza su mobile | 2026-05-22 | Active |
 | 013 | custom-pdp-sticky-cta: sticky CTA per la PDP | 2026-05-22 | Deprecated |
-| 014 | B2B quiz overlay: position fixed, niente portal | 2026-05-22 | Active |
+| 014 | B2B quiz modal a tutto schermo, niente overlay | 2026-05-22 | Active |
 | 015 | custom-product-information: sezione PDP clonata + galleria per variante | 2026-05-22 | Active |
 
 ## Conventions
