@@ -1,0 +1,123 @@
+/*
+  CUSTOM · Gallery — gallery editoriale a colonne sfalsate + parallax.
+  Tutto scoped sotto .custom-gallery-section. Token Dawn, no regole globali,
+  no !important. Root Dawn 10px.
+
+  Reveal: gli item sono visibili di default; custom-gallery.js aggiunge la classe
+  `is-reveal` al root solo se il JS gira e prefers-reduced-motion non e' attivo.
+  Cosi' senza JS la gallery resta comunque visibile.
+*/
+
+.custom-gallery-section .custom-gallery {
+  display: block;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  padding: 4rem 0;
+}
+
+.custom-gallery-section .custom-gallery__inner {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.custom-gallery-section .custom-gallery__heading {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin: 0 0 2.4rem;
+}
+
+/* ---- colonne ---- */
+/* mobile: le 3 colonne si impilano -> ordine foto naturale (coppie sequenziali) */
+.custom-gallery-section .custom-gallery__cols {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.custom-gallery-section .custom-gallery__col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* ---- foto ---- */
+.custom-gallery-section .custom-gallery__item {
+  margin: 0;
+}
+
+.custom-gallery-section .custom-gallery__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--media-radius);
+}
+
+.custom-gallery-section .custom-gallery__img--placeholder {
+  aspect-ratio: 3 / 4;
+  background: rgba(var(--color-foreground), 0.06);
+}
+
+.custom-gallery-section .custom-gallery__placeholder-svg {
+  width: 100%;
+  height: 100%;
+  fill: rgba(var(--color-foreground), 0.2);
+}
+
+.custom-gallery-section .custom-gallery__caption {
+  margin-top: 0.8rem;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+/* ---- reveal (attivo solo con is-reveal, aggiunto da JS) ---- */
+.custom-gallery-section .custom-gallery.is-reveal .custom-gallery__item {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.custom-gallery-section .custom-gallery.is-reveal .custom-gallery__item.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============ DESKTOP ============ */
+@media (min-width: 750px) {
+  .custom-gallery-section .custom-gallery {
+    padding: 7rem 0;
+  }
+
+  .custom-gallery-section .custom-gallery__inner {
+    padding: 0 5rem;
+  }
+
+  .custom-gallery-section .custom-gallery__heading {
+    font-size: 3.6rem;
+    margin-bottom: 3.6rem;
+  }
+
+  /* 3 colonne affiancate */
+  .custom-gallery-section .custom-gallery__cols {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .custom-gallery-section .custom-gallery__col {
+    flex: 1 1 0;
+    gap: 2rem;
+  }
+
+  /* colonna centrale sfalsata in basso -> look editoriale */
+  .custom-gallery-section .custom-gallery__col:nth-child(2) {
+    margin-top: 6rem;
+  }
+
+  /* will-change: il transform parallax e' applicato da JS via inline style */
+  .custom-gallery-section .custom-gallery__col {
+    will-change: transform;
+  }
+}
