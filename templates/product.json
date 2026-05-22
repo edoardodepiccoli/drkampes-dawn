@@ -12,6 +12,13 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "custom_liquid_rQTYBK": {
+          "type": "custom_liquid",
+          "name": "#intro ID",
+          "settings": {
+            "custom_liquid": "<div id=\"intro></div>"
+          }
+        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -106,6 +113,7 @@
         }
       },
       "block_order": [
+        "custom_liquid_rQTYBK",
         "vendor",
         "title",
         "caption",
