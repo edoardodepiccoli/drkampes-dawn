@@ -1,0 +1,94 @@
+{% comment %}
+  Renders a product media modal. Also see 'product-media-gallery'
+
+  Accepts:
+  - product: {Object} Product liquid object
+  - variant_images: {Array} Product images associated with a variant
+
+  Usage:
+  {% render 'product-media-modal' %}
+{% endcomment %}
+
+<product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
+  <div
+    class="product-media-modal__dialog color-{{ section.settings.color_scheme }} gradient"
+    role="dialog"
+    aria-label="{{ 'products.modal.label' | t }}"
+    aria-modal="true"
+    tabindex="-1"
+  >
+    <button
+      id="ModalClose-{{ section.id }}"
+      type="button"
+      class="product-media-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      {{ 'icon-close.svg' | inline_asset_content }}
+    </button>
+
+    <div
+      class="product-media-modal__content color-{{ section.settings.color_scheme }} gradient"
+      role="document"
+      aria-label="{{ 'products.modal.label' | t }}"
+      tabindex="0"
+    >
+      {%- comment -%}
+        Filtro galleria per variante (sezione custom): se la variante selezionata
+        ha il metafield custom.variant_gallery, il modale mostra solo quei media.
+        Stesso meccanismo di custom-product-media-gallery.liquid.
+      {%- endcomment -%}
+      {%- liquid
+        assign vg_ids = ''
+        assign vg_files = product.selected_or_first_available_variant.metafields.custom.variant_gallery.value
+        if vg_files != blank
+          for vg_file in vg_files
+            for m in product.media
+              if vg_file.image.src == m.src
+                assign vg_ids = vg_ids | append: ',' | append: m.id
+              endif
+            endfor
+          endfor
+          if vg_ids != blank
+            assign vg_ids = vg_ids | append: ','
+          endif
+        endif
+      -%}
+
+      {%- liquid
+        assign featured_media = product.selected_or_first_available_variant.featured_media
+        assign show_featured = false
+        if featured_media != null
+          if vg_ids == blank
+            assign show_featured = true
+          else
+            assign featured_key = ',' | append: featured_media.id | append: ','
+            if vg_ids contains featured_key
+              assign show_featured = true
+            endif
+          endif
+        endif
+        if show_featured
+          render 'product-media', media: featured_media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
+        endif
+      -%}
+
+      {%- for media in product.media -%}
+        {%- if vg_ids != blank -%}
+          {%- assign media_key = ',' | append: media.id | append: ',' -%}
+          {%- unless vg_ids contains media_key -%}{%- continue -%}{%- endunless -%}
+        {%- endif -%}
+        {%- liquid
+          if section.settings.hide_variants and variant_images contains media.src or variant_images contains media.id
+            assign variant_image = true
+          else
+            assign variant_image = false
+          endif
+
+          unless media.id == product.selected_or_first_available_variant.featured_media.id
+            render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
+          endunless
+        -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</product-modal>
