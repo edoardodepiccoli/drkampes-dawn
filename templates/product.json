@@ -164,19 +164,11 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "custom_pdp_sticky_cta_nCaPVA": {
-      "type": "custom-pdp-sticky-cta",
-      "name": "CUSTOM · CTA prodotto",
-      "settings": {
-        "color_scheme": ""
-      }
     }
   },
   "order": [
     "custom_liquid_TYP8Td",
     "main",
-    "related-products",
-    "custom_pdp_sticky_cta_nCaPVA"
+    "related-products"
   ]
 }

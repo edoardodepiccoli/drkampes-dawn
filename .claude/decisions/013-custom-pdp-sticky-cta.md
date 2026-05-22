@@ -1,7 +1,9 @@
 # 013 — custom-pdp-sticky-cta: sticky CTA per la PDP
 
 **Date:** 2026-05-22
-**Status:** Active
+**Status:** Deprecated — sezione rimossa su richiesta dell'utente (cambio idea).
+File `custom-pdp-sticky-cta.*` eliminati e istanza tolta da `templates/product.json`.
+Decision conservata come storico.
 
 ## Context
 

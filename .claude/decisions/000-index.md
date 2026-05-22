@@ -16,7 +16,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 010 | custom-video-rows: righe video + testo alternate | 2026-05-22 | Deprecated |
 | 011 | custom-video-feature: sezione video singola, semplice | 2026-05-22 | Active |
 | 012 | custom-hero: hero custom, doppia altezza su mobile | 2026-05-22 | Active |
-| 013 | custom-pdp-sticky-cta: sticky CTA per la PDP | 2026-05-22 | Active |
+| 013 | custom-pdp-sticky-cta: sticky CTA per la PDP | 2026-05-22 | Deprecated |
 
 ## Conventions
 
