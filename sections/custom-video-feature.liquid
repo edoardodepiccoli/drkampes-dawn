@@ -1,0 +1,145 @@
+{% comment %}
+  CUSTOM · Video — sezione semplice: un video verticale + titolo/descrizione/CTA.
+
+  Desktop: video a sinistra, testo a destra, centrati verticalmente, poco spazio
+  tra i due. Mobile: video sopra, testo sotto.
+  Video caricato su Shopify, click-to-play via <deferred-media> (componente Dawn
+  in global.js — niente JS proprio). Il riquadro segue l'aspect ratio reale del
+  video, quindi i video verticali non vengono tagliati. Vedi decision 011.
+{% endcomment %}
+
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{{ 'custom-video-feature.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign video = section.settings.video
+  assign poster = section.settings.poster | default: video.preview_image
+  # Aspect ratio reale del video (ratio < 1 = verticale). Fallback 9:16.
+  assign ratio = video.aspect_ratio | default: poster.aspect_ratio | default: 0.5625
+  assign is_portrait = false
+  if ratio < 1
+    assign is_portrait = true
+  endif
+-%}
+
+<div class="custom-video-feature color-{{ section.settings.color_scheme }}">
+  <div class="custom-video-feature__inner">
+
+    {%- comment -%} Media prima del content: su mobile (flex column) il video sta sopra. {%- endcomment -%}
+    <div
+      class="custom-video-feature__media{% if is_portrait %} custom-video-feature__media--portrait{% endif %}"
+      style="--cvr-ratio: {{ ratio }};"
+    >
+      {%- if video != blank -%}
+        <deferred-media class="custom-video-feature__deferred deferred-media" data-media-id="{{ video.id }}">
+          <button
+            class="custom-video-feature__poster deferred-media__poster"
+            type="button"
+            aria-label="Riproduci video"
+          >
+            {%- if poster != blank -%}
+              <img
+                class="custom-video-feature__poster-img"
+                src="{{ poster | image_url: width: 1200 }}"
+                srcset="
+                  {{ poster | image_url: width: 600 }} 600w,
+                  {{ poster | image_url: width: 900 }} 900w,
+                  {{ poster | image_url: width: 1200 }} 1200w
+                "
+                sizes="(min-width: 750px) 40vw, 100vw"
+                alt="{{ poster.alt | escape }}"
+                width="{{ poster.width }}"
+                height="{{ poster.height }}"
+                loading="lazy"
+              >
+            {%- endif -%}
+            <span class="deferred-media__poster-button motion-reduce">
+              <span class="svg-wrapper">{{- 'icon-play.svg' | inline_asset_content -}}</span>
+            </span>
+          </button>
+          <template>
+            {{
+              video
+              | video_tag:
+                image_size: '1100x',
+                autoplay: true,
+                loop: false,
+                controls: true,
+                muted: false
+            }}
+          </template>
+        </deferred-media>
+      {%- endif -%}
+    </div>
+
+    <div class="custom-video-feature__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="custom-video-feature__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="custom-video-feature__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="custom-video-feature__cta button button--primary"
+        >
+          {{ section.settings.button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Video",
+  "tag": "section",
+  "class": "custom-video-feature-section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Poster (opzionale)",
+      "info": "Se vuoto usa l'anteprima del video."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "Titolo"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Descrizione",
+      "default": "<p>Descrizione.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Testo bottone"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link bottone"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Schema colore",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    { "name": "CUSTOM · Video" }
+  ]
+}
+{% endschema %}
