@@ -57,6 +57,14 @@ complementare` dall'editor sul template Collezione. `collection.json` non si toc
 - Handle collezioni: `accessori-trucker-shoes`, `trucker-shoes`.
 - Riferimento card: snippet Dawn `card-product`, come `sections/featured-collection.liquid`.
 
+## Update — 2026-05-22 (nome sezione: limite 25 caratteri)
+
+La sezione non compariva nel picker perche' lo schema `name` "CUSTOM · Collezione
+complementare" (33 caratteri) supera il **limite di 25 caratteri** del campo
+`name` di una section schema Shopify -> schema invalido. Accorciato a
+`"CUSTOM · Complementare"` (22). Gotcha da ricordare per ogni futura custom
+section: schema `name` (e preset `name`) <= 25 caratteri.
+
 ## Update — 2026-05-22 (rimosso `enabled_on`)
 
 Con `"enabled_on": { "templates": ["collection"] }` la sezione **non compariva**
