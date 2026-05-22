@@ -14,6 +14,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 008 | Smooth scroll sui link ancora, esteso a tutto il sito | 2026-05-22 | Active |
 | 009 | custom-gallery: gallery editoriale con parallax | 2026-05-22 | Active |
 | 010 | custom-video-rows: righe video + testo alternate | 2026-05-22 | Deprecated |
+| 011 | custom-video-feature: sezione video singola, semplice | 2026-05-22 | Active |
 
 ## Conventions
 
