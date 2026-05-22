@@ -271,10 +271,6 @@
   color: #b91c1c;
 }
 
-.custom-buy-box-section .custom-buy-box__stock[hidden] {
-  display: none;
-}
-
 .custom-buy-box-section .custom-buy-box__stock::before {
   content: "";
   width: 0.7rem;

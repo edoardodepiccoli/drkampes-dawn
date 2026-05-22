@@ -36,7 +36,6 @@
       this.priceEl = this.querySelector('[data-price]');
       this.compareEl = this.querySelector('[data-compare]');
       this.installmentEl = this.querySelector('[data-installment]');
-      this.stockEl = this.querySelector('[data-stock]');
       // Form Dawn (snippet buy-buttons): input variante + bottone submit.
       // product-form.js gestisce il submit; qui si tiene solo sincronizzato l'input.
       this.idInput = this.querySelector('.product-variant-id');
@@ -65,7 +64,6 @@
       // Stato iniziale = prima variante disponibile (= selected_or_first_available_variant).
       var current = this.variants.find(function (v) { return v.available; }) || this.variants[0];
       this.selOpts = current.options.slice();
-      this.sizeTouched = false; // la riga stock compare solo dopo scelta taglia
       this.lastColor = undefined; // forza il primo filterGallery in sync()
 
       this.bind();
@@ -91,7 +89,6 @@
           if (self.sizePos < 0) return;
           if (btn.classList.contains('is-unavailable')) return;
           self.selOpts[self.sizePos] = btn.dataset.value;
-          self.sizeTouched = true;
           self.paintSelection();
           self.sync();
         });
@@ -261,8 +258,6 @@
         // Combo colore+taglia inesistente come variante: blocca l'acquisto.
         this.setButton(false);
       }
-
-      if (this.stockEl) this.stockEl.hidden = !this.sizeTouched;
     }
 
     setButton(available) {

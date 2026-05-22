@@ -223,8 +223,8 @@
           </div>
         {%- endif -%}
 
-        {%- comment -%} Numero marketing fisso (editabile), nascosto finche' non si sceglie la taglia. {%- endcomment -%}
-        <p class="custom-buy-box__stock" data-stock hidden>{{ section.settings.stock_label | escape }}</p>
+        {%- comment -%} Avviso disponibilita': numero marketing fisso, editabile da editor. {%- endcomment -%}
+        <p class="custom-buy-box__stock">{{ section.settings.stock_label | escape }}</p>
 
         {%- comment -%}
           Add to cart — snippet ufficiale Dawn `buy-buttons` (stesso usato da
