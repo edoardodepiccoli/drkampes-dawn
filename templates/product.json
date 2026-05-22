@@ -16,7 +16,7 @@
           "type": "custom_liquid",
           "name": "#intro ID",
           "settings": {
-            "custom_liquid": "<div id=\"intro></div>"
+            "custom_liquid": "<p id=\"intro></p>"
           }
         },
         "vendor": {
@@ -167,7 +167,6 @@
       "type": "custom-pdp-sticky-cta",
       "name": "CUSTOM · CTA prodotto",
       "settings": {
-        "button_label": "si, le voglio",
         "color_scheme": ""
       }
     }
