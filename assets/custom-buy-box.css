@@ -10,7 +10,7 @@
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-foreground));
   font-family: var(--font-body-family);
-  padding: 2.4rem 0;
+  padding: 1.2rem 0 2.4rem; /* top ridotto */
 }
 
 .custom-buy-box-section .custom-buy-box--empty {
@@ -302,7 +302,7 @@
 /* ============ DESKTOP ============ */
 @media (min-width: 750px) {
   .custom-buy-box-section .custom-buy-box {
-    padding: 4rem 0;
+    padding: 2rem 0 4rem; /* top ridotto */
   }
 
   .custom-buy-box-section .custom-buy-box__inner {
