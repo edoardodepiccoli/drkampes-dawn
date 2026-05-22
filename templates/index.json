@@ -58,6 +58,21 @@
         "show_text_below": false
       }
     },
+    "custom_hero_qTrUx6": {
+      "type": "custom-hero",
+      "name": "CUSTOM · Hero",
+      "settings": {
+        "image": "shopify://shop_images/dettagli_logo_scarpa_screenshot.png",
+        "overlay_opacity": 50,
+        "color_scheme": "",
+        "heading": "LE SCARPE DEL CAMIONISTA",
+        "text": "Lavora meglio, perdi meno tempo, stai piu comodo, fai meno fatica, resta riconoscibile.",
+        "button_label_1": "Acquista Ora",
+        "button_link_1": "#acquista",
+        "button_label_2": "Scopri di piu",
+        "button_link_2": "#intro"
+      }
+    },
     "image_with_text_KMgCPn": {
       "type": "image-with-text",
       "blocks": {
@@ -374,6 +389,7 @@
   },
   "order": [
     "image_banner",
+    "custom_hero_qTrUx6",
     "image_with_text_KMgCPn",
     "custom_liquid_fLyEy9",
     "image_with_text_iFMhM7",
