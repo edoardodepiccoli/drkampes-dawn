@@ -10,6 +10,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 004 | Custom homepage sections: editor-reorderable, hardcoded content, CUSTOM prefix | 2026-05-22 | Active |
 | 005 | custom-garanzie: block editor-editable (image_picker + richtext) | 2026-05-22 | Active |
 | 006 | custom-buy-box: buy box homepage con carrello nativo Dawn | 2026-05-22 | Active |
+| 007 | Custom section su collection page + collezione complementare | 2026-05-22 | Active |
 
 ## Conventions
 
