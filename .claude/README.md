@@ -14,9 +14,11 @@ This directory is the project's persistent memory for Claude Code sessions and t
 │   ├── 000-index.md                     ← decision log index
 │   ├── 001-snippets-not-sections.md
 │   ├── 002-rem-scaling-dawn-root.md
-│   └── 003-cart-flow-bypass-drawer.md
+│   ├── 003-cart-flow-bypass-drawer.md
+│   └── 004-custom-homepage-sections.md
 └── patterns/
-    └── porting-horizon-section.md       ← step-by-step recipe for porting an LP section
+    ├── porting-horizon-section.md       ← step-by-step recipe for porting an LP section
+    └── building-custom-homepage-section.md  ← recipe for a custom homepage section
 ```
 
 ## Update policy

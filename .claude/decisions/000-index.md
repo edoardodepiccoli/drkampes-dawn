@@ -7,6 +7,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 001 | Snippets, not sections, for LP elements | 2026-05-19 | Active |
 | 002 | Rem values from Horizon multiplied by 1.6x for Dawn root | 2026-05-19 | Active |
 | 003 | Cart-add bypasses Dawn cart-drawer (fetch + redirect) | 2026-05-19 | Active |
+| 004 | Custom homepage sections: editor-reorderable, hardcoded content, CUSTOM prefix | 2026-05-22 | Active |
 
 ## Conventions
 
