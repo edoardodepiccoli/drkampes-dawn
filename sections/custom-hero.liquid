@@ -1,0 +1,141 @@
+{% comment %}
+  CUSTOM · Hero — hero a tutta larghezza, immagine di sfondo + overlay +
+  titolo / sottotitolo / 2 bottoni, contenuto in basso al centro.
+
+  Replica l'hero stock (`image-banner`, altezza "large") MA su mobile e' alta
+  il doppio: desktop 72rem (come Dawn "large"), mobile 78rem (2x i 39rem di
+  Dawn "large" mobile). Contenuto editabile da editor. Vedi decision 012.
+{% endcomment %}
+
+{{ 'custom-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign image = section.settings.image
+  assign overlay = section.settings.overlay_opacity | divided_by: 100.0
+-%}
+
+<div class="custom-hero color-{{ section.settings.color_scheme }}">
+
+  <div class="custom-hero__media">
+    {%- if image != blank -%}
+      <img
+        class="custom-hero__image"
+        src="{{ image | image_url: width: 2000 }}"
+        srcset="
+          {{ image | image_url: width: 750 }} 750w,
+          {{ image | image_url: width: 1100 }} 1100w,
+          {{ image | image_url: width: 1500 }} 1500w,
+          {{ image | image_url: width: 2000 }} 2000w,
+          {{ image | image_url: width: 2600 }} 2600w
+        "
+        sizes="100vw"
+        alt="{{ image.alt | escape }}"
+        width="{{ image.width }}"
+        height="{{ image.height }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {%- endif -%}
+    <div class="custom-hero__overlay" style="opacity: {{ overlay }};"></div>
+  </div>
+
+  <div class="custom-hero__content">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="custom-hero__heading">{{ section.settings.heading | escape }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.text != blank -%}
+      <p class="custom-hero__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_label_1 != blank or section.settings.button_label_2 != blank -%}
+      <div class="custom-hero__buttons">
+        {%- if section.settings.button_label_1 != blank -%}
+          <a
+            href="{{ section.settings.button_link_1 | default: '#' }}"
+            class="custom-hero__btn button button--primary"
+          >
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button_label_2 != blank -%}
+          <a
+            href="{{ section.settings.button_link_2 | default: '#' }}"
+            class="custom-hero__btn button button--secondary"
+          >
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Hero",
+  "tag": "section",
+  "class": "custom-hero-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine di sfondo"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Opacita overlay",
+      "default": 40
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Schema colore",
+      "default": "scheme-4"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "LE SCARPE DEL CAMIONISTA"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Sottotitolo",
+      "default": "Lavora meglio, perdi meno tempo, stai piu comodo, fai meno fatica, resta riconoscibile."
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Bottone 1 — testo",
+      "default": "Acquista Ora"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Bottone 1 — link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Bottone 2 — testo",
+      "default": "Scopri di piu"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Bottone 2 — link"
+    }
+  ],
+  "presets": [
+    { "name": "CUSTOM · Hero" }
+  ]
+}
+{% endschema %}
