@@ -56,3 +56,12 @@ complementare` dall'editor sul template Collezione. `collection.json` non si toc
 - `sections/custom-related-collection.liquid`, `assets/custom-related-collection.css`.
 - Handle collezioni: `accessori-trucker-shoes`, `trucker-shoes`.
 - Riferimento card: snippet Dawn `card-product`, come `sections/featured-collection.liquid`.
+
+## Update — 2026-05-22 (rimosso `enabled_on`)
+
+Con `"enabled_on": { "templates": ["collection"] }` la sezione **non compariva**
+nel picker "Aggiungi sezione" dell'editor. `enabled_on` rimosso: la sezione e'
+ora aggiungibile da qualunque template. Resta pensata per le collection page —
+fuori da li' il `collection` global e' nil e la sezione mostra comunque gli
+accessori (innocuo, ma non va aggiunta altrove). La restrizione per-template
+potra' tornare con la versione metafield, se si trova la sintassi corretta.
