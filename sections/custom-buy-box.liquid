@@ -240,6 +240,19 @@
 
       </div>
     </div>
+
+    {%- comment -%}
+      Sticky CTA: bottone flottante che scivola su dopo 200px di scroll e si
+      nasconde quando questa sezione (#acquista) e' in viewport. Logica in custom-buy-box.js.
+    {%- endcomment -%}
+    <a
+      href="#acquista"
+      class="custom-buy-box__sticky-cta button button--primary"
+      data-sticky-cta
+    >
+      {{ section.settings.sticky_cta_label | escape }}
+    </a>
+
   </custom-buy-box>
 
   {%- comment -%} product-form.js: stesso caricamento di featured-product (guarded). {%- endcomment -%}
@@ -275,6 +288,12 @@
       "id": "stock_label",
       "label": "Avviso disponibilita",
       "default": "Meno di 8 paia in magazzino"
+    },
+    {
+      "type": "text",
+      "id": "sticky_cta_label",
+      "label": "Testo bottone flottante",
+      "default": "Acquista Ora"
     }
   ],
   "presets": [

@@ -2,7 +2,7 @@
   CUSTOM · Acquista — buy box homepage
   Custom element <custom-buy-box>: selezione variante (colore + taglia),
   aggiornamento prezzo / rata / disponibilita', carousel immagini con filtro
-  per colore (metafield custom.variant_gallery), dots su mobile.
+  per colore (metafield custom.variant_gallery), dots su mobile, sticky CTA.
   L'add to cart usa lo snippet ufficiale Dawn `buy-buttons` + product-form.js:
   questo JS aggiorna solo l'input name="id" del form al cambio variante.
   Nessuna modifica a product-form.js / cart-notification.js / cart.js.
@@ -69,6 +69,7 @@
       this.bind();
       this.paintSelection();
       this.sync();
+      this.initStickyCta();
     }
 
     bind() {
@@ -264,6 +265,43 @@
       // Abilita/disabilita il bottone submit del form Dawn. Il testo resta quello
       // di Dawn (locale). product-form.js gestisce loading/errori al submit.
       if (this.atcBtn) this.atcBtn.disabled = !available;
+    }
+
+    // Sticky CTA: bottone flottante che scivola su dopo 200px di scroll e si
+    // nasconde quando questa sezione (#acquista) e' in viewport.
+    initStickyCta() {
+      var self = this;
+      this.stickyCta = this.querySelector('[data-sticky-cta]');
+      if (!this.stickyCta) return;
+
+      this.scrolledEnough = window.scrollY > 200;
+      this.selfInView = false;
+
+      // IntersectionObserver su questa sezione (l'elemento = #acquista).
+      new IntersectionObserver(function (entries) {
+        self.selfInView = entries[0].isIntersecting;
+        self.updateStickyCta();
+      }).observe(this);
+
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          self.scrolledEnough = window.scrollY > 200;
+          self.updateStickyCta();
+          ticking = false;
+        });
+      }, { passive: true });
+
+      this.updateStickyCta(); // stato iniziale
+    }
+
+    updateStickyCta() {
+      if (!this.stickyCta) return;
+      // Visibile solo se scrollato oltre 200px E la sezione #acquista non e' in vista.
+      var visible = this.scrolledEnough && !this.selfInView;
+      this.stickyCta.classList.toggle('is-visible', visible);
     }
   }
 

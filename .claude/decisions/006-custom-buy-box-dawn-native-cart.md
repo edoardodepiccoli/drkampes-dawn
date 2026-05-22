@@ -126,3 +126,11 @@ Se con questo meccanismo l'add to cart ricarica ancora, la causa e' ambientale
 (elemento `<cart-notification>` assente, impostazioni carrello del tema), non il
 codice della sezione: `product-form.js` naviga a `/cart` solo quando non trova
 ne' `cart-notification` ne' `cart-drawer`.
+
+## Update — 2026-05-22 (sticky CTA slide-up)
+
+Aggiunto un bottone flottante `<a href="#acquista">` nella sezione: scivola su
+dopo 200px di scroll e si nasconde quando la sezione stessa (`#acquista`) e' in
+viewport. Logica in `custom-buy-box.js` (`initStickyCta`): `IntersectionObserver`
+sull'elemento `<custom-buy-box>` + listener `scroll`. Testo del bottone: setting
+`sticky_cta_label`.

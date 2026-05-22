@@ -299,6 +299,27 @@
   display: none;
 }
 
+/* ---- sticky CTA (bottone flottante slide-up) ---- */
+.custom-buy-box-section .custom-buy-box__sticky-cta {
+  position: fixed;
+  left: 50%;
+  bottom: 1.6rem;
+  z-index: 5;
+  margin: 0;
+  box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.28);
+  /* stato nascosto: fuori schermo in basso */
+  transform: translate(-50%, 200%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.custom-buy-box-section .custom-buy-box__sticky-cta.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* ============ DESKTOP ============ */
 @media (min-width: 750px) {
   .custom-buy-box-section .custom-buy-box {
