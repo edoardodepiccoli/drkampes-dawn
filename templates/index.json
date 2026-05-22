@@ -30,10 +30,10 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Acquista Ora",
-            "button_link_1": "shopify://products/dr-kampes-s3s-nero-copia",
+            "button_link_1": "#acquista",
             "button_style_secondary_1": false,
             "button_label_2": "Scopri di più",
-            "button_link_2": "shopify://collections/trucker-shoes",
+            "button_link_2": "#intro",
             "button_style_secondary_2": true
           }
         }
@@ -56,6 +56,16 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "left",
         "show_text_below": false
+      }
+    },
+    "custom_liquid_ykYMJr": {
+      "type": "custom-liquid",
+      "name": "#intro",
+      "settings": {
+        "custom_liquid": "<div id=\"intro\"></div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "image_with_text_KMgCPn": {
@@ -292,6 +302,7 @@
   },
   "order": [
     "image_banner",
+    "custom_liquid_ykYMJr",
     "image_with_text_KMgCPn",
     "image_with_text_iFMhM7",
     "custom_buy_box_XgJgTD",
