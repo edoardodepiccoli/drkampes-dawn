@@ -1,0 +1,121 @@
+/*
+  CUSTOM · Video + testo — 3 righe video/testo alternate.
+  Scoped sotto .custom-video-rows-section. Token Dawn, no regole globali,
+  no !important. Play via <deferred-media> di Dawn (component-deferred-media.css).
+*/
+
+.custom-video-rows-section .custom-video-rows {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  padding: 4rem 0;
+}
+
+.custom-video-rows-section .custom-video-rows__inner {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ---- riga ---- */
+/* mobile: colonna, media (video) sempre sopra il testo */
+.custom-video-rows-section .custom-video-rows__row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ---- media / video ---- */
+.custom-video-rows-section .custom-video-rows__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--media-radius);
+  overflow: hidden;
+}
+
+.custom-video-rows-section .custom-video-rows__deferred {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-video-rows-section .custom-video-rows__poster {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.custom-video-rows-section .custom-video-rows__poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* il <video> iniettato da deferred-media al click riempie il riquadro */
+.custom-video-rows-section .custom-video-rows__media video,
+.custom-video-rows-section .custom-video-rows__media iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- contenuto ---- */
+.custom-video-rows-section .custom-video-rows__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.custom-video-rows-section .custom-video-rows__heading {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.custom-video-rows-section .custom-video-rows__text {
+  margin: 0;
+}
+
+.custom-video-rows-section .custom-video-rows__cta {
+  margin-top: 0.8rem;
+}
+
+/* ============ DESKTOP ============ */
+@media (min-width: 750px) {
+  .custom-video-rows-section .custom-video-rows {
+    padding: 6rem 0;
+  }
+
+  .custom-video-rows-section .custom-video-rows__inner {
+    padding: 0 5rem;
+    gap: 6rem;
+  }
+
+  /* riga affiancata; le righe pari hanno il video a destra */
+  .custom-video-rows-section .custom-video-rows__row {
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .custom-video-rows-section .custom-video-rows__row--reverse {
+    flex-direction: row-reverse;
+  }
+
+  .custom-video-rows-section .custom-video-rows__media,
+  .custom-video-rows-section .custom-video-rows__content {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .custom-video-rows-section .custom-video-rows__heading {
+    font-size: 3rem;
+  }
+}
