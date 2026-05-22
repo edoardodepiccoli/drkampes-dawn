@@ -1,0 +1,56 @@
+/*
+  CUSTOM · Garanzie
+  Tutte le regole scoped sotto .custom-garanzie-section (classe iniettata dallo
+  schema) per non sporcare il CSS globale del tema.
+  Mobile-first: base = 1 colonna, da 750px = 3 colonne.
+*/
+
+.custom-garanzie-section .custom-garanzie {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* 32px verticale = match del padding della sezione garanzie attuale */
+  padding: 32px 20px;
+}
+
+.custom-garanzie-section .custom-garanzie__grid {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: 1 colonna */
+  gap: 32px;
+}
+
+.custom-garanzie-section .custom-garanzie__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* badge centrato orizzontalmente */
+  text-align: center; /* descrizione centrata */
+}
+
+.custom-garanzie-section .custom-garanzie__badge {
+  width: 120px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.custom-garanzie-section .custom-garanzie__text {
+  line-height: 1.6;
+}
+
+/* I <p> generati dal richtext: rimuovo i margini di default, gestisco la
+   spaziatura tra paragrafi senza margini esterni sopra/sotto il blocco */
+.custom-garanzie-section .custom-garanzie__text > p {
+  margin: 0;
+}
+
+.custom-garanzie-section .custom-garanzie__text > p + p {
+  margin-top: 0.8em;
+}
+
+@media (min-width: 750px) {
+  .custom-garanzie-section .custom-garanzie {
+    padding: 32px 40px;
+  }
+
+  .custom-garanzie-section .custom-garanzie__grid {
+    grid-template-columns: repeat(3, 1fr); /* desktop/tablet: 3 colonne */
+  }
+}

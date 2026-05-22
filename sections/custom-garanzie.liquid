@@ -1,0 +1,89 @@
+{% comment %}
+  CUSTOM · Garanzie
+
+  Sezione custom homepage: 3 colonne, ognuna badge immagine + descrizione.
+  Badge e descrizione editabili dall'editor (image_picker + richtext per block).
+  Pattern: .claude/patterns/building-custom-homepage-section.md
+  Deroga al "contenuto hardcoded" di decision 004 — vedi decision 005.
+{% endcomment %}
+
+{{ 'custom-garanzie.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-garanzie">
+  <div class="custom-garanzie__grid">
+    {%- for block in section.blocks -%}
+      <div class="custom-garanzie__col" {{ block.shopify_attributes }}>
+        {%- if block.settings.badge != blank -%}
+          {%- comment -%}
+            Larghezza richiesta a 240px = 2x della resa CSS (~120px) per schermi retina.
+          {%- endcomment -%}
+          <img
+            class="custom-garanzie__badge"
+            src="{{ block.settings.badge | image_url: width: 240 }}"
+            alt="{{ block.settings.badge.alt | escape }}"
+            width="{{ block.settings.badge.width }}"
+            height="{{ block.settings.badge.height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+
+        {%- if block.settings.description != blank -%}
+          <div class="custom-garanzie__text">{{ block.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Garanzie",
+  "tag": "section",
+  "class": "custom-garanzie-section",
+  "settings": [],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Colonna",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "badge",
+          "label": "Badge"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Descrizione"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CUSTOM · Garanzie",
+      "blocks": [
+        {
+          "type": "column",
+          "settings": {
+            "description": "<p>Mentre le altre scarpe finiscono nella spazzatura, le tue Dr Kampes sono coperte. <strong>Ci fidiamo così tanto del nostro prodotto che lo garantiamo per 1095 giorni di lavoro. </strong>Se per 3 ANNI hanno un cedimento strutturale, le ripariamo o sostituiamo. Fine.</p>"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "description": "<p><strong>Non usiamo catene di montaggio.</strong> Ogni Dr Kampes è assemblata e cucita a mano da artigiani italiani, fatta in vera pelle idrorepellente, per piedi SEMPRE asciutti e protetti. È la qualità che puoi toccare e che dura nel tempo, non un prodotto di massa che si sfalda.</p>"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "description": "<p>Puntale in composito (leggero), lamina anti-perforazione, impermeabilità totale e suola anti-scivolo SRC. <strong>La tua sicurezza non è un optional, è il nostro standard minimo. </strong>Conformi alla EN ISO 20345:2022+A1:2024, le Dr Kampes rispettano il massimo standard di protezione oggi disponibile.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
