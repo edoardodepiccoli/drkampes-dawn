@@ -192,18 +192,24 @@
   cursor: not-allowed;
 }
 
-/* pill taglia */
+/* pill taglia: bottoni circolari */
 .custom-buy-box-section .custom-buy-box__pills {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  /* flex-wrap, non grid: la grid con 1fr stirerebbe i cerchi in ellissi */
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.8rem;
 }
 
 .custom-buy-box-section .custom-buy-box__pill {
-  min-height: 4.4rem;
-  padding: 0 0.8rem;
+  /* cerchio: width = height, niente padding orizzontale che lo deformerebbe */
+  width: 4.4rem;
+  height: 4.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   border: var(--variant-pills-border-width, 0.1rem) solid rgba(var(--color-foreground), 0.2);
-  border-radius: var(--variant-pills-radius, 0.4rem);
+  border-radius: 50%;
   background: rgb(var(--color-background));
   color: rgb(var(--color-foreground));
   font-size: 1.4rem;
@@ -221,26 +227,6 @@
   border-color: rgba(var(--color-foreground), 0.12);
   text-decoration: line-through;
   cursor: not-allowed;
-}
-
-/* ---- riga stock (sobria, non il box rosa LP) ---- */
-.custom-buy-box-section .custom-buy-box__stock {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #b91c1c;
-}
-
-.custom-buy-box-section .custom-buy-box__stock::before {
-  content: "";
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background: currentColor;
-  flex-shrink: 0;
 }
 
 /* ---- add to cart (snippet ufficiale Dawn `buy-buttons`) ---- */

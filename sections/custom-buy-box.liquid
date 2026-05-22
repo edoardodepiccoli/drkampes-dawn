@@ -208,9 +208,6 @@
           </div>
         {%- endif -%}
 
-        {%- comment -%} Avviso disponibilita': numero marketing fisso, editabile da editor. {%- endcomment -%}
-        <p class="custom-buy-box__stock">{{ section.settings.stock_label | escape }}</p>
-
         {%- comment -%}
           Add to cart — snippet ufficiale Dawn `buy-buttons` (stesso usato da
           featured-product): <product-form> + {% form 'product' %} + product-form.js.
@@ -268,12 +265,6 @@
       "id": "reviews_text",
       "label": "Testo recensioni",
       "default": "1200+ camionisti soddisfatti"
-    },
-    {
-      "type": "text",
-      "id": "stock_label",
-      "label": "Avviso disponibilita",
-      "default": "Meno di 8 paia in magazzino"
     },
     {
       "type": "text",
