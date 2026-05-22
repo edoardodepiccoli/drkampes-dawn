@@ -26,7 +26,8 @@
 }
 
 .custom-garanzie-section .custom-garanzie__badge {
-  width: 120px;
+  width: 240px;
+  max-width: 100%;
   height: auto;
   margin-bottom: 16px;
 }
@@ -54,11 +55,7 @@
     grid-template-columns: repeat(3, 1fr); /* desktop/tablet: 3 colonne */
   }
 
-  /* Desktop: badge piu grande, descrizione piu piccola */
-  .custom-garanzie-section .custom-garanzie__badge {
-    width: 180px;
-  }
-
+  /* Desktop: descrizione piu piccola (badge resta 240px come mobile) */
   .custom-garanzie-section .custom-garanzie__text {
     font-size: 1.4rem; /* root Dawn 10px → 14px */
   }
