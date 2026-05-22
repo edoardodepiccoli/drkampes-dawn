@@ -75,3 +75,18 @@ desktop su una riga scrollabile, e **filtro galleria per colore** via il metafie
 righe 33-54). Scegliendo un colore il carousel mostra solo le immagini di quella
 galleria. La sezione dipende ora da quel metafield per il comportamento ottimale,
 ma degrada con grazia: variante senza `variant_gallery` -> mostra tutte le immagini.
+
+## Update — 2026-05-22 (salto scroll all'add to cart)
+
+L'add to cart faceva saltare la pagina in cima. Causa: la sezione `recensioni`
+(`custom_liquid` in `index.json`) inietta `html, body { overflow-x: hidden }`,
+che forza `overflow-y: auto` su `<body>` rendendolo uno scroll container; quando
+il cart drawer apre, Dawn mette `overflow:hidden` sul body e fa `.focus()` su
+`.drawer__inner` (tabindex -1) -> la pagina salta. E' il leak CSS gia' segnalato
+come tech debt in [004](004-custom-homepage-sections.md).
+
+Workaround: `custom-buy-box.js` riancora lo scroll per ~800ms al submit del form
+(`pinScroll`), senza toccare `index.json` / `cart-drawer.js` / `product-form.js`.
+Il fix di radice (togliere `body` da quella regola nella sezione `recensioni`)
+resta un task separato: risolverebbe lo stesso salto anche aprendo il carrello
+dall'icona header.
