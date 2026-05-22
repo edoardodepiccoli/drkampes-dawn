@@ -40,6 +40,7 @@
       this.stockEl = this.querySelector('[data-stock]');
       this.atcBtn = this.querySelector('.custom-buy-box__atc');
       this.atcText = this.atcBtn ? this.atcBtn.querySelector('span') : null;
+      this.form = this.querySelector('form');
 
       // carousel
       this.slidesEl = this.querySelector('[data-slides]');
@@ -117,6 +118,23 @@
           self.setActive(Math.round(self.slidesEl.scrollLeft / self.slidesEl.clientWidth));
         }, { passive: true });
       }
+
+      // Add to cart: il cart drawer di Dawn, aprendosi, fa saltare la pagina in
+      // cima (overflow sul body + focus). Riancoriamo lo scroll al submit.
+      if (this.form) {
+        this.form.addEventListener('submit', function () { self.pinScroll(); });
+      }
+    }
+
+    // Per ~800ms riporta la pagina alla posizione di prima del submit, annullando
+    // il salto causato dall'apertura del drawer. Lo scroll programmatico funziona
+    // anche con body overflow:hidden, quindi il ripristino e' affidabile.
+    pinScroll() {
+      var x = window.scrollX;
+      var y = window.scrollY;
+      function restore() { window.scrollTo(x, y); }
+      window.addEventListener('scroll', restore);
+      setTimeout(function () { window.removeEventListener('scroll', restore); }, 800);
     }
 
     goToSlide(idx, behavior) {
