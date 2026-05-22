@@ -43,3 +43,9 @@ Each custom homepage section is a real Dawn section file with a `{% schema %}`:
 
 - Step-by-step recipe: [`patterns/building-custom-homepage-section.md`](../patterns/building-custom-homepage-section.md).
 - Stock homepage sections and the two `custom-liquid` blobs: `templates/index.json`.
+
+## Update — 2026-05-22
+
+The first application of this pattern — a `CUSTOM · Footer` section (`sections/custom-footer.liquid` + `assets/custom-footer.css`) replacing Dawn's footer site-wide — was built through Unit 2, then **reverted on visual-quality grounds** (commit `84f1213`). The rejection was about the rendered result, not the architecture. The pattern itself (hybrid section, `CUSTOM ·` prefix, scoped CSS, `enabled_on` footer group, single `image_picker` setting) is unaffected and remains Active.
+
+Confirmed working before removal: `"enabled_on": { "groups": ["footer"] }` correctly restricts a custom section to the footer section group's "Add section" picker — it appeared there and nowhere else.
