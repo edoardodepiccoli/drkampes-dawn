@@ -54,3 +54,16 @@ applicazione del pattern 004/005 (contenuto editabile via `image_picker`, come
 
 - `sections/custom-gallery.liquid`, `assets/custom-gallery.css`, `assets/custom-gallery.js`.
 - Velocita' parallax per colonna: attributo `data-speed` (impostato nel Liquid).
+
+## Update — 2026-05-22 (parallax anche su mobile)
+
+Il parallax era solo desktop (colonne). Aggiunto anche su **mobile**: ogni foto
+drifta col proprio progresso nel viewport (`applyParallax` ha due rami, modo
+`desktop`/`mobile`, scelto da `matchMedia` e ri-switchato al resize).
+
+- Ampiezza mobile contenuta (~10px, `MOBILE_BASE` 40): col gap foto di 2.4rem
+  due foto adiacenti non si sovrappongono mai.
+- Conflitto transform risolto: su mobile il `transform` dell'item lo usa il
+  parallax, quindi il reveal su mobile e' **solo fade** (lo slide `translateY`
+  del reveal resta solo desktop, dove il parallax agisce sulle colonne).
+- `prefers-reduced-motion` continua a disattivare tutto.
