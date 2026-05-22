@@ -66,3 +66,12 @@ con due scelte specifiche:
 - `sections/custom-buy-box.liquid`, `assets/custom-buy-box.css`, `assets/custom-buy-box.js`.
 - Riferimento struttura `<product-form>`: `snippets/buy-buttons.liquid`.
 - Riferimento logica selezione variante: `assets/lp-offerta.js`.
+
+## Update — 2026-05-22
+
+Carousel immagini rifinito: dots su mobile (suggeriscono lo scroll), thumbnail
+desktop su una riga scrollabile, e **filtro galleria per colore** via il metafield
+`variant.metafields.custom.variant_gallery` (stesso meccanismo di `lp-offerta`,
+righe 33-54). Scegliendo un colore il carousel mostra solo le immagini di quella
+galleria. La sezione dipende ora da quel metafield per il comportamento ottimale,
+ma degrada con grazia: variante senza `variant_gallery` -> mostra tutte le immagini.
