@@ -1,7 +1,8 @@
 /*
   CUSTOM · Acquista — buy box homepage
   Custom element <custom-buy-box>: selezione variante (colore + taglia),
-  aggiornamento prezzo / rata / disponibilita', e carousel immagini.
+  aggiornamento prezzo / rata / disponibilita', carousel immagini con filtro
+  per colore (metafield custom.variant_gallery) e dots su mobile.
   L'add to cart resta nativo Dawn: questo JS aggiorna solo input[name=id];
   product-form.js gestisce il submit e il cart drawer. Nessuna modifica a
   product-form.js / cart.js / cart-drawer.js.
@@ -12,11 +13,6 @@
   // Store italiano (EUR). Formattazione coerente su prezzo, compare-at e rata.
   function formatMoney(cents) {
     return (cents / 100).toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
-  }
-
-  // Chiave immagine = path senza query, per confrontare URL a width diverse.
-  function imgKey(url) {
-    return (url || '').split('?')[0];
   }
 
   class CustomBuyBox extends HTMLElement {
@@ -30,6 +26,13 @@
       }
       if (!this.variants || !this.variants.length) return;
 
+      // Mappa variante -> media id della galleria colore (fallback {} = mostra tutto).
+      this.vgMap = {};
+      var vgEl = this.querySelector('.custom-buy-box__vg');
+      if (vgEl) {
+        try { this.vgMap = JSON.parse(vgEl.textContent) || {}; } catch (e) { this.vgMap = {}; }
+      }
+
       this.idInput = this.querySelector('input[name="id"]');
       this.priceEl = this.querySelector('[data-price]');
       this.compareEl = this.querySelector('[data-compare]');
@@ -40,8 +43,14 @@
 
       // carousel
       this.slidesEl = this.querySelector('[data-slides]');
-      this.slides = Array.prototype.slice.call(this.querySelectorAll('.custom-buy-box__slide'));
-      this.thumbs = Array.prototype.slice.call(this.querySelectorAll('[data-thumb]'));
+      this.thumbsEl = this.querySelector('[data-thumbs]');
+      this.dotsEl = this.querySelector('[data-dots]');
+      // set completo (ordine originale) vs set visibile corrente
+      this.allSlides = Array.prototype.slice.call(this.querySelectorAll('.custom-buy-box__slide'));
+      this.allThumbs = Array.prototype.slice.call(this.querySelectorAll('[data-thumb]'));
+      this.slides = this.allSlides.slice();
+      this.thumbs = this.allThumbs.slice();
+      this.dots = [];
 
       var colorOpt = this.querySelector('[data-color-opt]');
       var sizeOpt = this.querySelector('[data-size-opt]');
@@ -56,6 +65,7 @@
       var current = this.variants.find(function (v) { return v.available; }) || this.variants[0];
       this.selOpts = current.options.slice();
       this.sizeTouched = false; // la riga stock compare solo dopo scelta taglia
+      this.lastColor = undefined; // forza il primo filterGallery in sync()
 
       this.bind();
       this.paintSelection();
@@ -86,29 +96,90 @@
         });
       });
 
-      // Thumbnail (solo desktop): click -> scorre il carousel allo slide i-esimo.
-      this.thumbs.forEach(function (btn, i) {
-        btn.addEventListener('click', function () { self.goToSlide(i); });
-      });
+      // Thumbnail: delega sul contenitore (resiste al riordino del filtro).
+      // Match per media-id, non per indice.
+      if (this.thumbsEl) {
+        this.thumbsEl.addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-thumb]');
+          if (!btn) return;
+          var idx = self.slides.findIndex(function (s) {
+            return s.dataset.mediaId === btn.dataset.mediaId;
+          });
+          if (idx >= 0) self.goToSlide(idx);
+        });
+      }
 
       // Swipe mobile: lo scroll-snap nativo muove il carousel; qui si tiene solo
-      // sincronizzata la thumbnail attiva con lo slide visibile.
+      // sincronizzata thumbnail/dot attivi con lo slide visibile.
       if (this.slidesEl) {
         this.slidesEl.addEventListener('scroll', function () {
           if (!self.slidesEl.clientWidth) return;
-          self.setActiveThumb(Math.round(self.slidesEl.scrollLeft / self.slidesEl.clientWidth));
+          self.setActive(Math.round(self.slidesEl.scrollLeft / self.slidesEl.clientWidth));
         }, { passive: true });
       }
     }
 
-    goToSlide(idx) {
+    goToSlide(idx, behavior) {
       if (!this.slidesEl || idx < 0) return;
-      this.slidesEl.scrollTo({ left: idx * this.slidesEl.clientWidth, behavior: 'smooth' });
-      this.setActiveThumb(idx);
+      this.slidesEl.scrollTo({ left: idx * this.slidesEl.clientWidth, behavior: behavior || 'smooth' });
+      this.setActive(idx);
     }
 
-    setActiveThumb(idx) {
+    setActive(idx) {
       this.thumbs.forEach(function (t, i) { t.classList.toggle('is-active', i === idx); });
+      this.dots.forEach(function (d, i) { d.classList.toggle('is-active', i === idx); });
+    }
+
+    // Carousel: mostra solo le immagini della galleria del colore selezionato.
+    // ids assente/vuoto -> mostra tutte le immagini (ordine originale).
+    filterGallery(variant) {
+      if (!this.slidesEl) return;
+      var ids = this.vgMap[String(variant.id)];
+      var self = this;
+
+      if (!ids || !ids.length) {
+        // Fallback: ripristina tutte le immagini nell'ordine originale.
+        this.allSlides.forEach(function (s) { s.style.display = ''; self.slidesEl.appendChild(s); });
+        this.allThumbs.forEach(function (t) {
+          t.style.display = '';
+          if (self.thumbsEl) self.thumbsEl.appendChild(t);
+        });
+      } else {
+        this.allSlides.forEach(function (s) { s.style.display = 'none'; });
+        this.allThumbs.forEach(function (t) { t.style.display = 'none'; });
+        ids.forEach(function (id) {
+          var sid = String(id);
+          var slide = self.allSlides.find(function (s) { return s.dataset.mediaId === sid; });
+          var thumb = self.allThumbs.find(function (t) { return t.dataset.mediaId === sid; });
+          if (slide) { slide.style.display = ''; self.slidesEl.appendChild(slide); }
+          if (thumb && self.thumbsEl) { thumb.style.display = ''; self.thumbsEl.appendChild(thumb); }
+        });
+      }
+
+      // Ricalcola i set visibili nell'ordine DOM corrente.
+      this.slides = this.allSlides.filter(function (s) { return s.style.display !== 'none'; });
+      this.thumbs = this.allThumbs.filter(function (t) { return t.style.display !== 'none'; });
+
+      this.renderDots();
+      this.goToSlide(0, 'auto');
+    }
+
+    // Un dot per slide visibile (solo mobile via CSS). <=1 slide -> nessun dot.
+    renderDots() {
+      if (!this.dotsEl) return;
+      this.dotsEl.innerHTML = '';
+      this.dots = [];
+      if (this.slides.length <= 1) return;
+      var self = this;
+      this.slides.forEach(function (slide, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'custom-buy-box__dot';
+        dot.setAttribute('aria-label', 'Immagine ' + (i + 1));
+        dot.addEventListener('click', function () { self.goToSlide(i); });
+        self.dotsEl.appendChild(dot);
+        self.dots.push(dot);
+      });
     }
 
     // Evidenzia swatch/pill selezionati e aggiorna le label "Colore:/Taglia:".
@@ -158,6 +229,17 @@
 
       var match = this.findVariant();
 
+      // Filtro galleria: solo al cambio colore (cambiare taglia non resetta il carousel).
+      var color = this.colorPos >= 0 ? this.selOpts[this.colorPos] : null;
+      if (color !== this.lastColor) {
+        this.lastColor = color;
+        // La galleria e' per colore: vale qualunque variante di quel colore.
+        var galleryVariant = match || this.variants.find(function (v) {
+          return self.colorPos >= 0 && v.options[self.colorPos] === color;
+        });
+        if (galleryVariant) this.filterGallery(galleryVariant);
+      }
+
       if (match) {
         if (this.idInput) this.idInput.value = match.id;
         if (this.priceEl) this.priceEl.textContent = formatMoney(match.price);
@@ -171,13 +253,6 @@
         }
         if (this.installmentEl) {
           this.installmentEl.textContent = formatMoney(Math.round(match.price / 3));
-        }
-        // Carousel: scorre all'immagine della variante selezionata (match per path).
-        if (match.featured_image && match.featured_image.src && this.slides.length) {
-          var key = imgKey(match.featured_image.src);
-          for (var i = 0; i < this.slides.length; i++) {
-            if (imgKey(this.slides[i].src) === key) { this.goToSlide(i); break; }
-          }
         }
         this.setButton(match.available);
       } else {

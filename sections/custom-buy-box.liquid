@@ -58,6 +58,33 @@
       {{ product.variants | json }}
     </script>
 
+    {%- comment -%}
+      Mappa variante -> media id della sua galleria colore (metafield
+      custom.variant_gallery, stesso meccanismo di lp-offerta). Il file della
+      galleria si lega al media del prodotto confrontando l'src.
+    {%- endcomment -%}
+    <script type="application/json" class="custom-buy-box__vg">
+      {
+        {%- for variant in product.variants -%}
+          {%- unless forloop.first -%},{%- endunless -%}
+          "{{ variant.id }}": [
+            {%- assign vg_files = variant.metafields.custom.variant_gallery.value -%}
+            {%- if vg_files != blank -%}
+              {%- assign first_hit = true -%}
+              {%- for vg_file in vg_files -%}
+                {%- for media in product.media -%}
+                  {%- if vg_file.image.src == media.src -%}
+                    {%- unless first_hit -%},{%- endunless -%}{{ media.id }}
+                    {%- assign first_hit = false -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            {%- endif -%}
+          ]
+        {%- endfor -%}
+      }
+    </script>
+
     <div class="custom-buy-box__inner">
 
       {%- comment -%}
@@ -71,6 +98,7 @@
             {%- for media in image_media -%}
               <img
                 class="custom-buy-box__slide"
+                data-media-id="{{ media.id }}"
                 src="{{ media | image_url: width: 800 }}"
                 alt="{{ media.alt | default: product.title | escape }}"
                 width="{{ media.preview_image.width }}"
@@ -81,6 +109,7 @@
           {%- elsif featured_media -%}
             <img
               class="custom-buy-box__slide"
+              data-media-id="{{ featured_media.id }}"
               src="{{ featured_media | image_url: width: 800 }}"
               alt="{{ featured_media.alt | default: product.title | escape }}"
               loading="lazy"
@@ -88,13 +117,17 @@
           {%- endif -%}
         </div>
 
+        {%- comment -%} Dots: solo mobile, generati da JS (uno per slide visibile). {%- endcomment -%}
+        <div class="custom-buy-box__dots" data-dots></div>
+
         {%- if image_media.size > 1 -%}
-          <div class="custom-buy-box__thumbs">
+          <div class="custom-buy-box__thumbs" data-thumbs>
             {%- for media in image_media -%}
               <button
                 type="button"
                 class="custom-buy-box__thumb{% if media.id == featured_media.id %} is-active{% endif %}"
                 data-thumb
+                data-media-id="{{ media.id }}"
                 aria-label="{{ media.alt | default: product.title | escape }}"
               >
                 <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="80" loading="lazy">
@@ -115,19 +148,22 @@
           <span class="custom-buy-box__reviews-text">{{ section.settings.reviews_text | escape }}</span>
         </div>
 
-        <div class="custom-buy-box__price">
-          <span class="custom-buy-box__price-current" data-price>{{ first_variant.price | money }}</span>
-          <s
-            class="custom-buy-box__price-compare"
-            data-compare
-            {% unless first_variant.compare_at_price > first_variant.price %}hidden{% endunless %}
-          >{{ first_variant.compare_at_price | money }}</s>
-        </div>
+        {%- comment -%} Prezzo + rata raggruppati: gap stretto fra loro. {%- endcomment -%}
+        <div class="custom-buy-box__price-block">
+          <div class="custom-buy-box__price">
+            <span class="custom-buy-box__price-current" data-price>{{ first_variant.price | money }}</span>
+            <s
+              class="custom-buy-box__price-compare"
+              data-compare
+              {% unless first_variant.compare_at_price > first_variant.price %}hidden{% endunless %}
+            >{{ first_variant.compare_at_price | money }}</s>
+          </div>
 
-        {%- comment -%} Importo rata dinamico = prezzo variante / 3. Frase hardcoded. {%- endcomment -%}
-        <p class="custom-buy-box__installment">
-          Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con Klarna o PayPal
-        </p>
+          {%- comment -%} Importo rata dinamico = prezzo variante / 3. Frase hardcoded. {%- endcomment -%}
+          <p class="custom-buy-box__installment">
+            Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con Klarna o PayPal
+          </p>
+        </div>
 
         {%- if color_option -%}
           <div class="custom-buy-box__opt" data-color-opt data-pos="{{ color_option.position | minus: 1 }}">

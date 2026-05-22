@@ -52,16 +52,50 @@
   scroll-snap-align: center;
 }
 
+/* dots: solo mobile, suggeriscono che il carousel si puo' scorrere */
+.custom-buy-box-section .custom-buy-box__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.custom-buy-box-section .custom-buy-box__dots:empty {
+  display: none;
+}
+
+.custom-buy-box-section .custom-buy-box__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(var(--color-foreground), 0.25);
+  cursor: pointer;
+}
+
+.custom-buy-box-section .custom-buy-box__dot.is-active {
+  background: rgb(var(--color-foreground));
+}
+
+/* thumbnail: una riga, piccole, scrollabili in orizzontale (solo desktop) */
 .custom-buy-box-section .custom-buy-box__thumbs {
-  display: none; /* mobile: carousel senza preview */
-  flex-wrap: wrap;
+  display: none; /* mobile: carousel con dots, niente preview */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
   gap: 0.8rem;
   margin-top: 1rem;
 }
 
+.custom-buy-box-section .custom-buy-box__thumbs::-webkit-scrollbar {
+  display: none;
+}
+
 .custom-buy-box-section .custom-buy-box__thumb {
-  width: 6.4rem;
-  height: 6.4rem;
+  flex: 0 0 auto;
+  width: 5.6rem;
+  height: 5.6rem;
   padding: 0;
   border: 0.1rem solid rgba(var(--color-foreground), 0.2);
   border-radius: var(--media-radius);
@@ -116,6 +150,13 @@
 }
 
 /* ---- prezzo ---- */
+/* prezzo + rata raggruppati con gap stretto; il gap 1rem di __info li separa dal resto */
+.custom-buy-box-section .custom-buy-box__price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
 .custom-buy-box-section .custom-buy-box__price {
   display: flex;
   align-items: baseline;
@@ -283,8 +324,12 @@
     font-size: 3rem;
   }
 
-  /* desktop: thumbnail visibili per navigare il carousel */
+  /* desktop: thumbnail visibili, dots nascosti */
   .custom-buy-box-section .custom-buy-box__thumbs {
     display: flex;
+  }
+
+  .custom-buy-box-section .custom-buy-box__dots {
+    display: none;
   }
 }
