@@ -9,56 +9,6 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "LE SCARPE DEL CAMIONISTA",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Lavora meglio, perdi meno tempo, stai più comodo, fai meno fatica, resta riconoscibile.",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Acquista Ora",
-            "button_link_1": "#acquista",
-            "button_style_secondary_1": false,
-            "button_label_2": "Scopri di più",
-            "button_link_2": "#intro",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
-      "disabled": true,
-      "name": "hero",
-      "settings": {
-        "image": "shopify://shop_images/hero_image.jpg",
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-4",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "left",
-        "show_text_below": false
-      }
-    },
     "custom_hero_qTrUx6": {
       "type": "custom-hero",
       "blocks": {
@@ -423,18 +373,17 @@
     }
   },
   "order": [
-    "image_banner",
     "custom_hero_qTrUx6",
     "image_with_text_KMgCPn",
     "custom_liquid_fLyEy9",
     "image_with_text_iFMhM7",
     "custom_buy_box_XgJgTD",
-    "custom_video_feature_DQUpAY",
-    "custom_garanzie_LJfxFK",
     "custom_gallery_8fp4W4",
+    "custom_garanzie_LJfxFK",
+    "custom_video_feature_DQUpAY",
     "rich_text_K4RX8T",
     "custom_liquid_CDG7FM",
-    "custom_liquid_RUa7aM",
-    "image_with_text_YK7wAE"
+    "image_with_text_YK7wAE",
+    "custom_liquid_RUa7aM"
   ]
 }
