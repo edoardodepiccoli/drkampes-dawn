@@ -9,16 +9,19 @@
  */
 {
   "sections": {
+    "custom_liquid_TYP8Td": {
+      "type": "custom-liquid",
+      "name": "#intro ID",
+      "settings": {
+        "custom_liquid": "<p id=\"intro></p>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
-        "custom_liquid_rQTYBK": {
-          "type": "custom_liquid",
-          "name": "#intro ID",
-          "settings": {
-            "custom_liquid": "<p id=\"intro></p>"
-          }
-        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -113,7 +116,6 @@
         }
       },
       "block_order": [
-        "custom_liquid_rQTYBK",
         "vendor",
         "title",
         "caption",
@@ -172,6 +174,7 @@
     }
   },
   "order": [
+    "custom_liquid_TYP8Td",
     "main",
     "related-products",
     "custom_pdp_sticky_cta_nCaPVA"
