@@ -109,3 +109,20 @@ checkout. `product-form.js` non e' piu' caricato dalla sezione.
 Resta valido il principio di 006: carrello nativo Dawn, nessuna modifica a
 `cart.js` / `cart-notification.js` / `product-form.js` — usato solo il loro
 contratto pubblico (`getSectionsToRender`, `renderContents`).
+
+## Update — 2026-05-22 (ritorno allo snippet ufficiale `buy-buttons`)
+
+Anche l'add to cart via `fetch` dava problemi. Su richiesta del cliente: usare
+**esattamente** il meccanismo del product showcase ufficiale Dawn.
+
+La sezione ora renderizza lo snippet ufficiale `{% render 'buy-buttons' %}`
+(identico a `featured-product`) e carica `product-form.js`. L'add to cart e'
+gestito interamente da Dawn (`<product-form>` -> `cart-notification`).
+`custom-buy-box.js` fa solo cio' che in Dawn fa `<variant-selects>`: aggiorna
+l'input `name="id"` del form al cambio variante. Rimossi l'`addToCart`/`fetch`
+custom e il div errore custom (lo snippet `buy-buttons` porta il suo).
+
+Se con questo meccanismo l'add to cart ricarica ancora, la causa e' ambientale
+(elemento `<cart-notification>` assente, impostazioni carrello del tema), non il
+codice della sezione: `product-form.js` naviga a `/cart` solo quando non trova
+ne' `cart-notification` ne' `cart-drawer`.
