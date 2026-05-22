@@ -154,6 +154,16 @@
         "padding_bottom": 36
       }
     },
+    "custom_buy_box_XgJgTD": {
+      "type": "custom-buy-box",
+      "name": "CUSTOM · Acquista",
+      "settings": {
+        "product": "dr-kampes-s3s-nero-copia",
+        "color_scheme": "",
+        "reviews_text": "1200+ camionisti soddisfatti",
+        "stock_label": "Meno di 8 paia rimaste a magazzino"
+      }
+    },
     "featured_product_Jt7WGx": {
       "type": "featured-product",
       "blocks": {
@@ -348,6 +358,7 @@
     "image_banner",
     "image_with_text_KMgCPn",
     "image_with_text_iFMhM7",
+    "custom_buy_box_XgJgTD",
     "featured_product_Jt7WGx",
     "custom_garanzie_LJfxFK",
     "rich_text_K4RX8T",
