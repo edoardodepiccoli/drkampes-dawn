@@ -40,3 +40,11 @@ update sticky CTA), qui come sezione a se' stante invece che incorporata.
 
 - `sections/custom-pdp-sticky-cta.liquid`, `assets/custom-pdp-sticky-cta.css`,
   `assets/custom-pdp-sticky-cta.js`.
+
+## Update — 2026-05-22 (testo per-collezione)
+
+Il testo del bottone non e' piu' un setting: e' hardcoded e dipende dalla
+collezione del prodotto. Si itera `product.collections`: se il prodotto e' nella
+collezione con handle **esatto** `trucker-shoes` -> "Sì, le voglio"; altrimenti
+-> "Acquista ora". Match con `==` (non `contains`) per non far combaciare
+`accessori-trucker-shoes`. Rimosso il setting `button_label`.

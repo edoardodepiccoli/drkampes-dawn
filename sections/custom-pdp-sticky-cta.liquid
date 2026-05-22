@@ -3,15 +3,27 @@
 
   Barra nera fissa in basso con un bottone che linka ad #acquista (il div ancora
   va creato separatamente nella pagina). La barra scivola su dopo 200px di scroll
-  e si nasconde quando #acquista e' in viewport. Vedi decision 013.
+  e si nasconde quando #acquista e' in viewport.
+  Testo bottone per-collezione: "Sì, le voglio" sui prodotti della collezione
+  trucker-shoes, "Acquista ora" altrove. Vedi decision 013.
 {% endcomment %}
 
 {{ 'custom-pdp-sticky-cta.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  # Label per-collezione. Match handle ESATTO: 'accessori-trucker-shoes' non deve combaciare.
+  assign cta_label = 'Acquista ora'
+  for coll in product.collections
+    if coll.handle == 'trucker-shoes'
+      assign cta_label = 'Sì, le voglio'
+    endif
+  endfor
+-%}
+
 <custom-pdp-sticky-cta class="custom-pdp-sticky-cta color-{{ section.settings.color_scheme }}">
   <div class="custom-pdp-sticky-cta__bar" data-bar>
     <a href="#acquista" class="custom-pdp-sticky-cta__btn button button--primary">
-      {{ section.settings.button_label | escape }}
+      {{ cta_label }}
     </a>
   </div>
 </custom-pdp-sticky-cta>
@@ -24,12 +36,6 @@
   "tag": "section",
   "class": "custom-pdp-sticky-cta-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Testo bottone",
-      "default": "si, le voglio"
-    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
