@@ -39,9 +39,54 @@
         "padding_top": 64,
         "padding_bottom": 64
       }
+    },
+    "custom_video_rows_eUHhpb": {
+      "type": "custom-video-rows",
+      "blocks": {
+        "row_bdz8fp": {
+          "type": "row",
+          "settings": {
+            "video": "shopify://files/videos/scania e pioggia.mp4",
+            "heading": "Titolo della riga",
+            "text": "<p>Descrizione della riga.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_AChr7W": {
+          "type": "row",
+          "settings": {
+            "video": "shopify://files/videos/sistema fast wear.mp4",
+            "heading": "Titolo della riga",
+            "text": "<p>Descrizione della riga.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_99ENP4": {
+          "type": "row",
+          "settings": {
+            "video": "shopify://files/videos/sistema fast wear.mp4",
+            "heading": "Titolo della riga",
+            "text": "<p>Descrizione della riga.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_bdz8fp",
+        "row_AChr7W",
+        "row_99ENP4"
+      ],
+      "name": "CUSTOM · Video + testo",
+      "settings": {
+        "color_scheme": ""
+      }
     }
   },
   "order": [
-    "footer"
+    "footer",
+    "custom_video_rows_eUHhpb"
   ]
 }
