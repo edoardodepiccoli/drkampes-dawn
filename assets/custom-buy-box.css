@@ -30,16 +30,30 @@
 
 /* ============ COLONNA MEDIA ============ */
 
-.custom-buy-box-section .custom-buy-box__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+/* carousel scroll-snap: mobile = galleria swipe; desktop = navigata da thumbnail */
+.custom-buy-box-section .custom-buy-box__slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* niente scrollbar visibile */
   border-radius: var(--media-radius);
 }
 
+.custom-buy-box-section .custom-buy-box__slides::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-buy-box-section .custom-buy-box__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  scroll-snap-align: center;
+}
+
 .custom-buy-box-section .custom-buy-box__thumbs {
-  display: flex;
+  display: none; /* mobile: carousel senza preview */
   flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 1rem;
@@ -72,7 +86,7 @@
 .custom-buy-box-section .custom-buy-box__info {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1rem;
 }
 
 .custom-buy-box-section .custom-buy-box__title {
@@ -88,7 +102,6 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-top: -0.6rem;
 }
 
 .custom-buy-box-section .custom-buy-box__stars {
@@ -268,5 +281,10 @@
 
   .custom-buy-box-section .custom-buy-box__title {
     font-size: 3rem;
+  }
+
+  /* desktop: thumbnail visibili per navigare il carousel */
+  .custom-buy-box-section .custom-buy-box__thumbs {
+    display: flex;
   }
 }

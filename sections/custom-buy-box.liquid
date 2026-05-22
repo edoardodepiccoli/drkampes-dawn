@@ -60,19 +60,33 @@
 
     <div class="custom-buy-box__inner">
 
-      {%- comment -%} ============ COLONNA MEDIA ============ {%- endcomment -%}
+      {%- comment -%}
+        ============ COLONNA MEDIA ============
+        Carousel scroll-snap: su mobile e' la galleria (swipe nativo, niente
+        thumbnail). Su desktop le thumbnail compaiono e navigano il carousel.
+      {%- endcomment -%}
       <div class="custom-buy-box__media">
-        {%- if featured_media -%}
-          <img
-            class="custom-buy-box__image"
-            data-main-image
-            src="{{ featured_media | image_url: width: 800 }}"
-            alt="{{ featured_media.alt | default: product.title | escape }}"
-            width="{{ featured_media.preview_image.width }}"
-            height="{{ featured_media.preview_image.height }}"
-            loading="lazy"
-          >
-        {%- endif -%}
+        <div class="custom-buy-box__slides" data-slides>
+          {%- if image_media.size > 0 -%}
+            {%- for media in image_media -%}
+              <img
+                class="custom-buy-box__slide"
+                src="{{ media | image_url: width: 800 }}"
+                alt="{{ media.alt | default: product.title | escape }}"
+                width="{{ media.preview_image.width }}"
+                height="{{ media.preview_image.height }}"
+                loading="lazy"
+              >
+            {%- endfor -%}
+          {%- elsif featured_media -%}
+            <img
+              class="custom-buy-box__slide"
+              src="{{ featured_media | image_url: width: 800 }}"
+              alt="{{ featured_media.alt | default: product.title | escape }}"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
 
         {%- if image_media.size > 1 -%}
           <div class="custom-buy-box__thumbs">
@@ -81,7 +95,6 @@
                 type="button"
                 class="custom-buy-box__thumb{% if media.id == featured_media.id %} is-active{% endif %}"
                 data-thumb
-                data-full="{{ media | image_url: width: 800 }}"
                 aria-label="{{ media.alt | default: product.title | escape }}"
               >
                 <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="80" loading="lazy">

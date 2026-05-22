@@ -1,7 +1,7 @@
 /*
   CUSTOM · Acquista — buy box homepage
   Custom element <custom-buy-box>: selezione variante (colore + taglia),
-  aggiornamento prezzo / rata / disponibilita' / immagine.
+  aggiornamento prezzo / rata / disponibilita', e carousel immagini.
   L'add to cart resta nativo Dawn: questo JS aggiorna solo input[name=id];
   product-form.js gestisce il submit e il cart drawer. Nessuna modifica a
   product-form.js / cart.js / cart-drawer.js.
@@ -12,12 +12,6 @@
   // Store italiano (EUR). Formattazione coerente su prezzo, compare-at e rata.
   function formatMoney(cents) {
     return (cents / 100).toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
-  }
-
-  // Aggiunge un width all'URL CDN Shopify (gestisce sia ?v=.. che URL nudo).
-  function sizedUrl(src, w) {
-    if (!src) return src;
-    return src + (src.indexOf('?') === -1 ? '?' : '&') + 'width=' + w;
   }
 
   // Chiave immagine = path senza query, per confrontare URL a width diverse.
@@ -41,9 +35,13 @@
       this.compareEl = this.querySelector('[data-compare]');
       this.installmentEl = this.querySelector('[data-installment]');
       this.stockEl = this.querySelector('[data-stock]');
-      this.mainImage = this.querySelector('[data-main-image]');
       this.atcBtn = this.querySelector('.custom-buy-box__atc');
       this.atcText = this.atcBtn ? this.atcBtn.querySelector('span') : null;
+
+      // carousel
+      this.slidesEl = this.querySelector('[data-slides]');
+      this.slides = Array.prototype.slice.call(this.querySelectorAll('.custom-buy-box__slide'));
+      this.thumbs = Array.prototype.slice.call(this.querySelectorAll('[data-thumb]'));
 
       var colorOpt = this.querySelector('[data-color-opt]');
       var sizeOpt = this.querySelector('[data-size-opt]');
@@ -53,7 +51,6 @@
       this.sizeValueEl = this.querySelector('[data-size-value]');
       this.swatches = Array.prototype.slice.call(this.querySelectorAll('[data-swatch]'));
       this.pills = Array.prototype.slice.call(this.querySelectorAll('[data-pill]'));
-      this.thumbs = Array.prototype.slice.call(this.querySelectorAll('[data-thumb]'));
 
       // Stato iniziale = prima variante disponibile (= selected_or_first_available_variant).
       var current = this.variants.find(function (v) { return v.available; }) || this.variants[0];
@@ -89,13 +86,29 @@
         });
       });
 
-      this.thumbs.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (self.mainImage) self.mainImage.src = btn.dataset.full;
-          self.thumbs.forEach(function (t) { t.classList.remove('is-active'); });
-          btn.classList.add('is-active');
-        });
+      // Thumbnail (solo desktop): click -> scorre il carousel allo slide i-esimo.
+      this.thumbs.forEach(function (btn, i) {
+        btn.addEventListener('click', function () { self.goToSlide(i); });
       });
+
+      // Swipe mobile: lo scroll-snap nativo muove il carousel; qui si tiene solo
+      // sincronizzata la thumbnail attiva con lo slide visibile.
+      if (this.slidesEl) {
+        this.slidesEl.addEventListener('scroll', function () {
+          if (!self.slidesEl.clientWidth) return;
+          self.setActiveThumb(Math.round(self.slidesEl.scrollLeft / self.slidesEl.clientWidth));
+        }, { passive: true });
+      }
+    }
+
+    goToSlide(idx) {
+      if (!this.slidesEl || idx < 0) return;
+      this.slidesEl.scrollTo({ left: idx * this.slidesEl.clientWidth, behavior: 'smooth' });
+      this.setActiveThumb(idx);
+    }
+
+    setActiveThumb(idx) {
+      this.thumbs.forEach(function (t, i) { t.classList.toggle('is-active', i === idx); });
     }
 
     // Evidenzia swatch/pill selezionati e aggiorna le label "Colore:/Taglia:".
@@ -159,12 +172,12 @@
         if (this.installmentEl) {
           this.installmentEl.textContent = formatMoney(Math.round(match.price / 3));
         }
-        if (this.mainImage && match.featured_image && match.featured_image.src) {
-          this.mainImage.src = sizedUrl(match.featured_image.src, 800);
+        // Carousel: scorre all'immagine della variante selezionata (match per path).
+        if (match.featured_image && match.featured_image.src && this.slides.length) {
           var key = imgKey(match.featured_image.src);
-          this.thumbs.forEach(function (t) {
-            t.classList.toggle('is-active', imgKey(t.dataset.full) === key);
-          });
+          for (var i = 0; i < this.slides.length; i++) {
+            if (imgKey(this.slides[i].src) === key) { this.goToSlide(i); break; }
+          }
         }
         this.setButton(match.available);
       } else {
