@@ -174,6 +174,18 @@
         "stock_label": "Meno di 8 paia rimaste a magazzino"
       }
     },
+    "custom_video_feature_DQUpAY": {
+      "type": "custom-video-feature",
+      "name": "CUSTOM · Video",
+      "settings": {
+        "video": "shopify://files/videos/prezzo.mp4",
+        "heading": "Qualche dubbio?",
+        "text": "<p>Chiedi direttamente a me: Claudio, fondatore di Dr Kampes.</p>",
+        "button_label": "Chatta con me su WhatsApp",
+        "button_link": "https://wa.me/393516515219",
+        "color_scheme": ""
+      }
+    },
     "custom_garanzie_LJfxFK": {
       "type": "custom-garanzie",
       "blocks": {
@@ -366,6 +378,7 @@
     "custom_liquid_fLyEy9",
     "image_with_text_iFMhM7",
     "custom_buy_box_XgJgTD",
+    "custom_video_feature_DQUpAY",
     "custom_garanzie_LJfxFK",
     "custom_gallery_8fp4W4",
     "rich_text_K4RX8T",
