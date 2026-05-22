@@ -90,3 +90,22 @@ Workaround: `custom-buy-box.js` riancora lo scroll per ~800ms al submit del form
 Il fix di radice (togliere `body` da quella regola nella sezione `recensioni`)
 resta un task separato: risolverebbe lo stesso salto anche aprendo il carrello
 dall'icona header.
+
+## Update — 2026-05-22 (carrello: da `<product-form>` a fetch self-contained)
+
+Il vero problema non era uno scroll ma un **reload**: il `<product-form>` non
+intercettava il submit, quindi il form faceva un submit nativo (`POST /cart/add`
+-> redirect -> ricaricamento pagina). Il `pinScroll` della nota precedente era
+inutile per un reload ed e' stato rimosso.
+
+Scelta rivista: **niente `<form>` / `<product-form>`**. Il bottone e'
+`type="button"` e `custom-buy-box.js` gestisce l'add to cart con
+`fetch('/cart/add.js')` + Section Rendering API, poi apre il popup nativo Dawn via
+`cart-notification.renderContents()` (`cart_type` del tema = `notification`).
+Niente form = nessun submit nativo = reload impossibile. Stile vicino a
+[003](003-cart-flow-bypass-drawer.md), ma apre il popup invece di redirigere al
+checkout. `product-form.js` non e' piu' caricato dalla sezione.
+
+Resta valido il principio di 006: carrello nativo Dawn, nessuna modifica a
+`cart.js` / `cart-notification.js` / `product-form.js` — usato solo il loro
+contratto pubblico (`getSectionsToRender`, `renderContents`).
