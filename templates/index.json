@@ -164,70 +164,6 @@
         "stock_label": "Meno di 8 paia rimaste a magazzino"
       }
     },
-    "featured_product_Jt7WGx": {
-      "type": "featured-product",
-      "blocks": {
-        "title_rQrTap": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "price_riX7Gy": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_MJmM4m": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "dropdown",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector_qzE8Xa": {
-          "type": "quantity_selector",
-          "disabled": true,
-          "settings": {}
-        },
-        "buy_buttons_V8Nfai": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false
-          }
-        },
-        "share_neKpYY": {
-          "type": "share",
-          "disabled": true,
-          "settings": {
-            "share_label": "Condividi"
-          }
-        }
-      },
-      "block_order": [
-        "title_rQrTap",
-        "price_riX7Gy",
-        "variant_picker_MJmM4m",
-        "quantity_selector_qzE8Xa",
-        "buy_buttons_V8Nfai",
-        "share_neKpYY"
-      ],
-      "name": "sezione acquista",
-      "settings": {
-        "product": "dr-kampes-s3s-nero-copia",
-        "color_scheme": "",
-        "secondary_background": false,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "none",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 64,
-        "padding_bottom": 0
-      }
-    },
     "custom_garanzie_LJfxFK": {
       "type": "custom-garanzie",
       "blocks": {
@@ -359,7 +295,6 @@
     "image_with_text_KMgCPn",
     "image_with_text_iFMhM7",
     "custom_buy_box_XgJgTD",
-    "featured_product_Jt7WGx",
     "custom_garanzie_LJfxFK",
     "rich_text_K4RX8T",
     "custom_liquid_CDG7FM",
