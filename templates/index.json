@@ -174,6 +174,39 @@
         "stock_label": "Meno di 8 paia rimaste a magazzino"
       }
     },
+    "custom_garanzie_LJfxFK": {
+      "type": "custom-garanzie",
+      "blocks": {
+        "column_qrYEbC": {
+          "type": "column",
+          "settings": {
+            "badge": "shopify://shop_images/3_anni_garanzia.png",
+            "description": "<p>Mentre le altre scarpe finiscono nella spazzatura, le tue Dr Kampes sono coperte. <strong>Ci fidiamo così tanto del nostro prodotto che lo garantiamo per 1095 giorni di lavoro. </strong>Se per 3 ANNI hanno un cedimento strutturale, le ripariamo o sostituiamo. Fine.</p>"
+          }
+        },
+        "column_PBVAQH": {
+          "type": "column",
+          "settings": {
+            "badge": "shopify://shop_images/100_made_in_italy.png",
+            "description": "<p><strong>Non usiamo catene di montaggio.</strong> Ogni Dr Kampes è assemblata e cucita a mano da artigiani italiani, fatta in vera pelle idrorepellente, per piedi SEMPRE asciutti e protetti. È la qualità che puoi toccare e che dura nel tempo, non un prodotto di massa che si sfalda.</p>"
+          }
+        },
+        "column_4y9k4L": {
+          "type": "column",
+          "settings": {
+            "badge": "shopify://shop_images/certificazione_s3s.png",
+            "description": "<p>Puntale in composito (leggero), lamina anti-perforazione, impermeabilità totale e suola anti-scivolo SRC. <strong>La tua sicurezza non è un optional, è il nostro standard minimo. </strong>Conformi alla EN ISO 20345:2022+A1:2024, le Dr Kampes rispettano il massimo standard di protezione oggi disponibile.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column_qrYEbC",
+        "column_PBVAQH",
+        "column_4y9k4L"
+      ],
+      "name": "CUSTOM · Garanzie",
+      "settings": {}
+    },
     "custom_gallery_8fp4W4": {
       "type": "custom-gallery",
       "blocks": {
@@ -233,39 +266,6 @@
         "heading": "",
         "color_scheme": ""
       }
-    },
-    "custom_garanzie_LJfxFK": {
-      "type": "custom-garanzie",
-      "blocks": {
-        "column_qrYEbC": {
-          "type": "column",
-          "settings": {
-            "badge": "shopify://shop_images/3_anni_garanzia.png",
-            "description": "<p>Mentre le altre scarpe finiscono nella spazzatura, le tue Dr Kampes sono coperte. <strong>Ci fidiamo così tanto del nostro prodotto che lo garantiamo per 1095 giorni di lavoro. </strong>Se per 3 ANNI hanno un cedimento strutturale, le ripariamo o sostituiamo. Fine.</p>"
-          }
-        },
-        "column_PBVAQH": {
-          "type": "column",
-          "settings": {
-            "badge": "shopify://shop_images/100_made_in_italy.png",
-            "description": "<p><strong>Non usiamo catene di montaggio.</strong> Ogni Dr Kampes è assemblata e cucita a mano da artigiani italiani, fatta in vera pelle idrorepellente, per piedi SEMPRE asciutti e protetti. È la qualità che puoi toccare e che dura nel tempo, non un prodotto di massa che si sfalda.</p>"
-          }
-        },
-        "column_4y9k4L": {
-          "type": "column",
-          "settings": {
-            "badge": "shopify://shop_images/certificazione_s3s.png",
-            "description": "<p>Puntale in composito (leggero), lamina anti-perforazione, impermeabilità totale e suola anti-scivolo SRC. <strong>La tua sicurezza non è un optional, è il nostro standard minimo. </strong>Conformi alla EN ISO 20345:2022+A1:2024, le Dr Kampes rispettano il massimo standard di protezione oggi disponibile.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "column_qrYEbC",
-        "column_PBVAQH",
-        "column_4y9k4L"
-      ],
-      "name": "CUSTOM · Garanzie",
-      "settings": {}
     },
     "rich_text_K4RX8T": {
       "type": "rich-text",
@@ -366,8 +366,8 @@
     "custom_liquid_fLyEy9",
     "image_with_text_iFMhM7",
     "custom_buy_box_XgJgTD",
-    "custom_gallery_8fp4W4",
     "custom_garanzie_LJfxFK",
+    "custom_gallery_8fp4W4",
     "rich_text_K4RX8T",
     "custom_liquid_CDG7FM",
     "custom_liquid_RUa7aM",
