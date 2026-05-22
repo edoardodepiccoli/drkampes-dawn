@@ -1,0 +1,272 @@
+/*
+  CUSTOM · Acquista — buy box homepage
+  Tutto scoped sotto .custom-buy-box-section. Usa i token Dawn (font, colori,
+  raggi) per restare allineato al tema. Niente regole globali, niente !important.
+  Root Dawn 10px: 1rem = 10px (decision 002 NON si applica, sezione nativa).
+*/
+
+.custom-buy-box-section .custom-buy-box {
+  display: block;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-body-family);
+  padding: 4rem 0;
+}
+
+.custom-buy-box-section .custom-buy-box--empty {
+  padding: 4rem 1.5rem;
+  text-align: center;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.custom-buy-box-section .custom-buy-box__inner {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: 1 colonna, immagine sopra */
+  gap: 3rem;
+}
+
+/* ============ COLONNA MEDIA ============ */
+
+.custom-buy-box-section .custom-buy-box__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--media-radius);
+}
+
+.custom-buy-box-section .custom-buy-box__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.custom-buy-box-section .custom-buy-box__thumb {
+  width: 6.4rem;
+  height: 6.4rem;
+  padding: 0;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  border-radius: var(--media-radius);
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.custom-buy-box-section .custom-buy-box__thumb.is-active {
+  border-color: rgb(var(--color-foreground));
+}
+
+.custom-buy-box-section .custom-buy-box__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============ COLONNA INFO ============ */
+
+.custom-buy-box-section .custom-buy-box__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.custom-buy-box-section .custom-buy-box__title {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* ---- recensioni ---- */
+.custom-buy-box-section .custom-buy-box__reviews {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: -0.6rem;
+}
+
+.custom-buy-box-section .custom-buy-box__stars {
+  color: #fbbc04;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+}
+
+.custom-buy-box-section .custom-buy-box__reviews-text {
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+/* ---- prezzo ---- */
+.custom-buy-box-section .custom-buy-box__price {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.custom-buy-box-section .custom-buy-box__price-current {
+  font-size: 2.6rem;
+  font-weight: var(--font-body-weight-bold, 700);
+}
+
+.custom-buy-box-section .custom-buy-box__price-compare {
+  font-size: 1.8rem;
+  color: rgba(var(--color-foreground), 0.55);
+}
+
+.custom-buy-box-section .custom-buy-box__price-compare[hidden] {
+  display: none;
+}
+
+/* ---- riga Klarna/PayPal ---- */
+.custom-buy-box-section .custom-buy-box__installment {
+  margin: 0;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+/* ---- selettori ---- */
+.custom-buy-box-section .custom-buy-box__opt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.custom-buy-box-section .custom-buy-box__opt-label {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.custom-buy-box-section .custom-buy-box__opt-label span {
+  font-weight: var(--font-body-weight-bold, 700);
+}
+
+/* swatch colore */
+.custom-buy-box-section .custom-buy-box__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.custom-buy-box-section .custom-buy-box__swatch {
+  width: 3.6rem;
+  height: 3.6rem;
+  padding: 0;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.25);
+  border-radius: 50%;
+  background: var(--swatch, #d9d9d9) center / cover no-repeat;
+  cursor: pointer;
+}
+
+.custom-buy-box-section .custom-buy-box__swatch.is-on {
+  box-shadow:
+    0 0 0 0.2rem rgb(var(--color-background)),
+    0 0 0 0.4rem rgb(var(--color-foreground));
+}
+
+.custom-buy-box-section .custom-buy-box__swatch.is-unavailable {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* pill taglia */
+.custom-buy-box-section .custom-buy-box__pills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  gap: 0.8rem;
+}
+
+.custom-buy-box-section .custom-buy-box__pill {
+  min-height: 4.4rem;
+  padding: 0 0.8rem;
+  border: var(--variant-pills-border-width, 0.1rem) solid rgba(var(--color-foreground), 0.2);
+  border-radius: var(--variant-pills-radius, 0.4rem);
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.custom-buy-box-section .custom-buy-box__pill.is-on {
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  border-color: rgb(var(--color-foreground));
+}
+
+.custom-buy-box-section .custom-buy-box__pill.is-unavailable {
+  color: rgba(var(--color-foreground), 0.35);
+  border-color: rgba(var(--color-foreground), 0.12);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* ---- riga stock (sobria, non il box rosa LP) ---- */
+.custom-buy-box-section .custom-buy-box__stock {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #b91c1c;
+}
+
+.custom-buy-box-section .custom-buy-box__stock[hidden] {
+  display: none;
+}
+
+.custom-buy-box-section .custom-buy-box__stock::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ---- add to cart ---- */
+.custom-buy-box-section .custom-buy-box__pf {
+  display: block;
+  margin-top: 0.8rem;
+}
+
+.custom-buy-box-section .custom-buy-box__atc {
+  margin: 0;
+}
+
+/* messaggio d'errore Dawn: scoped qui (la CSS componente Dawn non e' caricata) */
+.custom-buy-box-section .product-form__error-message-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #b91c1c;
+}
+
+.custom-buy-box-section .product-form__error-message-wrapper[hidden] {
+  display: none;
+}
+
+/* ============ DESKTOP ============ */
+@media (min-width: 750px) {
+  .custom-buy-box-section .custom-buy-box {
+    padding: 6rem 0;
+  }
+
+  .custom-buy-box-section .custom-buy-box__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* due colonne */
+    gap: 5rem;
+    padding: 0 5rem;
+    align-items: start;
+  }
+
+  .custom-buy-box-section .custom-buy-box__title {
+    font-size: 3rem;
+  }
+}

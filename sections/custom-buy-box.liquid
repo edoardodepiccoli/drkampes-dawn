@@ -1,0 +1,250 @@
+{% comment %}
+  CUSTOM · Acquista — homepage buy box
+
+  Sezione custom homepage (pattern: .claude/patterns/building-custom-homepage-section.md).
+  Buy box modellato sulla LP B2C (lp-offerta) ma sobrio e allineato a Dawn:
+  usa i token del tema, il bottone .button di Dawn e il carrello nativo
+  (<product-form> + cart drawer). Vedi decision 006.
+
+  Interattività (selezione variante, swap immagine) in assets/custom-buy-box.js.
+{% endcomment %}
+
+{{ 'custom-buy-box.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign product = section.settings.product
+-%}
+
+{%- if product == blank -%}
+  {%- comment -%} Editor: nessun prodotto scelto. Placeholder minimo. {%- endcomment -%}
+  <div class="custom-buy-box custom-buy-box--empty">
+    <p>Seleziona un prodotto nelle impostazioni della sezione.</p>
+  </div>
+{%- else -%}
+  {%- liquid
+    assign first_variant = product.selected_or_first_available_variant
+    assign form_id = 'custom-buy-box-form-' | append: section.id
+
+    # Rileva quale opzione e' il colore e quale la taglia, per nome (come lp-offerta).
+    # Il match per nome rende la sezione indipendente dall'ordine delle opzioni.
+    assign color_option = null
+    assign size_option = null
+    for opt in product.options_with_values
+      assign oname = opt.name | downcase
+      if oname contains 'color' or oname contains 'colore' or oname contains 'colour'
+        assign color_option = opt
+      elsif oname contains 'taglia' or oname contains 'size' or oname contains 'misura'
+        assign size_option = opt
+      endif
+    endfor
+    # Fallback taglia: prima opzione diversa dal colore.
+    if size_option == null
+      for opt in product.options_with_values
+        if color_option == null or opt.position != color_option.position
+          assign size_option = opt
+          break
+        endif
+      endfor
+    endif
+
+    assign featured_media = first_variant.featured_media | default: product.featured_media
+    assign image_media = product.media | where: 'media_type', 'image'
+  -%}
+
+  <custom-buy-box class="custom-buy-box color-{{ section.settings.color_scheme }}">
+
+    {%- comment -%} Dati varianti Liquid -> JS (pattern blob, niente interpolazione). {%- endcomment -%}
+    <script type="application/json" class="custom-buy-box__data">
+      {{ product.variants | json }}
+    </script>
+
+    <div class="custom-buy-box__inner">
+
+      {%- comment -%} ============ COLONNA MEDIA ============ {%- endcomment -%}
+      <div class="custom-buy-box__media">
+        {%- if featured_media -%}
+          <img
+            class="custom-buy-box__image"
+            data-main-image
+            src="{{ featured_media | image_url: width: 800 }}"
+            alt="{{ featured_media.alt | default: product.title | escape }}"
+            width="{{ featured_media.preview_image.width }}"
+            height="{{ featured_media.preview_image.height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+
+        {%- if image_media.size > 1 -%}
+          <div class="custom-buy-box__thumbs">
+            {%- for media in image_media -%}
+              <button
+                type="button"
+                class="custom-buy-box__thumb{% if media.id == featured_media.id %} is-active{% endif %}"
+                data-thumb
+                data-full="{{ media | image_url: width: 800 }}"
+                aria-label="{{ media.alt | default: product.title | escape }}"
+              >
+                <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="80" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} ============ COLONNA INFO ============ {%- endcomment -%}
+      <div class="custom-buy-box__info">
+
+        <h2 class="custom-buy-box__title">{{ product.title | escape }}</h2>
+
+        {%- comment -%} Recensioni fake, come la LP: 5 stelle piene + testo editabile. {%- endcomment -%}
+        <div class="custom-buy-box__reviews">
+          <span class="custom-buy-box__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="custom-buy-box__reviews-text">{{ section.settings.reviews_text | escape }}</span>
+        </div>
+
+        <div class="custom-buy-box__price">
+          <span class="custom-buy-box__price-current" data-price>{{ first_variant.price | money }}</span>
+          <s
+            class="custom-buy-box__price-compare"
+            data-compare
+            {% unless first_variant.compare_at_price > first_variant.price %}hidden{% endunless %}
+          >{{ first_variant.compare_at_price | money }}</s>
+        </div>
+
+        {%- comment -%} Importo rata dinamico = prezzo variante / 3. Frase hardcoded. {%- endcomment -%}
+        <p class="custom-buy-box__installment">
+          Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con Klarna o PayPal
+        </p>
+
+        {%- if color_option -%}
+          <div class="custom-buy-box__opt" data-color-opt data-pos="{{ color_option.position | minus: 1 }}">
+            <p class="custom-buy-box__opt-label">
+              {{ color_option.name | escape }}: <span data-color-value>{{ color_option.selected_value | escape }}</span>
+            </p>
+            <div class="custom-buy-box__swatches">
+              {%- for value in color_option.values -%}
+                {%- comment -%}
+                  Sfondo swatch: swatch Shopify se configurato, altrimenti fallback
+                  per i colori noti del prodotto (lo store non ha sempre gli swatch).
+                {%- endcomment -%}
+                {%- capture sw_style -%}
+                  {%- if value.swatch.color -%}--swatch:{{ value.swatch.color }};
+                  {%- elsif value.swatch.image -%}--swatch:url({{ value.swatch.image | image_url: width: 120 }});
+                  {%- else -%}
+                    {%- assign vname = value | downcase -%}
+                    {%- if vname contains 'nero' or vname contains 'black' -%}--swatch:#1a1a1a;
+                    {%- elsif vname contains 'testa di moro' -%}--swatch:#3d1a0a;
+                    {%- elsif vname contains 'marrone' or vname contains 'brown' -%}--swatch:#5c3317;
+                    {%- else -%}--swatch:#d9d9d9;
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endcapture -%}
+                <button
+                  type="button"
+                  class="custom-buy-box__swatch{% if value.selected %} is-on{% endif %}"
+                  data-swatch
+                  data-value="{{ value | escape }}"
+                  title="{{ value | escape }}"
+                  aria-label="{{ value | escape }}"
+                  style="{{ sw_style | strip_newlines | strip }}"
+                ></button>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if size_option -%}
+          <div class="custom-buy-box__opt" data-size-opt data-pos="{{ size_option.position | minus: 1 }}">
+            <p class="custom-buy-box__opt-label">
+              {{ size_option.name | escape }}: <span data-size-value>{{ size_option.selected_value | escape }}</span>
+            </p>
+            <div class="custom-buy-box__pills">
+              {%- for value in size_option.values -%}
+                <button
+                  type="button"
+                  class="custom-buy-box__pill{% if value.selected %} is-on{% endif %}"
+                  data-pill
+                  data-value="{{ value | escape }}"
+                >{{ value | escape }}</button>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Numero marketing fisso (editabile), nascosto finche' non si sceglie la taglia. {%- endcomment -%}
+        <p class="custom-buy-box__stock" data-stock hidden>{{ section.settings.stock_label | escape }}</p>
+
+        {%- comment -%}
+          Add to cart — <product-form> nativo Dawn. Classi product-form__* obbligatorie:
+          product-form.js le cerca per gestire errori e stato di caricamento.
+        {%- endcomment -%}
+        <product-form class="custom-buy-box__pf" data-section-id="{{ section.id }}">
+          <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <span class="svg-wrapper">{{- 'icon-error.svg' | inline_asset_content -}}</span>
+            <span class="product-form__error-message"></span>
+          </div>
+
+          {%- form 'product',
+            product,
+            id: form_id,
+            class: 'form',
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form'
+          -%}
+            <input type="hidden" name="id" value="{{ first_variant.id }}" class="product-variant-id">
+            <button
+              type="submit"
+              name="add"
+              class="custom-buy-box__atc button button--full-width button--primary"
+              {% unless first_variant.available %}disabled{% endunless %}
+            >
+              <span>Aggiungi al carrello</span>
+              {%- render 'loading-spinner' -%}
+            </button>
+          {%- endform -%}
+        </product-form>
+
+      </div>
+    </div>
+  </custom-buy-box>
+
+  {%- comment -%} product-form.js e' guarded (if !customElements.get): doppio load sicuro. {%- endcomment -%}
+  <script src="{{ 'product-form.js' | asset_url }}" defer></script>
+  <script src="{{ 'custom-buy-box.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "CUSTOM · Acquista",
+  "tag": "section",
+  "class": "custom-buy-box-section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Prodotto"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Schema colore",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "reviews_text",
+      "label": "Testo recensioni",
+      "default": "1200+ camionisti soddisfatti"
+    },
+    {
+      "type": "text",
+      "id": "stock_label",
+      "label": "Avviso disponibilita",
+      "default": "Meno di 8 paia rimaste a magazzino"
+    }
+  ],
+  "presets": [
+    { "name": "CUSTOM · Acquista" }
+  ]
+}
+{% endschema %}
