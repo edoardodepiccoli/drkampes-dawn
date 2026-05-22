@@ -1,0 +1,39 @@
+{%- comment -%}
+  CUSTOM · Footer
+  Cloned + simplified replacement for Dawn's footer (sections/footer.liquid).
+  Hybrid section — see .claude/decisions/004-custom-homepage-sections.md:
+  reorderable in the theme editor, all content hardcoded here. The ONLY
+  editor-editable setting is the logo image. Lives in the footer section
+  group, so it renders site-wide.
+
+  Build status: Unit 1 of 5 — skeleton + schema only.
+  Next units: legal text + CSS, logo render, payment icons, copyright.
+{%- endcomment -%}
+
+<div class="custom-footer__inner">
+  {%- comment -%} Unit 2+: logo, legal text, payment icons, copyright land here {%- endcomment -%}
+  <p class="custom-footer__placeholder">CUSTOM · Footer — skeleton</p>
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Footer",
+  "tag": "footer",
+  "class": "custom-footer-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CUSTOM · Footer"
+    }
+  ]
+}
+{% endschema %}
