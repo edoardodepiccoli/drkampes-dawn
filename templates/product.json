@@ -9,16 +9,6 @@
  */
 {
   "sections": {
-    "custom_liquid_TYP8Td": {
-      "type": "custom-liquid",
-      "name": "#intro ID",
-      "settings": {
-        "custom_liquid": "<p id=\"intro></p>",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -143,7 +133,7 @@
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
-        "padding_bottom": 64
+        "padding_bottom": 100
       }
     },
     "related-products": {
@@ -167,7 +157,6 @@
     }
   },
   "order": [
-    "custom_liquid_TYP8Td",
     "main",
     "related-products"
   ]
