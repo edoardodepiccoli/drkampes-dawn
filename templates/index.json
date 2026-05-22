@@ -218,59 +218,38 @@
         "padding_bottom": 0
       }
     },
-    "multicolumn_83pCGA": {
-      "type": "multicolumn",
+    "custom_garanzie_LJfxFK": {
+      "type": "custom-garanzie",
       "blocks": {
-        "column_BCGEyL": {
+        "column_qrYEbC": {
           "type": "column",
           "settings": {
-            "title": "Garanzia REALE di 3 Anni",
-            "text": "<p>Mentre le altre scarpe finiscono nella spazzatura, le tue Dr Kampes sono coperte. <strong>Ci fidiamo così tanto del nostro prodotto che lo garantiamo per 1095 giorni di lavoro. </strong>Se per 3 ANNI hanno un cedimento strutturale, le ripariamo o sostituiamo. Fine.</p>",
-            "link_label": "",
-            "link": ""
+            "badge": "shopify://shop_images/3_anni_garanzia.png",
+            "description": "<p>Mentre le altre scarpe finiscono nella spazzatura, le tue Dr Kampes sono coperte. <strong>Ci fidiamo così tanto del nostro prodotto che lo garantiamo per 1095 giorni di lavoro. </strong>Se per 3 ANNI hanno un cedimento strutturale, le ripariamo o sostituiamo. Fine.</p>"
           }
         },
-        "column_zVAX4i": {
+        "column_PBVAQH": {
           "type": "column",
           "settings": {
-            "title": "100% Artigianale Made in Italy",
-            "text": "<p><strong>Non usiamo catene di montaggio.</strong> Ogni Dr Kampes è assemblata e cucita a mano da artigiani italiani, fatta in vera pelle idrorepellente, per piedi SEMPRE asciutti e protetti. È la qualità che puoi toccare e che dura nel tempo, non un prodotto di massa che si sfalda.</p>",
-            "link_label": "",
-            "link": ""
+            "badge": "shopify://shop_images/100_made_in_italy.png",
+            "description": "<p><strong>Non usiamo catene di montaggio.</strong> Ogni Dr Kampes è assemblata e cucita a mano da artigiani italiani, fatta in vera pelle idrorepellente, per piedi SEMPRE asciutti e protetti. È la qualità che puoi toccare e che dura nel tempo, non un prodotto di massa che si sfalda.</p>"
           }
         },
-        "column_pTU84A": {
+        "column_4y9k4L": {
           "type": "column",
           "settings": {
-            "title": "Certificazione S3S Totale",
-            "text": "<p>Puntale in composito (leggero), lamina anti-perforazione, impermeabilità totale e suola anti-scivolo SRC. <strong>La tua sicurezza non è un optional, è il nostro standard minimo. </strong>Conformi alla EN ISO 20345:2022+A1:2024, le Dr Kampes rispettano il massimo standard di protezione oggi disponibile.</p>",
-            "link_label": "",
-            "link": ""
+            "badge": "shopify://shop_images/certificazione_s3s.png",
+            "description": "<p>Puntale in composito (leggero), lamina anti-perforazione, impermeabilità totale e suola anti-scivolo SRC. <strong>La tua sicurezza non è un optional, è il nostro standard minimo. </strong>Conformi alla EN ISO 20345:2022+A1:2024, le Dr Kampes rispettano il massimo standard di protezione oggi disponibile.</p>"
           }
         }
       },
       "block_order": [
-        "column_BCGEyL",
-        "column_zVAX4i",
-        "column_pTU84A"
+        "column_qrYEbC",
+        "column_PBVAQH",
+        "column_4y9k4L"
       ],
-      "name": "garanzie",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "Scopri i dettagli",
-        "button_link": "shopify://products/dr-kampes-s3s-nero-copia",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
+      "name": "CUSTOM · Garanzie",
+      "settings": {}
     },
     "rich_text_K4RX8T": {
       "type": "rich-text",
@@ -370,7 +349,7 @@
     "image_with_text_KMgCPn",
     "image_with_text_iFMhM7",
     "featured_product_Jt7WGx",
-    "multicolumn_83pCGA",
+    "custom_garanzie_LJfxFK",
     "rich_text_K4RX8T",
     "custom_liquid_CDG7FM",
     "custom_liquid_RUa7aM",
