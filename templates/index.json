@@ -79,7 +79,7 @@
           "type": "button",
           "settings": {
             "button_label": "Scopri la collezione",
-            "button_link": "shopify://collections/trucker-shoes",
+            "button_link": "#acquista",
             "button_style_secondary": false
           }
         }
@@ -137,7 +137,7 @@
           "type": "button",
           "settings": {
             "button_label": "Acquista Dr Kampes",
-            "button_link": "shopify://products/dr-kampes-s3s-nero-copia",
+            "button_link": "#acquista",
             "button_style_secondary": false
           }
         }
