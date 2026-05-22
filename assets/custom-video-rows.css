@@ -28,17 +28,22 @@
 }
 
 /* ---- media / video ---- */
+/* __media e' lo slot: centra il riquadro quando il video e' verticale (stretto). */
 .custom-video-rows-section .custom-video-rows__media {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--media-radius);
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
+/* Il riquadro segue l'aspect ratio reale del video (--cvr-ratio, inline):
+   i video verticali non vengono tagliati. */
 .custom-video-rows-section .custom-video-rows__deferred {
   display: block;
+  position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: var(--cvr-ratio, 1.7777);
+  padding-bottom: 0; /* annulla l'eventuale box padding-bottom di Dawn */
+  border-radius: var(--media-radius);
+  overflow: hidden;
 }
 
 .custom-video-rows-section .custom-video-rows__poster {
@@ -47,14 +52,9 @@
   padding: 0;
 }
 
-.custom-video-rows-section .custom-video-rows__poster-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* il <video> iniettato da deferred-media al click riempie il riquadro */
+/* poster e <video> iniettato riempiono il riquadro (che ha gia' il ratio del
+   video -> object-fit:cover non taglia nulla). */
+.custom-video-rows-section .custom-video-rows__poster-img,
 .custom-video-rows-section .custom-video-rows__media video,
 .custom-video-rows-section .custom-video-rows__media iframe {
   width: 100%;
@@ -113,6 +113,14 @@
   .custom-video-rows-section .custom-video-rows__content {
     flex: 1 1 0;
     min-width: 0;
+  }
+
+  /* video verticale: il riquadro e' guidato dall'altezza (cosi' non diventa
+     altissimo) e centrato nella sua meta' colonna. */
+  .custom-video-rows-section .custom-video-rows__media--portrait .custom-video-rows__deferred {
+    width: auto;
+    height: min(68vh, 56rem);
+    max-width: 100%;
   }
 
   .custom-video-rows-section .custom-video-rows__heading {

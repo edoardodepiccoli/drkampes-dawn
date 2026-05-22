@@ -18,13 +18,23 @@
         assign poster = block.settings.poster | default: video.preview_image
         # forloop.index 1,2,3 -> modulo 2 = 1,0,1: le righe pari vanno in reverse.
         assign reverse = forloop.index | modulo: 2
+        # Aspect ratio reale del video: il riquadro lo segue, cosi' i video
+        # verticali non vengono tagliati. ratio < 1 = video verticale.
+        assign ratio = video.aspect_ratio | default: poster.aspect_ratio | default: 1.7777
+        assign is_portrait = false
+        if ratio < 1
+          assign is_portrait = true
+        endif
       -%}
       <div
         class="custom-video-rows__row{% if reverse == 0 %} custom-video-rows__row--reverse{% endif %}"
         {{ block.shopify_attributes }}
       >
         {%- comment -%} Media prima del content: su mobile (flex column) il video sta sopra. {%- endcomment -%}
-        <div class="custom-video-rows__media">
+        <div
+          class="custom-video-rows__media{% if is_portrait %} custom-video-rows__media--portrait{% endif %}"
+          style="--cvr-ratio: {{ ratio }};"
+        >
           {%- if video != blank -%}
             <deferred-media class="custom-video-rows__deferred deferred-media" data-media-id="{{ video.id }}">
               <button

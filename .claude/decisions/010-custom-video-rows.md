@@ -46,3 +46,12 @@ del pattern 004/005 (contenuto editabile via block):
 
 - `sections/custom-video-rows.liquid`, `assets/custom-video-rows.css`.
 - Riferimento markup `deferred-media`: `sections/video.liquid`.
+
+## Update — 2026-05-22 (supporto video verticali)
+
+Il riquadro media non e' piu' fisso 16/9: segue l'**aspect ratio reale del video**
+(`video.aspect_ratio`, passato come `--cvr-ratio` inline), quindi i video
+verticali non vengono tagliati. Riga con `ratio < 1` -> classe
+`custom-video-rows__media--portrait`: su desktop il riquadro e' guidato
+dall'altezza (`height: min(68vh, 56rem)`, larghezza derivata) e centrato nella
+sua meta' colonna; su mobile resta a larghezza piena.
