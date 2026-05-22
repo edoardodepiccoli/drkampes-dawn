@@ -1,0 +1,58 @@
+/*
+  CUSTOM · Collezione complementare
+  Scoped sotto .custom-related-collection-section. Le card prodotto sono Dawn
+  (snippet card-product + component-card.css): qui solo griglia, heading,
+  spaziatura. Niente regole globali, niente !important. Root Dawn 10px.
+*/
+
+.custom-related-collection-section .custom-related-collection {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  padding: 4rem 0;
+}
+
+.custom-related-collection-section .custom-related-collection__inner {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.custom-related-collection-section .custom-related-collection__heading {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: 2.4rem;
+  text-align: center;
+  margin: 0 0 2.4rem;
+}
+
+.custom-related-collection-section .custom-related-collection__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* mobile: 2 colonne */
+  gap: 1.5rem;
+}
+
+.custom-related-collection-section .custom-related-collection__item {
+  margin: 0;
+}
+
+@media (min-width: 750px) {
+  .custom-related-collection-section .custom-related-collection {
+    padding: 5rem 0;
+  }
+
+  .custom-related-collection-section .custom-related-collection__inner {
+    padding: 0 5rem;
+  }
+
+  .custom-related-collection-section .custom-related-collection__heading {
+    font-size: 3rem;
+  }
+
+  .custom-related-collection-section .custom-related-collection__grid {
+    grid-template-columns: repeat(4, 1fr); /* desktop: 4 colonne */
+    gap: 2rem;
+  }
+}

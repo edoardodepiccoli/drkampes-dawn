@@ -1,0 +1,96 @@
+{% comment %}
+  CUSTOM · Collezione complementare — sezione per collection page.
+
+  Cross-sell: mostra una collezione complementare sotto la griglia prodotti.
+  Regola interim a 2 vie (vedi decision 007):
+    - pagina collezione `accessori-trucker-shoes` -> mostra `trucker-shoes`;
+    - ogni altra collezione               -> mostra `accessori-trucker-shoes`.
+  Sostituisce la `featured-collection` stock, fissa, che mostrava sempre gli
+  accessori (anche sotto gli accessori).
+{% endcomment %}
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'custom-related-collection.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  # Swap a 2 vie. Sulla pagina accessori si mostrano le scarpe, altrove gli accessori.
+  assign target_handle = 'accessori-trucker-shoes'
+  if collection.handle == 'accessori-trucker-shoes'
+    assign target_handle = 'trucker-shoes'
+  endif
+  assign featured = collections[target_handle]
+-%}
+
+{%- comment -%}
+  Guard: niente da mostrare se la collezione target manca, e' vuota, o coincide
+  con quella corrente (evita "collezione sotto se stessa").
+{%- endcomment -%}
+{%- if featured != blank and featured.products_count > 0 and featured.handle != collection.handle -%}
+  <div class="custom-related-collection color-{{ section.settings.color_scheme }}">
+    <div class="custom-related-collection__inner">
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="custom-related-collection__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      <ul class="custom-related-collection__grid" role="list">
+        {%- comment -%} skip_styles: la prima card inietta la CSS componente, le altre no. {%- endcomment -%}
+        {%- assign skip_card_styles = false -%}
+        {%- for product in featured.products limit: section.settings.products_to_show -%}
+          <li class="custom-related-collection__item">
+            {%- render 'card-product',
+              card_product: product,
+              media_aspect_ratio: 'square',
+              show_secondary_image: false,
+              show_vendor: false,
+              show_rating: false,
+              quick_add: false,
+              lazy_load: true,
+              skip_styles: skip_card_styles,
+              section_id: section.id
+            -%}
+          </li>
+          {%- assign skip_card_styles = true -%}
+        {%- endfor -%}
+      </ul>
+
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "CUSTOM · Collezione complementare",
+  "tag": "section",
+  "class": "custom-related-collection-section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "Essenziali per le tue Dr Kampes"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Prodotti da mostrare",
+      "default": 4
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Schema colore",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    { "name": "CUSTOM · Collezione complementare" }
+  ]
+}
+{% endschema %}
