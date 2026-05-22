@@ -28,15 +28,14 @@
   width: 100%;
 }
 
-/* Il riquadro segue l'aspect ratio reale del video (--cvr-ratio, inline) ed e'
-   guidato dall'altezza: i video verticali restano compatti e non tagliati. */
+/* Il riquadro segue l'aspect ratio reale del video (--cvr-ratio, inline).
+   Mobile: larghezza piena dentro __inner -> stesso x-padding di testo e buy box.
+   Desktop: guidato dall'altezza (vedi media query) -> verticale compatto. */
 .custom-video-feature-section .custom-video-feature__deferred {
   display: block;
   position: relative;
   aspect-ratio: var(--cvr-ratio, 0.5625);
-  height: min(72vh, 60rem);
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   padding-bottom: 0; /* annulla l'eventuale box padding-bottom di Dawn */
   border-radius: var(--media-radius);
   overflow: hidden;
@@ -100,6 +99,13 @@
 
   .custom-video-feature-section .custom-video-feature__media {
     width: auto;
+  }
+
+  /* desktop: riquadro guidato dall'altezza -> video verticale compatto */
+  .custom-video-feature-section .custom-video-feature__deferred {
+    width: auto;
+    height: min(72vh, 60rem);
+    max-width: 100%;
   }
 
   .custom-video-feature-section .custom-video-feature__heading {
