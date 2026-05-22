@@ -242,16 +242,18 @@
     </div>
 
     {%- comment -%}
-      Sticky CTA: bottone flottante che scivola su dopo 200px di scroll e si
-      nasconde quando questa sezione (#acquista) e' in viewport. Logica in custom-buy-box.js.
+      Sticky CTA: barra nera in basso con bottone, scivola su dopo 200px di scroll
+      e si nasconde quando questa sezione (#acquista) e' in viewport.
+      Logica in custom-buy-box.js. data-sticky-cta sulla barra (e' lei a slidare).
     {%- endcomment -%}
-    <a
-      href="#acquista"
-      class="custom-buy-box__sticky-cta button button--primary"
-      data-sticky-cta
-    >
-      {{ section.settings.sticky_cta_label | escape }}
-    </a>
+    <div class="custom-buy-box__sticky-bar" data-sticky-cta>
+      <a
+        href="#acquista"
+        class="custom-buy-box__sticky-cta button button--primary"
+      >
+        {{ section.settings.sticky_cta_label | escape }}
+      </a>
+    </div>
 
   </custom-buy-box>
 
