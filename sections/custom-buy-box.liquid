@@ -52,7 +52,8 @@
     assign image_media = product.media | where: 'media_type', 'image'
   -%}
 
-  <custom-buy-box class="custom-buy-box color-{{ section.settings.color_scheme }}">
+  {%- comment -%} id="acquista": ancora per link interni (es. #acquista). {%- endcomment -%}
+  <custom-buy-box id="acquista" class="custom-buy-box color-{{ section.settings.color_scheme }}">
 
     {%- comment -%} Dati varianti Liquid -> JS (pattern blob, niente interpolazione). {%- endcomment -%}
     <script type="application/json" class="custom-buy-box__data">
