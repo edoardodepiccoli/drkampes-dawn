@@ -178,7 +178,7 @@
         "price_at_each_html": "a {{ price }}/ciascuno"
       },
       "product_variants": "Varianti di prodotto",
-      "taxes_included": "Imposte incluse.",
+      "taxes_included": "IVA inclusa.",
       "duties_included": "Dazi inclusi.",
       "duties_and_taxes_included": "Dazi e imposte inclusi."
     },
@@ -310,8 +310,8 @@
       "new_estimated_total": "Nuovo totale stimato",
       "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Dazi e imposte inclusi. Sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out.",
       "duties_and_taxes_included_shipping_at_checkout_without_policy": "Dazi e imposte inclusi. Sconti e spedizione calcolati al check-out.",
-      "taxes_included_shipping_at_checkout_with_policy_html": "Imposte incluse. Sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out.",
-      "taxes_included_shipping_at_checkout_without_policy": "Imposte incluse. Sconti e spedizione calcolati al check-out.",
+      "taxes_included_shipping_at_checkout_with_policy_html": "IVA inclusa. Sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out.",
+      "taxes_included_shipping_at_checkout_without_policy": "IVA inclusa. Sconti e spedizione calcolati al check-out.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Dazi inclusi. Imposte, sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Dazi inclusi. Imposte, sconti e spedizione calcolati al check-out.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Imposte, sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out.",
