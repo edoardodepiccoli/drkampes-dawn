@@ -34,11 +34,6 @@
     const modal = document.getElementById('lpQuizModal');
     if (!modal) return;
 
-    // Portal del modal su <body>: garantisce che il `position: fixed` (e quindi
-    // l'overlay scuro a tutto schermo) sia relativo al viewport, immune da
-    // eventuali ancestor con transform/filter dentro <main> che romperebbero il fixed.
-    if (modal.parentElement !== document.body) document.body.appendChild(modal);
-
     const webhookUrl = modal.dataset.webhook;
     const form       = modal.querySelector('[data-quiz-form]');
     const steps      = Array.from(modal.querySelectorAll('[data-quiz-step]'));

@@ -37,7 +37,11 @@
 }
 
 .lp-b2b-quiz-form__overlay {
-  position: absolute;
+  /* position: fixed (non absolute): l'overlay deve essere un layer ancorato al
+     viewport, fuori dal box `overflow: hidden` del modale. Da `absolute` veniva
+     clippato dentro quel box e, combinato col `backdrop-filter`, non veniva
+     dipinto affatto (sfondo incluso) -> pagina dietro restava chiara. */
+  position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(6px);
