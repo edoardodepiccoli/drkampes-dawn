@@ -8,6 +8,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 002 | Rem values from Horizon multiplied by 1.6x for Dawn root | 2026-05-19 | Active |
 | 003 | Cart-add bypasses Dawn cart-drawer (fetch + redirect) | 2026-05-19 | Active |
 | 004 | Custom homepage sections: editor-reorderable, hardcoded content, CUSTOM prefix | 2026-05-22 | Active |
+| 005 | custom-garanzie: block editor-editable (image_picker + richtext) | 2026-05-22 | Active |
 
 ## Conventions
 
