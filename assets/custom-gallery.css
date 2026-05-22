@@ -34,18 +34,19 @@
 .custom-gallery-section .custom-gallery__cols {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 2.4rem;
 }
 
 .custom-gallery-section .custom-gallery__col {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 2.4rem;
 }
 
 /* ---- foto ---- */
 .custom-gallery-section .custom-gallery__item {
   margin: 0;
+  will-change: transform; /* parallax (colonne su desktop, foto su mobile) */
 }
 
 .custom-gallery-section .custom-gallery__img {
@@ -73,15 +74,15 @@
 }
 
 /* ---- reveal (attivo solo con is-reveal, aggiunto da JS) ---- */
+/* Mobile: solo fade. Il transform dell'item lo usa il parallax per-foto;
+   lo slide del reveal si aggiunge solo su desktop (vedi media query). */
 .custom-gallery-section .custom-gallery.is-reveal .custom-gallery__item {
   opacity: 0;
-  transform: translateY(2.5rem);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease;
 }
 
 .custom-gallery-section .custom-gallery.is-reveal .custom-gallery__item.is-visible {
   opacity: 1;
-  transform: none;
 }
 
 /* ============ DESKTOP ============ */
@@ -119,5 +120,16 @@
   /* will-change: il transform parallax e' applicato da JS via inline style */
   .custom-gallery-section .custom-gallery__col {
     will-change: transform;
+  }
+
+  /* desktop: il reveal aggiunge anche lo slide. Qui il transform dell'item e'
+     libero — il parallax desktop agisce sulle colonne, non sugli item. */
+  .custom-gallery-section .custom-gallery.is-reveal .custom-gallery__item {
+    transform: translateY(2.5rem);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .custom-gallery-section .custom-gallery.is-reveal .custom-gallery__item.is-visible {
+    transform: none;
   }
 }
