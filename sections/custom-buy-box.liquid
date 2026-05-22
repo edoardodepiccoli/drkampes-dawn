@@ -3,10 +3,10 @@
 
   Sezione custom homepage (pattern: .claude/patterns/building-custom-homepage-section.md).
   Buy box modellato sulla LP B2C (lp-offerta) ma sobrio e allineato a Dawn:
-  usa i token del tema, il bottone .button di Dawn e il carrello nativo
-  (<product-form> + cart drawer). Vedi decision 006.
+  usa i token del tema e il bottone .button di Dawn. L'add to cart e' gestito
+  da custom-buy-box.js (fetch /cart/add.js + popup carrello nativo Dawn). Vedi decision 006.
 
-  Interattività (selezione variante, swap immagine) in assets/custom-buy-box.js.
+  Interattivita' (selezione variante, carousel, add to cart) in assets/custom-buy-box.js.
 {% endcomment %}
 
 {{ 'custom-buy-box.css' | asset_url | stylesheet_tag }}
@@ -23,7 +23,6 @@
 {%- else -%}
   {%- liquid
     assign first_variant = product.selected_or_first_available_variant
-    assign form_id = 'custom-buy-box-form-' | append: section.id
 
     # Rileva quale opzione e' il colore e quale la taglia, per nome (come lp-offerta).
     # Il match per nome rende la sezione indipendente dall'ordine delle opzioni.
@@ -224,41 +223,25 @@
         <p class="custom-buy-box__stock" data-stock hidden>{{ section.settings.stock_label | escape }}</p>
 
         {%- comment -%}
-          Add to cart — <product-form> nativo Dawn. Classi product-form__* obbligatorie:
-          product-form.js le cerca per gestire errori e stato di caricamento.
+          Add to cart — gestito interamente da custom-buy-box.js: fetch /cart/add.js
+          poi apertura del popup carrello nativo Dawn. Bottone type="button":
+          niente form, niente submit nativo, nessun reload possibile.
         {%- endcomment -%}
-        <product-form class="custom-buy-box__pf" data-section-id="{{ section.id }}">
-          <div class="product-form__error-message-wrapper" role="alert" hidden>
-            <span class="svg-wrapper">{{- 'icon-error.svg' | inline_asset_content -}}</span>
-            <span class="product-form__error-message"></span>
-          </div>
-
-          {%- form 'product',
-            product,
-            id: form_id,
-            class: 'form',
-            novalidate: 'novalidate',
-            data-type: 'add-to-cart-form'
-          -%}
-            <input type="hidden" name="id" value="{{ first_variant.id }}" class="product-variant-id">
-            <button
-              type="submit"
-              name="add"
-              class="custom-buy-box__atc button button--full-width button--primary"
-              {% unless first_variant.available %}disabled{% endunless %}
-            >
-              <span>Aggiungi al carrello</span>
-              {%- render 'loading-spinner' -%}
-            </button>
-          {%- endform -%}
-        </product-form>
+        <div class="custom-buy-box__error" data-error role="alert" hidden></div>
+        <button
+          type="button"
+          class="custom-buy-box__atc button button--full-width button--primary"
+          data-atc
+          {% unless first_variant.available %}disabled{% endunless %}
+        >
+          <span>Aggiungi al carrello</span>
+          {%- render 'loading-spinner' -%}
+        </button>
 
       </div>
     </div>
   </custom-buy-box>
 
-  {%- comment -%} product-form.js e' guarded (if !customElements.get): doppio load sicuro. {%- endcomment -%}
-  <script src="{{ 'product-form.js' | asset_url }}" defer></script>
   <script src="{{ 'custom-buy-box.js' | asset_url }}" defer></script>
 {%- endif -%}
 

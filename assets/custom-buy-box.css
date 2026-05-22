@@ -285,26 +285,17 @@
 }
 
 /* ---- add to cart ---- */
-.custom-buy-box-section .custom-buy-box__pf {
-  display: block;
-  margin-top: 0.8rem;
-}
-
 .custom-buy-box-section .custom-buy-box__atc {
   margin: 0;
 }
 
-/* messaggio d'errore Dawn: scoped qui (la CSS componente Dawn non e' caricata) */
-.custom-buy-box-section .product-form__error-message-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+.custom-buy-box-section .custom-buy-box__error {
   margin-bottom: 1rem;
   font-size: 1.3rem;
   color: #b91c1c;
 }
 
-.custom-buy-box-section .product-form__error-message-wrapper[hidden] {
+.custom-buy-box-section .custom-buy-box__error[hidden] {
   display: none;
 }
 
