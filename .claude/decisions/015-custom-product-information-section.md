@@ -55,3 +55,16 @@ toccato a mano. `main-product.liquid` resta intatto: revert = swap nell'editor.
   cart dopo lo swap.
 - Blast radius: 1 sezione + 2 snippet + 1 JS, tutti `custom-*`. `main-product.liquid`
   e gli snippet Dawn stock restano intatti.
+
+## Vincolo: solo gallery layout "Elencato"
+
+La sezione funziona solo con il gallery layout **"Elencato"** (`gallery_layout:
+stacked`, `options__1`). Con `stacked` non c'e' striscia thumbnail ne' slider sul
+viewer principale: la galleria e' una sola `<ul>` di immagini impilate che Dawn
+`updateMedia()` sincronizza interamente al cambio variante, quindi il filtro per
+variante regge end to end. Con `thumbnail` / `thumbnail_slider` / `columns` la
+striscia thumbnail e lo slider rompono il filtro.
+
+Lo schema ha gia' `gallery_layout` `default: stacked`: una nuova istanza nasce
+corretta. Non cambiare `gallery_layout` dall'editor. `custom-product-information.js`
+resta caricato ma con `stacked` non trova thumbnail e fa no-op (innocuo).
