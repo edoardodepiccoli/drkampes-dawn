@@ -1,7 +1,9 @@
 # 010 — custom-video-rows: righe video + testo alternate
 
 **Date:** 2026-05-22
-**Status:** Active
+**Status:** Deprecated — sezione rimossa su richiesta dell'utente (non gradita).
+File `sections/custom-video-rows.liquid` + `assets/custom-video-rows.css` eliminati
+e istanza tolta da `templates/index.json`. Decision conservata come storico.
 
 ## Context
 
