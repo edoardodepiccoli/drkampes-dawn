@@ -33,7 +33,7 @@
             "button_link_1": "shopify://products/dr-kampes-s3s-nero-copia",
             "button_style_secondary_1": false,
             "button_label_2": "Scopri di più",
-            "button_link_2": "shopify://collections/all",
+            "button_link_2": "shopify://collections/trucker-shoes",
             "button_style_secondary_2": true
           }
         }
@@ -78,8 +78,8 @@
         "button_6BdJcK": {
           "type": "button",
           "settings": {
-            "button_label": "Scopri di più",
-            "button_link": "shopify://products/dr-kampes-s3s-nero-copia",
+            "button_label": "Scopri la collezione",
+            "button_link": "shopify://collections/trucker-shoes",
             "button_style_secondary": false
           }
         }
@@ -126,7 +126,7 @@
         "button_9VAQiL": {
           "type": "button",
           "settings": {
-            "button_label": "Acquista Ora",
+            "button_label": "Acquista Dr Kampes",
             "button_link": "shopify://products/dr-kampes-s3s-nero-copia",
             "button_style_secondary": false
           }
