@@ -11,6 +11,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 005 | custom-garanzie: block editor-editable (image_picker + richtext) | 2026-05-22 | Active |
 | 006 | custom-buy-box: buy box homepage con carrello nativo Dawn | 2026-05-22 | Active |
 | 007 | Custom section su collection page + collezione complementare | 2026-05-22 | Active |
+| 008 | Smooth scroll sui link ancora, esteso a tutto il sito | 2026-05-22 | Active |
 
 ## Conventions
 

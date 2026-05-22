@@ -8,6 +8,8 @@ You need new content on the homepage (`templates/index.json`) that is not a stoc
 
 Not for: landing-page elements (those are snippets — see `patterns/porting-horizon-section.md`). Not for site-wide footer/header changes (those are the footer/header groups via `theme.liquid`, a critical path).
 
+The same recipe also applies to **collection-page** custom sections (added on `templates/collection.json`) — see [`decisions/007-custom-section-collection-page.md`](../decisions/007-custom-section-collection-page.md).
+
 ## Naming convention
 
 | Thing | Value |
@@ -91,6 +93,7 @@ Manual checks (always):
 
 ## Common gotchas
 
+- **Section missing from the picker entirely (not even by name)** — the schema `name` exceeds Shopify's **25-character limit**, so the whole schema is rejected. Keep schema `name` AND preset `name` ≤ 25 chars. The `CUSTOM · ` prefix is 9 chars, leaving 16. (Bit us on `custom-related-collection`: `"CUSTOM · Collezione complementare"` = 33 chars → invisible.)
 - **Section not in the "Add section" picker** — missing `"presets"` block. Presets are what register a section as addable.
 - **Reads as the wrong name in the editor** — the `name` in `index.json` (instance name) overrides the schema `name`. The schema `name` and preset `name` control the picker and default label; an instance renamed in the editor keeps its own name.
 - **CSS leaks into other sections** — a rule wasn't prefixed with the scoping root, or it targets a bare element. Re-audit every selector.
