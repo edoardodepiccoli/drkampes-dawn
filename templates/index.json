@@ -43,6 +43,7 @@
         "text",
         "button"
       ],
+      "disabled": true,
       "name": "hero",
       "settings": {
         "image": "shopify://shop_images/hero_image.jpg",
@@ -60,17 +61,51 @@
     },
     "custom_hero_qTrUx6": {
       "type": "custom-hero",
+      "blocks": {
+        "heading_kWLjkK": {
+          "type": "heading",
+          "settings": {
+            "heading": "LE SCARPE DEL CAMIONISTA",
+            "heading_size": "h1"
+          }
+        },
+        "text_iGQnxX": {
+          "type": "text",
+          "settings": {
+            "text": "Lavora meglio, perdi meno tempo, stai più comodo, fai meno fatica, resta riconoscibile.",
+            "text_style": "body"
+          }
+        },
+        "buttons_WwtwLP": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Acquista Ora",
+            "button_link_1": "#acquista",
+            "button_style_secondary_1": false,
+            "button_label_2": "Scopri di più",
+            "button_link_2": "#intro",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_kWLjkK",
+        "text_iGQnxX",
+        "buttons_WwtwLP"
+      ],
       "name": "CUSTOM · Hero",
       "settings": {
         "image": "shopify://shop_images/dettagli_logo_scarpa_screenshot.png",
-        "overlay_opacity": 50,
-        "color_scheme": "",
-        "heading": "LE SCARPE DEL CAMIONISTA",
-        "text": "Lavora meglio, perdi meno tempo, stai piu comodo, fai meno fatica, resta riconoscibile.",
-        "button_label_1": "Acquista Ora",
-        "button_link_1": "#acquista",
-        "button_label_2": "Scopri di piu",
-        "button_link_2": "#intro"
+        "image_overlay_opacity": 50,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     },
     "image_with_text_KMgCPn": {
