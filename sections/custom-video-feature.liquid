@@ -32,7 +32,12 @@
     >
       {%- if video != blank -%}
         <deferred-media class="custom-video-feature__deferred deferred-media" data-media-id="{{ video.id }}">
+          {%- comment -%}
+            id "Deferred-Poster-..." obbligatorio: DeferredMedia (global.js) cerca
+            il poster con querySelector('[id^="Deferred-Poster-"]') per il click.
+          {%- endcomment -%}
           <button
+            id="Deferred-Poster-{{ section.id }}"
             class="custom-video-feature__poster deferred-media__poster"
             type="button"
             aria-label="Riproduci video"
