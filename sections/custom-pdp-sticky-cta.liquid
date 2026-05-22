@@ -1,0 +1,44 @@
+{% comment %}
+  CUSTOM · CTA prodotto — sticky CTA slide-up per la PDP.
+
+  Barra nera fissa in basso con un bottone che linka ad #acquista (il div ancora
+  va creato separatamente nella pagina). La barra scivola su dopo 200px di scroll
+  e si nasconde quando #acquista e' in viewport. Vedi decision 013.
+{% endcomment %}
+
+{{ 'custom-pdp-sticky-cta.css' | asset_url | stylesheet_tag }}
+
+<custom-pdp-sticky-cta class="custom-pdp-sticky-cta color-{{ section.settings.color_scheme }}">
+  <div class="custom-pdp-sticky-cta__bar" data-bar>
+    <a href="#acquista" class="custom-pdp-sticky-cta__btn button button--primary">
+      {{ section.settings.button_label | escape }}
+    </a>
+  </div>
+</custom-pdp-sticky-cta>
+
+<script src="{{ 'custom-pdp-sticky-cta.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "CUSTOM · CTA prodotto",
+  "tag": "section",
+  "class": "custom-pdp-sticky-cta-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Testo bottone",
+      "default": "si, le voglio"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Schema colore",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    { "name": "CUSTOM · CTA prodotto" }
+  ]
+}
+{% endschema %}
