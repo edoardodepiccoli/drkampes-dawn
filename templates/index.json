@@ -174,6 +174,66 @@
         "stock_label": "Meno di 8 paia rimaste a magazzino"
       }
     },
+    "custom_gallery_8fp4W4": {
+      "type": "custom-gallery",
+      "blocks": {
+        "photo_UmXRw6": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/hero-cropped.jpg",
+            "caption": ""
+          }
+        },
+        "photo_RrpPen": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/dettagli_logo_scarpa_screenshot.png",
+            "caption": ""
+          }
+        },
+        "photo_zngmTm": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-01-25_at_18.55.13.png",
+            "caption": ""
+          }
+        },
+        "photo_6hxbHE": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/dsc01880-migliorato-nr-1769702403-697b8403bf89b.jpg",
+            "caption": ""
+          }
+        },
+        "photo_qGjELW": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/dsc01813-migliorato-nr-1769702375-697b83e7ab8e3.jpg",
+            "caption": ""
+          }
+        },
+        "photo_VrhKD6": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/dsc01889-migliorato-nr-1769702410-697b840a71188.jpg",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "photo_UmXRw6",
+        "photo_RrpPen",
+        "photo_zngmTm",
+        "photo_6hxbHE",
+        "photo_qGjELW",
+        "photo_VrhKD6"
+      ],
+      "name": "CUSTOM · Gallery",
+      "settings": {
+        "heading": "",
+        "color_scheme": ""
+      }
+    },
     "custom_garanzie_LJfxFK": {
       "type": "custom-garanzie",
       "blocks": {
@@ -306,6 +366,7 @@
     "custom_liquid_fLyEy9",
     "image_with_text_iFMhM7",
     "custom_buy_box_XgJgTD",
+    "custom_gallery_8fp4W4",
     "custom_garanzie_LJfxFK",
     "rich_text_K4RX8T",
     "custom_liquid_CDG7FM",
