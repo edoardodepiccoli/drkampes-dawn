@@ -298,11 +298,18 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    <script type="text/javascript" src="https://app.legalblink.it/api/scripts/cmp/loader.js"
+    {%- comment -%}
+      Skip the LegalBlink cookie CMP inside the theme editor: request.design_mode
+      is true only in the editor, where the banner overlaps sections and blocks editing.
+      Real storefront visitors still get it.
+    {%- endcomment -%}
+    {%- unless request.design_mode -%}
+      <script type="text/javascript" src="https://app.legalblink.it/api/scripts/cmp/loader.js"
   data-license-id="6a060314708d320024331f08"
   data-blocking-mode="auto"
   data-consent-mode="true"
   data-tcf-enabled="true"></script>
+    {%- endunless -%}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
