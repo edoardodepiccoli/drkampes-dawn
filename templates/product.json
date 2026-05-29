@@ -41,6 +41,33 @@
             "swatch_shape": "circle"
           }
         },
+        "collapsible_tab_yxeVCY": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Reso / cambio taglia gratis",
+            "icon": "return",
+            "content": "<p>Taglia sbagliata? La cambiamo gratis entro 14 giorni, spedizione del reso <strong>a nostro carico</strong>. Ordina senza pensieri: se non calzano, ci pensiamo noi.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_fjiDb3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Garanzia 3 anni (1095 giorni)",
+            "icon": "shoe",
+            "content": "<p>Le tue Dr Kampes sono coperte per 1095 giorni di lavoro. Se in 3 anni cedono strutturalmente, <strong>le ripariamo o sostituiamo</strong>. Senza discussioni.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_Y3mFi8": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Conformi al 100%",
+            "icon": "clipboard",
+            "content": "<p>Conformi alla EN ISO 20345:2022+A1:2024, grado massimo S3S: puntale in composito, lamina antiforatura, suola antiscivolo SRC e impermeabilità totale. <strong>Il massimo standard di protezione disponibile oggi.</strong></p>",
+            "page": ""
+          }
+        },
         "buy_buttons_7jL3Jq": {
           "type": "buy_buttons",
           "settings": {
@@ -59,6 +86,9 @@
         "text_QqWUFK",
         "price_TW7nky",
         "variant_picker_CNNztL",
+        "collapsible_tab_yxeVCY",
+        "collapsible_tab_fjiDb3",
+        "collapsible_tab_Y3mFi8",
         "buy_buttons_7jL3Jq",
         "description_ArPfT4"
       ],
