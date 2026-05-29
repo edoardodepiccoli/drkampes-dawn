@@ -19,6 +19,8 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 013 | custom-pdp-sticky-cta: sticky CTA per la PDP | 2026-05-22 | Deprecated |
 | 014 | B2B quiz modal a tutto schermo, niente overlay | 2026-05-22 | Active |
 | 015 | custom-product-information: sezione PDP clonata + galleria per variante | 2026-05-22 | Active |
+| 016 | LegalBlink CMP non caricato nel theme editor (request.design_mode) | 2026-05-29 | Active |
+| 017 | Apertura automatica del pannello Impostazioni del CMP | 2026-05-29 | Active |
 
 ## Conventions
 
