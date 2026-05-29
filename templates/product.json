@@ -41,6 +41,15 @@
             "swatch_shape": "circle"
           }
         },
+        "collapsible_tab_dRLNXN": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Spedizione rapida 1-2 giorni",
+            "icon": "truck",
+            "content": "<p>Ordini oggi, le ricevi in 1-2 giorni lavorativi. <strong>Spedizione veloce e tracciata.</strong></p>",
+            "page": ""
+          }
+        },
         "collapsible_tab_yxeVCY": {
           "type": "collapsible_tab",
           "settings": {
@@ -86,6 +95,7 @@
         "text_QqWUFK",
         "price_TW7nky",
         "variant_picker_CNNztL",
+        "collapsible_tab_dRLNXN",
         "collapsible_tab_yxeVCY",
         "collapsible_tab_fjiDb3",
         "collapsible_tab_Y3mFi8",
