@@ -27,6 +27,12 @@
       if (buttons[i].textContent.trim().toLowerCase() === BUTTON_TEXT) {
         buttons[i].click();
         clicked = true;
+        // Host starts at opacity 0 (see inline <style> in theme.liquid) to avoid the
+        // simple banner flashing. Reveal once the settings panel is open. rAF lets the
+        // panel render first so the fade applies to the final view, not the banner.
+        requestAnimationFrame(function () {
+          banner.style.opacity = '1';
+        });
         return true;
       }
     }
@@ -45,5 +51,11 @@
   // already given so no banner, or LegalBlink changed their markup).
   setTimeout(function () {
     observer.disconnect();
+    // Failsafe: if we never clicked (e.g. LegalBlink changed the button label) but a
+    // banner is present, reveal it anyway so it isn't stuck invisible and unusable.
+    if (!clicked) {
+      var banner = document.querySelector('lb-cookie-banner');
+      if (banner) banner.style.opacity = '1';
+    }
   }, 15000);
 })();
