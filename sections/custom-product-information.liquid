@@ -25,6 +25,12 @@
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
+  {%- comment -%}
+    Caricato dopo component-product-variant-picker.css cosi' le regole custom
+    (pillole/swatch circolari, sticky) vincono anche per ordine di caricamento.
+  {%- endcomment -%}
+  {{ 'custom-product-information.css' | asset_url | stylesheet_tag }}
+
   {%- style -%}
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -478,12 +484,24 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
+                {%- comment -%}
+                  Ancora/target per la sticky CTA mobile: l'IntersectionObserver di
+                  pdp-sticky-cta.js osserva questo span per sapere se il punto
+                  d'acquisto e' in viewport; il tap della barra ci scrolla sopra.
+                {%- endcomment -%}
+                <span id="pdp-buy" class="custom-pdp__buy-anchor"></span>
+                {%- comment -%}
+                  show_pickup_availability: false -> niente blocco "ritiro in negozio".
+                  Il dynamic checkout (Shop Pay/PayPal/GPay) si toglie col setting
+                  show_dynamic_checkout: false del blocco buy_buttons (templates/product.json),
+                  che rende anche il bottone button--primary (vedi buy-buttons.liquid r.77).
+                {%- endcomment -%}
                 {%- render 'buy-buttons',
                   block: block,
                   product: product,
                   product_form_id: product_form_id,
                   section_id: section.id,
-                  show_pickup_availability: true
+                  show_pickup_availability: false
                 -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
@@ -740,6 +758,19 @@
     <script type="application/ld+json">
       {{ product | structured_data }}
     </script>
+
+    {%- comment -%}
+      Sticky CTA mobile: barra in basso che scivola su quando il bottone ATC
+      (#pdp-buy) non e' piu' in viewport. Il tap scrolla all'ATC (ancora, smooth
+      scroll globale ADR 008), non aggiunge al carrello. Solo mobile (CSS + matchMedia).
+      Logica in pdp-sticky-cta.js, mutuata dallo sticky del buy-box (custom-buy-box.js).
+    {%- endcomment -%}
+    <pdp-sticky-cta class="custom-pdp__sticky-bar" data-target="#pdp-buy">
+      <a href="#pdp-buy" class="custom-pdp__sticky-cta button button--primary">
+        {{ 'products.product.add_to_cart' | t }}
+      </a>
+    </pdp-sticky-cta>
+    <script src="{{ 'pdp-sticky-cta.js' | asset_url }}" defer="defer"></script>
   </div>
 </product-info>
 

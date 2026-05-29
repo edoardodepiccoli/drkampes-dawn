@@ -1,0 +1,145 @@
+/*
+  Custom PDP styling. Scoped under .custom-product-information-section (the class
+  added by the section schema, sits on the shopify-section wrapper).
+
+  Goal: make the NATIVE Dawn variant pills circular, matching the homepage buy-box
+  look (see assets/custom-buy-box.css). We only restyle the native markup from
+  product-variant-options.liquid (input[type=radio] + label) — no fork, no JS,
+  so Dawn's variant-change + gallery logic stays untouched.
+
+  Native already inverts colors on :checked and strikes through .disabled, which
+  matches the buy-box is-on / is-unavailable states, so here we only override the
+  geometry (square pill -> circle).
+*/
+
+/* ---- Unita' 1: pillole taglia / generiche circolari ---- */
+
+/* Cerchio: width = height, niente padding (deformerebbe il cerchio).
+   Specificita' con .custom-product-information-section per battere
+   component-product-variant-picker.css senza !important (regola 6). */
+.custom-product-information-section .product-form__input--pill input[type='radio'] + label {
+  width: 4.4rem;
+  height: 4.4rem;
+  min-width: 0;
+  padding: 0;
+  margin: 0.7rem 0.5rem 0.2rem 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  letter-spacing: 0;
+}
+
+/* Il box ombra dietro la label e' squadrato di default: arrotondalo al cerchio. */
+.custom-product-information-section .product-form__input--pill input[type='radio'] + label:before {
+  border-radius: 50%;
+}
+
+/* ---- Unita' 2: cerchi colore colorati (fallback hardcoded) ---- */
+
+/*
+  Lo store non ha swatch Shopify, quindi il picker nativo rende anche il colore
+  come pillola di testo. Coloriamo SOLO i valori-colore via selettori d'attributo
+  a sottostringa (case-insensitive) che rispecchiano la mappa del buy-box
+  (custom-buy-box.liquid). Le taglie sono numeri: non matchano questi selettori,
+  restano pillole di testo (Unita' 1). Limite noto: un colore nuovo non in mappa
+  resta pillola di testo finche' non lo si aggiunge qui (stesso limite del buy-box).
+*/
+
+/* Mappa colore -> --sw (un gruppo per tinta). */
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='ner' i] + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='black' i] + label {
+  --sw: #1a1a1a;
+}
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='testa di moro' i] + label {
+  --sw: #3d1a0a;
+}
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='marron' i] + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='brown' i] + label {
+  --sw: #5c3317;
+}
+
+/* Look swatch condiviso per gli stessi valori-colore: cerchio pieno, testo nascosto
+   (resta nel DOM per gli screen reader via label associata). Dimensione 3.6rem come
+   .custom-buy-box__swatch. */
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='ner' i] + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='black' i] + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='testa di moro' i] + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='marron' i] + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='brown' i] + label {
+  width: 3.6rem;
+  height: 3.6rem;
+  background: var(--sw, #d9d9d9) center / cover no-repeat;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.25);
+  color: transparent;
+  font-size: 0;
+}
+
+/* Selezionato: tieni il colore (override dell'invert nativo) e aggiungi il doppio
+   anello di .custom-buy-box__swatch.is-on. Specificita' alta -> batte il nativo. */
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='ner' i]:checked + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='black' i]:checked + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='testa di moro' i]:checked + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='marron' i]:checked + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='brown' i]:checked + label {
+  background: var(--sw, #d9d9d9) center / cover no-repeat;
+  box-shadow:
+    0 0 0 0.2rem rgb(var(--color-background)),
+    0 0 0 0.4rem rgb(var(--color-foreground));
+}
+
+/* Non disponibile: testo barrato invisibile (nascosto), basta opacizzare. */
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='ner' i].disabled + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='black' i].disabled + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='testa di moro' i].disabled + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='marron' i].disabled + label,
+.custom-product-information-section .product-form__input--pill input[type='radio'][value*='brown' i].disabled + label {
+  opacity: 0.35;
+}
+
+/* ---- Unita' 4: sticky CTA mobile (scroll-to-button) ---- */
+
+/* Ancora invisibile davanti al buy_buttons: scroll-margin per non finire sotto
+   l'header sticky quando ci si scrolla sopra dal tap. */
+.custom-pdp__buy-anchor {
+  display: block;
+  scroll-margin-top: 10rem;
+}
+
+/* Barra fissa in basso, nascosta (scivolata giu') finche' non .is-visible.
+   Mutuata da .custom-buy-box__sticky-bar. */
+.custom-pdp__sticky-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  padding: 1.2rem 1.5rem;
+  /* rispetta la home bar iOS */
+  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom));
+  background: #000000;
+  box-shadow: 0 -0.4rem 1.6rem rgba(0, 0, 0, 0.25);
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  pointer-events: none;
+}
+
+.custom-pdp__sticky-bar.is-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.custom-pdp__sticky-cta {
+  margin: 0;
+  width: 100%;
+  max-width: 48rem;
+}
+
+/* Solo mobile: da 750px in su (breakpoint Dawn) la barra non esiste. */
+@media screen and (min-width: 750px) {
+  .custom-pdp__sticky-bar {
+    display: none;
+  }
+}
