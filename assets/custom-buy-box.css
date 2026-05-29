@@ -339,6 +339,13 @@
   flex-shrink: 0;
 }
 
+/* ---- righe trust comprimibili sotto l'ATC (accordion Dawn nativo) ---- */
+/* component-accordion.css fa il grosso (usa i token del color scheme). Qui solo
+   lo stacco dal bottone Acquista; la prima riga ha gia' il border-top del componente. */
+.custom-buy-box-section .custom-buy-box__accordions {
+  margin-top: 1.6rem;
+}
+
 /* <dialog>: reset del default UA, il browser lo apre nel top layer.
    Il <dialog> resta nella posizione DOM dentro .custom-buy-box-section. */
 .custom-buy-box-section .custom-buy-box__dialog {

@@ -11,6 +11,8 @@
 {% endcomment %}
 
 {{ 'custom-buy-box.css' | asset_url | stylesheet_tag }}
+{%- comment -%} Accordion nativo Dawn per le righe trust sotto l'ATC (stesso della PDP). {%- endcomment -%}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign product = section.settings.product
@@ -241,6 +243,75 @@
           product_form_id: product_form_id,
           section_id: section.id
         -%}
+
+        {%- comment -%}
+          Righe trust comprimibili sotto l'ATC. Replica statica del collapsible_tab nativo
+          Dawn (vedi custom-product-information.liquid case 'collapsible_tab'): markup
+          product__accordion + <details>, icone dal tema via snippet icon-accordion, caret
+          inline. Contenuto hardcoded (ordine rischio-first), stesse copy della PDP + spedizione.
+          Puro HTML/CSS (component-accordion.css), nessun JS.
+        {%- endcomment -%}
+        <div class="custom-buy-box__accordions">
+          <div class="product__accordion accordion">
+            <details>
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: 'return' %}
+                  <h2 class="h4 accordion__title">Reso / cambio taglia gratis</h2>
+                </div>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Taglia sbagliata? La cambiamo gratis entro 14 giorni, spedizione del reso <strong>a nostro carico</strong>. Ordina senza pensieri: se non calzano, ci pensiamo noi.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="product__accordion accordion">
+            <details>
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: 'truck' %}
+                  <h2 class="h4 accordion__title">Spedizione rapida 1-2 giorni</h2>
+                </div>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Ordini oggi, le ricevi in 1-2 giorni lavorativi. Spedizione tracciata.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="product__accordion accordion">
+            <details>
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: 'shoe' %}
+                  <h2 class="h4 accordion__title">Garanzia 3 anni (1095 giorni)</h2>
+                </div>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Le tue Dr Kampes sono coperte per 1095 giorni di lavoro. Se in 3 anni cedono strutturalmente, <strong>le ripariamo o sostituiamo</strong>. Senza discussioni.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="product__accordion accordion">
+            <details>
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: 'clipboard' %}
+                  <h2 class="h4 accordion__title">Conformi al 100%</h2>
+                </div>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Conformi alla EN ISO 20345:2022+A1:2024, grado massimo S3S: puntale in composito, lamina antiforatura, suola antiscivolo SRC e impermeabilità totale. <strong>Il massimo standard di protezione disponibile oggi.</strong></p>
+              </div>
+            </details>
+          </div>
+        </div>
 
       </div>
     </div>
