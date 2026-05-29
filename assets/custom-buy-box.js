@@ -100,6 +100,44 @@
           self.setActive(Math.round(self.slidesEl.scrollLeft / self.slidesEl.clientWidth));
         }, { passive: true });
       }
+
+      this.bindDialogs();
+    }
+
+    // Popup guida taglie / schede tecniche: <dialog> nativi (ESC e top-layer gratis).
+    // I trigger [data-open-dialog] aprono il <dialog> con [data-dialog] corrispondente.
+    bindDialogs() {
+      var dialogs = {};
+
+      Array.prototype.forEach.call(this.querySelectorAll('[data-dialog]'), function (d) {
+        dialogs[d.dataset.dialog] = d;
+
+        // Chiudi al click sul backdrop: con showModal() il target del click sullo
+        // sfondo e' il <dialog> stesso (il contenuto e' dentro .__dialog-box).
+        d.addEventListener('click', function (e) {
+          if (e.target === d) d.close();
+        });
+
+        var closeBtn = d.querySelector('[data-close-dialog]');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function () { d.close(); });
+        }
+
+        // L'evento 'close' copre ogni chiusura (X, backdrop, ESC nativo):
+        // qui si sblocca lo scroll del body.
+        d.addEventListener('close', function () {
+          document.body.classList.remove('overflow-hidden');
+        });
+      });
+
+      Array.prototype.forEach.call(this.querySelectorAll('[data-open-dialog]'), function (btn) {
+        btn.addEventListener('click', function () {
+          var d = dialogs[btn.dataset.openDialog];
+          if (!d || typeof d.showModal !== 'function') return;
+          document.body.classList.add('overflow-hidden');
+          d.showModal();
+        });
+      });
     }
 
     goToSlide(idx, behavior) {

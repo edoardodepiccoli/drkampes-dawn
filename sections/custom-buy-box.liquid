@@ -209,6 +209,19 @@
         {%- endif -%}
 
         {%- comment -%}
+          Bottoni che aprono i due <dialog> (guida taglie / schede tecniche).
+          data-open-dialog combacia con data-dialog sul <dialog>; logica in custom-buy-box.js.
+        {%- endcomment -%}
+        <div class="custom-buy-box__info-btns">
+          <button type="button" class="custom-buy-box__info-btn" data-open-dialog="size">
+            Guida taglie
+          </button>
+          <button type="button" class="custom-buy-box__info-btn" data-open-dialog="specs">
+            Schede tecniche
+          </button>
+        </div>
+
+        {%- comment -%}
           Add to cart — snippet ufficiale Dawn `buy-buttons` (stesso usato da
           featured-product): <product-form> + {% form 'product' %} + product-form.js.
           custom-buy-box.js aggiorna l'input name="id" al cambio variante.
@@ -235,6 +248,83 @@
         {{ section.settings.sticky_cta_label | escape }}
       </a>
     </div>
+
+    {%- comment -%}
+      Popup nativi <dialog> (top layer: niente conflitti z-index con sticky CTA/cart drawer).
+      Contenuto hardcoded, portato 1:1 dal vecchio tema Horizon (home-buy-section.liquid).
+      Apertura/chiusura in custom-buy-box.js. data-dialog combacia con data-open-dialog.
+    {%- endcomment -%}
+    <dialog
+      id="cbb-dialog-size-{{ section.id }}"
+      class="custom-buy-box__dialog"
+      data-dialog="size"
+      aria-labelledby="cbb-dialog-size-title-{{ section.id }}"
+    >
+      <div class="custom-buy-box__dialog-box">
+        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="Chiudi">&times;</button>
+        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-size-title-{{ section.id }}">Guida alla Taglia</h3>
+        <div class="custom-buy-box__dialog-body">
+          <p>Misura la lunghezza interna della soletta e confronta con la tabella.</p>
+          <table class="custom-buy-box__stbl">
+            <thead><tr><th>IT</th><th>Cm Soletta Interna</th></tr></thead>
+            <tbody>
+              <tr><td>37</td><td>24,5 cm</td></tr>
+              <tr><td>38</td><td>25 cm</td></tr>
+              <tr><td>39</td><td>25,5 cm</td></tr>
+              <tr><td>40</td><td>26,5 cm</td></tr>
+              <tr><td>41</td><td>27,5 cm</td></tr>
+              <tr><td>42</td><td>28 cm</td></tr>
+              <tr><td>43</td><td>28,5 cm</td></tr>
+              <tr><td>44</td><td>29 cm</td></tr>
+              <tr><td>45</td><td>30 cm</td></tr>
+              <tr><td>46</td><td>30,5 cm</td></tr>
+              <tr><td>47</td><td>31 cm</td></tr>
+              <tr><td>48</td><td>32 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog
+      id="cbb-dialog-specs-{{ section.id }}"
+      class="custom-buy-box__dialog"
+      data-dialog="specs"
+      aria-labelledby="cbb-dialog-specs-title-{{ section.id }}"
+    >
+      <div class="custom-buy-box__dialog-box">
+        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="Chiudi">&times;</button>
+        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-specs-title-{{ section.id }}">Documentazione Tecnica</h3>
+        <div class="custom-buy-box__dialog-body">
+          <div class="custom-buy-box__doc-section">
+            <p class="custom-buy-box__doc-label">Documenti comuni</p>
+            <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf?v=1776677825" target="_blank" rel="noopener">
+              <span class="custom-buy-box__doc-icon">&#8595;</span>
+              <span class="custom-buy-box__doc-name">Certificazione DPI S3S</span>
+              <span class="custom-buy-box__doc-type">PDF</span>
+            </a>
+            <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/NOTA-INFORMATIVA-DRKAMPES.pdf?v=1776677825" target="_blank" rel="noopener">
+              <span class="custom-buy-box__doc-icon">&#8595;</span>
+              <span class="custom-buy-box__doc-name">Nota informativa</span>
+              <span class="custom-buy-box__doc-type">PDF</span>
+            </a>
+          </div>
+          <div class="custom-buy-box__doc-section">
+            <p class="custom-buy-box__doc-label">Schede tecniche per modello</p>
+            <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
+              <span class="custom-buy-box__doc-icon">&#8595;</span>
+              <span class="custom-buy-box__doc-name">Dr Kampes Nere</span>
+              <span class="custom-buy-box__doc-type">PDF</span>
+            </a>
+            <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
+              <span class="custom-buy-box__doc-icon">&#8595;</span>
+              <span class="custom-buy-box__doc-name">Dr Kampes Testa di Moro</span>
+              <span class="custom-buy-box__doc-type">PDF</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </dialog>
 
   </custom-buy-box>
 

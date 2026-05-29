@@ -22,6 +22,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 016 | LegalBlink CMP non caricato nel theme editor (request.design_mode) | 2026-05-29 | Active |
 | 017 | Apertura automatica del pannello Impostazioni del CMP | 2026-05-29 | Active |
 | 018 | PDP: selettori circolari, solo ATC, sticky mobile | 2026-05-29 | Active |
+| 019 | Buy-box home: popup guida taglie + schede tecniche (<dialog> nativo) | 2026-05-29 | Active |
 
 ## Conventions
 
