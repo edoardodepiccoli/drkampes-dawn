@@ -65,3 +65,14 @@ JS manuale di open/close).
 Home, sezione acquista: i due bottoni aprono i rispettivi `<dialog>`; chiusura via X/backdrop/ESC;
 body bloccato da aperto; nessun conflitto con sticky CTA/cart drawer; mobile sheet dal basso,
 desktop centrato; ATC e selettori invariati; console pulita.
+
+## Update — 2026-05-29 (desktop centrato + bottoni stile link)
+
+- **Bug specificita' desktop**: la media query desktop usava `.custom-buy-box__dialog` (0,1,0),
+  meno specifica della regola base `.custom-buy-box-section .custom-buy-box__dialog` (0,2,0),
+  quindi non si applicava e il modale restava bottom-sheet a tutta larghezza anche su desktop.
+  Fix: scopare i selettori della media query con `.custom-buy-box-section`. Ora desktop =
+  modale centrato 48rem, mobile = sheet dal basso.
+- **Bottoni stile link**: da box grigi (port Horizon `hbs__info-btn`) a stile link
+  (`color-foreground`, testo sottolineato, no box) con icona SVG inline a sinistra (righello per
+  "Guida taglie", documento per "Schede tecniche"). Markup nel `.liquid`, stile nel `.css`.

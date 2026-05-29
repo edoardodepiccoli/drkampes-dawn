@@ -305,25 +305,38 @@
 
 .custom-buy-box-section .custom-buy-box__info-btns {
   display: flex;
-  gap: 0.6rem;
+  gap: 2rem;
   flex-wrap: wrap;
   margin: 1.2rem 0;
 }
 
+/* Stile link: niente box, testo sottolineato con icona a sinistra. */
 .custom-buy-box-section .custom-buy-box__info-btn {
-  font-size: 1.2rem;
-  padding: 0.6rem 1rem;
-  border-radius: 0.4rem;
-  border: 0.1rem solid #ccc;
-  background: #f2f2f2;
-  color: #333;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(var(--color-foreground));
+  font-family: inherit;
+  font-size: 1.3rem;
+  line-height: 1.3;
   cursor: pointer;
   white-space: nowrap;
-  font-family: inherit;
-  line-height: 1.3;
+}
+.custom-buy-box-section .custom-buy-box__info-btn span {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
 }
 .custom-buy-box-section .custom-buy-box__info-btn:hover {
-  background: #e8e8e8;
+  opacity: 0.7;
+}
+
+.custom-buy-box-section .custom-buy-box__info-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
 }
 
 /* <dialog>: reset del default UA, il browser lo apre nel top layer.
@@ -459,13 +472,17 @@
   color: #111;
 }
 
-/* desktop: modale centrato a larghezza fissa */
+/* desktop: modale centrato a larghezza fissa.
+   Selettori scoped con .custom-buy-box-section per pareggiare la specificita' della
+   regola base (.custom-buy-box-section .custom-buy-box__dialog), altrimenti la base
+   vince e il modale resta bottom-sheet a tutta larghezza anche su desktop. */
 @media screen and (min-width: 750px) {
-  .custom-buy-box__dialog {
+  .custom-buy-box-section .custom-buy-box__dialog {
     width: 48rem;
+    /* centrato: il margin auto su tutti i lati centra il <dialog> modale */
     margin: auto;
   }
-  .custom-buy-box__dialog-box {
+  .custom-buy-box-section .custom-buy-box__dialog-box {
     border-radius: 1.2rem;
     max-height: 80vh;
   }
