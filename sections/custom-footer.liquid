@@ -1,0 +1,122 @@
+{% comment %}
+  CUSTOM · Footer
+
+  Site-wide footer replacement built as a custom section (decision 004 / 005 pattern).
+  Stacked, centered: top image → text → bottom image (optional link) → payment icons.
+  All content editable from the theme editor (image_picker / richtext / url).
+
+  enabled_on.groups = ["footer"] → addable only inside the footer section group.
+  Swap-in is done manually in the theme editor (remove stock footer, add this one);
+  footer-group.json is intentionally NOT edited here.
+{% endcomment %}
+
+{{ 'custom-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-footer color-{{ section.settings.color_scheme }} gradient">
+  <div class="custom-footer__inner">
+
+    {%- if section.settings.image_top != blank -%}
+      <img
+        class="custom-footer__img custom-footer__img--top"
+        src="{{ section.settings.image_top | image_url: width: 800 }}"
+        alt="{{ section.settings.image_top.alt | escape }}"
+        width="{{ section.settings.image_top.width }}"
+        height="{{ section.settings.image_top.height }}"
+        loading="lazy"
+      >
+    {%- endif -%}
+
+    {%- if section.settings.text != blank -%}
+      <div class="custom-footer__text rte">{{ section.settings.text }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.image_bottom != blank -%}
+      {%- comment -%}
+        Capture the <img> once, then wrap in <a> only when a link is set — avoids
+        duplicating the image markup across the linked / non-linked branches.
+      {%- endcomment -%}
+      {%- capture bottom_img -%}
+        <img
+          class="custom-footer__img custom-footer__img--bottom"
+          src="{{ section.settings.image_bottom | image_url: width: 800 }}"
+          alt="{{ section.settings.image_bottom.alt | escape }}"
+          width="{{ section.settings.image_bottom.width }}"
+          height="{{ section.settings.image_bottom.height }}"
+          loading="lazy"
+        >
+      {%- endcapture -%}
+      {%- if section.settings.image_bottom_link != blank -%}
+        <a class="custom-footer__link" href="{{ section.settings.image_bottom_link }}">{{ bottom_img }}</a>
+      {%- else -%}
+        {{ bottom_img }}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.show_payment -%}
+      {%- comment -%} Same markup/classes as Dawn footer.liquid:287-296 so component-list-payment.css applies. {%- endcomment -%}
+      <div class="custom-footer__payment">
+        <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+        <ul class="list list-payment" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li class="list-payment__item">
+              {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Footer",
+  "tag": "section",
+  "class": "custom-footer-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_top",
+      "label": "Top image"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<h2><strong>Dr Kampes — Italian Trucker Shoes</strong></h2><p><strong>CAMPES S.r.l.</strong>  Sede legale e amministrativa: Via Noalese 84/E, 31100 Treviso (TV), Italia<br/>C.F. e P.IVA 05496370262<br/>Iscritta al Registro delle Imprese di Treviso-Belluno -  REA TV-448699<br/>Capitale sociale € 4.000,00 interamente versato<br/></p><p>PEC: <a href=\"mailto:campessrl@pec.it\">campessrl@pec.it</a>   <br/>Email: <a href=\"mailto:info@drkampes.com\">info@drkampes.com</a></p><p><a href=\"/policies/legal-notice\" title=\"Legal Notice\">Informativa legale</a><br/><a href=\"/policies/privacy-policy\" title=\"Privacy Policy\">Privacy Policy</a><br/><a href=\"/pages/cookie-policy\" title=\"Cookie Policy\">Cookie Policy</a><br/><a href=\"/policies/refund-policy\" title=\"Refund Policy\">Resi e rimborsi</a><br/><a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">Spedizioni</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\" title=\"Garanzia 3 Anni\">Condizioni di Vendita B2C</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\" title=\"Garanzia 3 Anni\">Condizioni di Fornitura B2B</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\">Garanzia 3 Anni</a><br/><a href=\"/pages/contatti\">Contatti</a><br/><a href=\"/pages/progetto-finanziato-pr-veneto-fesr\" title=\"Progetto finanziato PR Veneto FESR\">Progetto finanziato PR Veneto FESR</a><br/>  </p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bottom",
+      "label": "Bottom image"
+    },
+    {
+      "type": "url",
+      "id": "image_bottom_link",
+      "label": "Bottom image link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment",
+      "label": "Show payment icons",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "CUSTOM · Footer"
+    }
+  ]
+}
+{% endschema %}

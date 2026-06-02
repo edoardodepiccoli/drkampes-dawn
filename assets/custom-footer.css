@@ -1,0 +1,48 @@
+/*
+ * CUSTOM · Footer — scoped styles.
+ * All rules rooted on .custom-footer-section (the schema "class") so nothing leaks.
+ * Background / text color come from Dawn's color-{scheme} class on .custom-footer.
+ */
+
+.custom-footer-section .custom-footer {
+  /* color-{scheme} + .gradient supply background + foreground; just ensure full bleed */
+  width: 100%;
+}
+
+.custom-footer-section .custom-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.4rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 6.4rem 1.5rem;
+}
+
+.custom-footer-section .custom-footer__img {
+  display: block;
+  max-width: 22rem;
+  height: auto;
+}
+
+.custom-footer-section .custom-footer__link {
+  display: inline-block;
+}
+
+/* Readable measure for the legal copy; inherits color from the scheme. */
+.custom-footer-section .custom-footer__text {
+  max-width: 60rem;
+}
+
+/* Center Dawn's payment icon list (component-list-payment.css handles the icons). */
+.custom-footer-section .custom-footer__payment .list-payment {
+  justify-content: center;
+}
+
+@media screen and (max-width: 749px) {
+  .custom-footer-section .custom-footer__inner {
+    gap: 1.8rem;
+    padding: 4rem 1.5rem;
+  }
+}

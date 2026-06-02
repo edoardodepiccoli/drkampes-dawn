@@ -24,6 +24,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 018 | PDP: selettori circolari, solo ATC, sticky mobile | 2026-05-29 | Active |
 | 019 | Buy-box home: popup guida taglie + schede tecniche (<dialog> nativo) | 2026-05-29 | Active |
 | 020 | Buy-box home: righe trust comprimibili (accordion Dawn statico) | 2026-05-29 | Active |
+| 021 | custom-footer: footer editabile (image + text + linked image), swap da editor | 2026-06-02 | Active |
 
 ## Conventions
 

@@ -49,3 +49,5 @@ Each custom homepage section is a real Dawn section file with a `{% schema %}`:
 The first application of this pattern — a `CUSTOM · Footer` section (`sections/custom-footer.liquid` + `assets/custom-footer.css`) replacing Dawn's footer site-wide — was built through Unit 2, then **reverted on visual-quality grounds** (commit `84f1213`). The rejection was about the rendered result, not the architecture. The pattern itself (hybrid section, `CUSTOM ·` prefix, scoped CSS, `enabled_on` footer group, single `image_picker` setting) is unaffected and remains Active.
 
 Confirmed working before removal: `"enabled_on": { "groups": ["footer"] }` correctly restricts a custom section to the footer section group's "Add section" picker — it appeared there and nowhere else.
+
+Rebuilt 2026-06-02 as an editor-editable footer — see [021](021-custom-footer-editable-rebuild.md).
