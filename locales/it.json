@@ -553,6 +553,9 @@
       "marketing": {
         "accept_sms_checkbox_label": "Ricevi assistenza personalizzata per la taglia via WhatsApp (consigliato)",
         "accept_marketing_checkbox_label": "Inviami codici sconto esclusivi via email"
+      },
+      "payment_gateway": {
+        "bank_deposit_label": "Bonifico bancario"
       }
     }
   }
