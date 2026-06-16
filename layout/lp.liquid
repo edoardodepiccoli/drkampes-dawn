@@ -282,5 +282,11 @@
         });
       }
     </script>
+
+    {%- comment -%}
+      lp.liquid drops footer-group, so the site-wide WhatsApp button from theme.liquid
+      would never appear on landing pages. Render it explicitly here for full coverage.
+    {%- endcomment -%}
+    {%- render 'floating-whatsapp-button' -%}
   </body>
 </html>
