@@ -17,7 +17,8 @@
   gap: 2.4rem;
   max-width: 80rem;
   margin-inline: auto;
-  padding: 6.4rem 1.5rem;
+  /* top 6.4 / sides 1.5 / bottom 9.6 — extra breathing room at the foot of the page */
+  padding: 6.4rem 1.5rem 9.6rem;
 }
 
 .custom-footer-section .custom-footer__img {
@@ -43,6 +44,6 @@
 @media screen and (max-width: 749px) {
   .custom-footer-section .custom-footer__inner {
     gap: 1.8rem;
-    padding: 4rem 1.5rem;
+    padding: 4rem 1.5rem 6.4rem;
   }
 }
