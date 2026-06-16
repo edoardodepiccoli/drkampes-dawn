@@ -556,13 +556,6 @@
       },
       "payment_gateway": {
         "bank_deposit_label": "Bonifico bancario"
-      },
-      "taxes": {
-        "vat_number": {
-          "field": {
-            "label": "Vuoi fattura? (Inserisci Partita IVA)"
-          }
-        }
       }
     }
   }
