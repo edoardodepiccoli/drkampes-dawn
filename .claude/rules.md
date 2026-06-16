@@ -18,7 +18,13 @@ These are not preferences. They are settled. Treat as binding unless the user ex
 - **All editable content is hard-coded in the snippet.** Copy, image URLs, icon choices, discount codes, viewer ranges. Edit via code, not via a theme editor.
 - **No `{% schema %}` blocks anywhere in LP elements.** Snippets have no schema.
 
+## Site-wide elements
+
+- **A site-wide element must be rendered in BOTH `layout/theme.liquid` AND `layout/lp.liquid`.** The landing pages use `lp.liquid`, which intentionally drops `header-group` / `footer-group`. Anything hooked only into `theme.liquid` (e.g. after `footer-group`) is silently invisible on every landing page. Cost us a debugging round on the floating WhatsApp button. See `decisions/022-floating-whatsapp-button-sitewide.md`.
+
 ## CSS specifics
+
+- **A snippet that emits `stylesheet_tag` while rendered mid-`<body>` injects a `<link>` element into the layout flow.** It's `display:none` so invisible, but it IS a DOM sibling — it sits between the previous element and the snippet's own markup, which defeats adjacent-sibling (`+`) and `:has(+ ...)` CSS selectors that assume the two are neighbours. When you need to style based on what precedes such a snippet, target by content (e.g. `> div:has(> product-form)`), not by adjacency. Surfaced while fighting PDP spacing in `decisions/023`.
 
 - **Multiply all `Nrem` values from Horizon CSS by 1.6 when porting.** Dawn's `lp.liquid` sets `html { font-size: calc(var(--font-body-scale) * 62.5%) }` (10px root). Horizon uses the browser default (16px root). One-liner: `python3 -c "import re; ... re.sub(r'(\\d+(?:\\.\\d+)?)rem', repl, content)"` (canonical version in `patterns/porting-horizon-section.md`).
 - **No global CSS.** Never style bare HTML elements unprefixed. Always scope under the section's BEM root.
