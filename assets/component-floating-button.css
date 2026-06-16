@@ -1,0 +1,38 @@
+.floating-whatsapp {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #25d366;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+/* Safe area insets for iPhone home bar / notch */
+@supports (bottom: env(safe-area-inset-bottom)) {
+  .floating-whatsapp {
+    bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1rem));
+    right: max(2rem, env(safe-area-inset-right));
+  }
+}
+
+.floating-whatsapp:hover,
+.floating-whatsapp:focus-visible {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+
+.floating-whatsapp__icon {
+  width: 30px;
+  height: 30px;
+  fill: #ffffff;
+  display: block;
+}
