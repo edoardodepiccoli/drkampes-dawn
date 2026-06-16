@@ -245,6 +245,20 @@
         -%}
 
         {%- comment -%}
+          CTA secondaria sotto l'Acquista: apre WhatsApp con messaggio precompilato.
+          Home -> niente URL prodotto, nome hardcoded; prezzo dalla prima variante
+          (stesso first_variant usato per il prezzo a r.144), statico al load.
+        {%- endcomment -%}
+        {%- capture wa_message -%}
+Ciao Dr Kampes, mi interessa questo prodotto:
+
+- Dr Kampes Trucker Shoes: {{ first_variant.price | money }}
+
+Vorrei chiederti piu' informazioni, grazie!
+{%- endcapture -%}
+        {%- render 'whatsapp-info-button', message: wa_message -%}
+
+        {%- comment -%}
           Righe trust comprimibili sotto l'ATC. Replica statica del collapsible_tab nativo
           Dawn (vedi custom-product-information.liquid case 'collapsible_tab'): markup
           product__accordion + <details>, icone dal tema via snippet icon-accordion, caret

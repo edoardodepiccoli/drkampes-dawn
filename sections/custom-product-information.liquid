@@ -503,6 +503,21 @@
                   section_id: section.id,
                   show_pickup_availability: false
                 -%}
+                {%- comment -%}
+                  CTA secondaria sotto l'Acquista: WhatsApp con messaggio precompilato.
+                  PDP -> nome, prezzo e URL dinamici. wa_url usa lo stesso pattern
+                  della share_url a r.480 (product.url | prepend: request.origin).
+                {%- endcomment -%}
+                {%- assign wa_url = product.url | prepend: request.origin -%}
+                {%- capture wa_message -%}
+Ciao Dr Kampes, mi interessa questo prodotto:
+
+- {{ product.title }}: {{ product.selected_or_first_available_variant.price | money }}
+- URL: {{ wa_url }}
+
+Vorrei chiederti piu' informazioni, grazie!
+{%- endcapture -%}
+                {%- render 'whatsapp-info-button', message: wa_message -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">

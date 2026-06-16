@@ -106,6 +106,19 @@
   scroll-margin-top: 10rem;
 }
 
+/* Dawn da' `margin: 1.5rem 0` a ogni figlio di .product__info-container via
+   `> * + *`. Il vuoto sopra la CTA WhatsApp e' il margin-BOTTOM del blocco
+   Acquista che la precede. NB: lo stylesheet_tag dello snippet inietta un <link>
+   (display:none) subito prima del bottone, quindi NON si puo' usare l'adiacenza
+   `+`. Targhettiamo il blocco Acquista dal <product-form> che contiene. */
+.custom-product-information-section .product__info-container > div:has(> product-form) {
+  margin-bottom: 0;
+}
+
+.custom-product-information-section .whatsapp-info-btn {
+  margin-top: 0.4rem;
+}
+
 /* Barra fissa in basso, nascosta (scivolata giu') finche' non .is-visible.
    Mutuata da .custom-buy-box__sticky-bar. */
 .custom-pdp__sticky-bar {

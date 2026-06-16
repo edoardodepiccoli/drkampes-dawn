@@ -1,0 +1,31 @@
+{%- comment -%}
+  Renders a "Chiedi info su WhatsApp" secondary CTA that opens a wa.me chat
+  with a pre-filled message. Sibling of the primary Acquista button — does not
+  touch the add-to-cart form.
+
+  Accepts:
+  - message {string}  Plain-text body, pre-filled in WhatsApp. Newlines are kept
+                      (url_encode -> %0A, which WhatsApp renders as line breaks).
+  - number  {string}  Optional. Defaults to the store WhatsApp number.
+
+  Usage:
+  {%- render 'whatsapp-info-button', message: wa_message -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign wa_number = number | default: '393447703171'
+  assign wa_text = message | url_encode
+-%}
+
+{{ 'component-whatsapp-info-button.css' | asset_url | stylesheet_tag }}
+
+<a
+  href="https://wa.me/{{ wa_number }}?text={{ wa_text }}"
+  class="whatsapp-info-btn"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chiedi info su WhatsApp"
+>
+  {%- render 'icon-whatsapp', class: 'whatsapp-info-btn__icon' -%}
+  <span>Chiedi info su WhatsApp</span>
+</a>
