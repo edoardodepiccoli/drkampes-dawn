@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -274,7 +283,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -526,6 +534,189 @@
       "max_characters": "{{ max_chars }} characters max",
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "stock": {
+        "unshippable_product": {
+          "message": {
+            "many": "These items will be removed from your cart as there are no delivery methods available for your address."
+          }
+        },
+        "unfulfillable_product": {
+          "message": {
+            "many": "%{delivery_method} is no longer available for these items."
+          },
+          "default_message": {
+            "many": "The selected delivery method is no longer available for these items."
+          }
+        }
+      },
+      "order_summary": {
+        "pickup_unavailable_banner_title_with_country": {
+          "many": "No stores available in %{country} with your items"
+        }
+      },
+      "shipping": {
+        "subscription_delivery_description": {
+          "first_n_order_free_with_cycle": {
+            "many": "Free shipping for %{count} more deliveries, then at %{recurring_order_shipping_price}"
+          },
+          "first_n_order_free_with_cycle_delivery_not_included": {
+            "many": "Free delivery for %{count} deliveries, then at %{recurring_order_shipping_price}"
+          },
+          "prepaid_free_shipping_with_cycles": {
+            "many": "Free shipping for the first %{cycle} period, then at a price of %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_one_cycle": {
+            "many": "%{shipping_price} for %{count} more deliveries (%{per_delivery_cost} each)"
+          },
+          "prepaid_order_one_cycle_delivery_not_included": {
+            "many": "%{shipping_price} for %{count} deliveries (%{per_delivery_cost})"
+          },
+          "prepaid_order_no_cycle": {
+            "many": "%{shipping_price} for the next %{count} deliveries (%{per_delivery_cost}), then the price of %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_no_cycle_delivery_not_included": {
+            "many": "%{shipping_price} for %{count} deliveries (%{per_delivery_cost}), then %{recurring_order_shipping_price}"
+          }
+        }
+      },
+      "payment": {
+        "card_fields_unavailable_html": {
+          "many": "Credit and debit card payments are currently unavailable. <br><a href=\"%{current_url}\">Refresh this page</a> or try another payment method."
+        },
+        "expired_cards_info": {
+          "many": "There are %{count} expired cards, which you can view and edit in your account."
+        },
+        "discount_codes_removed_or_modified_summary": {
+          "many": "%{count} discount codes have been removed or modified"
+        }
+      },
+      "shipping_errors": {
+        "shipping_method_not_available_generic": {
+          "many": "Some items in your cart cannot be shipped to the address entered. Please check the address to ensure it is correct and try again, or select a different address."
+        },
+        "shipping_method_not_available_updated": {
+          "many": "One or more items added do not ship to your location. Remove them to check out or contact the store."
+        }
+      },
+      "processing": {
+        "wait": {
+          "medium": {
+            "many": "Your order is being processed. Estimated waiting time: %{count} minutes."
+          }
+        }
+      },
+      "thank_you": {
+        "gift_card_confirmation_by_text_typ": {
+          "many": "You will receive an SMS with your gift vouchers in a few minutes."
+        },
+        "gift_card_confirmation_by_email_typ": {
+          "many": "You will receive an email with your gift vouchers in a few minutes."
+        },
+        "gift_card_resend_failure": {
+          "many": "There was a problem resending the gift vouchers. Please try again or contact us."
+        },
+        "items_fulfilled_by_store": {
+          "many": "The items you purchased will be shipped from other stores."
+        }
+      },
+      "open_graph_meta_tag": {
+        "title_with_products": {
+          "many": "Buy %{product_name} and %{count} other items"
+        }
+      },
+      "subscriptions": {
+        "recurring_totals_with_initial_order_shipping_discount_with_policies": {
+          "first_cycles": {
+            "many": "subsequently %{count} payments, each at a price of %{total_price}"
+          }
+        }
+      },
+      "contextual_availability": {
+        "products_not_available": {
+          "many": "These products will be removed from your cart as they are not available in your country/region."
+        },
+        "all_products_in_cart_unavailable": {
+          "many": "These products are not available in your country/region."
+        }
+      },
+      "deliverability": {
+        "not_deliverable": {
+          "title": {
+            "many": "No delivery available for %{count} items"
+          },
+          "message": {
+            "many": "These items will be removed from your cart as there are no delivery methods available for your address."
+          }
+        }
+      },
+      "pickup_point": {
+        "pickup_unavailable_banner_title": {
+          "many": "No pickup points available for your items"
+        }
+      },
+      "local_pickup": {
+        "location_information": {
+          "many": "There are %{count} locations with stock available near you"
+        },
+        "all_stores_far_away": {
+          "title_with_item": {
+            "many": "The nearest location with your items is over %{distance} from %{location}"
+          }
+        }
+      },
+      "review_address_modal": {
+        "subtitle": {
+          "many": "This order will be shipped to an address provided by {{merchant}}. Please select a shipping address."
+        }
+      }
+    },
+    "page_titles": {
+      "search_results": {
+        "many": "Search: %{count} results found for \"%{terms}\""
+      }
+    }
+  },
+  "customer_accounts": {
+    "orders": {
+      "order_status": {
+        "confirmed_gift_card_additional_description": {
+          "many": "Each gift voucher will be sent in a separate email."
+        },
+        "delivered_description_gift_card_text": {
+          "many": "The gift cards have been sent by message."
+        },
+        "confirmed_gift_card_additional_description_text": {
+          "many": "Each gift voucher will be sent in a separate message."
+        },
+        "gift_resend_failure": {
+          "many": "There was a problem resending the gift vouchers. Please try again or contact us."
+        }
+      }
+    },
+    "B2B": {
+      "draft_order_details": {
+        "payment_status": {
+          "pending": {
+            "banner_overdue_for_single_fulfillment": {
+              "many": "The payment of {{amount}} is {{count}} days late. {{link}}"
+            }
+          }
+        }
+      }
+    },
+    "payment_methods": {
+      "add_payment_method": {
+        "updating_contracts": {
+          "many": "Updating {{count}} subscription contracts..."
+        },
+        "contracts_updated": {
+          "many": "{{count}} subscription contracts updated successfully"
+        }
+      }
     }
   }
 }
