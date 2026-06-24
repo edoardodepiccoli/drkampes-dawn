@@ -20,7 +20,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 014 | B2B quiz modal a tutto schermo, niente overlay | 2026-05-22 | Active |
 | 015 | custom-product-information: sezione PDP clonata + galleria per variante | 2026-05-22 | Active |
 | 016 | LegalBlink CMP non caricato nel theme editor (request.design_mode) | 2026-05-29 | Active |
-| 017 | Apertura automatica del pannello Impostazioni del CMP | 2026-05-29 | Active |
+| 017 | Apertura automatica del pannello Impostazioni del CMP | 2026-05-29 | Superseded by 026 |
 | 018 | PDP: selettori circolari, solo ATC, sticky mobile | 2026-05-29 | Active |
 | 019 | Buy-box home: popup guida taglie + schede tecniche (<dialog> nativo) | 2026-05-29 | Active |
 | 020 | Buy-box home: righe trust comprimibili (accordion Dawn statico) | 2026-05-29 | Active |
@@ -29,6 +29,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 023 | "Chiedi info su WhatsApp" CTA in buy-box + PDP (PDP spacing aperto) | 2026-06-16 | Active |
 | 024 | Sezioni custom: traduzione EN via locale gate inline (`request.locale.iso_code`) | 2026-06-17 | Active |
 | 025 | custom-garanzie: badge images locale-gated CDN URLs, image_picker rimosso | 2026-06-24 | Active |
+| 026 | Rimosso meccanismo di nascondimento banner cookie (opacity:0 + auto-settings.js) | 2026-06-24 | Active |
 
 ## Conventions
 
