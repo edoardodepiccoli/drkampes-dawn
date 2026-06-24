@@ -16,12 +16,15 @@
 
 {%- liquid
   assign product = section.settings.product
+  # Locale gate: EN storefront shows English copy, everything else falls back to
+  # Italian. Same convention as the homepage reviews section (custom_liquid "recensioni").
+  assign is_en = request.locale.iso_code == 'en'
 -%}
 
 {%- if product == blank -%}
   {%- comment -%} Editor: nessun prodotto scelto. Placeholder minimo. {%- endcomment -%}
   <div class="custom-buy-box custom-buy-box--empty">
-    <p>Seleziona un prodotto nelle impostazioni della sezione.</p>
+    <p>{% if is_en %}Select a product in the section settings.{% else %}Seleziona un prodotto nelle impostazioni della sezione.{% endif %}</p>
   </div>
 {%- else -%}
   {%- liquid
@@ -151,7 +154,11 @@
 
           {%- comment -%} Importo rata dinamico = prezzo variante / 3. Frase hardcoded. {%- endcomment -%}
           <p class="custom-buy-box__installment">
-            Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con Klarna o PayPal
+            {%- if is_en -%}
+              Or <strong>3 instalments of <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> with Klarna or PayPal
+            {%- else -%}
+              Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con Klarna o PayPal
+            {%- endif -%}
           </p>
         </div>
 
@@ -221,7 +228,7 @@
               <path d="M21.3 15.3 8.7 2.7a1 1 0 0 0-1.4 0L2.7 7.3a1 1 0 0 0 0 1.4l12.6 12.6a1 1 0 0 0 1.4 0l4.6-4.6a1 1 0 0 0 0-1.4Z"/>
               <path d="m7.5 10.5 2 2M11 7l2 2M14.5 3.5l2 2M4 14l2 2"/>
             </svg>
-            <span>Guida taglie</span>
+            <span>{% if is_en %}Size guide{% else %}Guida taglie{% endif %}</span>
           </button>
           <button type="button" class="custom-buy-box__info-btn" data-open-dialog="specs">
             {%- comment -%} icona documento {%- endcomment -%}
@@ -229,7 +236,7 @@
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
               <path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/>
             </svg>
-            <span>Schede tecniche</span>
+            <span>{% if is_en %}Spec sheets{% else %}Schede tecniche{% endif %}</span>
           </button>
         </div>
 
@@ -250,11 +257,19 @@
           (stesso first_variant usato per il prezzo a r.144), statico al load.
         {%- endcomment -%}
         {%- capture wa_message -%}
+{%- if is_en -%}
+Hi Dr Kampes, I'm interested in this product:
+
+- Dr Kampes Trucker Shoes: {{ first_variant.price | money }}
+
+I'd like some more information, thanks!
+{%- else -%}
 Ciao Dr Kampes, mi interessa questo prodotto:
 
 - Dr Kampes Trucker Shoes: {{ first_variant.price | money }}
 
 Vorrei chiederti piu' informazioni, grazie!
+{%- endif -%}
 {%- endcapture -%}
         {%- render 'whatsapp-info-button', message: wa_message -%}
 
@@ -271,12 +286,16 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'return' %}
-                  <h2 class="h4 accordion__title">Reso / cambio taglia gratis</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}Free returns / size exchange{% else %}Reso / cambio taglia gratis{% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
-                <p>Taglia sbagliata? La cambiamo gratis entro 14 giorni, spedizione del reso <strong>a nostro carico</strong>. Ordina senza pensieri: se non calzano, ci pensiamo noi.</p>
+                {%- if is_en -%}
+                  <p>Wrong size? We exchange them free within 14 days, return shipping <strong>on us</strong>. Order worry-free: if they don't fit, we'll take care of it.</p>
+                {%- else -%}
+                  <p>Taglia sbagliata? La cambiamo gratis entro 14 giorni, spedizione del reso <strong>a nostro carico</strong>. Ordina senza pensieri: se non calzano, ci pensiamo noi.</p>
+                {%- endif -%}
               </div>
             </details>
           </div>
@@ -286,12 +305,16 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'truck' %}
-                  <h2 class="h4 accordion__title">Spedizione rapida 1-2 giorni</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}Fast shipping 1–2 days{% else %}Spedizione rapida 1-2 giorni{% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
-                <p>Ordini oggi, le ricevi in 1-2 giorni lavorativi. Spedizione tracciata.</p>
+                {%- if is_en -%}
+                  <p>Order today, receive them in 1–2 business days. Tracked shipping.</p>
+                {%- else -%}
+                  <p>Ordini oggi, le ricevi in 1-2 giorni lavorativi. Spedizione tracciata.</p>
+                {%- endif -%}
               </div>
             </details>
           </div>
@@ -301,12 +324,16 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'shoe' %}
-                  <h2 class="h4 accordion__title">Garanzia 3 anni (1095 giorni)</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}3-year warranty (1095 days){% else %}Garanzia 3 anni (1095 giorni){% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
-                <p>Le tue Dr Kampes sono coperte per 1095 giorni di lavoro. Se in 3 anni cedono strutturalmente, <strong>le ripariamo o sostituiamo</strong>. Senza discussioni.</p>
+                {%- if is_en -%}
+                  <p>Your Dr Kampes are covered for 1095 working days. If they fail structurally within 3 years, <strong>we repair or replace them</strong>. No questions asked.</p>
+                {%- else -%}
+                  <p>Le tue Dr Kampes sono coperte per 1095 giorni di lavoro. Se in 3 anni cedono strutturalmente, <strong>le ripariamo o sostituiamo</strong>. Senza discussioni.</p>
+                {%- endif -%}
               </div>
             </details>
           </div>
@@ -316,12 +343,16 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'clipboard' %}
-                  <h2 class="h4 accordion__title">Conformi al 100%</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}100% compliant{% else %}Conformi al 100%{% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
-                <p>Conformi alla EN ISO 20345:2022+A1:2024, grado massimo S3S: puntale in composito, lamina antiforatura, suola antiscivolo SRC e impermeabilità totale. <strong>Il massimo standard di protezione disponibile oggi.</strong></p>
+                {%- if is_en -%}
+                  <p>Compliant with EN ISO 20345:2022+A1:2024, top S3S grade: composite toe cap, anti-puncture midsole, SRC anti-slip outsole and full waterproofing. <strong>The highest protection standard available today.</strong></p>
+                {%- else -%}
+                  <p>Conformi alla EN ISO 20345:2022+A1:2024, grado massimo S3S: puntale in composito, lamina antiforatura, suola antiscivolo SRC e impermeabilità totale. <strong>Il massimo standard di protezione disponibile oggi.</strong></p>
+                {%- endif -%}
               </div>
             </details>
           </div>
@@ -356,12 +387,12 @@ Vorrei chiederti piu' informazioni, grazie!
       aria-labelledby="cbb-dialog-size-title-{{ section.id }}"
     >
       <div class="custom-buy-box__dialog-box">
-        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="Chiudi">&times;</button>
-        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-size-title-{{ section.id }}">Guida alla Taglia</h3>
+        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="{% if is_en %}Close{% else %}Chiudi{% endif %}">&times;</button>
+        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-size-title-{{ section.id }}">{% if is_en %}Size guide{% else %}Guida alla Taglia{% endif %}</h3>
         <div class="custom-buy-box__dialog-body">
-          <p>Misura la lunghezza interna della soletta e confronta con la tabella.</p>
+          <p>{% if is_en %}Measure the inner insole length and compare it with the table.{% else %}Misura la lunghezza interna della soletta e confronta con la tabella.{% endif %}</p>
           <table class="custom-buy-box__stbl">
-            <thead><tr><th>IT</th><th>Cm Soletta Interna</th></tr></thead>
+            <thead><tr><th>{% if is_en %}EU{% else %}IT{% endif %}</th><th>{% if is_en %}Inner insole (cm){% else %}Cm Soletta Interna{% endif %}</th></tr></thead>
             <tbody>
               <tr><td>37</td><td>24,5 cm</td></tr>
               <tr><td>38</td><td>25 cm</td></tr>
@@ -388,32 +419,32 @@ Vorrei chiederti piu' informazioni, grazie!
       aria-labelledby="cbb-dialog-specs-title-{{ section.id }}"
     >
       <div class="custom-buy-box__dialog-box">
-        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="Chiudi">&times;</button>
-        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-specs-title-{{ section.id }}">Documentazione Tecnica</h3>
+        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="{% if is_en %}Close{% else %}Chiudi{% endif %}">&times;</button>
+        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-specs-title-{{ section.id }}">{% if is_en %}Technical documentation{% else %}Documentazione Tecnica{% endif %}</h3>
         <div class="custom-buy-box__dialog-body">
           <div class="custom-buy-box__doc-section">
-            <p class="custom-buy-box__doc-label">Documenti comuni</p>
+            <p class="custom-buy-box__doc-label">{% if is_en %}Common documents{% else %}Documenti comuni{% endif %}</p>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">Certificazione DPI S3S</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}PPE S3S certification{% else %}Certificazione DPI S3S{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/NOTA-INFORMATIVA-DRKAMPES.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">Nota informativa</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}Information notice{% else %}Nota informativa{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
           </div>
           <div class="custom-buy-box__doc-section">
-            <p class="custom-buy-box__doc-label">Schede tecniche per modello</p>
+            <p class="custom-buy-box__doc-label">{% if is_en %}Spec sheets by model{% else %}Schede tecniche per modello{% endif %}</p>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">Dr Kampes Nere</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}Dr Kampes Black{% else %}Dr Kampes Nere{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">Dr Kampes Testa di Moro</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}Dr Kampes Dark Brown{% else %}Dr Kampes Testa di Moro{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
           </div>

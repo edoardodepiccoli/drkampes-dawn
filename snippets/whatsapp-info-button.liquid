@@ -15,6 +15,8 @@
 {%- liquid
   assign wa_number = number | default: '393447703171'
   assign wa_text = message | url_encode
+  # Locale gate for the button label: EN storefront shows English, else Italian.
+  assign is_en = request.locale.iso_code == 'en'
 -%}
 
 {{ 'component-whatsapp-info-button.css' | asset_url | stylesheet_tag }}
@@ -24,8 +26,8 @@
   class="whatsapp-info-btn"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Chiedi info su WhatsApp"
+  aria-label="{% if is_en %}Ask for info on WhatsApp{% else %}Chiedi info su WhatsApp{% endif %}"
 >
   {%- render 'icon-whatsapp', class: 'whatsapp-info-btn__icon' -%}
-  <span>Chiedi info su WhatsApp</span>
+  <span>{% if is_en %}Ask for info on WhatsApp{% else %}Chiedi info su WhatsApp{% endif %}</span>
 </a>

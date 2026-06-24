@@ -2,9 +2,10 @@
   CUSTOM · Garanzie
 
   Sezione custom homepage: 3 colonne, ognuna badge immagine + descrizione.
-  Badge e descrizione editabili dall'editor (image_picker + richtext per block).
+  Badge: URL CDN hardcoded, selezionato per locale (IT/EN/FR) tramite gate inline
+  su request.locale.iso_code — stesso pattern della sezione recensioni (decision 024).
+  Descrizione ancora editabile dall'editor via richtext per block (decision 005).
   Pattern: .claude/patterns/building-custom-homepage-section.md
-  Deroga al "contenuto hardcoded" di decision 004 — vedi decision 005.
 {% endcomment %}
 
 {{ 'custom-garanzie.css' | asset_url | stylesheet_tag }}
@@ -12,20 +13,50 @@
 <div class="custom-garanzie">
   <div class="custom-garanzie__grid">
     {%- for block in section.blocks -%}
+      {%- liquid
+        assign idx = forloop.index0
+        if request.locale.iso_code == 'en'
+          if idx == 0
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/ENG_-_S3S.png?v=1782302726'
+            assign badge_alt = 'S3S Safety Standard'
+          elsif idx == 1
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/ENG_-_MADE_IN_ITALY.png?v=1782302726'
+            assign badge_alt = 'Made in Italy'
+          else
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/ENG_-_3_GARANZIA.png?v=1782302725'
+            assign badge_alt = '3-year warranty'
+          endif
+        elsif request.locale.iso_code == 'fr'
+          if idx == 0
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/FR_-_S3S.png?v=1782302726'
+            assign badge_alt = 'Norme S3S'
+          elsif idx == 1
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/FR_-_MADE_IN_ITALY.png?v=1782302725'
+            assign badge_alt = 'Fabriqué en Italie'
+          else
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/FR_-_3_GARANZIA.png?v=1782302725'
+            assign badge_alt = 'Garantie 3 ans'
+          endif
+        else
+          if idx == 0
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/IT_-_S3S.png?v=1782302724'
+            assign badge_alt = 'Standard S3S'
+          elsif idx == 1
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/IT_-_MADE_IN_ITALY.png?v=1782302725'
+            assign badge_alt = 'Made in Italy'
+          else
+            assign badge_url = 'https://cdn.shopify.com/s/files/1/0960/9527/3303/files/IT_-_3_GARANZIA.png?v=1782302725'
+            assign badge_alt = 'Garanzia 3 anni'
+          endif
+        endif
+      -%}
       <div class="custom-garanzie__col" {{ block.shopify_attributes }}>
-        {%- if block.settings.badge != blank -%}
-          {%- comment -%}
-            Larghezza richiesta a 240px = 2x della resa CSS (~120px) per schermi retina.
-          {%- endcomment -%}
-          <img
-            class="custom-garanzie__badge"
-            src="{{ block.settings.badge | image_url: width: 240 }}"
-            alt="{{ block.settings.badge.alt | escape }}"
-            width="{{ block.settings.badge.width }}"
-            height="{{ block.settings.badge.height }}"
-            loading="lazy"
-          >
-        {%- endif -%}
+        <img
+          class="custom-garanzie__badge"
+          src="{{ badge_url }}"
+          alt="{{ badge_alt | escape }}"
+          loading="lazy"
+        >
 
         {%- if block.settings.description != blank -%}
           <div class="custom-garanzie__text">{{ block.settings.description }}</div>
@@ -47,11 +78,6 @@
       "type": "column",
       "name": "Colonna",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "badge",
-          "label": "Badge"
-        },
         {
           "type": "richtext",
           "id": "description",

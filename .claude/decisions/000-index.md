@@ -8,7 +8,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 002 | Rem values from Horizon multiplied by 1.6x for Dawn root | 2026-05-19 | Active |
 | 003 | Cart-add bypasses Dawn cart-drawer (fetch + redirect) | 2026-05-19 | Active |
 | 004 | Custom homepage sections: editor-reorderable, hardcoded content, CUSTOM prefix | 2026-05-22 | Active |
-| 005 | custom-garanzie: block editor-editable (image_picker + richtext) | 2026-05-22 | Active |
+| 005 | custom-garanzie: block editor-editable (image_picker + richtext) | 2026-05-22 | Superseded by 025 |
 | 006 | custom-buy-box: buy box homepage con carrello nativo Dawn | 2026-05-22 | Active |
 | 007 | Custom section su collection page + collezione complementare | 2026-05-22 | Active |
 | 008 | Smooth scroll sui link ancora, esteso a tutto il sito | 2026-05-22 | Active |
@@ -27,6 +27,8 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 021 | custom-footer: footer editabile (image + text + linked image), swap da editor | 2026-06-02 | Active |
 | 022 | Floating WhatsApp button, site-wide (reso in theme.liquid + lp.liquid) | 2026-06-16 | Active |
 | 023 | "Chiedi info su WhatsApp" CTA in buy-box + PDP (PDP spacing aperto) | 2026-06-16 | Active |
+| 024 | Sezioni custom: traduzione EN via locale gate inline (`request.locale.iso_code`) | 2026-06-17 | Active |
+| 025 | custom-garanzie: badge images locale-gated CDN URLs, image_picker rimosso | 2026-06-24 | Active |
 
 ## Conventions
 
