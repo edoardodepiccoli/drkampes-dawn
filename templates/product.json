@@ -61,6 +61,7 @@
         },
         "collapsible_tab_fjiDb3": {
           "type": "collapsible_tab",
+          "disabled": true,
           "settings": {
             "heading": "Garanzia 3 anni (1095 giorni)",
             "icon": "shoe",
@@ -70,6 +71,7 @@
         },
         "collapsible_tab_Y3mFi8": {
           "type": "collapsible_tab",
+          "disabled": true,
           "settings": {
             "heading": "Conformi al 100%",
             "icon": "clipboard",
