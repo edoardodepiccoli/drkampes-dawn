@@ -18,7 +18,11 @@
   assign product = section.settings.product
   # Locale gate: EN storefront shows English copy, everything else falls back to
   # Italian. Same convention as the homepage reviews section (custom_liquid "recensioni").
-  assign is_en = request.locale.iso_code == 'en'
+  # `assign` can't take a comparison expression directly — build the boolean via if/endif.
+  assign is_en = false
+  if request.locale.iso_code == 'en'
+    assign is_en = true
+  endif
 -%}
 
 {%- if product == blank -%}

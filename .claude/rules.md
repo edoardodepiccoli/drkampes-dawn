@@ -30,6 +30,17 @@ These are not preferences. They are settled. Treat as binding unless the user ex
 - **No global CSS.** Never style bare HTML elements unprefixed. Always scope under the section's BEM root.
 - **No `!important` to override JS-controlled styles.** If you need it, the architecture is wrong.
 
+## Liquid specifics
+
+- **`assign` cannot take a comparison expression (`==`, `!=`, etc.) on the right-hand side, even inside a `{%- liquid -%}` block.** `assign is_en = request.locale.iso_code == 'en'` throws `Expected end_of_string but found comparison` at render time — the raw error text leaks onto the page instead of the component. Comparisons are only valid inside `if` / `unless` / `case` / `elsif`. Build booleans via `if`/`endif` instead:
+  ```liquid
+  assign is_en = false
+  if request.locale.iso_code == 'en'
+    assign is_en = true
+  endif
+  ```
+  `sections/custom-garanzie.liquid` has always used the correct `if`/`elsif` form for the same locale check — copy that, not the broken `assign` idiom that shipped in commit `2f9f35a` and broke `snippets/whatsapp-info-button.liquid` + `sections/custom-buy-box.liquid` for two weeks before being caught.
+
 ## JavaScript specifics
 
 - **No inline `<script>` blocks that execute immediately inside snippets.** Always extract to `assets/lp-<name>.js` and load via `<script src="..." defer></script>` at the bottom of the snippet. Tiny scripts (5–10 lines) are still extracted — consistency beats convenience.

@@ -21,10 +21,24 @@ hardcodano il contenuto).
 {% if request.locale.iso_code == 'en' %}English{% else %}Italian{% endif %}
 ```
 
-Nei file `.liquid` si assegna una volta `assign is_en = request.locale.iso_code == 'en'`
-nel blocco `{%- liquid -%}` e poi si gate ogni stringa. L'italiano resta sempre il
-ramo `{% else %}` (default). I nomi propri (ambassador, "Dr Kampes", "Klarna",
-"PayPal", "PDF") non si traducono.
+Nei file `.liquid` si assegna una volta `is_en` nel blocco `{%- liquid -%}` e poi si
+gate ogni stringa. L'italiano resta sempre il ramo `{% else %}` (default). I nomi
+propri (ambassador, "Dr Kampes", "Klarna", "PayPal", "PDF") non si traducono.
+
+**Correzione (2026-07-09):** `assign` non accetta un'espressione di confronto (`==`)
+sul lato destro, nemmeno dentro `{%- liquid -%}` — `assign is_en = request.locale.iso_code == 'en'`
+lancia `Expected end_of_string but found comparison` a runtime (errore comparso come
+testo grezzo in pagina su `custom-buy-box.liquid` e `whatsapp-info-button.liquid`).
+Il booleano va costruito con `if`/`endif`:
+
+```liquid
+assign is_en = false
+if request.locale.iso_code == 'en'
+  assign is_en = true
+endif
+```
+
+Vedi `.claude/rules.md` § Liquid specifics.
 
 Applicato a:
 - `sections/custom-buy-box.liquid` — rata, bottoni Guida taglie / Schede tecniche,
