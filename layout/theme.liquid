@@ -305,13 +305,17 @@
     {%- endcomment -%}
     {%- unless request.design_mode -%}
       {%- comment -%}
-        Hide the CMP host until cookie-banner-auto-settings.js has clicked
-        "Impostazioni", otherwise the simple banner flashes before the settings
-        panel opens. The JS sets opacity to 1 (with the transition below) post-click.
-        Styling the host is fine: only LegalBlink's shadow content is encapsulated.
+        Cookie banner is hidden site-wide (see decisions/029). The auto-click
+        approach (decisions/017/026/028) kept breaking silently whenever
+        LegalBlink changed the settings button's markup/label. Hiding via
+        `display: none` doesn't fight LegalBlink's own JS -- it only ever sets
+        custom properties and `opacity` inline on the host, never `display` --
+        so their script re-rendering the banner can't undo this. Tracking is
+        unaffected: data-blocking-mode is driven by cookie_tracking_optout
+        below, not by banner visibility or visitor consent.
       {%- endcomment -%}
       <style>
-        lb-cookie-banner { opacity: 0; transition: opacity 150ms ease; }
+        lb-cookie-banner { display: none; }
       </style>
       {%- comment -%}
         cookie_tracking_optout (config/settings_schema.json): false keeps the
@@ -319,13 +323,16 @@
         true switches to "manual", which only blocks scripts explicitly tagged
         type="text/plain" -- since none are tagged in this theme, tracking scripts
         run immediately for every visitor regardless of consent. See decisions/027.
+        WARNING: with the banner hidden above, visitors have no way to interact
+        with it at all. If this is ever set back to false, tracking blocks
+        permanently with no path to consent. Keep this true as long as the
+        banner stays hidden.
       {%- endcomment -%}
       <script type="text/javascript" src="https://app.legalblink.it/api/scripts/cmp/loader.js"
   data-license-id="6a060314708d320024331f08"
   data-blocking-mode="{% if settings.cookie_tracking_optout %}manual{% else %}auto{% endif %}"
   data-consent-mode="true"
   data-tcf-enabled="true"></script>
-      <script src="{{ 'cookie-banner-auto-settings.js' | asset_url }}" defer></script>
     {%- endunless -%}
   </head>
 
