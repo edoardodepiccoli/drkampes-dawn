@@ -339,6 +339,15 @@
         }
       }
     },
+    "cookie_consent": {
+      "name": "Cookie consent",
+      "settings": {
+        "cookie_tracking_optout": {
+          "label": "Opt-out tracking mode",
+          "info": "When enabled, tracking scripts run by default and only stop if a visitor declines. When disabled, tracking stays blocked until a visitor explicitly accepts (opt-in, LegalBlink default)."
+        }
+      }
+    },
     "layout": {
       "name": "Layout",
       "settings": {

@@ -264,6 +264,15 @@
         }
       }
     },
+    "cookie_consent": {
+      "name": "Consenso cookie",
+      "settings": {
+        "cookie_tracking_optout": {
+          "label": "Modalità tracciamento opt-out",
+          "info": "Se attivo, gli script di tracciamento vengono eseguiti di default e si fermano solo se il visitatore rifiuta. Se disattivo, il tracciamento resta bloccato finché il visitatore non accetta esplicitamente (opt-in, comportamento predefinito di LegalBlink)."
+        }
+      }
+    },
     "cards": {
       "name": "Schede prodotto",
       "settings": {

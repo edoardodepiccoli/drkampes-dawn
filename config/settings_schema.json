@@ -1451,5 +1451,17 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "t:settings_schema.cookie_consent.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cookie_tracking_optout",
+        "label": "t:settings_schema.cookie_consent.settings.cookie_tracking_optout.label",
+        "info": "t:settings_schema.cookie_consent.settings.cookie_tracking_optout.info",
+        "default": true
+      }
+    ]
   }
 ]

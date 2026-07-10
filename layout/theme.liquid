@@ -304,11 +304,28 @@
       Real storefront visitors still get it.
     {%- endcomment -%}
     {%- unless request.design_mode -%}
+      {%- comment -%}
+        Hide the CMP host until cookie-banner-auto-settings.js has clicked
+        "Impostazioni", otherwise the simple banner flashes before the settings
+        panel opens. The JS sets opacity to 1 (with the transition below) post-click.
+        Styling the host is fine: only LegalBlink's shadow content is encapsulated.
+      {%- endcomment -%}
+      <style>
+        lb-cookie-banner { opacity: 0; transition: opacity 150ms ease; }
+      </style>
+      {%- comment -%}
+        cookie_tracking_optout (config/settings_schema.json): false keeps the
+        opt-in default (block scripts until consent, data-blocking-mode="auto").
+        true switches to "manual", which only blocks scripts explicitly tagged
+        type="text/plain" -- since none are tagged in this theme, tracking scripts
+        run immediately for every visitor regardless of consent. See decisions/027.
+      {%- endcomment -%}
       <script type="text/javascript" src="https://app.legalblink.it/api/scripts/cmp/loader.js"
   data-license-id="6a060314708d320024331f08"
-  data-blocking-mode="auto"
+  data-blocking-mode="{% if settings.cookie_tracking_optout %}manual{% else %}auto{% endif %}"
   data-consent-mode="true"
   data-tcf-enabled="true"></script>
+      <script src="{{ 'cookie-banner-auto-settings.js' | asset_url }}" defer></script>
     {%- endunless -%}
   </head>
 
