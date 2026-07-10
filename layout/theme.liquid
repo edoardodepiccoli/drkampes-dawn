@@ -333,6 +333,12 @@
   data-blocking-mode="{% if settings.cookie_tracking_optout %}manual{% else %}auto{% endif %}"
   data-consent-mode="true"
   data-tcf-enabled="true"></script>
+      {%- comment -%}
+        Auto-clicks "Accept all" so LegalBlink records a real granted-consent
+        event for every visitor instead of leaving consent unset. Deliberate,
+        confirmed compliance trade-off -- see decisions/030.
+      {%- endcomment -%}
+      <script src="{{ 'cookie-banner-auto-accept.js' | asset_url }}" defer></script>
     {%- endunless -%}
   </head>
 
