@@ -31,6 +31,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 025 | custom-garanzie: badge images locale-gated CDN URLs, image_picker rimosso | 2026-06-24 | Active |
 | 026 | Rimosso meccanismo di nascondimento banner cookie (opacity:0 + auto-settings.js) | 2026-06-24 | Superseded by 027 |
 | 027 | Ripristinato auto-settings.js (incondizionato) + toggle tracking opt-out | 2026-07-10 | Active |
+| 028 | Selettore auto-settings.js rotto di nuovo, reso multilingua + strutturale | 2026-07-10 | Active |
 
 ## Conventions
 
