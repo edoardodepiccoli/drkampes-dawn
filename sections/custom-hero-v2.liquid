@@ -1,0 +1,151 @@
+{% comment %}
+  CUSTOM · Hero V2 — new homepage hero, replaces the image-banner-clone hero
+  from decision 012. Fully hardcoded content (settings: []), see decision 031.
+  Copy is locale-gated IT/EN/FR (decision 024 pattern) since there is no
+  existing translation to reuse for this new design.
+{% endcomment %}
+{{ 'custom-hero-v2.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign is_en = false
+  assign is_fr = false
+  if request.locale.iso_code == 'en'
+    assign is_en = true
+  elsif request.locale.iso_code == 'fr'
+    assign is_fr = true
+  endif
+-%}
+
+<div class="custom-hero-v2 color-scheme-4 gradient">
+  <div
+    class="custom-hero-v2__media"
+    style="background-image: url('https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_image.png?v=1783857445');"
+    aria-hidden="true"
+  ></div>
+
+  <div class="custom-hero-v2__inner page-width">
+    <div class="custom-hero-v2__content">
+      <p class="custom-hero-v2__overline">
+        {%- if is_en -%}
+          THE TRUCKER'S SHOES
+        {%- elsif is_fr -%}
+          LES CHAUSSURES DU CAMIONNEUR
+        {%- else -%}
+          LE SCARPE DEL CAMIONISTA
+        {%- endif -%}
+      </p>
+
+      <h1 class="custom-hero-v2__heading">
+        {%- if is_en -%}
+          WORK BETTER.<br>LIVE BETTER.
+        {%- elsif is_fr -%}
+          TRAVAILLEZ MIEUX.<br>VIVEZ MIEUX.
+        {%- else -%}
+          LAVORA MEGLIO.<br>VIVI MEGLIO.
+        {%- endif -%}
+      </h1>
+
+      <p class="custom-hero-v2__subheading">
+        {%- if is_en -%}
+          Sneaker comfort. S3S protection. On in 2 seconds. Handmade in Italy for those who live the road every day.
+        {%- elsif is_fr -%}
+          Confort de sneaker. Protection S3S. Enfilez et partez en 2 secondes. Fabriquées à la main en Italie pour ceux qui vivent la route au quotidien.
+        {%- else -%}
+          Comfort da sneaker. Protezione da S3S. Infili e vai in 2 secondi. Fatte a mano in Italia per chi vive la strada ogni giorno.
+        {%- endif -%}
+      </p>
+
+      <ul class="custom-hero-v2__features" role="list">
+        <li class="custom-hero-v2__feature">
+          <span class="custom-hero-v2__feature-icon" aria-hidden="true">{{ 'icon-clock.svg' | inline_asset_content }}</span>
+          <span class="custom-hero-v2__feature-text">
+            <strong>FAST WEAR</strong>
+            <span>{%- if is_en -%}Ready in 2 seconds{%- elsif is_fr -%}Prêtes en 2 secondes{%- else -%}2 secondi e pronto{%- endif -%}</span>
+          </span>
+        </li>
+        <li class="custom-hero-v2__feature">
+          <span class="custom-hero-v2__feature-icon" aria-hidden="true">{{ 'icon-shield.svg' | inline_asset_content }}</span>
+          <span class="custom-hero-v2__feature-text">
+            <strong>{%- if is_en -%}S3S CERTIFIED{%- elsif is_fr -%}CERTIFIÉES S3S{%- else -%}CERTIFICAZIONE S3S{%- endif -%}</strong>
+            <span>{%- if is_en -%}Total protection{%- elsif is_fr -%}Protection totale{%- else -%}Protezione totale{%- endif -%}</span>
+          </span>
+        </li>
+        <li class="custom-hero-v2__feature">
+          <span class="custom-hero-v2__feature-icon" aria-hidden="true">{{ 'icon-flag-it.svg' | inline_asset_content }}</span>
+          <span class="custom-hero-v2__feature-text">
+            <strong>MADE IN ITALY</strong>
+            <span>{%- if is_en -%}100% handmade{%- elsif is_fr -%}100 % fabriquées à la main{%- else -%}100% fatte a mano{%- endif -%}</span>
+          </span>
+        </li>
+        <li class="custom-hero-v2__feature">
+          <span class="custom-hero-v2__feature-icon" aria-hidden="true">{{ 'icon-medal.svg' | inline_asset_content }}</span>
+          <span class="custom-hero-v2__feature-text">
+            <strong>{%- if is_en -%}3-YEAR WARRANTY{%- elsif is_fr -%}GARANTIE 3 ANS{%- else -%}GARANZIA 3 ANNI{%- endif -%}</strong>
+            <span>{%- if is_en -%}No compromises{%- elsif is_fr -%}Sans compromis{%- else -%}Senza compromessi{%- endif -%}</span>
+          </span>
+        </li>
+      </ul>
+
+      <div class="custom-hero-v2__ctas">
+        <a href="#acquista" class="button button--primary custom-hero-v2__cta">
+          {%- if is_en -%}BUY NOW{%- elsif is_fr -%}ACHETER{%- else -%}ACQUISTA ORA{%- endif -%}
+        </a>
+        <a href="#intro" class="button button--secondary custom-hero-v2__cta">
+          {%- if is_en -%}LEARN MORE{%- elsif is_fr -%}EN SAVOIR PLUS{%- else -%}SCOPRI DI PIÙ{%- endif -%}
+        </a>
+      </div>
+    </div>
+
+    <div class="custom-hero-v2__trust">
+      <div class="custom-hero-v2__trust-item">
+        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-truck.svg' | inline_asset_content }}</span>
+        <span class="custom-hero-v2__trust-text">
+          <strong>{%- if is_en -%}FREE SHIPPING{%- elsif is_fr -%}LIVRAISON GRATUITE{%- else -%}SPEDIZIONE GRATUITA{%- endif -%}</strong>
+          <span>{%- if is_en -%}In Italy{%- elsif is_fr -%}En Italie{%- else -%}In Italia{%- endif -%}</span>
+        </span>
+      </div>
+      <div class="custom-hero-v2__trust-item">
+        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-return.svg' | inline_asset_content }}</span>
+        <span class="custom-hero-v2__trust-text">
+          <strong>{%- if is_en -%}EASY RETURNS{%- elsif is_fr -%}RETOURS FACILES{%- else -%}RESO FACILE{%- endif -%}</strong>
+          <span>{%- if is_en -%}30 days{%- elsif is_fr -%}30 jours{%- else -%}30 giorni{%- endif -%}</span>
+        </span>
+      </div>
+      <div class="custom-hero-v2__trust-item custom-hero-v2__trust-item--single">
+        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-lock.svg' | inline_asset_content }}</span>
+        <span class="custom-hero-v2__trust-text">
+          <strong>{%- if is_en -%}SECURE PAYMENTS{%- elsif is_fr -%}PAIEMENTS SÉCURISÉS{%- else -%}PAGAMENTI SICURI{%- endif -%}</strong>
+        </span>
+      </div>
+      <div class="custom-hero-v2__trust-item">
+        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-users.svg' | inline_asset_content }}</span>
+        <span class="custom-hero-v2__trust-text">
+          <strong>{%- if is_en -%}1,000+ TRUCKERS{%- elsif is_fr -%}PLUS DE 1000 CAMIONNEURS{%- else -%}OLTRE 1.000 CAMIONISTI{%- endif -%}</strong>
+          <span>{%- if is_en -%}Satisfied{%- elsif is_fr -%}Satisfaits{%- else -%}Soddisfatti{%- endif -%}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <a
+    href="#intro"
+    class="custom-hero-v2__scroll"
+    aria-label="{%- if is_en -%}Scroll down{%- elsif is_fr -%}Défiler vers le bas{%- else -%}Scorri per saperne di più{%- endif -%}"
+  >
+    {{ 'icon-chevron-down.svg' | inline_asset_content }}
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Hero V2",
+  "tag": "section",
+  "class": "custom-hero-v2-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "CUSTOM · Hero V2"
+    }
+  ]
+}
+{% endschema %}

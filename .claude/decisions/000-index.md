@@ -34,6 +34,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 028 | Selettore auto-settings.js rotto di nuovo, reso multilingua + strutturale | 2026-07-10 | Superseded by 029 |
 | 029 | Banner cookie nascosto permanentemente via CSS, auto-click ritirato | 2026-07-10 | Active |
 | 030 | Auto-click "Accept all" per visitatore (consenso fabbricato, confermato) | 2026-07-10 | Active |
+| 031 | custom-hero-v2: nuovo hero homepage, sostituisce custom-hero (012) | 2026-07-12 | Active |
 
 ## Conventions
 
