@@ -24,16 +24,29 @@
     this theme is a plain <img src>, so this uses that same proven path — and it lets
     the browser preload what is the page's LCP element.
   {%- endcomment -%}
-  <img
-    src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_image.png?v=1783857445"
-    alt=""
-    width="941"
-    height="1672"
-    class="custom-hero-v2__media"
-    loading="eager"
-    fetchpriority="high"
-    aria-hidden="true"
-  >
+  {%- comment -%}
+    Art direction, not just resizing: mobile gets the in-context workshop shot, desktop
+    gets the studio profile shot (square, on pure black), so <picture> + a media source
+    rather than one image scaled two ways.
+  {%- endcomment -%}
+  <picture class="custom-hero-v2__picture">
+    <source
+      media="(min-width: 1100px)"
+      srcset="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scarpa-profilo-landing-cropped.jpg?v=1775983178"
+      width="3501"
+      height="3501"
+    >
+    <img
+      src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_image.png?v=1783857445"
+      alt=""
+      width="941"
+      height="1672"
+      class="custom-hero-v2__media"
+      loading="eager"
+      fetchpriority="high"
+      aria-hidden="true"
+    >
+  </picture>
   <div class="custom-hero-v2__overlay" aria-hidden="true"></div>
 
   <div class="custom-hero-v2__inner page-width">
@@ -113,15 +126,13 @@
       <div class="custom-hero-v2__trust-item">
         <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-truck-line.svg' | inline_asset_content }}</span>
         <span class="custom-hero-v2__trust-text">
-          <strong>{%- if is_en -%}FREE SHIPPING{%- elsif is_fr -%}LIVRAISON GRATUITE{%- else -%}SPEDIZIONE GRATUITA{%- endif -%}</strong>
-          <span>{%- if is_en -%}In Italy{%- elsif is_fr -%}En Italie{%- else -%}In Italia{%- endif -%}</span>
+          <strong>{%- if is_en -%}FAST SHIPPING 1-2 DAYS{%- elsif is_fr -%}LIVRAISON RAPIDE 1-2 JOURS{%- else -%}SPEDIZIONE RAPIDA 1-2 GIORNI{%- endif -%}</strong>
         </span>
       </div>
       <div class="custom-hero-v2__trust-item">
         <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-return-line.svg' | inline_asset_content }}</span>
         <span class="custom-hero-v2__trust-text">
           <strong>{%- if is_en -%}EASY RETURNS{%- elsif is_fr -%}RETOURS FACILES{%- else -%}RESO FACILE{%- endif -%}</strong>
-          <span>{%- if is_en -%}30 days{%- elsif is_fr -%}30 jours{%- else -%}30 giorni{%- endif -%}</span>
         </span>
       </div>
       <div class="custom-hero-v2__trust-item custom-hero-v2__trust-item--single">
@@ -134,7 +145,6 @@
         <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-users.svg' | inline_asset_content }}</span>
         <span class="custom-hero-v2__trust-text">
           <strong>{%- if is_en -%}1,000+ TRUCKERS{%- elsif is_fr -%}PLUS DE 1000 CAMIONNEURS{%- else -%}OLTRE 1.000 CAMIONISTI{%- endif -%}</strong>
-          <span>{%- if is_en -%}Satisfied{%- elsif is_fr -%}Satisfaits{%- else -%}Soddisfatti{%- endif -%}</span>
         </span>
       </div>
     </div>
