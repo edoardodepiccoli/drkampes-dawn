@@ -2,6 +2,8 @@
 
 **Date:** 2026-07-12
 **Status:** Active
+**Changelog:** `changelog/custom-hero-v2.md` — log commit-per-commit di tutte le
+iterazioni della sezione (immagine, fade mobile, copy).
 
 ## Context
 
