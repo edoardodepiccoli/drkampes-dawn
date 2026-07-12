@@ -18,9 +18,12 @@
 */
 .custom-hero-v2-section .custom-hero-v2__picture {
   position: relative;
-  z-index: 2;
+  /* Below the copy, not above it: the negative margins slide the band up behind the
+     heading and down behind the features, so the text sits over the faded ends of the
+     photo instead of leaving dead black space between them. */
+  z-index: 1;
   display: block;
-  margin: 2.4rem -1.5rem;
+  margin: -7rem -1.5rem -5rem;
   aspect-ratio: 4 / 5;
   /*
     Mask alpha is image visibility, not darkness: full opacity through the middle so the
