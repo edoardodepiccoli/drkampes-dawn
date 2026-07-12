@@ -11,10 +11,19 @@
   padding: 6rem 0 4rem;
 }
 
+/*
+  Mobile: the photo is a band in the normal flow, between the copy and the features.
+  Full-bleed past .page-width's 1.5rem gutters, and masked top and bottom so it melts
+  into the black section instead of ending on a hard edge.
+*/
 .custom-hero-v2-section .custom-hero-v2__picture {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: 2.4rem -1.5rem;
+  aspect-ratio: 5 / 4;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
 }
 
 .custom-hero-v2-section .custom-hero-v2__media {
@@ -28,20 +37,23 @@
   object-position: center 45%;
 }
 
+/* Only meaningful once the photo is a background again (750px up) — over a black
+   section it would do nothing here anyway, but this keeps the intent explicit. */
 .custom-hero-v2-section .custom-hero-v2__overlay {
+  display: none;
   position: absolute;
   inset: 0;
   z-index: 1;
-  /*
-    Mobile: text runs the full width over the photo, so this is a wash across the whole
-    image (not a side fade), heavier top and bottom where the copy and trust row sit.
-  */
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 45%, rgba(0, 0, 0, 0.75) 100%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.2) 100%);
 }
 
-.custom-hero-v2-section .custom-hero-v2__inner {
+/*
+  __inner stays unpositioned so that the absolutely positioned picture at 750px+ resolves
+  against .custom-hero-v2 (full bleed, padding included) rather than against the
+  page-width box. The blocks below carry the stacking instead.
+*/
+.custom-hero-v2-section .custom-hero-v2__intro,
+.custom-hero-v2-section .custom-hero-v2__details,
+.custom-hero-v2-section .custom-hero-v2__trust {
   position: relative;
   z-index: 2;
 }
@@ -80,9 +92,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* Deliberately large on mobile: the copy and the feature list would otherwise cover
-     the photo end to end, leaving no clear band of the shoe between them. */
-  margin: 18rem 0 0;
+  margin: 0;
   padding: 0;
 }
 
@@ -215,7 +225,30 @@
     padding: 8rem 0 5rem;
   }
 
-  .custom-hero-v2-section .custom-hero-v2__content {
+  /*
+    Wide enough for a two-column composition: the photo leaves the flow and becomes the
+    section background again, with the copy in a column beside it rather than on top.
+  */
+  .custom-hero-v2-section .custom-hero-v2__picture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    margin: 0;
+    aspect-ratio: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .custom-hero-v2-section .custom-hero-v2__overlay {
+    display: block;
+    /* Side fade: dark behind the copy on the left, clear over the shoe on the right. */
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.25) 65%, rgba(0, 0, 0, 0.7) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0.25) 75%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .custom-hero-v2-section .custom-hero-v2__intro,
+  .custom-hero-v2-section .custom-hero-v2__details {
     max-width: 60rem;
   }
 
@@ -223,16 +256,6 @@
     font-size: 4.4rem;
   }
 
-  /* Wide enough that the copy no longer spans the photo: fade sideways instead of
-     washing the whole image, so the shoe stays readable on the right. */
-  .custom-hero-v2-section .custom-hero-v2__overlay {
-    background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.25) 65%, rgba(0, 0, 0, 0.7) 100%),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0.25) 75%, rgba(0, 0, 0, 0) 100%);
-  }
-
-  /* From here up the copy no longer spans the photo, so the mobile breathing room
-     above the feature list is not needed. */
   .custom-hero-v2-section .custom-hero-v2__features {
     margin-top: 2.4rem;
   }
@@ -267,7 +290,8 @@
     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0.6) 100%);
   }
 
-  .custom-hero-v2-section .custom-hero-v2__content {
+  .custom-hero-v2-section .custom-hero-v2__intro,
+  .custom-hero-v2-section .custom-hero-v2__details {
     max-width: 56rem;
     margin-left: auto;
   }

@@ -17,40 +17,10 @@
 -%}
 
 <div class="custom-hero-v2 color-scheme-4 gradient">
-  {%- comment -%}
-    Real <img>, not a CSS background on an inline style attribute. The inline-style
-    background was the only style on this page not delivered through the stylesheet,
-    and it was the only thing that never rendered. Every other hardcoded-CDN image in
-    this theme is a plain <img src>, so this uses that same proven path — and it lets
-    the browser preload what is the page's LCP element.
-  {%- endcomment -%}
-  {%- comment -%}
-    Art direction, not just resizing: mobile gets the in-context workshop shot, desktop
-    gets the studio profile shot (square, on pure black), so <picture> + a media source
-    rather than one image scaled two ways.
-  {%- endcomment -%}
-  <picture class="custom-hero-v2__picture">
-    <source
-      media="(min-width: 1100px)"
-      srcset="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scarpa-profilo-landing-cropped.jpg?v=1775983178"
-      width="3501"
-      height="3501"
-    >
-    <img
-      src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_image.png?v=1783857445"
-      alt=""
-      width="941"
-      height="1672"
-      class="custom-hero-v2__media"
-      loading="eager"
-      fetchpriority="high"
-      aria-hidden="true"
-    >
-  </picture>
   <div class="custom-hero-v2__overlay" aria-hidden="true"></div>
 
   <div class="custom-hero-v2__inner page-width">
-    <div class="custom-hero-v2__content">
+    <div class="custom-hero-v2__intro">
       <p class="custom-hero-v2__overline">
         {%- if is_en -%}
           THE TRUCKER'S SHOES
@@ -80,7 +50,38 @@
           Comfort da sneaker. Protezione da S3S. Infili e vai in 2 secondi. Fatte a mano in Italia per chi vive la strada ogni giorno.
         {%- endif -%}
       </p>
+    </div>
 
+    {%- comment -%}
+      The image sits between the copy and the feature list in the DOM on purpose. On
+      mobile it is an in-flow band: as a full-bleed background it was always underneath
+      the text, so the shoe could never be seen whole. From 750px up the CSS lifts it
+      back out of flow into a background, where the copy occupies a column beside it and
+      no longer covers it.
+
+      <picture> because this is art direction, not resizing: mobile gets the in-context
+      workshop shot, desktop the studio profile shot (square, on pure black).
+    {%- endcomment -%}
+    <picture class="custom-hero-v2__picture">
+      <source
+        media="(min-width: 1100px)"
+        srcset="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scarpa-profilo-landing-cropped.jpg?v=1775983178"
+        width="3501"
+        height="3501"
+      >
+      <img
+        src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_image.png?v=1783857445"
+        alt=""
+        width="941"
+        height="1672"
+        class="custom-hero-v2__media"
+        loading="eager"
+        fetchpriority="high"
+        aria-hidden="true"
+      >
+    </picture>
+
+    <div class="custom-hero-v2__details">
       <ul class="custom-hero-v2__features" role="list">
         <li class="custom-hero-v2__feature">
           <span class="custom-hero-v2__feature-icon" aria-hidden="true">{{ 'icon-clock.svg' | inline_asset_content }}</span>
