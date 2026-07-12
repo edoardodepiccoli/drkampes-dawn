@@ -80,7 +80,9 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin: 2rem 0 0;
+  /* Deliberately large on mobile: the copy and the feature list would otherwise cover
+     the photo end to end, leaving no clear band of the shoe between them. */
+  margin: 7rem 0 0;
   padding: 0;
 }
 
@@ -227,6 +229,12 @@
     background:
       linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.25) 65%, rgba(0, 0, 0, 0.7) 100%),
       linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0.25) 75%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  /* From here up the copy no longer spans the photo, so the mobile breathing room
+     above the feature list is not needed. */
+  .custom-hero-v2-section .custom-hero-v2__features {
+    margin-top: 2.4rem;
   }
 
   .custom-hero-v2-section .custom-hero-v2__trust {
