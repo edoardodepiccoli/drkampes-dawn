@@ -70,3 +70,32 @@ una sezione nuova.
 - `assets/icon-clock.svg`, `icon-shield.svg`, `icon-flag-it.svg`, `icon-medal.svg`,
   `icon-users.svg`, `icon-chevron-down.svg` (nuovi); `icon-truck.svg`,
   `icon-return.svg`, `icon-lock.svg` (riusati, stock Dawn)
+
+## Update — 2026-07-12
+
+Il primo render (CSS as shipped sopra) risultava completamente nero, sia su
+mobile che desktop — la foto hero e' gia' molto scura (fotografia low-key),
+e l'overlay uniforme `linear-gradient(180deg, rgba(0,0,0,.55) 0%, .72 55%,
+.9 100%)` la appiattiva a nero pieno. Fix, solo CSS (`assets/custom-hero-v2.css`,
+nessuna modifica al liquid):
+
+- **Overlay a due layer**: gradient orizzontale (90deg, nero 0.92 sopra il
+  testo -> trasparente al 100% sopra la scarpa) per rivelare la foto sul lato
+  destro, piu' un gradient verticale leggero (0.1 -> 0.7) solo per leggibilita'
+  della trust row in fondo. Sostituisce il singolo overlay verticale uniforme.
+- **`background-position: center 45%`** sul layer `__media` — la scarpa nella
+  foto occupa circa il 23%-72% dell'altezza; 45% la mantiene in frame sia su
+  crop stretti (mobile) che larghi (desktop, dove `cover` scala sulla
+  larghezza e ritaglia forte in verticale).
+- **Breakpoint feature-grid/CTA-row spostato da 750px a 1100px**: il mockup
+  cliente (tablet, ~863px) mostra ancora feature in colonna singola e CTA
+  impilate a quella larghezza — il breakpoint 750px le passava a 2 colonne /
+  riga troppo presto, disallineato dal riferimento.
+- **Trust row: icona sopra testo (non piu' icona-sinistra/testo-destra),
+  4 colonne fisse da mobile in su, divider verticali tra le colonne** — il
+  mockup mostra questo layout a tutte le larghezze mostrate, non solo da
+  tablet in su (prima era 2 colonne su mobile, 4 da 750px).
+
+Verificato renderizzando l'markup/CSS reale (liquid risolto lato IT, icone
+SVG inline) in Chrome headless via Playwright a 375px / 834px / 1440px prima
+del push — non e' stato possibile un preview Shopify live nella sessione.
