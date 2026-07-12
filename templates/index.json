@@ -43,6 +43,7 @@
         "text_iGQnxX",
         "buttons_WwtwLP"
       ],
+      "disabled": true,
       "name": "CUSTOM · Hero",
       "settings": {
         "image": "shopify://shop_images/dettagli_logo_scarpa_screenshot.png",
@@ -60,7 +61,6 @@
     },
     "custom_hero_v2_L9N69X": {
       "type": "custom-hero-v2",
-      "disabled": true,
       "name": "CUSTOM · Hero V2",
       "settings": {}
     },
