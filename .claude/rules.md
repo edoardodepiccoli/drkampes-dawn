@@ -30,6 +30,10 @@ These are not preferences. They are settled. Treat as binding unless the user ex
 - **No global CSS.** Never style bare HTML elements unprefixed. Always scope under the section's BEM root.
 - **No `!important` to override JS-controlled styles.** If you need it, the architecture is wrong.
 
+- **Immagini hardcoded da CDN: sempre `<img src>`, mai `background-image` in un attributo `style` inline.** Tutti i 44 URL CDN hardcoded del tema che funzionano sono `<img src>`. L'unico caso di `background-image` inline (`custom-hero-v2`, decision 031) non ha mai renderizzato sullo storefront, pur con CSS applicato, URL valido e CSP pulita. Usa `<img>` + `object-fit: cover` (pattern di `image-banner`); si guadagna anche il preload dell'LCP.
+
+- **Icone: le custom sono stroke-based, le stock Dawn sono fill-based. Non mescolarle.** Le icone disegnate a mano in questo progetto usano `fill="none" stroke="currentColor"`; le stock Dawn (`icon-truck`, `icon-return`, `icon-lock`, …) usano `<path d>` senza `fill` → fill di default nero → **invisibili su fondo scuro**, perche' nel tema non esiste nessuna regola `.icon { fill: … }`. Non risolvere aggiungendo `fill: currentColor` al contenitore: gli attributi di presentazione SVG hanno specificita' inferiore a qualsiasi regola CSS, quindi quella regola riempirebbe di colore pieno anche le icone stroke. Disegna una variante stroke (`icon-<nome>-line.svg`) e lascia stare le stock (servono altrove). Costato un giro di debug su `custom-hero-v2`.
+
 ## Liquid specifics
 
 - **`assign` cannot take a comparison expression (`==`, `!=`, etc.) on the right-hand side, even inside a `{%- liquid -%}` block.** `assign is_en = request.locale.iso_code == 'en'` throws `Expected end_of_string but found comparison` at render time — the raw error text leaks onto the page instead of the component. Comparisons are only valid inside `if` / `unless` / `case` / `elsif`. Build booleans via `if`/`endif` instead:

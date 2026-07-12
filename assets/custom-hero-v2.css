@@ -15,19 +15,22 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-size: cover;
-  background-position: center 45%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The shoe sits between ~23% and ~72% of the source photo's height; 45% keeps it
+     in frame at both the tall mobile crop and the wide, shallow desktop crop. */
+  object-position: center 45%;
 }
 
-.custom-hero-v2-section .custom-hero-v2__media::after {
-  content: '';
+.custom-hero-v2-section .custom-hero-v2__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   /*
-    Horizontal fade (dark behind the text column, clear over the shoe) layered
-    with a light bottom darken for the trust row. The base photo is already
-    very low-key — decision 031's original uniform 0.55-0.9 black overlay
-    flattened it to solid black (the "broken" all-black render).
+    Horizontal fade (dark behind the text column, clear over the shoe) layered with a
+    light bottom darken for the trust row. The photo is already very low-key, so the
+    original uniform 0.55-0.9 black wash flattened it to near-solid black.
   */
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.25) 65%, rgba(0, 0, 0, 0.7) 100%),
@@ -36,7 +39,7 @@
 
 .custom-hero-v2-section .custom-hero-v2__inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .custom-hero-v2-section .custom-hero-v2__overline {
@@ -189,7 +192,7 @@
 
 .custom-hero-v2-section .custom-hero-v2__scroll {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   left: 50%;
   bottom: 1.6rem;
   transform: translateX(-50%);

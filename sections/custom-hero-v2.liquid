@@ -17,11 +17,24 @@
 -%}
 
 <div class="custom-hero-v2 color-scheme-4 gradient">
-  <div
+  {%- comment -%}
+    Real <img>, not a CSS background on an inline style attribute. The inline-style
+    background was the only style on this page not delivered through the stylesheet,
+    and it was the only thing that never rendered. Every other hardcoded-CDN image in
+    this theme is a plain <img src>, so this uses that same proven path — and it lets
+    the browser preload what is the page's LCP element.
+  {%- endcomment -%}
+  <img
+    src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_image.png?v=1783857445"
+    alt=""
+    width="941"
+    height="1672"
     class="custom-hero-v2__media"
-    style="background-image: url('https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_image.png?v=1783857445');"
+    loading="eager"
+    fetchpriority="high"
     aria-hidden="true"
-  ></div>
+  >
+  <div class="custom-hero-v2__overlay" aria-hidden="true"></div>
 
   <div class="custom-hero-v2__inner page-width">
     <div class="custom-hero-v2__content">
@@ -98,21 +111,21 @@
 
     <div class="custom-hero-v2__trust">
       <div class="custom-hero-v2__trust-item">
-        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-truck.svg' | inline_asset_content }}</span>
+        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-truck-line.svg' | inline_asset_content }}</span>
         <span class="custom-hero-v2__trust-text">
           <strong>{%- if is_en -%}FREE SHIPPING{%- elsif is_fr -%}LIVRAISON GRATUITE{%- else -%}SPEDIZIONE GRATUITA{%- endif -%}</strong>
           <span>{%- if is_en -%}In Italy{%- elsif is_fr -%}En Italie{%- else -%}In Italia{%- endif -%}</span>
         </span>
       </div>
       <div class="custom-hero-v2__trust-item">
-        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-return.svg' | inline_asset_content }}</span>
+        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-return-line.svg' | inline_asset_content }}</span>
         <span class="custom-hero-v2__trust-text">
           <strong>{%- if is_en -%}EASY RETURNS{%- elsif is_fr -%}RETOURS FACILES{%- else -%}RESO FACILE{%- endif -%}</strong>
           <span>{%- if is_en -%}30 days{%- elsif is_fr -%}30 jours{%- else -%}30 giorni{%- endif -%}</span>
         </span>
       </div>
       <div class="custom-hero-v2__trust-item custom-hero-v2__trust-item--single">
-        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-lock.svg' | inline_asset_content }}</span>
+        <span class="custom-hero-v2__trust-icon" aria-hidden="true">{{ 'icon-lock-line.svg' | inline_asset_content }}</span>
         <span class="custom-hero-v2__trust-text">
           <strong>{%- if is_en -%}SECURE PAYMENTS{%- elsif is_fr -%}PAIEMENTS SÉCURISÉS{%- else -%}PAGAMENTI SICURI{%- endif -%}</strong>
         </span>

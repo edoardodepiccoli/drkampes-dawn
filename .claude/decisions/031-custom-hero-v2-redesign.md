@@ -99,3 +99,48 @@ nessuna modifica al liquid):
 Verificato renderizzando l'markup/CSS reale (liquid risolto lato IT, icone
 SVG inline) in Chrome headless via Playwright a 375px / 834px / 1440px prima
 del push — non e' stato possibile un preview Shopify live nella sessione.
+
+## Update — 2026-07-12 (secondo giro: immagine e icone invisibili)
+
+Dopo il fix dell'overlay la sezione era ancora nera e tre badge su quattro
+senza icona. Due bug distinti, entrambi presenti fin dal primo commit:
+
+**1. Immagine: niente piu' `background-image` in attributo `style` inline.**
+Il `<div class="custom-hero-v2__media" style="background-image: url(...)">`
+era l'unico stile della pagina consegnato via attributo `style` inline invece
+che dal foglio di stile: tutte le regole di `custom-hero-v2.css` venivano
+applicate correttamente (verificabile dal layout), solo il background inline
+non compariva mai. Escluse per verifica statica: CSP dello storefront (nessun
+`style-src`/`img-src`), caratteri non-ASCII nell'URL, override CSS con
+`!important`, ordine di pittura (lo sfondo del wrapper `.gradient` dipinge
+sempre sotto i figli), URL errato (stesso prefisso shop dei 44 URL CDN
+hardcoded gia' funzionanti nel tema).
+
+Nota: **tutti gli altri 44 URL CDN hardcoded del tema sono `<img src>`**, mai
+background CSS. Quindi si passa a un `<img class="custom-hero-v2__media">` con
+`object-fit: cover` + `object-position: center 45%` e overlay spostato su un
+elemento proprio (`__overlay`, prima era `__media::after`). Oltre a togliere
+di mezzo il meccanismo che falliva, e' il pattern Dawn idiomatico
+(`image-banner` usa `<img>`) e permette il preload dell'elemento LCP
+(`loading="eager"` + `fetchpriority="high"`).
+
+**2. Icone trust: le icone stock Dawn sono fill-based, non stroke-based.**
+`icon-truck.svg`, `icon-return.svg`, `icon-lock.svg` (riusate stock, come da
+decisione originale sopra) hanno `<path d>` senza attributo `fill` → fill di
+default = nero → invisibili su fondo nero. Il CSS impostava solo `color`, mai
+`fill`, e in tutto il tema non esiste una regola `.icon { fill: ... }`.
+L'icona `icon-users` si vedeva solo perche' e' disegnata a mano, stroke-based
+(`fill="none" stroke="currentColor"`).
+
+Aggiungere `fill: currentColor` **non** e' la soluzione: gli attributi di
+presentazione SVG (`fill="none"`) hanno specificita' inferiore a qualsiasi
+regola CSS, quindi la regola riempirebbe di arancione pieno anche le 5 icone
+stroke. Sostituite invece con tre icone stroke nuove — `icon-truck-line.svg`,
+`icon-return-line.svg`, `icon-lock-line.svg` — coerenti con le altre cinque e
+con lo stile outline del mockup. Le stock non sono state toccate (servono agli
+accordion PDP).
+
+**Regola generalizzabile** (aggiunta a `rules.md`): in questo tema le icone
+custom sono stroke-based (`fill="none" stroke="currentColor"`), le stock Dawn
+sono fill-based. Non mescolarle nello stesso contenitore e non "aggiustare" le
+fill-based con una regola CSS `fill`.
