@@ -22,8 +22,26 @@
   display: block;
   margin: 2.4rem -1.5rem;
   aspect-ratio: 5 / 4;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  /* Long, gentle ramps that stop short of full transparency, so the photo softens into
+     the section over most of its height rather than dying to black at a hard edge. */
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.85) 22%,
+    #000 42%,
+    #000 58%,
+    rgba(0, 0, 0, 0.85) 78%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.85) 22%,
+    #000 42%,
+    #000 58%,
+    rgba(0, 0, 0, 0.85) 78%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 }
 
 .custom-hero-v2-section .custom-hero-v2__media {
