@@ -184,20 +184,6 @@
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
 }
 
-.custom-features-fastwear-section .custom-features-fastwear__benefit-icon {
-  display: flex;
-  width: 3.6rem;
-  height: 3.6rem;
-  /* Stroke icons inherit currentColor. No fill anywhere: a fill here would flood them
-     solid, because SVG presentation attributes lose to any CSS rule. */
-  color: rgb(var(--color-button));
-}
-
-.custom-features-fastwear-section .custom-features-fastwear__benefit-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
 .custom-features-fastwear-section .custom-features-fastwear__benefit-title {
   margin: 1.2rem 0 0;
   font-family: var(--font-heading-family);
