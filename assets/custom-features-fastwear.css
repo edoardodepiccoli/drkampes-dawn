@@ -142,71 +142,9 @@
   height: auto;
 }
 
-/*
-  The payoff grid. 2x2 at every breakpoint, as in the design. Border, not fill, for the
-  same reason as the steps card: every surface in this section stays pure black.
-*/
-.custom-features-fastwear-section .custom-features-fastwear__benefits {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 2.4rem 0 0;
-  padding: 1.6rem;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.15);
-  border-radius: 1.2rem;
-}
-
-.custom-features-fastwear-section .custom-features-fastwear__benefit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2.4rem 1.2rem;
-}
-
-/*
-  Dividers by cell position rather than by sibling order: in a 2x2 the second column
-  needs a left rule and the second row needs a top rule, which `+ sibling` cannot
-  express. Hard-coded to the four items -- this grid is not dynamic.
-*/
-.custom-features-fastwear-section .custom-features-fastwear__benefit:nth-child(even) {
-  border-left: 0.1rem solid rgba(var(--color-foreground), 0.15);
-}
-
-.custom-features-fastwear-section .custom-features-fastwear__benefit:nth-child(n + 3) {
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
-}
-
-.custom-features-fastwear-section .custom-features-fastwear__benefit-title {
-  margin: 1.2rem 0 0;
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
-  font-weight: var(--font-heading-weight);
-  font-size: 1.5rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: rgb(var(--color-foreground));
-}
-
-.custom-features-fastwear-section .custom-features-fastwear__benefit p {
-  margin: 0.4rem 0 0;
-  font-family: var(--font-body-family);
-  font-size: 1.4rem;
-  line-height: 1.4;
-  color: rgba(var(--color-foreground), 0.7);
-}
-
 @media screen and (min-width: 750px) {
   .custom-features-fastwear-section .custom-features-fastwear {
     padding: 6rem 0 7rem;
-  }
-
-  .custom-features-fastwear-section .custom-features-fastwear__benefits {
-    padding: 2.4rem;
-  }
-
-  .custom-features-fastwear-section .custom-features-fastwear__benefit-title {
-    font-size: 1.7rem;
   }
 
   /* Wide enough for the design's composition: numeral, copy, photo on one line. */
@@ -250,15 +188,9 @@
     grid-template-areas:
       'media intro'
       'media body'
-      'steps steps'
-      'benefits benefits';
+      'steps steps';
     column-gap: 6rem;
     align-content: start;
-  }
-
-  .custom-features-fastwear-section .custom-features-fastwear__benefits {
-    grid-area: benefits;
-    margin-top: 3.2rem;
   }
 
   .custom-features-fastwear-section .custom-features-fastwear__intro {
