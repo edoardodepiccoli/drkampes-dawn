@@ -132,6 +132,23 @@
   gap: 1.2rem;
 }
 
+.custom-hero-v2-section .custom-hero-v2__feature-check {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+}
+
+.custom-hero-v2-section .custom-hero-v2__feature-check svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 .custom-hero-v2-section .custom-hero-v2__feature-text {
   display: flex;
   flex-direction: column;
