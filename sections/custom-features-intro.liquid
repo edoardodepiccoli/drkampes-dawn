@@ -1,0 +1,78 @@
+{% comment %}
+  CUSTOM · Feat. Intro — first of the two "features" sections (the second is
+  fast-wear). Sits under custom-hero-v2 and reuses its visual language: black
+  scheme-4, orange #fb6e06 accents, stroke icons. Content is fully hardcoded
+  (settings: []), copy is locale-gated IT/EN/FR per decision 024.
+{% endcomment %}
+{{ 'custom-features-intro.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign is_en = false
+  assign is_fr = false
+  if request.locale.iso_code == 'en'
+    assign is_en = true
+  elsif request.locale.iso_code == 'fr'
+    assign is_fr = true
+  endif
+-%}
+
+<div class="custom-features-intro color-scheme-4 gradient">
+  <div class="custom-features-intro__inner page-width">
+    <div class="custom-features-intro__intro">
+      <p class="custom-features-intro__overline">
+        {%- if is_en -%}
+          BENEFITS YOU FEEL
+        {%- elsif is_fr -%}
+          DES BÉNÉFICES QUI SE SENTENT
+        {%- else -%}
+          BENEFICI CHE SENTI
+        {%- endif -%}
+      </p>
+
+      <h2 class="custom-features-intro__heading">
+        {%- if is_en -%}
+          SNEAKER COMFORT.<br>WORKWEAR PROTECTION.
+        {%- elsif is_fr -%}
+          CONFORT DE SNEAKER.<br>PROTECTION DE TRAVAIL.
+        {%- else -%}
+          COMFORT DA SNEAKER.<br>PROTEZIONE DA LAVORO.
+        {%- endif -%}
+      </h2>
+    </div>
+
+    <div class="custom-features-intro__body">
+      <p>
+        {%- if is_en -%}
+          Light, cushioned and breathable. Wear them all day and your feet thank you at the end of the shift.
+        {%- elsif is_fr -%}
+          Légères, amortissantes et respirantes. Vous les portez toute la journée et en fin de service vos pieds vous remercient.
+        {%- else -%}
+          Leggere, ammortizzate e traspiranti. Le indossi tutto il giorno e a fine turno i tuoi piedi ti ringraziano.
+        {%- endif -%}
+      </p>
+      <p>
+        {%- if is_en -%}
+          S3S certified for total protection in any situation.
+        {%- elsif is_fr -%}
+          Certification S3S pour une protection totale en toute situation.
+        {%- else -%}
+          Certificazione S3S per una protezione totale in ogni situazione.
+        {%- endif -%}
+      </p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Feat. Intro",
+  "tag": "section",
+  "class": "custom-features-intro-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "CUSTOM · Feat. Intro"
+    }
+  ]
+}
+{% endschema %}

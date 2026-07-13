@@ -1,0 +1,75 @@
+/*
+  CUSTOM · Feat. Intro — homepage features section, part 1.
+  Every rule below must stay scoped under .custom-features-intro-section.
+  Mobile-first: base rules are mobile, min-width queries layer on tablet/desktop.
+*/
+
+.custom-features-intro-section .custom-features-intro {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0 5rem;
+}
+
+/* Orange overline. rgb(var(--color-button)) is #fb6e06 in scheme-4 — the same
+   accent hero-v2 uses, so the two sections stay in step if the scheme changes. */
+.custom-features-intro-section .custom-features-intro__overline {
+  margin: 0;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight-bold);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-button));
+}
+
+.custom-features-intro-section .custom-features-intro__heading {
+  margin: 1.2rem 0 0;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 3.4rem;
+  /* Archivo Black is wider than the mock's condensed face, so the headline runs
+     to more lines. Sub-1 leading keeps the block tight enough to still read as
+     one dense mass rather than a loose stack. */
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+.custom-features-intro-section .custom-features-intro__body {
+  margin-top: 2.4rem;
+}
+
+.custom-features-intro-section .custom-features-intro__body p {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--font-body-family);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.85);
+}
+
+.custom-features-intro-section .custom-features-intro__body p + p {
+  margin-top: 1.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-features-intro-section .custom-features-intro {
+    padding: 6rem 0 7rem;
+  }
+
+  .custom-features-intro-section .custom-features-intro__heading {
+    font-size: 4.6rem;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .custom-features-intro-section .custom-features-intro {
+    padding: 8rem 0 9rem;
+  }
+
+  .custom-features-intro-section .custom-features-intro__heading {
+    font-size: 5.4rem;
+  }
+}
