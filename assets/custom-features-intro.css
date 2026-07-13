@@ -37,6 +37,33 @@
   color: rgb(var(--color-foreground));
 }
 
+/*
+  The photo is trimmed hard to the shoe's bounding box, so it is cut off on all four
+  sides. Left untreated those cuts read as the edges of a rectangle sitting on the black
+  band. The mask dissolves all four, so the shoe simply fades out into the section.
+
+  Two gradient layers intersected: a strong horizontal fade (the shoe runs off both
+  sides, so those cuts are the loudest) and a softer vertical one. mask-composite has to
+  be spelled twice, once per syntax; without it the layers union instead of intersecting
+  and nothing fades. Full-bleed past .page-width's 1.5rem mobile gutter.
+*/
+.custom-features-intro-section .custom-features-intro__media {
+  display: block;
+  /* Natural aspect, not `cover`: cropping a wide photo into a narrow box would slice the
+     toe and the heel off. The whole shoe has to stay in frame. */
+  width: calc(100% + 3rem);
+  height: auto;
+  /* Full-bleed past .page-width's mobile gutter (base.css:82 sets padding: 0 1.5rem). */
+  margin: 2.4rem -1.5rem 0;
+
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
 .custom-features-intro-section .custom-features-intro__body {
   margin-top: 2.4rem;
 }
@@ -61,6 +88,13 @@
 
   .custom-features-intro-section .custom-features-intro__heading {
     font-size: 4.6rem;
+  }
+
+  /* .page-width's gutter widens to 5rem here (base.css:105), so the bleed has to
+     widen with it or the photo stops reaching the viewport edge. */
+  .custom-features-intro-section .custom-features-intro__media {
+    width: calc(100% + 10rem);
+    margin: 3.2rem -5rem 0;
   }
 }
 

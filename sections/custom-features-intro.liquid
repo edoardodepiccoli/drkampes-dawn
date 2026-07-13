@@ -40,6 +40,26 @@
       </h2>
     </div>
 
+    {%- comment -%}
+      Sits between the headline and the body copy, as in the design. The source is
+      already flattened onto #000000 (the scheme-4 background), so the photo needs no
+      overlay to sit on the section: only the four hard crop edges have to be dissolved,
+      which the mask-image in the CSS does.
+
+      Decorative: the copy beside it carries the whole message, so alt is empty and the
+      image is hidden from the accessibility tree (same call as custom-hero-v2).
+    {%- endcomment -%}
+    <img
+      src="{{ 'features-intro-sole.jpg' | asset_url }}"
+      alt=""
+      width="1600"
+      height="1055"
+      class="custom-features-intro__media"
+      loading="lazy"
+      decoding="async"
+      aria-hidden="true"
+    >
+
     <div class="custom-features-intro__body">
       <p>
         {%- if is_en -%}
