@@ -80,6 +80,95 @@
         {%- endif -%}
       </p>
     </div>
+
+    {%- comment -%}
+      Icons are the project's own stroke-based set (fill="none" stroke="currentColor"), so
+      they take their colour from the CSS. Dawn's stock icons are fill-based with no fill
+      declared, which renders them solid black and therefore invisible on this band -- do
+      not substitute one in. icon-shield.svg is reused as-is: hero-v2 already uses it for
+      the same S3S claim, and the two sections should not disagree on its symbol.
+    {%- endcomment -%}
+    <ul class="custom-features-intro__benefits" role="list">
+      <li class="custom-features-intro__benefit">
+        <span class="custom-features-intro__benefit-icon" aria-hidden="true">
+          {{- 'icon-leaf-line.svg' | inline_asset_content -}}
+        </span>
+        <span class="custom-features-intro__benefit-text">
+          <strong>
+            {%- if is_en -%}LIGHT{%- elsif is_fr -%}LÉGÈRES{%- else -%}LEGGERE{%- endif -%}
+          </strong>
+          <span>
+            {%- if is_en -%}
+              Less weight, more energy.
+            {%- elsif is_fr -%}
+              Moins de poids, plus d'énergie.
+            {%- else -%}
+              Meno peso, più energia.
+            {%- endif -%}
+          </span>
+        </span>
+      </li>
+
+      <li class="custom-features-intro__benefit">
+        <span class="custom-features-intro__benefit-icon" aria-hidden="true">
+          {{- 'icon-waves-line.svg' | inline_asset_content -}}
+        </span>
+        <span class="custom-features-intro__benefit-text">
+          <strong>
+            {%- if is_en -%}BREATHABLE{%- elsif is_fr -%}RESPIRANTES{%- else -%}TRASPIRANTI{%- endif -%}
+          </strong>
+          <span>
+            {%- if is_en -%}
+              Fresh feet, even after hours.
+            {%- elsif is_fr -%}
+              Pieds au frais, même après des heures.
+            {%- else -%}
+              Piedi freschi, anche dopo ore.
+            {%- endif -%}
+          </span>
+        </span>
+      </li>
+
+      <li class="custom-features-intro__benefit">
+        <span class="custom-features-intro__benefit-icon" aria-hidden="true">
+          {{- 'icon-cushion-line.svg' | inline_asset_content -}}
+        </span>
+        <span class="custom-features-intro__benefit-text">
+          <strong>
+            {%- if is_en -%}CUSHIONED{%- elsif is_fr -%}AMORTISSANTES{%- else -%}AMMORTIZZATE{%- endif -%}
+          </strong>
+          <span>
+            {%- if is_en -%}
+              Every step is softer.
+            {%- elsif is_fr -%}
+              Chaque pas est plus souple.
+            {%- else -%}
+              Ogni passo è più morbido.
+            {%- endif -%}
+          </span>
+        </span>
+      </li>
+
+      <li class="custom-features-intro__benefit">
+        <span class="custom-features-intro__benefit-icon" aria-hidden="true">
+          {{- 'icon-shield.svg' | inline_asset_content -}}
+        </span>
+        <span class="custom-features-intro__benefit-text">
+          <strong>
+            {%- if is_en -%}S3S PROTECTION{%- elsif is_fr -%}PROTECTION S3S{%- else -%}PROTEZIONE S3S{%- endif -%}
+          </strong>
+          <span>
+            {%- if is_en -%}
+              Certified safety.
+            {%- elsif is_fr -%}
+              Sécurité certifiée.
+            {%- else -%}
+              Sicurezza certificata.
+            {%- endif -%}
+          </span>
+        </span>
+      </li>
+    </ul>
   </div>
 </div>
 
