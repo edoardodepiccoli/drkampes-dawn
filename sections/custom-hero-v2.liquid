@@ -21,7 +21,7 @@
 
   <div class="custom-hero-v2__inner page-width">
     <div class="custom-hero-v2__intro">
-      <p class="custom-hero-v2__overline">
+      <p class="custom-hero-v2__overline scroll-trigger animate--slide-in">
         {%- if is_en -%}
           THE TRUCKER'S SHOES
         {%- elsif is_fr -%}
@@ -31,7 +31,7 @@
         {%- endif -%}
       </p>
 
-      <h1 class="custom-hero-v2__heading">
+      <h1 class="custom-hero-v2__heading scroll-trigger animate--slide-in">
         {%- if is_en -%}
           WORK BETTER.<br>LIVE BETTER.
         {%- elsif is_fr -%}
@@ -41,7 +41,7 @@
         {%- endif -%}
       </h1>
 
-      <p class="custom-hero-v2__subheading">
+      <p class="custom-hero-v2__subheading scroll-trigger animate--slide-in">
         {%- if is_en -%}
           Sneaker comfort. S3S protection. On in 2 seconds. <strong>Handmade in Italy</strong> for those who live the road every day.
         {%- elsif is_fr -%}
@@ -83,28 +83,28 @@
 
     <div class="custom-hero-v2__details">
       <ul class="custom-hero-v2__features" role="list">
-        <li class="custom-hero-v2__feature">
+        <li class="custom-hero-v2__feature scroll-trigger animate--slide-in" data-cascade>
           <span class="custom-hero-v2__feature-check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
           <span class="custom-hero-v2__feature-text">
             <strong>{%- if is_en -%}PATENTED FAST WEAR{%- elsif is_fr -%}FAST WEAR BREVETÉ{%- else -%}FAST WEAR BREVETTATO{%- endif -%}</strong>
             <span>{%- if is_en -%}On your feet in 1 second{%- elsif is_fr -%}Enfilées en 1 seconde{%- else -%}Le indossi in 1 secondo{%- endif -%}</span>
           </span>
         </li>
-        <li class="custom-hero-v2__feature">
+        <li class="custom-hero-v2__feature scroll-trigger animate--slide-in" data-cascade>
           <span class="custom-hero-v2__feature-check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
           <span class="custom-hero-v2__feature-text">
             <strong>{%- if is_en -%}MAXIMUM SAFETY{%- elsif is_fr -%}SÉCURITÉ MAXIMALE{%- else -%}SICUREZZA MASSIMA{%- endif -%}</strong>
             <span>EN ISO 20345:2022+A1:2024</span>
           </span>
         </li>
-        <li class="custom-hero-v2__feature">
+        <li class="custom-hero-v2__feature scroll-trigger animate--slide-in" data-cascade>
           <span class="custom-hero-v2__feature-check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
           <span class="custom-hero-v2__feature-text">
             <strong>MADE IN ITALY</strong>
             <span>{%- if is_en -%}100% handmade{%- elsif is_fr -%}100 % fabriquées à la main{%- else -%}100% fatte a mano{%- endif -%}</span>
           </span>
         </li>
-        <li class="custom-hero-v2__feature">
+        <li class="custom-hero-v2__feature scroll-trigger animate--slide-in" data-cascade>
           <span class="custom-hero-v2__feature-check" aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
           <span class="custom-hero-v2__feature-text">
             <strong>{%- if is_en -%}INDESTRUCTIBLE{%- elsif is_fr -%}INDESTRUCTIBLES{%- else -%}INDISTRUTTIBILI{%- endif -%}</strong>
@@ -113,7 +113,7 @@
         </li>
       </ul>
 
-      <div class="custom-hero-v2__ctas">
+      <div class="custom-hero-v2__ctas scroll-trigger animate--slide-in">
         <a href="#acquista" class="button button--primary custom-hero-v2__cta">
           {%- if is_en -%}BUY NOW{%- elsif is_fr -%}ACHETER{%- else -%}ACQUISTA ORA{%- endif -%}
         </a>

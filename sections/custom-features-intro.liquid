@@ -19,7 +19,7 @@
 <div class="custom-features-intro color-scheme-4 gradient">
   <div class="custom-features-intro__inner page-width">
     <div class="custom-features-intro__intro">
-      <p class="custom-features-intro__overline">
+      <p class="custom-features-intro__overline scroll-trigger animate--slide-in">
         {%- if is_en -%}
           BENEFITS YOU FEEL
         {%- elsif is_fr -%}
@@ -29,7 +29,7 @@
         {%- endif -%}
       </p>
 
-      <h2 class="custom-features-intro__heading">
+      <h2 class="custom-features-intro__heading scroll-trigger animate--slide-in">
         {%- if is_en -%}
           SNEAKER COMFORT.<br>WORKWEAR PROTECTION.
         {%- elsif is_fr -%}
@@ -60,7 +60,7 @@
       aria-hidden="true"
     >
 
-    <div class="custom-features-intro__body">
+    <div class="custom-features-intro__body scroll-trigger animate--slide-in">
       <p>
         {%- if is_en -%}
           Light, cushioned and waterproof. Wear them all day and your feet thank you at the end of the shift.
@@ -89,7 +89,7 @@
       the same S3S claim, and the two sections should not disagree on its symbol.
     {%- endcomment -%}
     <ul class="custom-features-intro__benefits" role="list">
-      <li class="custom-features-intro__benefit">
+      <li class="custom-features-intro__benefit scroll-trigger animate--slide-in" data-cascade>
         <span class="custom-features-intro__benefit-icon" aria-hidden="true">
           {{- 'icon-grip-line.svg' | inline_asset_content -}}
         </span>
@@ -109,7 +109,7 @@
         </span>
       </li>
 
-      <li class="custom-features-intro__benefit">
+      <li class="custom-features-intro__benefit scroll-trigger animate--slide-in" data-cascade>
         <span class="custom-features-intro__benefit-icon" aria-hidden="true">
           {{- 'icon-droplet-off-line.svg' | inline_asset_content -}}
         </span>
@@ -129,7 +129,7 @@
         </span>
       </li>
 
-      <li class="custom-features-intro__benefit">
+      <li class="custom-features-intro__benefit scroll-trigger animate--slide-in" data-cascade>
         <span class="custom-features-intro__benefit-icon" aria-hidden="true">
           {{- 'icon-flame-line.svg' | inline_asset_content -}}
         </span>
@@ -149,7 +149,7 @@
         </span>
       </li>
 
-      <li class="custom-features-intro__benefit">
+      <li class="custom-features-intro__benefit scroll-trigger animate--slide-in" data-cascade>
         <span class="custom-features-intro__benefit-icon" aria-hidden="true">
           {{- 'icon-shield.svg' | inline_asset_content -}}
         </span>
