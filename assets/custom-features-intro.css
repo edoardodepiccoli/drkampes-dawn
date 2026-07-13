@@ -163,6 +163,64 @@
     padding: 8rem 0 9rem;
   }
 
+  /*
+    Two columns: copy on the left, photo on the right, benefits full width underneath.
+    The photo deliberately sits on the right, mirroring hero-v2 which puts its shoe on
+    the left -- stacked, two image-left sections would read as the same layout twice.
+
+    Grid areas rather than reordering the markup: on mobile the photo belongs between the
+    headline and the body copy (that is the design), and the DOM keeps that order. Only
+    the desktop placement differs, so only the desktop CSS should know about it.
+  */
+  .custom-features-intro-section .custom-features-intro__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'intro    media'
+      'body     media'
+      'benefits benefits';
+    column-gap: 6rem;
+    align-content: start;
+  }
+
+  .custom-features-intro-section .custom-features-intro__intro {
+    grid-area: intro;
+  }
+
+  .custom-features-intro-section .custom-features-intro__body {
+    grid-area: body;
+  }
+
+  .custom-features-intro-section .custom-features-intro__media {
+    grid-area: media;
+    /* Drop the full-bleed bleed: in a column the photo is a column-width block again. */
+    width: 100%;
+    margin: 0;
+    align-self: center;
+  }
+
+  .custom-features-intro-section .custom-features-intro__benefits {
+    grid-area: benefits;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 5.6rem;
+    padding-top: 1.6rem;
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  }
+
+  /* The separators turn 90 degrees with the layout: hairlines between stacked rows on
+     mobile become hairlines between side-by-side columns here. */
+  .custom-features-intro-section .custom-features-intro__benefit + .custom-features-intro__benefit {
+    border-top: 0;
+    border-left: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    padding-left: 2.4rem;
+  }
+
+  .custom-features-intro-section .custom-features-intro__benefit {
+    gap: 1.2rem;
+    padding-right: 2.4rem;
+  }
+
   .custom-features-intro-section .custom-features-intro__heading {
     font-size: 5.4rem;
   }
