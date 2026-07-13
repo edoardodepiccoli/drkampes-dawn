@@ -64,6 +64,11 @@
       "name": "CUSTOM · Hero V2",
       "settings": {}
     },
+    "custom_features_intro_GdfnUx": {
+      "type": "custom-features-intro",
+      "name": "CUSTOM · Feat. Intro",
+      "settings": {}
+    },
     "image_with_text_KMgCPn": {
       "type": "image-with-text",
       "blocks": {
@@ -95,6 +100,7 @@
         "text_gyqcA7",
         "button_6BdJcK"
       ],
+      "disabled": true,
       "name": "intro 1",
       "settings": {
         "image": "shopify://shop_images/scarpa-profilo-landing-cropped.jpg",
@@ -378,6 +384,7 @@
   "order": [
     "custom_hero_qTrUx6",
     "custom_hero_v2_L9N69X",
+    "custom_features_intro_GdfnUx",
     "image_with_text_KMgCPn",
     "custom_liquid_fLyEy9",
     "image_with_text_iFMhM7",
