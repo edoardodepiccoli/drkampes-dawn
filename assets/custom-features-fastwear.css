@@ -1,0 +1,135 @@
+/*
+  CUSTOM · Fast Wear — homepage features section, part 2.
+  Every rule below must stay scoped under .custom-features-fastwear-section.
+  Mobile-first: base rules are mobile, min-width queries layer on tablet/desktop.
+
+  Every surface stays pure black (see the section file): the step images are shot on
+  #000 and cannot be keyed, so a lighter panel behind them would show as a rectangle.
+  Panels are drawn with hairline borders, never with a fill.
+*/
+
+.custom-features-fastwear-section .custom-features-fastwear {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0 5rem;
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__overline {
+  margin: 0;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight-bold);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-button));
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__heading {
+  margin: 1.2rem 0 0;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 3.4rem;
+  /* Four short stacked lines, as in the design. Sub-1 leading keeps them reading as one
+     block; Archivo Black is wider than the design's condensed face, so the lines are
+     longer than the mock but still one word each. */
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+/* Same treatment as the intro photo: the shot is trimmed to the shoe's bounding box, so
+   its four crop edges have to be dissolved or it reads as a rectangle on the band. */
+.custom-features-fastwear-section .custom-features-fastwear__hero-media {
+  display: block;
+  width: calc(100% + 3rem);
+  height: auto;
+  margin: 2.4rem -1.5rem 0;
+
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 10%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 10%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__body {
+  margin-top: 2.4rem;
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__body p {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--font-body-family);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.85);
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__kicker {
+  margin-top: 1.6rem;
+  font-weight: var(--font-body-weight-bold);
+  /* Full-strength white against the 0.85 body copy above it: this is the payoff line. */
+  color: rgb(var(--color-foreground));
+}
+
+@media screen and (min-width: 750px) {
+  .custom-features-fastwear-section .custom-features-fastwear {
+    padding: 6rem 0 7rem;
+  }
+
+  .custom-features-fastwear-section .custom-features-fastwear__heading {
+    font-size: 4.6rem;
+  }
+
+  /* .page-width's gutter widens to 5rem here (base.css:105), so the bleed widens too. */
+  .custom-features-fastwear-section .custom-features-fastwear__hero-media {
+    width: calc(100% + 10rem);
+    margin: 3.2rem -5rem 0;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .custom-features-fastwear-section .custom-features-fastwear {
+    padding: 8rem 0 9rem;
+  }
+
+  /*
+    Photo left, copy right — the design has it the other way round, but the client asked
+    for the shoe on the left and the photo cannot be mirrored to suit (it would reverse
+    the DrKAMPES logo and the MADE IN ITALY stamp).
+
+    Grid areas rather than reordering the markup: on mobile the photo belongs between the
+    headline and the body copy, and the DOM keeps that order.
+  */
+  .custom-features-fastwear-section .custom-features-fastwear__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'media intro'
+      'media body';
+    column-gap: 6rem;
+    align-content: start;
+  }
+
+  .custom-features-fastwear-section .custom-features-fastwear__intro {
+    grid-area: intro;
+  }
+
+  .custom-features-fastwear-section .custom-features-fastwear__body {
+    grid-area: body;
+  }
+
+  .custom-features-fastwear-section .custom-features-fastwear__hero-media {
+    grid-area: media;
+    width: 100%;
+    margin: 0;
+    align-self: center;
+  }
+
+  .custom-features-fastwear-section .custom-features-fastwear__heading {
+    font-size: 5.4rem;
+  }
+}

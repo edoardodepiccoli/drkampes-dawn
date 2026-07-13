@@ -1,0 +1,100 @@
+{% comment %}
+  CUSTOM · Fast Wear — second of the two "features" sections (custom-features-intro is
+  the first). Same visual language: black scheme-4, orange #fb6e06, stroke icons.
+  Content fully hardcoded (settings: []), copy locale-gated IT/EN/FR per decision 024.
+
+  Every surface in here stays pure black on purpose. The supplied step images are shot
+  on #000 and cannot be keyed (a black shoe on a black background), so any panel behind
+  them that is even slightly lighter would show each one as a black rectangle. The card
+  look comes from hairline borders and rounded corners instead of a fill. See decision 033.
+{% endcomment %}
+{{ 'custom-features-fastwear.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign is_en = false
+  assign is_fr = false
+  if request.locale.iso_code == 'en'
+    assign is_en = true
+  elsif request.locale.iso_code == 'fr'
+    assign is_fr = true
+  endif
+-%}
+
+<div class="custom-features-fastwear color-scheme-4 gradient">
+  <div class="custom-features-fastwear__inner page-width">
+    <div class="custom-features-fastwear__intro">
+      <p class="custom-features-fastwear__overline">
+        {%- if is_en -%}
+          FAST WEAR TECHNOLOGY
+        {%- elsif is_fr -%}
+          TECHNOLOGIE FAST WEAR
+        {%- else -%}
+          TECNOLOGIA FAST WEAR
+        {%- endif -%}
+      </p>
+
+      <h2 class="custom-features-fastwear__heading">
+        {%- if is_en -%}
+          SLIP IN.<br>STEP DOWN.<br>GO.<br>IN 2 SECONDS.
+        {%- elsif is_fr -%}
+          ENFILEZ.<br>DESCENDEZ.<br>PARTEZ.<br>EN 2 SECONDES.
+        {%- else -%}
+          INFILA.<br>SCENDI.<br>VIA.<br>IN 2 SECONDI.
+        {%- endif -%}
+      </h2>
+    </div>
+
+    {%- comment -%}
+      The shoe sits on the LEFT, where the design puts it on the right. The photo is used
+      as shot, not mirrored: it carries the DrKAMPES heel logo and a MADE IN ITALY stamp,
+      and a horizontal flip renders both backwards. As shot, the toe points right — into
+      the copy — which is the same inward-facing composition the design gets by flipping
+      the shoe to the right-hand side.
+    {%- endcomment -%}
+    <img
+      src="{{ 'fastwear-hero.jpg' | asset_url }}"
+      alt=""
+      width="1500"
+      height="1108"
+      class="custom-features-fastwear__hero-media"
+      loading="lazy"
+      decoding="async"
+      aria-hidden="true"
+    >
+
+    <div class="custom-features-fastwear__body">
+      <p>
+        {%- if is_en -%}
+          The Fast Wear system transforms the way you put on safety shoes. The reinforced, flexible heel collapses as you slide your foot in and springs back into place in an instant, giving you stability and support all day long.
+        {%- elsif is_fr -%}
+          Le système Fast Wear révolutionne la façon d'enfiler les chaussures de sécurité. Le talon renforcé et flexible s'affaisse quand vous glissez le pied et revient en place en un instant, garantissant stabilité et maintien toute la journée.
+        {%- else -%}
+          Il sistema Fast Wear rivoluziona il modo di indossare le scarpe antinfortunistiche. Il tallone rinforzato e flessibile collassa quando infili il piede e torna in posizione in un attimo, garantendo stabilità e sostegno per tutta la giornata.
+        {%- endif -%}
+      </p>
+      <p class="custom-features-fastwear__kicker">
+        {%- if is_en -%}
+          Zero wasted time. Maximum efficiency.
+        {%- elsif is_fr -%}
+          Zéro perte de temps. Efficacité maximale.
+        {%- else -%}
+          Zero perdite di tempo. Massima efficienza.
+        {%- endif -%}
+      </p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CUSTOM · Fast Wear",
+  "tag": "section",
+  "class": "custom-features-fastwear-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "CUSTOM · Fast Wear"
+    }
+  ]
+}
+{% endschema %}
