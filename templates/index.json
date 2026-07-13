@@ -69,6 +69,11 @@
       "name": "CUSTOM · Feat. Intro",
       "settings": {}
     },
+    "custom_features_fastwear_wernPq": {
+      "type": "custom-features-fastwear",
+      "name": "CUSTOM · Fast Wear",
+      "settings": {}
+    },
     "image_with_text_KMgCPn": {
       "type": "image-with-text",
       "blocks": {
@@ -159,6 +164,7 @@
         "text_nTKyet",
         "button_9VAQiL"
       ],
+      "disabled": true,
       "name": "intro 2",
       "settings": {
         "image": "shopify://shop_images/fast-wear.jpg",
@@ -385,8 +391,9 @@
     "custom_hero_qTrUx6",
     "custom_hero_v2_L9N69X",
     "custom_features_intro_GdfnUx",
-    "image_with_text_KMgCPn",
     "custom_liquid_fLyEy9",
+    "custom_features_fastwear_wernPq",
+    "image_with_text_KMgCPn",
     "image_with_text_iFMhM7",
     "custom_buy_box_XgJgTD",
     "custom_gallery_8fp4W4",
