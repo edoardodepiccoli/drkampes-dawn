@@ -135,6 +135,12 @@
   color: rgba(var(--color-foreground), 0.7);
 }
 
+/* Highlights the key phrase inside a step's description line, body font kept as-is. */
+.custom-features-fastwear-section .custom-features-fastwear__step-highlight {
+  font-weight: var(--font-body-weight-bold);
+  color: rgb(var(--color-foreground));
+}
+
 .custom-features-fastwear-section .custom-features-fastwear__step-media {
   grid-area: media;
   display: block;
@@ -155,7 +161,18 @@
   .custom-features-fastwear-section .custom-features-fastwear__step {
     grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.1fr);
     grid-template-areas: 'num text media';
+    align-items: center;
     gap: 2.4rem;
+    padding: 1.2rem 0;
+  }
+
+  /* Caps the row height so the photo doesn't dictate how tall each step is — the
+     row would otherwise be as tall as the source image's native aspect ratio. */
+  .custom-features-fastwear-section .custom-features-fastwear__step-media {
+    max-height: 9rem;
+    width: auto;
+    margin-left: auto;
+    object-fit: contain;
   }
 
   .custom-features-fastwear-section .custom-features-fastwear__heading {

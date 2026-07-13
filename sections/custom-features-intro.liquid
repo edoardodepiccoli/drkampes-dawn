@@ -91,19 +91,19 @@
     <ul class="custom-features-intro__benefits" role="list">
       <li class="custom-features-intro__benefit">
         <span class="custom-features-intro__benefit-icon" aria-hidden="true">
-          {{- 'icon-leaf-line.svg' | inline_asset_content -}}
+          {{- 'icon-grip-line.svg' | inline_asset_content -}}
         </span>
         <span class="custom-features-intro__benefit-text">
           <strong>
-            {%- if is_en -%}LIGHT{%- elsif is_fr -%}LÉGÈRES{%- else -%}LEGGERE{%- endif -%}
+            {%- if is_en -%}EXTREME GRIP{%- elsif is_fr -%}GRIP EXTRÊME{%- else -%}GRIP ESTREMO{%- endif -%}
           </strong>
           <span>
             {%- if is_en -%}
-              Less weight, more energy.
+              <span class="custom-features-intro__benefit-highlight">Certified maximum</span> traction.
             {%- elsif is_fr -%}
-              Moins de poids, plus d'énergie.
+              <span class="custom-features-intro__benefit-highlight">Adhérence maximale</span> certifiée.
             {%- else -%}
-              Meno peso, più energia.
+              <span class="custom-features-intro__benefit-highlight">Massima aderenza</span> certificata.
             {%- endif -%}
           </span>
         </span>
@@ -119,11 +119,11 @@
           </strong>
           <span>
             {%- if is_en -%}
-              Feet always dry.
+              Feet <span class="custom-features-intro__benefit-highlight">always dry</span>.
             {%- elsif is_fr -%}
-              Pieds toujours au sec.
+              Pieds <span class="custom-features-intro__benefit-highlight">toujours au sec</span>.
             {%- else -%}
-              Piedi sempre asciutti.
+              Piedi <span class="custom-features-intro__benefit-highlight">sempre asciutti</span>.
             {%- endif -%}
           </span>
         </span>
@@ -131,19 +131,19 @@
 
       <li class="custom-features-intro__benefit">
         <span class="custom-features-intro__benefit-icon" aria-hidden="true">
-          {{- 'icon-cushion-line.svg' | inline_asset_content -}}
+          {{- 'icon-flame-line.svg' | inline_asset_content -}}
         </span>
         <span class="custom-features-intro__benefit-text">
           <strong>
-            {%- if is_en -%}CUSHIONED{%- elsif is_fr -%}AMORTISSANTES{%- else -%}AMMORTIZZATE{%- endif -%}
+            {%- if is_en -%}SUPERIOR RESISTANCE (HRO + SC){%- elsif is_fr -%}RÉSISTANCE SUPÉRIEURE (HRO + SC){%- else -%}RESISTENZA SUPERIORE (HRO + SC){%- endif -%}
           </strong>
           <span>
             {%- if is_en -%}
-              Every step is softer.
+              <span class="custom-features-intro__benefit-highlight">Heat-resistant sole up to 300°C</span>, scratch-proof toe cap.
             {%- elsif is_fr -%}
-              Chaque pas est plus souple.
+              <span class="custom-features-intro__benefit-highlight">Semelle résistante à la chaleur jusqu'à 300°C</span>, embout anti-rayures.
             {%- else -%}
-              Ogni passo è più morbido.
+              <span class="custom-features-intro__benefit-highlight">Suola anticalore fino a 300°C</span>, puntale anti-graffio.
             {%- endif -%}
           </span>
         </span>
@@ -159,11 +159,11 @@
           </strong>
           <span>
             {%- if is_en -%}
-              Certified safety.
+              <span class="custom-features-intro__benefit-highlight">Certified</span> safety.
             {%- elsif is_fr -%}
-              Sécurité certifiée.
+              Sécurité <span class="custom-features-intro__benefit-highlight">certifiée</span>.
             {%- else -%}
-              Sicurezza certificata.
+              Sicurezza <span class="custom-features-intro__benefit-highlight">certificata</span>.
             {%- endif -%}
           </span>
         </span>
