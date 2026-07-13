@@ -132,23 +132,6 @@
   gap: 1.2rem;
 }
 
-.custom-hero-v2-section .custom-hero-v2__feature-icon {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.4rem;
-  height: 3.4rem;
-  border-radius: 50%;
-  border: 0.1rem solid rgba(var(--color-button), 0.5);
-  color: rgb(var(--color-button));
-}
-
-.custom-hero-v2-section .custom-hero-v2__feature-icon svg {
-  width: 1.8rem;
-  height: 1.8rem;
-}
-
 .custom-hero-v2-section .custom-hero-v2__feature-text {
   display: flex;
   flex-direction: column;
