@@ -82,6 +82,101 @@
         {%- endif -%}
       </p>
     </div>
+
+    {%- comment -%}
+      An <ol>, not a <ul>: these are ordered steps, and the order is the whole point. The
+      orange numerals are the visual echo of that order, so they are aria-hidden — the
+      list element already conveys the sequence to a screen reader, and reading "one one
+      infila" would be a stutter.
+
+      The step photos need no mask, unlike the hero shot above: they are already on pure
+      black and so is the card behind them, so the edges have nothing to dissolve into.
+    {%- endcomment -%}
+    <ol class="custom-features-fastwear__steps" role="list">
+      <li class="custom-features-fastwear__step">
+        <span class="custom-features-fastwear__step-num" aria-hidden="true">1</span>
+        <div class="custom-features-fastwear__step-text">
+          <h3 class="custom-features-fastwear__step-title">
+            {%- if is_en -%}SLIP IN{%- elsif is_fr -%}ENFILEZ{%- else -%}INFILA{%- endif -%}
+          </h3>
+          <p>
+            {%- if is_en -%}
+              The heel drops down to let you in.
+            {%- elsif is_fr -%}
+              Le talon s'abaisse pour vous laisser entrer.
+            {%- else -%}
+              Il tallone si abbassa per farti entrare.
+            {%- endif -%}
+          </p>
+        </div>
+        <img
+          src="{{ 'fastwear-step-1.jpg' | asset_url }}"
+          alt=""
+          width="900"
+          height="414"
+          class="custom-features-fastwear__step-media"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        >
+      </li>
+
+      <li class="custom-features-fastwear__step">
+        <span class="custom-features-fastwear__step-num" aria-hidden="true">2</span>
+        <div class="custom-features-fastwear__step-text">
+          <h3 class="custom-features-fastwear__step-title">
+            {%- if is_en -%}STEP DOWN{%- elsif is_fr -%}DESCENDEZ{%- else -%}SCENDI{%- endif -%}
+          </h3>
+          <p>
+            {%- if is_en -%}
+              It adapts to the movement of your foot.
+            {%- elsif is_fr -%}
+              Il s'adapte au mouvement de votre pied.
+            {%- else -%}
+              Si adatta al movimento del tuo piede.
+            {%- endif -%}
+          </p>
+        </div>
+        <img
+          src="{{ 'fastwear-step-2.jpg' | asset_url }}"
+          alt=""
+          width="900"
+          height="414"
+          class="custom-features-fastwear__step-media"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        >
+      </li>
+
+      <li class="custom-features-fastwear__step">
+        <span class="custom-features-fastwear__step-num" aria-hidden="true">3</span>
+        <div class="custom-features-fastwear__step-text">
+          <h3 class="custom-features-fastwear__step-title">
+            {%- if is_en -%}GO{%- elsif is_fr -%}PARTEZ{%- else -%}VIA{%- endif -%}
+          </h3>
+          <p>
+            {%- if is_en -%}
+              It springs back into place and you are ready to work.
+            {%- elsif is_fr -%}
+              Il revient en place et vous êtes prêt à travailler.
+            {%- else -%}
+              Torna in posizione e sei pronto a lavorare.
+            {%- endif -%}
+          </p>
+        </div>
+        <img
+          src="{{ 'fastwear-step-3.jpg' | asset_url }}"
+          alt=""
+          width="900"
+          height="414"
+          class="custom-features-fastwear__step-media"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        >
+      </li>
+    </ol>
   </div>
 </div>
 

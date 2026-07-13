@@ -75,9 +75,94 @@
   color: rgb(var(--color-foreground));
 }
 
+/*
+  The steps card. Drawn with a hairline border and rounded corners, never a fill: the
+  step photos are on pure black and cannot be keyed, so the surface behind them has to
+  stay pure black or each one shows up as a rectangle.
+*/
+.custom-features-fastwear-section .custom-features-fastwear__steps {
+  list-style: none;
+  margin: 4rem 0 0;
+  padding: 0.8rem 1.6rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  border-radius: 1.2rem;
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    'num   text'
+    'media media';
+  align-items: center;
+  gap: 1.6rem;
+  padding: 2.4rem 0;
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__step + .custom-features-fastwear__step {
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__step-num {
+  grid-area: num;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border: 0.15rem solid rgb(var(--color-button));
+  border-radius: 50%;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 1.7rem;
+  color: rgb(var(--color-button));
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__step-text {
+  grid-area: text;
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__step-title {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__step-text p {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-body-family);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.custom-features-fastwear-section .custom-features-fastwear__step-media {
+  grid-area: media;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media screen and (min-width: 750px) {
   .custom-features-fastwear-section .custom-features-fastwear {
     padding: 6rem 0 7rem;
+  }
+
+  /* Wide enough for the design's composition: numeral, copy, photo on one line. */
+  .custom-features-fastwear-section .custom-features-fastwear__steps {
+    padding: 0.8rem 2.4rem;
+  }
+
+  .custom-features-fastwear-section .custom-features-fastwear__step {
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-areas: 'num text media';
+    gap: 2.4rem;
   }
 
   .custom-features-fastwear-section .custom-features-fastwear__heading {
@@ -109,13 +194,18 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
       'media intro'
-      'media body';
+      'media body'
+      'steps steps';
     column-gap: 6rem;
     align-content: start;
   }
 
   .custom-features-fastwear-section .custom-features-fastwear__intro {
     grid-area: intro;
+  }
+
+  .custom-features-fastwear-section .custom-features-fastwear__steps {
+    grid-area: steps;
   }
 
   .custom-features-fastwear-section .custom-features-fastwear__body {
