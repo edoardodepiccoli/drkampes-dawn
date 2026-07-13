@@ -83,8 +83,7 @@
   page-width box. The blocks below carry the stacking instead.
 */
 .custom-hero-v2-section .custom-hero-v2__intro,
-.custom-hero-v2-section .custom-hero-v2__details,
-.custom-hero-v2-section .custom-hero-v2__trust {
+.custom-hero-v2-section .custom-hero-v2__details {
   position: relative;
   z-index: 2;
 }
@@ -182,75 +181,6 @@
   text-transform: uppercase;
 }
 
-.custom-hero-v2-section .custom-hero-v2__trust {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.6rem 0.8rem;
-  margin-top: 3.2rem;
-  padding-top: 2.4rem;
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
-}
-
-.custom-hero-v2-section .custom-hero-v2__trust-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  text-align: center;
-  padding-left: 0.8rem;
-  border-left: 0.1rem solid rgba(var(--color-foreground), 0.15);
-}
-
-.custom-hero-v2-section .custom-hero-v2__trust-item:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-
-.custom-hero-v2-section .custom-hero-v2__trust-icon {
-  flex: 0 0 auto;
-  width: 2.2rem;
-  height: 2.2rem;
-  color: rgb(var(--color-button));
-}
-
-.custom-hero-v2-section .custom-hero-v2__trust-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.custom-hero-v2-section .custom-hero-v2__trust-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
-  font-family: var(--font-body-family);
-}
-
-.custom-hero-v2-section .custom-hero-v2__trust-text strong {
-  font-size: 1.1rem;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  color: rgb(var(--color-foreground));
-}
-
-.custom-hero-v2-section .custom-hero-v2__scroll {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  bottom: 1.6rem;
-  transform: translateX(-50%);
-  display: flex;
-  color: rgb(var(--color-foreground));
-  opacity: 0.7;
-  width: 2.4rem;
-  height: 2.4rem;
-}
-
-.custom-hero-v2-section .custom-hero-v2__scroll svg {
-  width: 100%;
-  height: 100%;
-}
-
 @media screen and (min-width: 750px) {
   .custom-hero-v2-section .custom-hero-v2 {
     padding: 8rem 0 5rem;
@@ -289,10 +219,6 @@
 
   .custom-hero-v2-section .custom-hero-v2__features {
     margin-top: 2.4rem;
-  }
-
-  .custom-hero-v2-section .custom-hero-v2__trust {
-    gap: 1.6rem 1.6rem;
   }
 }
 
@@ -345,14 +271,5 @@
     width: auto;
     padding-left: 3.2rem;
     padding-right: 3.2rem;
-  }
-
-  .custom-hero-v2-section .custom-hero-v2__trust-icon {
-    width: 3.4rem;
-    height: 3.4rem;
-  }
-
-  .custom-hero-v2-section .custom-hero-v2__trust-text strong {
-    font-size: 1.3rem;
   }
 }
