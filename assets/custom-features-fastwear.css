@@ -68,13 +68,6 @@
   color: rgba(var(--color-foreground), 0.85);
 }
 
-.custom-features-fastwear-section .custom-features-fastwear__kicker {
-  margin-top: 1.6rem;
-  font-weight: var(--font-body-weight-bold);
-  /* Full-strength white against the 0.85 body copy above it: this is the payoff line. */
-  color: rgb(var(--color-foreground));
-}
-
 /*
   The steps card. Drawn with a hairline border and rounded corners, never a fill: the
   step photos are on pure black and cannot be keyed, so the surface behind them has to
