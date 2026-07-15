@@ -169,7 +169,7 @@
   /* Caps the row height so the photo doesn't dictate how tall each step is — the
      row would otherwise be as tall as the source image's native aspect ratio. */
   .custom-features-fastwear-section .custom-features-fastwear__step-media {
-    max-height: 9rem;
+    max-height: 13rem;
     width: auto;
     margin-left: auto;
     object-fit: contain;
