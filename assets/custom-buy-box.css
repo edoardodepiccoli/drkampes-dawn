@@ -71,6 +71,11 @@
   display: block;
   width: 100%;
   height: auto;
+  /* 1:1 forzato su tutte le slide: le infografiche pdp-*.png e le foto
+     lifestyle hanno ratio nativi diversi, senza questo l'altezza del
+     carousel salta ad ogni slide. object-fit croppa invece di deformare. */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   /* niente radius su mobile: l'immagine tocca i bordi schermo (full-bleed) */
   border-radius: 0;
 }
