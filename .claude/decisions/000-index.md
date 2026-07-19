@@ -38,6 +38,8 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 032 | custom-features-intro: sezione features, parte 1 (immagine derivata in assets/) | 2026-07-13 | Active |
 | 034 | custom-features-fastwear: nuove step images, re-split da nuova infografica | 2026-07-15 | Active |
 | 035 | custom-buy-box: carousel foto fisso (non variant-dependent) con thumbnail cliccabili, sostituisce immagine statica | 2026-07-19 | Active |
+| 036 | custom-buy-box: conversion pass (banner spedizione, chip Klarna/PayPal, trust rows statiche, label ATC custom, slide lifestyle, gallery disabilitata) | 2026-07-19 | Active |
+| 037 | custom-reviews: lista statica recensioni Google con avatar a iniziali, sostituisce il marquee | 2026-07-19 | Active |
 
 ## Conventions
 
