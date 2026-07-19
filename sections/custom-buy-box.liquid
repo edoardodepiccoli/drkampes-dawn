@@ -140,11 +140,24 @@
               loading="lazy"
             >
           </div>
+          {%- comment -%}
+            Slide 8-9: lavorazione artigianale a mano (pdp-6/pdp-7 in assets/,
+            da Downloads del cliente come le pdp-1..5). Prova visiva del claim
+            "cucita a mano da artigiani italiani" della sezione garanzie.
+          {%- endcomment -%}
           <div class="custom-buy-box__slide">
             <img
               class="custom-buy-box__pdp-image"
-              src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01889-migliorato-nr-1769702410-697b840a71188.jpg?width=1200"
-              alt="{{ product.title | escape }} sul camion"
+              src="{{ 'pdp-6.jpg' | asset_url }}"
+              alt="{{ product.title | escape }} cucite a mano da artigiani italiani"
+              loading="lazy"
+            >
+          </div>
+          <div class="custom-buy-box__slide">
+            <img
+              class="custom-buy-box__pdp-image"
+              src="{{ 'pdp-7.jpg' | asset_url }}"
+              alt="Lavorazione artigianale a mano delle {{ product.title | escape }}"
               loading="lazy"
             >
           </div>
@@ -172,7 +185,10 @@
             <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01813-migliorato-nr-1769702375-697b83e7ab8e3.jpg?width=160" alt="" loading="lazy">
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="7">
-            <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01889-migliorato-nr-1769702410-697b840a71188.jpg?width=160" alt="" loading="lazy">
+            <img class="custom-buy-box__thumb" src="{{ 'pdp-6.jpg' | asset_url }}" alt="" loading="lazy">
+          </button>
+          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="8">
+            <img class="custom-buy-box__thumb" src="{{ 'pdp-7.jpg' | asset_url }}" alt="" loading="lazy">
           </button>
         </div>
       </div>
