@@ -67,6 +67,42 @@
       this.paintSelection();
       this.sync();
       this.initStickyCta();
+      this.initPhotoCarousel();
+    }
+
+    // Carousel foto fisso (pdp-1/pdp-2), indipendente da colore/taglia: click
+    // su una thumbnail scrolla il suo slide, lo scroll sincronizza la thumbnail attiva.
+    initPhotoCarousel() {
+      var self = this;
+      this.photoSlidesEl = this.querySelector('[data-photo-slides]');
+      this.photoThumbs = Array.prototype.slice.call(this.querySelectorAll('[data-photo-thumb]'));
+      if (!this.photoSlidesEl || !this.photoThumbs.length) return;
+
+      this.photoThumbs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = parseInt(btn.dataset.photoThumb, 10);
+          var slide = self.photoSlidesEl.children[idx];
+          if (!slide) return;
+          self.photoSlidesEl.scrollTo({ left: slide.offsetLeft - self.photoSlidesEl.offsetLeft, behavior: 'smooth' });
+        });
+      });
+
+      this.photoSlidesEl.addEventListener('scroll', function () {
+        // Slide piu' vicino al bordo sinistro del contenitore = quello attivo.
+        var containerLeft = self.photoSlidesEl.getBoundingClientRect().left;
+        var closest = 0;
+        var closestDist = Infinity;
+        Array.prototype.forEach.call(self.photoSlidesEl.children, function (slide, i) {
+          var dist = Math.abs(slide.getBoundingClientRect().left - containerLeft);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closest = i;
+          }
+        });
+        self.photoThumbs.forEach(function (btn, i) {
+          btn.classList.toggle('is-active', i === closest);
+        });
+      }, { passive: true });
     }
 
     bind() {

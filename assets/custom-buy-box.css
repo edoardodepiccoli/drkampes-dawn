@@ -10,7 +10,7 @@
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-foreground));
   font-family: var(--font-body-family);
-  padding: 1.2rem 0 2.4rem; /* top ridotto */
+  padding: 2rem 0 2.4rem; /* top ridotto ma non compresso: l'immagine full-bleed ha bisogno di un minimo di aria dal contenuto sopra */
 }
 
 .custom-buy-box-section .custom-buy-box--empty {
@@ -25,19 +25,37 @@
   padding: 0 1.5rem;
   display: grid;
   grid-template-columns: 1fr; /* mobile: 1 colonna, immagine sopra */
-  gap: 3rem;
+  gap: 2.4rem;
 }
 
 /* ============ COLONNA MEDIA ============ */
 
-/* carousel scroll-snap: swipe nativo su mobile, navigato dai dots su tutti i viewport */
+/* immagine statica (infografica PDP), non piu' un carousel.
+   overflow hidden sul contenitore: lo scale dell'immagine non deve spingere
+   fuori larghezza/layout della colonna. */
+.custom-buy-box-section .custom-buy-box__media {
+  position: relative;
+  overflow: hidden;
+  /* full width su mobile: rompe il padding laterale di __inner (1.5rem) per
+     arrivare bordo a bordo. Il valore deve combaciare col padding del parent,
+     altrimenti resta un margine visibile. Resettato su desktop sotto. */
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+}
+
+/* contenitore scroll-snap: su mobile ogni slide e' piu' stretto del viewport
+   (vedi __slide sotto) cosi' si vede un pezzetto dello slide successivo,
+   segnale visivo che si puo' scorrere. Su desktop torna a uno slide pieno. */
 .custom-buy-box-section .custom-buy-box__slides {
   display: flex;
+  gap: 1.2rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* niente scrollbar visibile */
-  border-radius: var(--media-radius);
+  scroll-padding-left: 2%;
+  padding: 0 2%;
+  /* nasconde la scrollbar nativa: lo scroll resta funzionante, la UI del
+     carousel (dots) verra' aggiunta in uno step successivo. */
+  scrollbar-width: none;
 }
 
 .custom-buy-box-section .custom-buy-box__slides::-webkit-scrollbar {
@@ -45,37 +63,53 @@
 }
 
 .custom-buy-box-section .custom-buy-box__slide {
-  flex: 0 0 100%;
+  flex: 0 0 92%;
+  scroll-snap-align: start;
+}
+
+.custom-buy-box-section .custom-buy-box__pdp-image {
+  display: block;
   width: 100%;
   height: auto;
-  object-fit: contain;
-  scroll-snap-align: center;
+  /* niente radius su mobile: l'immagine tocca i bordi schermo (full-bleed) */
+  border-radius: 0;
 }
 
-/* dots: navigazione del carousel su tutti i viewport */
-.custom-buy-box-section .custom-buy-box__dots {
+/* striscia thumbnail sotto la foto principale: scroll orizzontale nativo
+   (5 immagini non ci stanno tutte su schermi stretti), scrollbar nascosta
+   come per __slides. */
+.custom-buy-box-section .custom-buy-box__thumbs {
   display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1rem;
+  gap: 0.8rem;
+  padding: 0.8rem 1.5rem 0;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-.custom-buy-box-section .custom-buy-box__dots:empty {
+.custom-buy-box-section .custom-buy-box__thumbs::-webkit-scrollbar {
   display: none;
 }
 
-.custom-buy-box-section .custom-buy-box__dot {
-  width: 0.7rem;
-  height: 0.7rem;
+.custom-buy-box-section .custom-buy-box__thumb-btn {
   padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(var(--color-foreground), 0.25);
+  border: 0.2rem solid transparent;
+  border-radius: 0.6rem;
+  background: none;
+  flex: 0 0 auto;
   cursor: pointer;
+  line-height: 0;
 }
 
-.custom-buy-box-section .custom-buy-box__dot.is-active {
-  background: rgb(var(--color-foreground));
+.custom-buy-box-section .custom-buy-box__thumb-btn.is-active {
+  border-color: rgb(var(--color-foreground));
+}
+
+.custom-buy-box-section .custom-buy-box__thumb {
+  display: block;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 0.4rem;
 }
 
 /* ============ COLONNA INFO ============ */
@@ -83,7 +117,10 @@
 .custom-buy-box-section .custom-buy-box__info {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* rhythm di base fra i blocchi non correlati (prezzo, opzioni, CTA).
+     Le coppie strettamente correlate (titolo/recensioni, colore/taglia)
+     si stringono sopra con margin negativi mirati. */
+  gap: 1.6rem;
 }
 
 .custom-buy-box-section .custom-buy-box__title {
@@ -97,18 +134,24 @@
 /* ---- recensioni ---- */
 .custom-buy-box-section .custom-buy-box__reviews {
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
+  flex-direction: column;
+  gap: 0.3rem;
+  /* negativo: __info ha gap:1.6rem uniforme fra i figli, qui vogliamo le
+     recensioni piu' vicine al titolo sopra rispetto al resto */
+  margin-top: -1.1rem;
 }
 
 .custom-buy-box-section .custom-buy-box__stars {
-  color: #fbbc04;
-  font-size: 1.5rem;
+  /* arancio brand (stesso di --color-button negli scheme colore) */
+  color: #fb6e06;
+  font-size: 1.9rem;
+  line-height: 1;
   letter-spacing: 0.1rem;
 }
 
 .custom-buy-box-section .custom-buy-box__reviews-text {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  line-height: 1;
   color: rgba(var(--color-foreground), 0.7);
 }
 
@@ -153,6 +196,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+}
+
+/* taglia subito sotto colore: sono un unico step "scegli le tue" per
+   l'utente, li stringiamo sotto il gap:1.6rem di base di __info */
+.custom-buy-box-section .custom-buy-box__opt[data-size-opt] {
+  margin-top: -0.8rem;
 }
 
 .custom-buy-box-section .custom-buy-box__opt-label {
@@ -232,6 +281,9 @@
 /* ---- add to cart (snippet ufficiale Dawn `buy-buttons`) ---- */
 .custom-buy-box-section .product-form {
   display: block;
+  /* extra separazione sopra il bottone Acquista: e' l'elemento di
+     conversione principale della sezione, deve stare isolato dal resto */
+  margin-top: 0.6rem;
 }
 
 /* messaggio d'errore Dawn: scoped qui (la CSS componente Dawn non e' caricata) */
@@ -293,6 +345,27 @@
     align-items: center; /* colonne media/info centrate verticalmente fra loro */
   }
 
+  .custom-buy-box-section .custom-buy-box__media {
+    /* desktop: torna dentro il grid, niente full-bleed */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .custom-buy-box-section .custom-buy-box__slides {
+    /* desktop: niente peek, uno slide pieno per volta */
+    gap: 0;
+    padding: 0;
+    scroll-padding-left: 0;
+  }
+
+  .custom-buy-box-section .custom-buy-box__slide {
+    flex: 0 0 100%;
+  }
+
+  .custom-buy-box-section .custom-buy-box__pdp-image {
+    border-radius: var(--media-radius);
+  }
+
   .custom-buy-box-section .custom-buy-box__title {
     font-size: 3rem;
   }
@@ -307,7 +380,10 @@
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  margin: 1.2rem 0;
+  /* vicini alla taglia sopra (sono link contestuali a quella scelta),
+     ma con piu' aria sotto prima del bottone Acquista, che deve restare
+     l'elemento piu' isolato/visibile della colonna */
+  margin: 0 0 0.8rem;
 }
 
 /* Stile link: niente box, testo sottolineato con icona a sinistra. */
@@ -343,7 +419,10 @@
 /* component-accordion.css fa il grosso (usa i token del color scheme). Qui solo
    lo stacco dal bottone Acquista; la prima riga ha gia' il border-top del componente. */
 .custom-buy-box-section .custom-buy-box__accordions {
-  margin-top: 1.6rem;
+  /* separazione netta dalla CTA e dal bottone WhatsApp sopra: le righe
+     trust sono contenuto di supporto, non devono competere visivamente
+     con l'azione principale */
+  margin-top: 2.2rem;
 }
 
 /* <dialog>: reset del default UA, il browser lo apre nel top layer.
