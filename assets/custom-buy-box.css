@@ -191,6 +191,50 @@
   color: rgba(var(--color-foreground), 0.7);
 }
 
+/* chip Klarna/PayPal nei colori brand. Rosa/blu come SFONDO pillola, non come
+   colore testo: il rosa Klarna (#FFB3C7) su bianco non passa il contrasto. */
+.custom-buy-box-section .custom-buy-box__pay-badge {
+  display: inline-block;
+  padding: 0.2rem 0.9rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: var(--font-body-weight-bold, 700);
+  line-height: 1.5;
+  vertical-align: 0.1rem;
+}
+
+.custom-buy-box-section .custom-buy-box__pay-badge--klarna {
+  background: #ffb3c7; /* rosa brand Klarna */
+  color: #17120f;      /* nero brand Klarna */
+}
+
+.custom-buy-box-section .custom-buy-box__pay-badge--paypal {
+  background: #003087; /* blu navy brand PayPal */
+  color: #ffffff;
+}
+
+/* ---- banner spedizione gratis ---- */
+/* strip evidenziata vicino al prezzo: arancio brand a bassa opacita' come
+   sfondo cosi' funziona sia su scheme chiari che scuri. */
+.custom-buy-box-section .custom-buy-box__shipping-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0.8rem;
+  background: rgba(251, 110, 6, 0.12); /* arancio brand #fb6e06 */
+  border: 0.1rem solid rgba(251, 110, 6, 0.35);
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.custom-buy-box-section .custom-buy-box__shipping-icon {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  color: #fb6e06;
+}
+
 /* ---- selettori ---- */
 .custom-buy-box-section .custom-buy-box__opt {
   display: flex;
@@ -278,12 +322,18 @@
   cursor: not-allowed;
 }
 
-/* ---- add to cart (snippet ufficiale Dawn `buy-buttons`) ---- */
+/* ---- add to cart (snippet `custom-buy-buttons`, clone di buy-buttons) ---- */
 .custom-buy-box-section .product-form {
   display: block;
-  /* extra separazione sopra il bottone Acquista: e' l'elemento di
-     conversione principale della sezione, deve stare isolato dal resto */
-  margin-top: 0.6rem;
+}
+
+/* microcopy benefit sopra l'ATC: gancio emozionale fuori dal bottone */
+.custom-buy-box-section .custom-buy-box__atc-benefit {
+  margin: 0.6rem 0 -1rem; /* stretta sul bottone sotto (gap 1.6rem di __info) */
+  font-size: 1.3rem;
+  font-weight: var(--font-body-weight-bold, 700);
+  color: rgba(var(--color-foreground), 0.85);
+  text-align: center;
 }
 
 /* messaggio d'errore Dawn: scoped qui (la CSS componente Dawn non e' caricata) */
@@ -415,14 +465,39 @@
   flex-shrink: 0;
 }
 
-/* ---- righe trust comprimibili sotto l'ATC (accordion Dawn nativo) ---- */
-/* component-accordion.css fa il grosso (usa i token del color scheme). Qui solo
-   lo stacco dal bottone Acquista; la prima riga ha gia' il border-top del componente. */
-.custom-buy-box-section .custom-buy-box__accordions {
+/* ---- righe trust sotto l'ATC: sempre visibili (ex accordion) ---- */
+.custom-buy-box-section .custom-buy-box__trust {
+  list-style: none;
   /* separazione netta dalla CTA e dal bottone WhatsApp sopra: le righe
      trust sono contenuto di supporto, non devono competere visivamente
      con l'azione principale */
-  margin-top: 2.2rem;
+  margin: 0.6rem 0 0;
+  padding: 1.6rem 0 0;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.custom-buy-box-section .custom-buy-box__trust-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: rgba(var(--color-foreground), 0.8);
+}
+
+.custom-buy-box-section .custom-buy-box__trust-row strong {
+  color: rgb(var(--color-foreground));
+}
+
+.custom-buy-box-section .custom-buy-box__trust-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem; /* allinea otticamente l'icona alla prima riga di testo */
+  color: #fb6e06; /* arancio brand, stesso delle stelle */
 }
 
 /* <dialog>: reset del default UA, il browser lo apre nel top layer.

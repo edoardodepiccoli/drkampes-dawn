@@ -3,16 +3,15 @@
 
   Sezione custom homepage (pattern: .claude/patterns/building-custom-homepage-section.md).
   Buy box modellato sulla LP B2C (lp-offerta) ma sobrio e allineato a Dawn:
-  usa i token del tema. L'add to cart usa lo snippet ufficiale Dawn `buy-buttons`
-  (<product-form> + product-form.js), come featured-product. Vedi decision 006.
+  usa i token del tema. L'add to cart usa `custom-buy-buttons`, clone scoped
+  dello snippet ufficiale Dawn `buy-buttons` (<product-form> + product-form.js)
+  con label custom. Vedi decision 006 e 036.
 
   Interattivita' (selezione variante, carousel) in assets/custom-buy-box.js, che
   aggiorna l'input name="id" del form al cambio variante.
 {% endcomment %}
 
 {{ 'custom-buy-box.css' | asset_url | stylesheet_tag }}
-{%- comment -%} Accordion nativo Dawn per le righe trust sotto l'ATC (stesso della PDP). {%- endcomment -%}
-{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign product = section.settings.product
@@ -67,33 +66,6 @@
       {{ product.variants | json }}
     </script>
 
-    {%- comment -%}
-      Mappa variante -> media id della sua galleria colore (metafield
-      custom.variant_gallery, stesso meccanismo di lp-offerta). Il file della
-      galleria si lega al media del prodotto confrontando l'src.
-    {%- endcomment -%}
-    <script type="application/json" class="custom-buy-box__vg">
-      {
-        {%- for variant in product.variants -%}
-          {%- unless forloop.first -%},{%- endunless -%}
-          "{{ variant.id }}": [
-            {%- assign vg_files = variant.metafields.custom.variant_gallery.value -%}
-            {%- if vg_files != blank -%}
-              {%- assign first_hit = true -%}
-              {%- for vg_file in vg_files -%}
-                {%- for media in product.media -%}
-                  {%- if vg_file.image.src == media.src -%}
-                    {%- unless first_hit -%},{%- endunless -%}{{ media.id }}
-                    {%- assign first_hit = false -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              {%- endfor -%}
-            {%- endif -%}
-          ]
-        {%- endfor -%}
-      }
-    </script>
-
     <div class="custom-buy-box__inner">
 
       {%- comment -%}
@@ -145,6 +117,37 @@
               loading="lazy"
             >
           </div>
+          {%- comment -%}
+            Slide lifestyle 6-8: le 3 foto migliori della ex sezione gallery
+            (disabilitata in templates/index.json), integrate qui in coda alle
+            infografiche. Ordine marketplace-standard: prima il prodotto/specs,
+            poi il contesto reale. URL CDN hardcoded con <img src> (rules.md),
+            ?width= per non scaricare l'originale full-size.
+          {%- endcomment -%}
+          <div class="custom-buy-box__slide">
+            <img
+              class="custom-buy-box__pdp-image"
+              src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01880-migliorato-nr-1769702403-697b8403bf89b.jpg?width=1200"
+              alt="{{ product.title | escape }} indossate al lavoro"
+              loading="lazy"
+            >
+          </div>
+          <div class="custom-buy-box__slide">
+            <img
+              class="custom-buy-box__pdp-image"
+              src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01813-migliorato-nr-1769702375-697b83e7ab8e3.jpg?width=1200"
+              alt="{{ product.title | escape }} dettaglio dal vivo"
+              loading="lazy"
+            >
+          </div>
+          <div class="custom-buy-box__slide">
+            <img
+              class="custom-buy-box__pdp-image"
+              src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01889-migliorato-nr-1769702410-697b840a71188.jpg?width=1200"
+              alt="{{ product.title | escape }} sul camion"
+              loading="lazy"
+            >
+          </div>
         </div>
         <div class="custom-buy-box__thumbs">
           <button type="button" class="custom-buy-box__thumb-btn is-active" data-photo-thumb="0">
@@ -161,6 +164,15 @@
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="4">
             <img class="custom-buy-box__thumb" src="{{ 'pdp-5.png' | asset_url }}" alt="" loading="lazy">
+          </button>
+          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="5">
+            <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01880-migliorato-nr-1769702403-697b8403bf89b.jpg?width=160" alt="" loading="lazy">
+          </button>
+          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="6">
+            <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01813-migliorato-nr-1769702375-697b83e7ab8e3.jpg?width=160" alt="" loading="lazy">
+          </button>
+          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="7">
+            <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01889-migliorato-nr-1769702410-697b840a71188.jpg?width=160" alt="" loading="lazy">
           </button>
         </div>
       </div>
@@ -193,14 +205,45 @@
             >{{ first_variant.compare_at_price | money }}</s>
           </div>
 
-          {%- comment -%} Importo rata dinamico = prezzo variante / 3. Frase hardcoded. {%- endcomment -%}
+          {%- comment -%}
+            Importo rata dinamico = prezzo variante / 3. Frase hardcoded.
+            Klarna/PayPal come chip nei colori brand (testo colorato bocciato:
+            il rosa Klarna su bianco non passa il contrasto; la loro linea
+            guida e' proprio testo nero su pillola rosa).
+          {%- endcomment -%}
           <p class="custom-buy-box__installment">
             {%- if is_en -%}
-              Or <strong>3 instalments of <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> with Klarna or PayPal
+              Or <strong>3 instalments of <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> with
             {%- else -%}
-              Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con Klarna o PayPal
-            {%- endif -%}
+              Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con
+            {%- endif %}
+            <span class="custom-buy-box__pay-badge custom-buy-box__pay-badge--klarna">Klarna</span>
+            <span class="custom-buy-box__pay-badge custom-buy-box__pay-badge--paypal">PayPal</span>
           </p>
+        </div>
+
+        {%- comment -%}
+          Banner spedizione: il claim piu' forte della pagina, sempre visibile
+          vicino al prezzo (prima stava solo dentro un accordion chiuso).
+          Copy allineato alla LP ("SPEDIZIONE GRATIS 1-2 GIORNI", lp-offerta).
+          Icona camion stroke inline (le stock Dawn fill-based possono sparire
+          su scheme scuri, vedi rules.md).
+        {%- endcomment -%}
+        <div class="custom-buy-box__shipping-banner">
+          <svg class="custom-buy-box__shipping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M5 18H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v10"/>
+            <path d="M15 8h4l3 4v5a1 1 0 0 1-1 1h-1"/>
+            <circle cx="7.5" cy="18" r="2"/>
+            <circle cx="17.5" cy="18" r="2"/>
+            <path d="M9.5 18H15"/>
+          </svg>
+          <span>
+            {%- if is_en -%}
+              <strong>Free shipping, 1&ndash;2 days</strong> &middot; free returns &amp; size exchange
+            {%- else -%}
+              <strong>Spedizione gratis in 1-2 giorni</strong> &middot; reso e cambio taglia gratuiti
+            {%- endif -%}
+          </span>
         </div>
 
         {%- if color_option -%}
@@ -282,14 +325,34 @@
         </div>
 
         {%- comment -%}
-          Add to cart — snippet ufficiale Dawn `buy-buttons` (stesso usato da
-          featured-product): <product-form> + {% form 'product' %} + product-form.js.
+          Microcopy benefit sopra l'ATC: il gancio emozionale sta QUI, non nel
+          bottone (CTA lunghe vanno a capo a 375px e diluiscono il verbo).
+        {%- endcomment -%}
+        <p class="custom-buy-box__atc-benefit">
+          {%- if is_en -%}
+            On your feet in 1 second. At your door in 48 hours.
+          {%- else -%}
+            Le infili in 1 secondo. Ai piedi in 48 ore.
+          {%- endif -%}
+        </p>
+
+        {%- comment -%}
+          Add to cart — clone scoped di `buy-buttons` con label custom
+          (snippets/custom-buy-buttons.liquid): stesso <product-form> +
+          {% form 'product' %} + product-form.js, cambia solo il testo.
           custom-buy-box.js aggiorna l'input name="id" al cambio variante.
         {%- endcomment -%}
-        {%- render 'buy-buttons',
+        {%- liquid
+          assign atc_label = 'Acquista Ora'
+          if is_en
+            assign atc_label = 'Buy Now'
+          endif
+        -%}
+        {%- render 'custom-buy-buttons',
           product: product,
           product_form_id: product_form_id,
-          section_id: section.id
+          section_id: section.id,
+          label: atc_label
         -%}
 
         {%- comment -%}
@@ -315,89 +378,71 @@ Vorrei chiederti piu' informazioni, grazie!
         {%- render 'whatsapp-info-button', message: wa_message -%}
 
         {%- comment -%}
-          Righe trust comprimibili sotto l'ATC. Replica statica del collapsible_tab nativo
-          Dawn (vedi custom-product-information.liquid case 'collapsible_tab'): markup
-          product__accordion + <details>, icone dal tema via snippet icon-accordion, caret
-          inline. Contenuto hardcoded (ordine rischio-first), stesse copy della PDP + spedizione.
-          Puro HTML/CSS (component-accordion.css), nessun JS.
+          Righe trust sotto l'ATC: sempre visibili, non piu' accordion — il
+          contenuto nascosto in un <details> chiuso non converte nessuno.
+          Icona + claim in bold + coda breve; la versione lunga/emozionale
+          resta nella sezione garanzie piu' sotto (ripetizione voluta).
+          Icone stroke inline (niente stock Dawn fill-based, vedi rules.md).
         {%- endcomment -%}
-        <div class="custom-buy-box__accordions">
-          <div class="product__accordion accordion">
-            <details>
-              <summary>
-                <div class="summary__title">
-                  {% render 'icon-accordion', icon: 'return' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}Free returns / size exchange{% else %}Reso / cambio taglia gratis{% endif %}</h2>
-                </div>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <div class="accordion__content rte">
-                {%- if is_en -%}
-                  <p>Wrong size? We exchange them free within 14 days, return shipping <strong>on us</strong>. Order worry-free: if they don't fit, we'll take care of it.</p>
-                {%- else -%}
-                  <p>Taglia sbagliata? La cambiamo gratis entro 14 giorni, spedizione del reso <strong>a nostro carico</strong>. Ordina senza pensieri: se non calzano, ci pensiamo noi.</p>
-                {%- endif -%}
-              </div>
-            </details>
-          </div>
-
-          <div class="product__accordion accordion">
-            <details>
-              <summary>
-                <div class="summary__title">
-                  {% render 'icon-accordion', icon: 'truck' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}Fast shipping 1–2 days{% else %}Spedizione rapida 1-2 giorni{% endif %}</h2>
-                </div>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <div class="accordion__content rte">
-                {%- if is_en -%}
-                  <p>Order today, receive them in 1–2 business days. Tracked shipping.</p>
-                {%- else -%}
-                  <p>Ordini oggi, le ricevi in 1-2 giorni lavorativi. Spedizione tracciata.</p>
-                {%- endif -%}
-              </div>
-            </details>
-          </div>
-
-          <div class="product__accordion accordion">
-            <details>
-              <summary>
-                <div class="summary__title">
-                  {% render 'icon-accordion', icon: 'shoe' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}3-year warranty (1095 days){% else %}Garanzia 3 anni (1095 giorni){% endif %}</h2>
-                </div>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <div class="accordion__content rte">
-                {%- if is_en -%}
-                  <p>Your Dr Kampes are covered for 1095 working days. If they fail structurally within 3 years, <strong>we repair or replace them</strong>. No questions asked.</p>
-                {%- else -%}
-                  <p>Le tue Dr Kampes sono coperte per 1095 giorni di lavoro. Se in 3 anni cedono strutturalmente, <strong>le ripariamo o sostituiamo</strong>. Senza discussioni.</p>
-                {%- endif -%}
-              </div>
-            </details>
-          </div>
-
-          <div class="product__accordion accordion">
-            <details>
-              <summary>
-                <div class="summary__title">
-                  {% render 'icon-accordion', icon: 'clipboard' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}100% compliant{% else %}Conformi al 100%{% endif %}</h2>
-                </div>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <div class="accordion__content rte">
-                {%- if is_en -%}
-                  <p>Compliant with EN ISO 20345:2022+A1:2024, top S3S grade: composite toe cap, anti-puncture midsole, SRC anti-slip outsole and full waterproofing. <strong>The highest protection standard available today.</strong></p>
-                {%- else -%}
-                  <p>Conformi alla EN ISO 20345:2022+A1:2024, grado massimo S3S: puntale in composito, lamina antiforatura, suola antiscivolo SRC e impermeabilità totale. <strong>Il massimo standard di protezione disponibile oggi.</strong></p>
-                {%- endif -%}
-              </div>
-            </details>
-          </div>
-        </div>
+        <ul class="custom-buy-box__trust">
+          <li class="custom-buy-box__trust-row">
+            <svg class="custom-buy-box__trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M3 9V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v4"/>
+              <path d="M21 9H3l2 11a1 1 0 0 0 1 .8h12a1 1 0 0 0 1-.8Z"/>
+              <path d="m9.5 14.5 2 2 3.5-3.5"/>
+            </svg>
+            <span>
+              {%- if is_en -%}
+                <strong>Free returns &amp; size exchange</strong> within 14 days, shipping on us
+              {%- else -%}
+                <strong>Reso e cambio taglia gratis</strong> entro 14 giorni, spedizione a nostro carico
+              {%- endif -%}
+            </span>
+          </li>
+          <li class="custom-buy-box__trust-row">
+            <svg class="custom-buy-box__trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M5 18H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v10"/>
+              <path d="M15 8h4l3 4v5a1 1 0 0 1-1 1h-1"/>
+              <circle cx="7.5" cy="18" r="2"/>
+              <circle cx="17.5" cy="18" r="2"/>
+              <path d="M9.5 18H15"/>
+            </svg>
+            <span>
+              {%- if is_en -%}
+                <strong>Tracked express shipping</strong>, delivered in 1&ndash;2 business days
+              {%- else -%}
+                <strong>Spedizione tracciata</strong>, consegna in 1-2 giorni lavorativi
+              {%- endif -%}
+            </span>
+          </li>
+          <li class="custom-buy-box__trust-row">
+            <svg class="custom-buy-box__trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/>
+              <path d="m8.5 12 2.5 2.5 4.5-4.5"/>
+            </svg>
+            <span>
+              {%- if is_en -%}
+                <strong>3-year warranty</strong>: structural failure? We repair or replace them
+              {%- else -%}
+                <strong>Garanzia 3 anni</strong>: se cedono, le ripariamo o sostituiamo
+              {%- endif -%}
+            </span>
+          </li>
+          <li class="custom-buy-box__trust-row">
+            <svg class="custom-buy-box__trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+              <path d="M14 2v6h6"/>
+              <path d="m8.5 14.5 2 2 4-4"/>
+            </svg>
+            <span>
+              {%- if is_en -%}
+                <strong>S3S certified</strong> &middot; EN ISO 20345:2022+A1:2024, the top safety grade
+              {%- else -%}
+                <strong>Certificate S3S</strong> &middot; EN ISO 20345:2022+A1:2024, il grado massimo
+              {%- endif -%}
+            </span>
+          </li>
+        </ul>
 
       </div>
     </div>

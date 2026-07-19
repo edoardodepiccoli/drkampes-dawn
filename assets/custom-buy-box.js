@@ -1,9 +1,9 @@
 /*
   CUSTOM · Acquista — buy box homepage
   Custom element <custom-buy-box>: selezione variante (colore + taglia),
-  aggiornamento prezzo / rata / disponibilita', carousel immagini con filtro
-  per colore (metafield custom.variant_gallery), dots di navigazione carousel, sticky CTA.
-  L'add to cart usa lo snippet ufficiale Dawn `buy-buttons` + product-form.js:
+  aggiornamento prezzo / rata / disponibilita', carousel foto fisso con
+  thumbnail (decision 035), sticky CTA, popup <dialog>.
+  L'add to cart usa `custom-buy-buttons` (clone di buy-buttons) + product-form.js:
   questo JS aggiorna solo l'input name="id" del form al cambio variante.
   Nessuna modifica a product-form.js / cart-notification.js / cart.js.
 */
@@ -26,13 +26,6 @@
       }
       if (!this.variants || !this.variants.length) return;
 
-      // Mappa variante -> media id della galleria colore (fallback {} = mostra tutto).
-      this.vgMap = {};
-      var vgEl = this.querySelector('.custom-buy-box__vg');
-      if (vgEl) {
-        try { this.vgMap = JSON.parse(vgEl.textContent) || {}; } catch (e) { this.vgMap = {}; }
-      }
-
       this.priceEl = this.querySelector('[data-price]');
       this.compareEl = this.querySelector('[data-compare]');
       this.installmentEl = this.querySelector('[data-installment]');
@@ -40,14 +33,6 @@
       // product-form.js gestisce il submit; qui si tiene solo sincronizzato l'input.
       this.idInput = this.querySelector('.product-variant-id');
       this.atcBtn = this.querySelector('.product-form__submit');
-
-      // carousel
-      this.slidesEl = this.querySelector('[data-slides]');
-      this.dotsEl = this.querySelector('[data-dots]');
-      // set completo (ordine originale) vs set visibile corrente
-      this.allSlides = Array.prototype.slice.call(this.querySelectorAll('.custom-buy-box__slide'));
-      this.slides = this.allSlides.slice();
-      this.dots = [];
 
       var colorOpt = this.querySelector('[data-color-opt]');
       var sizeOpt = this.querySelector('[data-size-opt]');
@@ -61,7 +46,6 @@
       // Stato iniziale = prima variante disponibile (= selected_or_first_available_variant).
       var current = this.variants.find(function (v) { return v.available; }) || this.variants[0];
       this.selOpts = current.options.slice();
-      this.lastColor = undefined; // forza il primo filterGallery in sync()
 
       this.bind();
       this.paintSelection();
@@ -128,15 +112,6 @@
         });
       });
 
-      // Swipe mobile: lo scroll-snap nativo muove il carousel; qui si tiene solo
-      // sincronizzato il dot attivo con lo slide visibile.
-      if (this.slidesEl) {
-        this.slidesEl.addEventListener('scroll', function () {
-          if (!self.slidesEl.clientWidth) return;
-          self.setActive(Math.round(self.slidesEl.scrollLeft / self.slidesEl.clientWidth));
-        }, { passive: true });
-      }
-
       this.bindDialogs();
     }
 
@@ -173,60 +148,6 @@
           document.body.classList.add('overflow-hidden');
           d.showModal();
         });
-      });
-    }
-
-    goToSlide(idx, behavior) {
-      if (!this.slidesEl || idx < 0) return;
-      this.slidesEl.scrollTo({ left: idx * this.slidesEl.clientWidth, behavior: behavior || 'smooth' });
-      this.setActive(idx);
-    }
-
-    setActive(idx) {
-      this.dots.forEach(function (d, i) { d.classList.toggle('is-active', i === idx); });
-    }
-
-    // Carousel: mostra solo le immagini della galleria del colore selezionato.
-    // ids assente/vuoto -> mostra tutte le immagini (ordine originale).
-    filterGallery(variant) {
-      if (!this.slidesEl) return;
-      var ids = this.vgMap[String(variant.id)];
-      var self = this;
-
-      if (!ids || !ids.length) {
-        // Fallback: ripristina tutte le immagini nell'ordine originale.
-        this.allSlides.forEach(function (s) { s.style.display = ''; self.slidesEl.appendChild(s); });
-      } else {
-        this.allSlides.forEach(function (s) { s.style.display = 'none'; });
-        ids.forEach(function (id) {
-          var sid = String(id);
-          var slide = self.allSlides.find(function (s) { return s.dataset.mediaId === sid; });
-          if (slide) { slide.style.display = ''; self.slidesEl.appendChild(slide); }
-        });
-      }
-
-      // Ricalcola il set di slide visibili nell'ordine DOM corrente.
-      this.slides = this.allSlides.filter(function (s) { return s.style.display !== 'none'; });
-
-      this.renderDots();
-      this.goToSlide(0, 'auto');
-    }
-
-    // Un dot per slide visibile. <=1 slide -> nessun dot.
-    renderDots() {
-      if (!this.dotsEl) return;
-      this.dotsEl.innerHTML = '';
-      this.dots = [];
-      if (this.slides.length <= 1) return;
-      var self = this;
-      this.slides.forEach(function (slide, i) {
-        var dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'custom-buy-box__dot';
-        dot.setAttribute('aria-label', 'Immagine ' + (i + 1));
-        dot.addEventListener('click', function () { self.goToSlide(i); });
-        self.dotsEl.appendChild(dot);
-        self.dots.push(dot);
       });
     }
 
@@ -276,17 +197,6 @@
       });
 
       var match = this.findVariant();
-
-      // Filtro galleria: solo al cambio colore (cambiare taglia non resetta il carousel).
-      var color = this.colorPos >= 0 ? this.selOpts[this.colorPos] : null;
-      if (color !== this.lastColor) {
-        this.lastColor = color;
-        // La galleria e' per colore: vale qualunque variante di quel colore.
-        var galleryVariant = match || this.variants.find(function (v) {
-          return self.colorPos >= 0 && v.options[self.colorPos] === color;
-        });
-        if (galleryVariant) this.filterGallery(galleryVariant);
-      }
 
       if (match) {
         // Sincronizza l'input del form Dawn: product-form.js lo legge al submit.
