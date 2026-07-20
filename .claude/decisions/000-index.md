@@ -37,11 +37,12 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 031 | custom-hero-v2: nuovo hero homepage, sostituisce custom-hero (012) | 2026-07-12 | Active |
 | 032 | custom-features-intro: sezione features, parte 1 (immagine derivata in assets/) | 2026-07-13 | Active |
 | 034 | custom-features-fastwear: nuove step images, re-split da nuova infografica | 2026-07-15 | Active |
-| 035 | custom-buy-box: carousel foto fisso (non variant-dependent) con thumbnail cliccabili, sostituisce immagine statica | 2026-07-19 | Active |
-| 036 | custom-buy-box: conversion pass (banner spedizione, chip Klarna/PayPal, trust rows statiche, label ATC custom, slide lifestyle, gallery disabilitata) | 2026-07-19 | Active |
+| 035 | custom-buy-box: carousel foto fisso (non variant-dependent) con thumbnail cliccabili, sostituisce immagine statica | 2026-07-19 | Superseded by 040 |
+| 036 | custom-buy-box: conversion pass (banner spedizione, chip Klarna/PayPal, trust rows statiche, label ATC custom, slide lifestyle, gallery disabilitata) | 2026-07-19 | Superseded by 040 |
 | 037 | custom-reviews: lista statica recensioni Google con avatar a iniziali, sostituisce il marquee | 2026-07-19 | Active |
-| 038 | Buy-box carousel: slide 1-5 infografiche locale-gated IT/EN | 2026-07-20 | Active |
+| 038 | Buy-box carousel: slide 1-5 infografiche locale-gated IT/EN | 2026-07-20 | Superseded by 040 |
 | 039 | Homepage reorder (ambassadors/video dopo reviews) + CTA WhatsApp video section restyled | 2026-07-20 | Active |
+| 040 | Buy-box rollback: revert 035/036/038, restore static image + Dawn buy-buttons | 2026-07-20 | Active |
 
 ## Conventions
 
