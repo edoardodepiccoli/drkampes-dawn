@@ -118,20 +118,13 @@
             >
           </div>
           {%- comment -%}
-            Slide lifestyle 6-8: le 3 foto migliori della ex sezione gallery
-            (disabilitata in templates/index.json), integrate qui in coda alle
-            infografiche. Ordine marketplace-standard: prima il prodotto/specs,
-            poi il contesto reale. URL CDN hardcoded con <img src> (rules.md),
+            Slide lifestyle: la foto della ex sezione gallery (disabilitata
+            in templates/index.json), integrata qui in coda alle infografiche.
+            Ordine marketplace-standard: prima il prodotto/specs, poi il
+            contesto reale. URL CDN hardcoded con <img src> (rules.md),
             ?width= per non scaricare l'originale full-size.
+            (dsc01880 rimossa su richiesta cliente.)
           {%- endcomment -%}
-          <div class="custom-buy-box__slide">
-            <img
-              class="custom-buy-box__pdp-image"
-              src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01880-migliorato-nr-1769702403-697b8403bf89b.jpg?width=1200"
-              alt="{{ product.title | escape }} indossate al lavoro"
-              loading="lazy"
-            >
-          </div>
           <div class="custom-buy-box__slide">
             <img
               class="custom-buy-box__pdp-image"
@@ -179,15 +172,12 @@
             <img class="custom-buy-box__thumb" src="{{ 'pdp-5.png' | asset_url }}" alt="" loading="lazy">
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="5">
-            <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01880-migliorato-nr-1769702403-697b8403bf89b.jpg?width=160" alt="" loading="lazy">
-          </button>
-          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="6">
             <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01813-migliorato-nr-1769702375-697b83e7ab8e3.jpg?width=160" alt="" loading="lazy">
           </button>
-          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="7">
+          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="6">
             <img class="custom-buy-box__thumb" src="{{ 'pdp-6.jpg' | asset_url }}" alt="" loading="lazy">
           </button>
-          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="8">
+          <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="7">
             <img class="custom-buy-box__thumb" src="{{ 'pdp-7.jpg' | asset_url }}" alt="" loading="lazy">
           </button>
         </div>
