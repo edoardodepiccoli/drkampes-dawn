@@ -40,6 +40,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 035 | custom-buy-box: carousel foto fisso (non variant-dependent) con thumbnail cliccabili, sostituisce immagine statica | 2026-07-19 | Active |
 | 036 | custom-buy-box: conversion pass (banner spedizione, chip Klarna/PayPal, trust rows statiche, label ATC custom, slide lifestyle, gallery disabilitata) | 2026-07-19 | Active |
 | 037 | custom-reviews: lista statica recensioni Google con avatar a iniziali, sostituisce il marquee | 2026-07-19 | Active |
+| 038 | Buy-box carousel: slide 1-5 infografiche locale-gated IT/EN | 2026-07-20 | Active |
 
 ## Conventions
 

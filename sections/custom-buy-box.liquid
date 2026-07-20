@@ -71,16 +71,19 @@
       {%- comment -%}
         ============ COLONNA MEDIA ============
         Carousel foto statico (fisso, non dipende da colore/taglia): scroll-snap
-        nativo per lo swipe, immagini fisse in assets/ (pdp-1.png..pdp-5.png),
-        non piu' variant_gallery. Click su una thumbnail scrolla al suo slide
-        (data-photo-slides/data-photo-thumb, logica in custom-buy-box.js).
+        nativo per lo swipe, immagini fisse in assets/, non piu' variant_gallery.
+        Click su una thumbnail scrolla al suo slide (data-photo-slides/
+        data-photo-thumb, logica in custom-buy-box.js).
+        Slide 1-5 (infografiche con testo): locale-gated IT/EN, stesso `is_en`
+        gia' usato nel resto della sezione (pdp-N-it.png / pdp-N-en.png).
+        Slide successive (foto senza testo) restano uniche, nessun gate.
       {%- endcomment -%}
       <div class="custom-buy-box__media">
         <div class="custom-buy-box__slides" data-photo-slides>
           <div class="custom-buy-box__slide">
             <img
               class="custom-buy-box__pdp-image"
-              src="{{ 'pdp-1.png' | asset_url }}"
+              src="{% if is_en %}{{ 'pdp-1-en.png' | asset_url }}{% else %}{{ 'pdp-1-it.png' | asset_url }}{% endif %}"
               alt="{{ product.title | escape }}"
               loading="lazy"
             >
@@ -88,7 +91,7 @@
           <div class="custom-buy-box__slide">
             <img
               class="custom-buy-box__pdp-image"
-              src="{{ 'pdp-2.png' | asset_url }}"
+              src="{% if is_en %}{{ 'pdp-2-en.png' | asset_url }}{% else %}{{ 'pdp-2-it.png' | asset_url }}{% endif %}"
               alt="{{ product.title | escape }}"
               loading="lazy"
             >
@@ -96,7 +99,7 @@
           <div class="custom-buy-box__slide">
             <img
               class="custom-buy-box__pdp-image"
-              src="{{ 'pdp-3.png' | asset_url }}"
+              src="{% if is_en %}{{ 'pdp-3-en.png' | asset_url }}{% else %}{{ 'pdp-3-it.png' | asset_url }}{% endif %}"
               alt="{{ product.title | escape }}"
               loading="lazy"
             >
@@ -104,7 +107,7 @@
           <div class="custom-buy-box__slide">
             <img
               class="custom-buy-box__pdp-image"
-              src="{{ 'pdp-4.png' | asset_url }}"
+              src="{% if is_en %}{{ 'pdp-4-en.png' | asset_url }}{% else %}{{ 'pdp-4-it.png' | asset_url }}{% endif %}"
               alt="{{ product.title | escape }}"
               loading="lazy"
             >
@@ -112,7 +115,7 @@
           <div class="custom-buy-box__slide">
             <img
               class="custom-buy-box__pdp-image"
-              src="{{ 'pdp-5.png' | asset_url }}"
+              src="{% if is_en %}{{ 'pdp-5-en.png' | asset_url }}{% else %}{{ 'pdp-5-it.png' | asset_url }}{% endif %}"
               alt="{{ product.title | escape }}"
               loading="lazy"
             >
@@ -157,19 +160,19 @@
         </div>
         <div class="custom-buy-box__thumbs">
           <button type="button" class="custom-buy-box__thumb-btn is-active" data-photo-thumb="0">
-            <img class="custom-buy-box__thumb" src="{{ 'pdp-1.png' | asset_url }}" alt="" loading="lazy">
+            <img class="custom-buy-box__thumb" src="{% if is_en %}{{ 'pdp-1-en.png' | asset_url }}{% else %}{{ 'pdp-1-it.png' | asset_url }}{% endif %}" alt="" loading="lazy">
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="1">
-            <img class="custom-buy-box__thumb" src="{{ 'pdp-2.png' | asset_url }}" alt="" loading="lazy">
+            <img class="custom-buy-box__thumb" src="{% if is_en %}{{ 'pdp-2-en.png' | asset_url }}{% else %}{{ 'pdp-2-it.png' | asset_url }}{% endif %}" alt="" loading="lazy">
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="2">
-            <img class="custom-buy-box__thumb" src="{{ 'pdp-3.png' | asset_url }}" alt="" loading="lazy">
+            <img class="custom-buy-box__thumb" src="{% if is_en %}{{ 'pdp-3-en.png' | asset_url }}{% else %}{{ 'pdp-3-it.png' | asset_url }}{% endif %}" alt="" loading="lazy">
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="3">
-            <img class="custom-buy-box__thumb" src="{{ 'pdp-4.png' | asset_url }}" alt="" loading="lazy">
+            <img class="custom-buy-box__thumb" src="{% if is_en %}{{ 'pdp-4-en.png' | asset_url }}{% else %}{{ 'pdp-4-it.png' | asset_url }}{% endif %}" alt="" loading="lazy">
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="4">
-            <img class="custom-buy-box__thumb" src="{{ 'pdp-5.png' | asset_url }}" alt="" loading="lazy">
+            <img class="custom-buy-box__thumb" src="{% if is_en %}{{ 'pdp-5-en.png' | asset_url }}{% else %}{{ 'pdp-5-it.png' | asset_url }}{% endif %}" alt="" loading="lazy">
           </button>
           <button type="button" class="custom-buy-box__thumb-btn" data-photo-thumb="5">
             <img class="custom-buy-box__thumb" src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/dsc01813-migliorato-nr-1769702375-697b83e7ab8e3.jpg?width=160" alt="" loading="lazy">
