@@ -78,8 +78,41 @@
   margin: 0;
 }
 
-.custom-video-feature-section .custom-video-feature__cta {
+/* ---- CTA WhatsApp ----
+   Copiata da component-whatsapp-info-button.css (buy box): stessa forma/colori,
+   scoped qui sotto .custom-video-feature-section cosi' le due sezioni restano
+   indipendenti (nessun file CSS condiviso fra sezioni custom, vedi rules.md). */
+.custom-video-feature-section .custom-video-feature__whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
   margin-top: 0.8rem;
+  padding: 1.2rem 2.4rem;
+  border: 0.1rem solid #25d366;
+  border-radius: var(--buttons-radius, 0.4rem);
+  background-color: #ffffff;
+  color: #128c3e;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.custom-video-feature-section .custom-video-feature__whatsapp-btn:hover,
+.custom-video-feature-section .custom-video-feature__whatsapp-btn:focus-visible {
+  background-color: #25d366;
+  color: #ffffff;
+  outline: none;
+}
+
+.custom-video-feature-section .custom-video-feature__whatsapp-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 /* ============ DESKTOP ============ */

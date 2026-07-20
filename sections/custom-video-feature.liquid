@@ -6,6 +6,7 @@
   Video caricato su Shopify, click-to-play via <deferred-media> (componente Dawn
   in global.js — niente JS proprio). Il riquadro segue l'aspect ratio reale del
   video, quindi i video verticali non vengono tagliati. Vedi decision 011.
+  CTA in stile WhatsApp (copiato dal buy box, scoped qui). Vedi decision 039.
 {% endcomment %}
 
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
@@ -84,12 +85,21 @@
       {%- if section.settings.text != blank -%}
         <div class="custom-video-feature__text rte">{{ section.settings.text }}</div>
       {%- endif -%}
+      {%- comment -%}
+        CTA WhatsApp: stile copiato da snippets/whatsapp-info-button.liquid
+        (buy box), non renderizzato/riusato — classi e CSS proprie di questa
+        sezione (custom-video-feature__whatsapp-*) cosi' le due sezioni restano
+        indipendenti. Non tocca il bottone Dawn di default (button--primary).
+      {%- endcomment -%}
       {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
         <a
           href="{{ section.settings.button_link }}"
-          class="custom-video-feature__cta button button--primary"
+          class="custom-video-feature__whatsapp-btn"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          {{ section.settings.button_label | escape }}
+          {%- render 'icon-whatsapp', class: 'custom-video-feature__whatsapp-icon' -%}
+          <span>{{ section.settings.button_label | escape }}</span>
         </a>
       {%- endif -%}
     </div>
