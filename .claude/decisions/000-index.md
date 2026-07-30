@@ -43,6 +43,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 038 | Buy-box carousel: slide 1-5 infografiche locale-gated IT/EN | 2026-07-20 | Superseded by 040 |
 | 039 | Homepage reorder (ambassadors/video dopo reviews) + CTA WhatsApp video section restyled | 2026-07-20 | Active |
 | 040 | Buy-box rollback: revert 035/036/038, restore static image + Dawn buy-buttons | 2026-07-20 | Active |
+| 041 | Work moved to `staging` branch, pushed to GitHub for client preview via Shopify | 2026-07-21 | Active |
 
 ## Conventions
 
