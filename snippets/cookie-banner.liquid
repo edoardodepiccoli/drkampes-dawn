@@ -1,0 +1,119 @@
+<!-- COOKIE BANNER START -->
+
+<style>
+  #cookie-banner {
+    display: none;
+    position: fixed;
+    z-index: 999999;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 18px 20px;
+    background: #fff;
+    color: #111;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.12);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  #cookie-banner .cookie-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  #cookie-banner button {
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  #cookie-reject {
+    background: #fff;
+    border: 1px solid #111;
+    color: #111;
+  }
+
+  #cookie-accept {
+    background: #111;
+    border: 1px solid #111;
+    color: #fff;
+  }
+
+  #cookie-banner a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    #cookie-banner {
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+    }
+
+    #cookie-banner .cookie-actions {
+      flex-direction: column;
+    }
+
+    #cookie-banner button {
+      width: 100%;
+    }
+  }
+</style>
+
+<div id="cookie-banner">
+  <div>
+    Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza,
+    effettuare analisi e attività di marketing.
+    <a href="/policies/privacy-policy">Privacy Policy</a>
+  </div>
+
+  <div class="cookie-actions">
+    <button type="button" id="cookie-reject">
+      Rifiuta
+    </button>
+
+    <button type="button" id="cookie-accept">
+      Accetta
+    </button>
+  </div>
+</div>
+
+<script>
+(function () {
+
+  var banner = document.getElementById('cookie-banner');
+  var acceptButton = document.getElementById('cookie-accept');
+  var rejectButton = document.getElementById('cookie-reject');
+
+  if (!banner || !acceptButton || !rejectButton) {
+    return;
+  }
+
+  var consent = localStorage.getItem('cookieConsent');
+
+  if (!consent) {
+    banner.style.display = 'block';
+  }
+
+  acceptButton.addEventListener('click', function () {
+    localStorage.setItem('cookieConsent', 'accepted');
+    banner.style.display = 'none';
+  });
+
+  rejectButton.addEventListener('click', function () {
+    localStorage.setItem('cookieConsent', 'rejected');
+    banner.style.display = 'none';
+  });
+
+})();
+</script>
+
+<!-- COOKIE BANNER END -->
