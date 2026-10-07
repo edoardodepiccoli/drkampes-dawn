@@ -19,8 +19,11 @@
   # Locale gate: EN mostra le traduzioni, tutto il resto cade sull'italiano.
   # `assign` non accetta comparazioni a destra: boolean via if/endif (rules.md).
   assign is_en = false
+  assign is_fr = false
   if request.locale.iso_code == 'en'
     assign is_en = true
+  elsif request.locale.iso_code == 'fr'
+    assign is_fr = true
   endif
   assign avatar_colors = '#f4511e,#6a1b9a,#1e88e5,#00897b,#e53935,#5e35b1,#039be5,#43a047,#8e24aa,#d81b60' | split: ','
 -%}
@@ -47,6 +50,27 @@ Maria del carmen s.|I've tried other products and the truth is yours is better i
 Corrado C.|Top shoes, never tried anything like them. Highly recommended.§
 Gianluca M.|Excellent shoe, extremely comfortable. Works great with the tongue up or down. Waterproof and great for driving. Very non-slip and easy to clean.§
 Giuseppe s.|Perfect, I wear them every day even at home. These rainy days truly surprised me — caught in a downpour and in puddles, my feet stayed completely dry.
+{%- elsif is_fr -%}
+Marco P.|5 étoiles ne suffisent pas, il en faudrait 10 ! La qualité du produit mais SURTOUT l'amabilité et le service après-vente.§
+Giorgio B.|Je pense qu'il faut remercier toute l'équipe qui a contribué à la création de ces bijoux de l'artisanat ITALIEN ! Je porte chaque jour avec fierté une chaussure qui procure une sensation de bien-être à chaque pas.§
+Vincenzo D. M.|Claudio est un génie d'aujourd'hui ! Il a réussi à créer des chaussures non seulement confortables mais aussi élégantes, sûres, de sécurité, hydrofuges et fastwear ! Je les ai depuis décembre et je les utilise dans la boue, dans l'eau, un peu partout.§
+Igor R.|En ce qui concerne les chaussures, je crois avoir fait le choix de ma vie. Elles s'ajustent parfaitement, ne sentent pas mauvais, sont souples à la marche tout en étant résistantes, et le cuir est de vraie qualité.§
+Marco O.|Je dois dire que j'ai fait le meilleur achat pour des chaussures de « routier » : excellente qualité, résistantes, antidérapantes et le plus beau, sans lacets avec le talon qui se plie, ce qui facilite le fait de les laisser sur le marchepied.§
+enrico v.|J'ai découvert Dr Kampes il y a environ un an et je crois vraiment que les autres chaussures de sécurité sont un lointain souvenir… Confort, praticité : 100 sur 10. Le pied ne fait pas un pli, aussi bien en hiver qu'en été.§
+Natalia G.|La meilleure chaussure de sécurité ! Je donnerais plus de 5 étoiles. Elles ont dépassé mes attentes ! Confortables, faciles à enfiler. Je suis une femme routière. Dr Kampes a créé une vraie chaussure.§
+Danilo L. F.|Je veux partager avec tous mes collègues routiers mon expérience positive avec Dr Kampes : des chaussures de très haut niveau en confort et en performances, testées sur la neige, la boue, la pluie. Le pied reste toujours sec.§
+Pierantonio D. P.|Depuis un an, je porte ces chaussures pendant mes journées de travail de routier, face à toutes les conditions météo et tous les terrains : pluie, boue, poussière et, bien sûr, les opérations de chargement et de déchargement.§
+Maikol M.|Ce sont des chaussures de qualité faites sur mesure pour nous, routiers, mais pas seulement. Vous trouvez ici l'excellence d'un produit made in Italy pour la sécurité au travail.§
+Thierry N.|Chaussures de très haute qualité !! Je recommande vivement !! Ce sont des professionnels !!§
+Ivano D.|Chaussures très belles, confortables et pratiques pour notre travail de chauffeur. Personnel cordial : ils m'ont contacté juste après la commande, puis de nouveau à la réception des chaussures pour savoir si tout me convenait.§
+Denis s.|Heureux et très satisfait de mes Dr Kampes, confortables, pratiques, je ne les changerais contre rien d'autre. Merci beaucoup.§
+Paolo F.|La meilleure chaussure de travail que j'aie jamais eue.§
+Damiano M.|Avant, je changeais de chaussures tous les 6 mois ; maintenant, cela fait 6 mois que je les utilise et elles sont encore parfaites. Made in Italy, confortables et bien faites.§
+Luca C.|Chaussure très confortable et très résistante !!!! Comme je manipule tous les jours des produits pétroliers, il n'y a aucun risque de glisser !!!!§
+Maria del carmen s.|J'ai essayé d'autres produits et la vérité, c'est que les vôtres sont meilleurs en confort, en matériaux, etc. Je vous les recommande à 100 %, elles sont fantastiques et le vendeur est imbattable.§
+Corrado C.|Chaussures au top, je n'ai jamais essayé de produit similaire. Fortement recommandées.§
+Gianluca M.|Excellente chaussure, très confortable. Utilisée avec la languette relevée ou rabattue, elle fonctionne bien. Imperméable et idéale pour conduire. Très antidérapante, facile à nettoyer.§
+Giuseppe s.|Parfaites, je les porte tous les jours, même à la maison. Ces jours de pluie m'ont vraiment surpris : sous le déluge et dans les flaques, le pied est resté sec.
 {%- else -%}
 Marco P.|5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post vendita.§
 Giorgio B.|Credo sia necessario ringraziare tutto il team che ha contribuito alla creazione di questi gioielli d'artigianato ITALIANO! Indosso tutti i giorni con orgoglio e fierezza una scarpa che rende ad ogni passo una sensazione di benessere.§
@@ -76,14 +100,14 @@ Giuseppe s.|Perfette, le uso tutti i giorni anche quando sono a casa. Questi gio
   <div class="custom-reviews__inner">
 
     <header class="custom-reviews__header">
-      <p class="custom-reviews__eyebrow">{% if is_en %}Google reviews{% else %}Recensioni Google{% endif %}</p>
+      <p class="custom-reviews__eyebrow">{% if is_en %}Google reviews{% elsif is_fr %}Avis Google{% else %}Recensioni Google{% endif %}</p>
       <h2 class="custom-reviews__heading">
-        {%- if is_en -%}If they say so, you can trust it.{%- else -%}Se lo dicono loro, puoi fidarti.{%- endif -%}
+        {%- if is_en -%}If they say so, you can trust it.{%- elsif is_fr -%}S'ils le disent, vous pouvez leur faire confiance.{%- else -%}Se lo dicono loro, puoi fidarti.{%- endif -%}
       </h2>
       <p class="custom-reviews__rating">
         <span class="custom-reviews__rating-num">4.9</span>
         <span class="custom-reviews__rating-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="custom-reviews__rating-label">{% if is_en %}on Google{% else %}su Google{% endif %}</span>
+        <span class="custom-reviews__rating-label">{% if is_en %}on Google{% elsif is_fr %}sur Google{% else %}su Google{% endif %}</span>
       </p>
     </header>
 
@@ -104,7 +128,7 @@ Giuseppe s.|Perfette, le uso tutti i giorni anche quando sono a casa. Questi gio
               <p class="custom-reviews__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
             </div>
             {%- comment -%} Badge "verificata Google": stessa funzione del check di lp-reviews. {%- endcomment -%}
-            <span class="custom-reviews__verified" title="{% if is_en %}Verified Google review{% else %}Recensione verificata da Google{% endif %}">
+            <span class="custom-reviews__verified" title="{% if is_en %}Verified Google review{% elsif is_fr %}Avis Google vérifié{% else %}Recensione verificata da Google{% endif %}">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
               Google
             </span>
@@ -125,7 +149,7 @@ Giuseppe s.|Perfette, le uso tutti i giorni anche quando sono a casa. Questi gio
       target="_blank"
       rel="noopener"
     >
-      {% if is_en %}See all reviews on Google{% else %}Vedi tutte le recensioni su Google{% endif %}
+      {% if is_en %}See all reviews on Google{% elsif is_fr %}Voir tous les avis sur Google{% else %}Vedi tutte le recensioni su Google{% endif %}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="6 9 12 15 18 9"/></svg>
     </a>
 
