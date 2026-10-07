@@ -16,19 +16,22 @@
 
 {%- liquid
   assign product = section.settings.product
-  # Locale gate: EN storefront shows English copy, everything else falls back to
+  # Locale gate: EN and FR storefronts show their own copy, everything else falls back to
   # Italian. Same convention as the homepage reviews section (custom_liquid "recensioni").
-  # `assign` can't take a comparison expression directly — build the boolean via if/endif.
+  # `assign` can't take a comparison expression directly — build the booleans via if/endif.
   assign is_en = false
+  assign is_fr = false
   if request.locale.iso_code == 'en'
     assign is_en = true
+  elsif request.locale.iso_code == 'fr'
+    assign is_fr = true
   endif
 -%}
 
 {%- if product == blank -%}
   {%- comment -%} Editor: nessun prodotto scelto. Placeholder minimo. {%- endcomment -%}
   <div class="custom-buy-box custom-buy-box--empty">
-    <p>{% if is_en %}Select a product in the section settings.{% else %}Seleziona un prodotto nelle impostazioni della sezione.{% endif %}</p>
+    <p>{% if is_en %}Select a product in the section settings.{% elsif is_fr %}Sélectionnez un produit dans les paramètres de la section.{% else %}Seleziona un prodotto nelle impostazioni della sezione.{% endif %}</p>
   </div>
 {%- else -%}
   {%- liquid
@@ -41,9 +44,9 @@
     assign size_option = null
     for opt in product.options_with_values
       assign oname = opt.name | downcase
-      if oname contains 'color' or oname contains 'colore' or oname contains 'colour'
+      if oname contains 'color' or oname contains 'colore' or oname contains 'colour' or oname contains 'couleur'
         assign color_option = opt
-      elsif oname contains 'taglia' or oname contains 'size' or oname contains 'misura'
+      elsif oname contains 'taglia' or oname contains 'size' or oname contains 'misura' or oname contains 'taille' or oname contains 'pointure'
         assign size_option = opt
       endif
     endfor
@@ -160,6 +163,8 @@
           <p class="custom-buy-box__installment">
             {%- if is_en -%}
               Or <strong>3 instalments of <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> with Klarna or PayPal
+            {%- elsif is_fr -%}
+              Ou <strong>3 versements de <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> avec Klarna ou PayPal
             {%- else -%}
               Oppure <strong>3 rate da <span data-installment>{{ first_variant.price | divided_by: 3 | money }}</span></strong> con Klarna o PayPal
             {%- endif -%}
@@ -182,9 +187,9 @@
                   {%- elsif value.swatch.image -%}--swatch:url({{ value.swatch.image | image_url: width: 120 }});
                   {%- else -%}
                     {%- assign vname = value | downcase -%}
-                    {%- if vname contains 'nero' or vname contains 'black' -%}--swatch:#1a1a1a;
-                    {%- elsif vname contains 'testa di moro' -%}--swatch:#3d1a0a;
-                    {%- elsif vname contains 'marrone' or vname contains 'brown' -%}--swatch:#5c3317;
+                    {%- if vname contains 'nero' or vname contains 'black' or vname contains 'noir' -%}--swatch:#1a1a1a;
+                    {%- elsif vname contains 'testa di moro' or vname contains 'tête de maure' or vname contains 'tete de maure' -%}--swatch:#3d1a0a;
+                    {%- elsif vname contains 'marrone' or vname contains 'brown' or vname contains 'marron' -%}--swatch:#5c3317;
                     {%- else -%}--swatch:#d9d9d9;
                     {%- endif -%}
                   {%- endif -%}
@@ -232,7 +237,7 @@
               <path d="M21.3 15.3 8.7 2.7a1 1 0 0 0-1.4 0L2.7 7.3a1 1 0 0 0 0 1.4l12.6 12.6a1 1 0 0 0 1.4 0l4.6-4.6a1 1 0 0 0 0-1.4Z"/>
               <path d="m7.5 10.5 2 2M11 7l2 2M14.5 3.5l2 2M4 14l2 2"/>
             </svg>
-            <span>{% if is_en %}Size guide{% else %}Guida taglie{% endif %}</span>
+            <span>{% if is_en %}Size guide{% elsif is_fr %}Guide des tailles{% else %}Guida taglie{% endif %}</span>
           </button>
           <button type="button" class="custom-buy-box__info-btn" data-open-dialog="specs">
             {%- comment -%} icona documento {%- endcomment -%}
@@ -240,7 +245,7 @@
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
               <path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/>
             </svg>
-            <span>{% if is_en %}Spec sheets{% else %}Schede tecniche{% endif %}</span>
+            <span>{% if is_en %}Spec sheets{% elsif is_fr %}Fiches techniques{% else %}Schede tecniche{% endif %}</span>
           </button>
         </div>
 
@@ -267,6 +272,12 @@ Hi Dr Kampes, I'm interested in this product:
 - Dr Kampes Trucker Shoes: {{ first_variant.price | money }}
 
 I'd like some more information, thanks!
+{%- elsif is_fr -%}
+Bonjour Dr Kampes, ce produit m'intéresse :
+
+- Dr Kampes Trucker Shoes : {{ first_variant.price | money }}
+
+J'aimerais avoir plus d'informations, merci !
 {%- else -%}
 Ciao Dr Kampes, mi interessa questo prodotto:
 
@@ -290,13 +301,15 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'return' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}Free returns / size exchange{% else %}Reso / cambio taglia gratis{% endif %}</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}Free returns / size exchange{% elsif is_fr %}Retour / échange de taille gratuit{% else %}Reso / cambio taglia gratis{% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
                 {%- if is_en -%}
                   <p>Wrong size? We exchange them free within 14 days, return shipping <strong>on us</strong>. Order worry-free: if they don't fit, we'll take care of it.</p>
+                {%- elsif is_fr -%}
+                  <p>Mauvaise taille ? Nous l'échangeons gratuitement sous 14 jours, frais de retour <strong>à notre charge</strong>. Commandez l'esprit tranquille : si elles ne vous vont pas, nous nous en occupons.</p>
                 {%- else -%}
                   <p>Taglia sbagliata? La cambiamo gratis entro 14 giorni, spedizione del reso <strong>a nostro carico</strong>. Ordina senza pensieri: se non calzano, ci pensiamo noi.</p>
                 {%- endif -%}
@@ -309,13 +322,15 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'truck' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}Fast shipping 1–2 days{% else %}Spedizione rapida 1-2 giorni{% endif %}</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}Fast shipping 1–2 days{% elsif is_fr %}Livraison rapide en 1 à 2 jours{% else %}Spedizione rapida 1-2 giorni{% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
                 {%- if is_en -%}
                   <p>Order today, receive them in 1–2 business days. Tracked shipping.</p>
+                {%- elsif is_fr -%}
+                  <p>Commandez aujourd'hui, recevez-les en 1 à 2 jours ouvrés. Expédition avec suivi.</p>
                 {%- else -%}
                   <p>Ordini oggi, le ricevi in 1-2 giorni lavorativi. Spedizione tracciata.</p>
                 {%- endif -%}
@@ -328,13 +343,15 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'shoe' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}3-year warranty (1095 days){% else %}Garanzia 3 anni (1095 giorni){% endif %}</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}3-year warranty (1095 days){% elsif is_fr %}Garantie 3 ans (1095 jours){% else %}Garanzia 3 anni (1095 giorni){% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
                 {%- if is_en -%}
                   <p>Your Dr Kampes are covered for 1095 working days. If they fail structurally within 3 years, <strong>we repair or replace them</strong>. No questions asked.</p>
+                {%- elsif is_fr -%}
+                  <p>Vos Dr Kampes sont couvertes pendant 1095 jours de travail. Si elles cèdent structurellement dans les 3 ans, <strong>nous les réparons ou les remplaçons</strong>. Sans discussion.</p>
                 {%- else -%}
                   <p>Le tue Dr Kampes sono coperte per 1095 giorni di lavoro. Se in 3 anni cedono strutturalmente, <strong>le ripariamo o sostituiamo</strong>. Senza discussioni.</p>
                 {%- endif -%}
@@ -347,13 +364,15 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'clipboard' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}100% compliant{% else %}Conformi al 100%{% endif %}</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}100% compliant{% elsif is_fr %}100 % conformes{% else %}Conformi al 100%{% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <div class="accordion__content rte">
                 {%- if is_en -%}
                   <p>Compliant with EN ISO 20345:2022+A1:2024, top S3S grade: composite toe cap, anti-puncture midsole, SRC anti-slip outsole and full waterproofing. <strong>The highest protection standard available today.</strong></p>
+                {%- elsif is_fr -%}
+                  <p>Conformes à la norme EN ISO 20345:2022+A1:2024, niveau maximal S3S : embout en composite, semelle anti-perforation, semelle extérieure antidérapante SRC et étanchéité totale. <strong>Le plus haut niveau de protection disponible aujourd'hui.</strong></p>
                 {%- else -%}
                   <p>Conformi alla EN ISO 20345:2022+A1:2024, grado massimo S3S: puntale in composito, lamina antiforatura, suola antiscivolo SRC e impermeabilità totale. <strong>Il massimo standard di protezione disponibile oggi.</strong></p>
                 {%- endif -%}
@@ -391,12 +410,12 @@ Vorrei chiederti piu' informazioni, grazie!
       aria-labelledby="cbb-dialog-size-title-{{ section.id }}"
     >
       <div class="custom-buy-box__dialog-box">
-        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="{% if is_en %}Close{% else %}Chiudi{% endif %}">&times;</button>
-        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-size-title-{{ section.id }}">{% if is_en %}Size guide{% else %}Guida alla Taglia{% endif %}</h3>
+        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="{% if is_en %}Close{% elsif is_fr %}Fermer{% else %}Chiudi{% endif %}">&times;</button>
+        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-size-title-{{ section.id }}">{% if is_en %}Size guide{% elsif is_fr %}Guide des tailles{% else %}Guida alla Taglia{% endif %}</h3>
         <div class="custom-buy-box__dialog-body">
-          <p>{% if is_en %}Measure the inner insole length and compare it with the table.{% else %}Misura la lunghezza interna della soletta e confronta con la tabella.{% endif %}</p>
+          <p>{% if is_en %}Measure the inner insole length and compare it with the table.{% elsif is_fr %}Mesurez la longueur intérieure de la semelle et comparez-la avec le tableau.{% else %}Misura la lunghezza interna della soletta e confronta con la tabella.{% endif %}</p>
           <table class="custom-buy-box__stbl">
-            <thead><tr><th>{% if is_en %}EU{% else %}IT{% endif %}</th><th>{% if is_en %}Inner insole (cm){% else %}Cm Soletta Interna{% endif %}</th></tr></thead>
+            <thead><tr><th>{% if is_en %}EU{% elsif is_fr %}EU{% else %}IT{% endif %}</th><th>{% if is_en %}Inner insole (cm){% elsif is_fr %}Semelle intérieure (cm){% else %}Cm Soletta Interna{% endif %}</th></tr></thead>
             <tbody>
               <tr><td>37</td><td>24,5 cm</td></tr>
               <tr><td>38</td><td>25 cm</td></tr>
@@ -423,32 +442,32 @@ Vorrei chiederti piu' informazioni, grazie!
       aria-labelledby="cbb-dialog-specs-title-{{ section.id }}"
     >
       <div class="custom-buy-box__dialog-box">
-        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="{% if is_en %}Close{% else %}Chiudi{% endif %}">&times;</button>
-        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-specs-title-{{ section.id }}">{% if is_en %}Technical documentation{% else %}Documentazione Tecnica{% endif %}</h3>
+        <button type="button" class="custom-buy-box__dialog-x" data-close-dialog aria-label="{% if is_en %}Close{% elsif is_fr %}Fermer{% else %}Chiudi{% endif %}">&times;</button>
+        <h3 class="custom-buy-box__dialog-title" id="cbb-dialog-specs-title-{{ section.id }}">{% if is_en %}Technical documentation{% elsif is_fr %}Documentation technique{% else %}Documentazione Tecnica{% endif %}</h3>
         <div class="custom-buy-box__dialog-body">
           <div class="custom-buy-box__doc-section">
-            <p class="custom-buy-box__doc-label">{% if is_en %}Common documents{% else %}Documenti comuni{% endif %}</p>
+            <p class="custom-buy-box__doc-label">{% if is_en %}Common documents{% elsif is_fr %}Documents communs{% else %}Documenti comuni{% endif %}</p>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">{% if is_en %}PPE S3S certification{% else %}Certificazione DPI S3S{% endif %}</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}PPE S3S certification{% elsif is_fr %}Certification EPI S3S{% else %}Certificazione DPI S3S{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/NOTA-INFORMATIVA-DRKAMPES.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">{% if is_en %}Information notice{% else %}Nota informativa{% endif %}</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}Information notice{% elsif is_fr %}Notice d'information{% else %}Nota informativa{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
           </div>
           <div class="custom-buy-box__doc-section">
-            <p class="custom-buy-box__doc-label">{% if is_en %}Spec sheets by model{% else %}Schede tecniche per modello{% endif %}</p>
+            <p class="custom-buy-box__doc-label">{% if is_en %}Spec sheets by model{% elsif is_fr %}Fiches techniques par modèle{% else %}Schede tecniche per modello{% endif %}</p>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">{% if is_en %}Dr Kampes Black{% else %}Dr Kampes Nere{% endif %}</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}Dr Kampes Black{% elsif is_fr %}Dr Kampes Noires{% else %}Dr Kampes Nere{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
             <a class="custom-buy-box__doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
               <span class="custom-buy-box__doc-icon">&#8595;</span>
-              <span class="custom-buy-box__doc-name">{% if is_en %}Dr Kampes Dark Brown{% else %}Dr Kampes Testa di Moro{% endif %}</span>
+              <span class="custom-buy-box__doc-name">{% if is_en %}Dr Kampes Dark Brown{% elsif is_fr %}Dr Kampes Marron foncé{% else %}Dr Kampes Testa di Moro{% endif %}</span>
               <span class="custom-buy-box__doc-type">PDF</span>
             </a>
           </div>

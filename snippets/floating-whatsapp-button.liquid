@@ -1,11 +1,23 @@
 {{ 'component-floating-button.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  # Locale gate for the aria-label (was hardcoded Italian). Booleans built via
+  # if/endif because `assign` can't take a comparison expression.
+  assign is_en = false
+  assign is_fr = false
+  if request.locale.iso_code == 'en'
+    assign is_en = true
+  elsif request.locale.iso_code == 'fr'
+    assign is_fr = true
+  endif
+-%}
+
 <a
   href="https://wa.me/393447703171"
   class="floating-whatsapp"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Contattaci su WhatsApp"
+  aria-label="{% if is_en %}Contact us on WhatsApp{% elsif is_fr %}Contactez-nous sur WhatsApp{% else %}Contattaci su WhatsApp{% endif %}"
 >
   {%- render 'icon-whatsapp', class: 'floating-whatsapp__icon' -%}
 </a>

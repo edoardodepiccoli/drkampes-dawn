@@ -15,12 +15,15 @@
 {%- liquid
   assign wa_number = number | default: '393447703171'
   assign wa_text = message | url_encode
-  # Locale gate for the button label: EN storefront shows English, else Italian.
+  # Locale gate for the button label: EN and FR storefronts show their own copy, else Italian.
   # `assign` can't take a comparison expression directly (== is only valid
-  # inside if/unless/case) — build the boolean via if/endif instead.
+  # inside if/unless/case) — build the booleans via if/endif instead.
   assign is_en = false
+  assign is_fr = false
   if request.locale.iso_code == 'en'
     assign is_en = true
+  elsif request.locale.iso_code == 'fr'
+    assign is_fr = true
   endif
 -%}
 
@@ -31,8 +34,8 @@
   class="whatsapp-info-btn"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="{% if is_en %}Ask for info on WhatsApp{% else %}Chiedi info su WhatsApp{% endif %}"
+  aria-label="{% if is_en %}Ask for info on WhatsApp{% elsif is_fr %}Demander des infos sur WhatsApp{% else %}Chiedi info su WhatsApp{% endif %}"
 >
   {%- render 'icon-whatsapp', class: 'whatsapp-info-btn__icon' -%}
-  <span>{% if is_en %}Ask for info on WhatsApp{% else %}Chiedi info su WhatsApp{% endif %}</span>
+  <span>{% if is_en %}Ask for info on WhatsApp{% elsif is_fr %}Demander des infos sur WhatsApp{% else %}Chiedi info su WhatsApp{% endif %}</span>
 </a>
