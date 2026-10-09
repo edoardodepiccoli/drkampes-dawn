@@ -11,6 +11,16 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "custom_liquid_6A6RDw": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<script>\n  /* Dr Kampes - Lead dal popup Shopify Forms (modulo 887516).\n     Quando compare il banner \"Ecco il tuo sconto\" (iscrizione riuscita)\n     pubblica l'evento personalizzato \"dk_popup_lead\", che il pixel\n     personalizzato \"Meta Lead popup\" trasforma in un Lead per Meta. */\n  (function () {\n    var inviato = false;\n    var email = '';\n\n    function collega(radice) {\n      if (radice.__dkLead) return;\n      radice.__dkLead = true;\n\n      radice.addEventListener('input', function (e) {\n        var campo = e.target;\n        if (campo && campo.name === 'email') {\n          email = (campo.value || '').trim().toLowerCase();\n        }\n      }, true);\n\n      new MutationObserver(function () {\n        if (inviato) return;\n        if (radice.querySelector('[data-testid=\"banner-success\"]')) {\n          inviato = true;\n          if (window.Shopify && Shopify.analytics && typeof Shopify.analytics.publish === 'function') {\n            Shopify.analytics.publish('dk_popup_lead', { email: email, modulo: '887516' });\n          }\n        }\n      }).observe(radice, { childList: true, subtree: true });\n    }\n\n    var tentativi = 0;\n    var cerca = setInterval(function () {\n      tentativi++;\n      var host = document.querySelector('shopify-forms-embed');\n      if (host && host.shadowRoot) {\n        collega(host.shadowRoot);\n        clearInterval(cerca);\n      }\n      if (tentativi > 120) clearInterval(cerca);\n    }, 500);\n  })();\n</script>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "custom_footer_KNVDct": {
       "type": "custom-footer",
       "name": "CUSTOM · Footer",
@@ -64,6 +74,7 @@
     }
   },
   "order": [
+    "custom_liquid_6A6RDw",
     "custom_footer_KNVDct",
     "footer"
   ]
