@@ -13,7 +13,20 @@
 
 {{ 'lp-b2b-quiz-form.css' | asset_url | stylesheet_tag }}
 
-<div class="lp-b2b-quiz-form" id="lpQuizModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lpQuizTitle" data-webhook="https://hook.eu2.make.com/qqkddbjdckfdmxx5amckexaepgdpy6m9">
+{%- comment -%}
+  Thank-you redirect target, in the current market's language (/it-it/...).
+  Emitted only if the "grazie-flotte" page exists in the admin: without the
+  attribute the JS keeps showing the in-modal success step, so a missing
+  page can never turn a successful submit into a 404.
+{%- endcomment -%}
+{%- liquid
+  assign thankyou_url = ''
+  if pages['grazie-flotte'].id
+    assign thankyou_url = routes.root_url | append: '/pages/grazie-flotte' | replace: '//', '/'
+  endif
+-%}
+
+<div class="lp-b2b-quiz-form" id="lpQuizModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lpQuizTitle" data-webhook="https://hook.eu2.make.com/qqkddbjdckfdmxx5amckexaepgdpy6m9"{% if thankyou_url != blank %} data-thankyou="{{ thankyou_url | escape }}"{% endif %}>
   <div class="lp-b2b-quiz-form__dialog" role="document">
 
     <div class="lp-b2b-quiz-form__progress" data-quiz-progress aria-hidden="true">

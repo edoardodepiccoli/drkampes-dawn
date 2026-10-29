@@ -1,0 +1,97 @@
+{% comment %}
+  LP B2B — Thank-you page ("Candidatura ricevuta", /pages/grazie-flotte)
+
+  Code-only LP element, rendered by templates/page.grazie_flotte.liquid.
+  The quiz redirects here after a successful submit (data-thankyou on
+  #lpQuizModal). Copy from Alessandro's PAGINA_GRAZIE_FLOTTE.md (27/10/2026).
+
+  Left out until Claudio confirms them: response times (step 2) and how the
+  bonus is delivered. The WhatsApp number is the product-page one, also
+  pending confirmation for B2B.
+
+  The "Hai una domanda?" block sits right under the intro instead of after
+  the bonus: on mobile WhatsApp is the only useful action for someone who
+  just landed here, so it must be reachable without much scrolling.
+{% endcomment %}
+
+{{ 'lp-b2b-thanks.css' | asset_url | stylesheet_tag }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap">
+
+<section class="lp-b2b-thanks">
+  <div class="lp-b2b-thanks__inner">
+
+    <header class="lp-b2b-thanks__intro">
+      <span class="lp-b2b-thanks__check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+      </span>
+      <p class="lp-b2b-thanks__eyebrow">CANDIDATURA RICEVUTA</p>
+      <h1 class="lp-b2b-thanks__heading">
+        <span class="lp-b2b-thanks__heading-line">GRAZIE.</span>
+        <span class="lp-b2b-thanks__heading-line lp-b2b-thanks__heading-line--gold">LA TUA AZIENDA È IN VALUTAZIONE.</span>
+      </h1>
+      <p class="lp-b2b-thanks__lead">Per il programma Dr Kampes riservato alle prime 10 flotte.</p>
+      <p class="lp-b2b-thanks__text">Abbiamo ricevuto le tue risposte. Le leggiamo una per una: non è un modulo automatico.</p>
+    </header>
+
+    <div class="lp-b2b-thanks__block lp-b2b-thanks__block--contact">
+      <h2 class="lp-b2b-thanks__title">HAI UNA DOMANDA?</h2>
+      <p class="lp-b2b-thanks__text">Scrivici su WhatsApp: risponde direttamente il team Dr Kampes.</p>
+      <a
+        class="lp-b2b-thanks__cta"
+        href="https://wa.me/393447703171?text=Ciao%20Dr%20Kampes%2C%20ho%20appena%20inviato%20la%20candidatura%20della%20mia%20azienda%20per%20il%20programma%20flotte."
+        target="_blank"
+        rel="noopener"
+      >
+        {%- render 'icon-whatsapp', class: 'lp-b2b-thanks__cta-icon' -%}
+        <span>SCRIVICI SU WHATSAPP</span>
+      </a>
+    </div>
+
+    <div class="lp-b2b-thanks__block">
+      <h2 class="lp-b2b-thanks__title">COSA SUCCEDE ADESSO</h2>
+      <ol class="lp-b2b-thanks__steps">
+        <li class="lp-b2b-thanks__step">
+          <span class="lp-b2b-thanks__step-num" aria-hidden="true">1</span>
+          <div>
+            <h3 class="lp-b2b-thanks__step-title">Analizziamo il profilo della tua flotta</h3>
+            <p class="lp-b2b-thanks__text">Numero di autisti, mezzi ed esigenze: valutiamo se la tua azienda è in linea con il programma.</p>
+          </div>
+        </li>
+        <li class="lp-b2b-thanks__step">
+          <span class="lp-b2b-thanks__step-num" aria-hidden="true">2</span>
+          <div>
+            <h3 class="lp-b2b-thanks__step-title">Ti contattiamo</h3>
+            <p class="lp-b2b-thanks__text">Se il profilo è in linea, ti chiamiamo o ti scriviamo per capire insieme la soluzione migliore.</p>
+          </div>
+        </li>
+        <li class="lp-b2b-thanks__step">
+          <span class="lp-b2b-thanks__step-num" aria-hidden="true">3</span>
+          <div>
+            <h3 class="lp-b2b-thanks__step-title">Prepariamo la proposta su misura</h3>
+            <p class="lp-b2b-thanks__text">Colori della flotta, logo aziendale, gestione taglie: costruiamo la proposta con il tuo preventivo dedicato.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="lp-b2b-thanks__block lp-b2b-thanks__block--bonus">
+      <h2 class="lp-b2b-thanks__title">IL TUO BONUS</h2>
+      <p class="lp-b2b-thanks__bonus">2 strategie pratiche per ridurre sprechi e sostituzioni DPI.</p>
+    </div>
+
+    <div class="lp-b2b-thanks__block">
+      <h2 class="lp-b2b-thanks__title">NEL FRATTEMPO</h2>
+      <p class="lp-b2b-thanks__text">Dr Kampes non sono semplici scarpe antinfortunistiche: sono un sistema pensato per comfort, immagine e gestione delle scarpe dei tuoi autisti.</p>
+      <ul class="lp-b2b-thanks__list">
+        <li><strong>Personalizzazione aziendale.</strong> Colori e logo per rendere riconoscibili i tuoi autisti.</li>
+        <li><strong>Gestione taglie.</strong> Base taglie aziendale, storico ordini e cambio taglia rapido.</li>
+        <li><strong>Supporto diretto.</strong> Un referente chiaro per ordini, riordini e assistenza.</li>
+      </ul>
+      <a class="lp-b2b-thanks__back" href="{{ routes.root_url }}">TORNA AL SITO</a>
+    </div>
+
+  </div>
+</section>
