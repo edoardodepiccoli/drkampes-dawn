@@ -12,6 +12,7 @@
   Shopify.analytics.publish and are forwarded by the custom pixels in
   Settings > Customer events. meta.event_id is sent to Make too, which
   forwards it to the Meta Conversions API: same id = deduplicated event.
+  meta.ip (from /cdn-cgi/trace) is for the CAPI user data.
   If the modal has data-thankyou, redirects there after a successful submit.
 
   Two IIFEs: quiz modal + sticky CTA controller.
@@ -80,6 +81,19 @@
 
     const webhookUrl = modal.dataset.webhook;
     const thankYouUrl = modal.dataset.thankyou || '';
+
+    // Visitor IP for the Meta Conversions API: Make's module refuses the user
+    // agent without it. Browsers can't read their public IP, but Cloudflare's
+    // trace page on the shop's own domain returns it (no third-party call).
+    // Fetched once on load so it's ready by submit time; stays '' on failure.
+    let clientIp = '';
+    fetch('/cdn-cgi/trace', { credentials: 'omit', cache: 'no-store' })
+      .then(function (res) { return res.ok ? res.text() : ''; })
+      .then(function (txt) {
+        const m = txt.match(/^ip=(.+)$/m);
+        if (m) clientIp = m[1].trim();
+      })
+      .catch(function () {});
     const form       = modal.querySelector('[data-quiz-form]');
     const steps      = Array.from(modal.querySelectorAll('[data-quiz-step]'));
     const nextBtn    = modal.querySelector('[data-quiz-next]');
@@ -426,7 +440,8 @@
           event_id: 'b2b_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10),
           ...dkGclid(),
           fbp: readCookie('_fbp'),
-          fbc: readCookie('_fbc')
+          fbc: readCookie('_fbc'),
+          ip: clientIp
         }
       };
     }
