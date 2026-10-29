@@ -8,6 +8,12 @@
   fornitore, problema, vantaggio, soluzione, test, nome, whatsapp, email,
   messaggio) are a contract with the Make.com automation. Do not rename.
 
+  Tracking (Meta + Google Ads): browser events go out via
+  Shopify.analytics.publish and are forwarded by the custom pixels in
+  Settings > Customer events. meta.event_id is sent to Make too, which
+  forwards it to the Meta Conversions API: same id = deduplicated event.
+  If the modal has data-thankyou, redirects there after a successful submit.
+
   Two IIFEs: quiz modal + sticky CTA controller.
 */
 (function () {
@@ -23,6 +29,44 @@
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const PHONE_RE = /^[0-9]{6,15}$/;
 
+  function dkPublish(name, data) {
+    try {
+      if (window.Shopify && Shopify.analytics && typeof Shopify.analytics.publish === 'function') {
+        Shopify.analytics.publish(name, data || {});
+      }
+    } catch (e) {}
+  }
+
+  // Google Ads click ids: read from the URL, persisted in localStorage so they
+  // survive navigation, gclid falls back to the _gcl_aw cookie.
+  function dkGclid() {
+    const out = { gclid: '', gbraid: '', wbraid: '' };
+    try {
+      const params = new URLSearchParams(location.search);
+      ['gclid', 'gbraid', 'wbraid'].forEach(function (k) {
+        const v = params.get(k);
+        if (v) {
+          out[k] = v;
+          try { localStorage.setItem('dk_' + k, v); } catch (e) {}
+        } else {
+          try { out[k] = localStorage.getItem('dk_' + k) || ''; } catch (e) {}
+        }
+      });
+      if (!out.gclid) {
+        const m = document.cookie.match(/(?:^|; )_gcl_aw=([^;]+)/);
+        if (m) out.gclid = decodeURIComponent(m[1]).split('.').slice(2).join('.');
+      }
+    } catch (e) {}
+    return out;
+  }
+
+  function readCookie(name) {
+    const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]+)'));
+    return m ? m[1] : '';
+  }
+
+  dkGclid();
+
   function ready(fn) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
     else fn();
@@ -35,6 +79,7 @@
     if (!modal) return;
 
     const webhookUrl = modal.dataset.webhook;
+    const thankYouUrl = modal.dataset.thankyou || '';
     const form       = modal.querySelector('[data-quiz-form]');
     const steps      = Array.from(modal.querySelectorAll('[data-quiz-step]'));
     const nextBtn    = modal.querySelector('[data-quiz-next]');
@@ -206,6 +251,7 @@
     }
 
     function goToStep(step) {
+      if (typeof step === 'number') dkPublish('dk_b2b_quiz_step', { step: step });
       currentStep = step;
       steps.forEach(s => s.classList.remove('is-active'));
       const target = modal.querySelector('[data-quiz-step="' + step + '"]');
@@ -376,7 +422,11 @@
           pageTitle: document.title,
           userAgent: navigator.userAgent,
           referrer: document.referrer || '',
-          source: 'lp-b2b-quiz'
+          source: 'lp-b2b-quiz',
+          event_id: 'b2b_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10),
+          ...dkGclid(),
+          fbp: readCookie('_fbp'),
+          fbc: readCookie('_fbc')
         }
       };
     }
@@ -411,7 +461,17 @@
         .then(function () {
           modal.classList.remove('is-submitting');
           clearState();
+          dkPublish('dk_b2b_application', {
+            event_id: payload.meta.event_id,
+            email: String(payload.email || '').trim().toLowerCase(),
+            phone: String(payload.whatsapp || '').replace(/[^0-9]/g, ''),
+            autisti: payload.autisti,
+            camion: payload.camion
+          });
           goToStep('success');
+          if (thankYouUrl) {
+            setTimeout(function () { location.href = thankYouUrl; }, 1200);
+          }
         })
         .catch(function (err) {
           clearTimeout(tId);
