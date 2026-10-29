@@ -16,6 +16,9 @@ dedicated thank-you URL for audiences and GA4. Brief: `_istruzioni-cliente/aless
 - His patch came as a minified copy of `assets/lp-b2b-quiz-form.js`. Both files were
   normalized (esbuild syntax-minify + prettier) and diffed: only his additions differed.
   The additions were ported by hand into the readable source instead of replacing it.
+- `meta.ip` is read from `/cdn-cgi/trace` (Cloudflare, same origin): Make's CAPI module
+  rejects a user agent without an IP, the browser can't read its public IP, and Make's
+  webhook doesn't expose request headers. Rejected: a third-party IP service (ipify).
 - Thank-you page is an LP template (`templates/page.grazie_flotte.liquid`, layout `lp`)
   rendering `snippets/lp-b2b-thanks.liquid` + `lp-b2b-footer`.
 - `noindex` lives in `layout/lp.liquid`, keyed on `template.suffix == 'grazie_flotte'`:
