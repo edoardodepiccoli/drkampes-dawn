@@ -15,13 +15,15 @@
 
 {%- comment -%}
   Thank-you redirect target, in the current market's language (/it-it/...).
-  Emitted only if the "grazie-flotte" page exists in the admin: without the
-  attribute the JS keeps showing the in-modal success step, so a missing
-  page can never turn a successful submit into a 404.
+  Emitted only if the "grazie-flotte" page exists in the admin AND is
+  published: `pages` also returns hidden pages, which 404 on the storefront.
+  Without the attribute the JS keeps showing the in-modal success step, so a
+  missing or hidden page can never turn a successful submit into a 404.
 {%- endcomment -%}
 {%- liquid
   assign thankyou_url = ''
-  if pages['grazie-flotte'].id
+  assign thankyou_page = pages['grazie-flotte']
+  if thankyou_page.id and thankyou_page.published_at
     assign thankyou_url = routes.root_url | append: '/pages/grazie-flotte' | replace: '//', '/'
   endif
 -%}
