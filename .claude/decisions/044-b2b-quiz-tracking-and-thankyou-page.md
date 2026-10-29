@@ -25,8 +25,8 @@ dedicated thank-you URL for audiences and GA4. Brief: `_istruzioni-cliente/aless
   first and caught on the live site).
   Without it the JS keeps the in-modal success step, so deploying before the page is
   created in the admin can't send a successful submit to a 404.
-- Copy marked "DA CONFERMARE" in the brief (response times, bonus delivery) is left out
-  until Claudio confirms it. The WhatsApp block sits right after the intro so it's above
+- Copy marked "DA CONFERMARE" in the brief (response times) is left out
+  until Claudio confirms it. Bonus delivery by email was confirmed on 29/10. The WhatsApp block sits right after the intro so it's above
   the fold on mobile.
 
 ## Alternatives rejected
