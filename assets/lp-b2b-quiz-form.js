@@ -470,7 +470,14 @@
           });
           goToStep('success');
           if (thankYouUrl) {
-            setTimeout(function () { location.href = thankYouUrl; }, 1200);
+            // Check the page answers first: a hidden page still passes the Liquid
+            // check but 404s, and the in-modal success step beats a 404. Own catch,
+            // so a failed check can never reach handleFailure and resubmit.
+            fetch(thankYouUrl, { method: 'HEAD', credentials: 'same-origin' })
+              .then(function (res) {
+                if (res.ok) setTimeout(function () { location.href = thankYouUrl; }, 1200);
+              })
+              .catch(function () {});
           }
         })
         .catch(function (err) {
