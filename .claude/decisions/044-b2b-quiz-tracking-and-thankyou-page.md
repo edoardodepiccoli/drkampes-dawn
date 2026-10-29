@@ -20,7 +20,9 @@ dedicated thank-you URL for audiences and GA4. Brief: `_istruzioni-cliente/aless
   rendering `snippets/lp-b2b-thanks.liquid` + `lp-b2b-footer`.
 - `noindex` lives in `layout/lp.liquid`, keyed on `template.suffix == 'grazie_flotte'`:
   a template can't write into `<head>`.
-- `data-thankyou` on `#lpQuizModal` is emitted only when `pages['grazie-flotte']` exists.
+- `data-thankyou` on `#lpQuizModal` is emitted only when `pages['grazie-flotte']` exists and has
+  `published_at` (`pages` also returns hidden pages, which 404: shipped without this check
+  first and caught on the live site).
   Without it the JS keeps the in-modal success step, so deploying before the page is
   created in the admin can't send a successful submit to a 404.
 - Copy marked "DA CONFERMARE" in the brief (response times, bonus delivery) is left out
