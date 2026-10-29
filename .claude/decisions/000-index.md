@@ -45,6 +45,7 @@ Append-only record of non-obvious architectural choices made on this project. Ne
 | 040 | Buy-box rollback: revert 035/036/038, restore static image + Dawn buy-buttons | 2026-07-20 | Active |
 | 041 | Work moved to `staging` branch, pushed to GitHub for client preview via Shopify | 2026-07-21 | Active |
 | 042 | French (`fr`) branch added to custom sections still falling back to Italian | 2026-10-07 | Active |
+| 043 | `lp-b2b-quality` (Oltre la personalizzazione): images as theme assets, desktop layout from 990px | 2026-10-29 | Active |
 
 ## Conventions
 

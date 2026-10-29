@@ -1,0 +1,312 @@
+/*
+  LP B2B — Quality ("Oltre la personalizzazione")
+  Scoped under .lp-b2b-quality. Sizes in px / vw, no rems (Dawn 10px root).
+  Mobile-first; desktop layout from 990px (Dawn's desktop breakpoint): below it
+  the wide photo crop leaves no room beside the three-line headline.
+*/
+
+.lp-b2b-quality {
+  /* Brighter yellow than the other B2B snippets' gold: matches the icons and the mockup. */
+  --q-yellow:       #FFD21F;
+  --q-yellow-soft:  rgba(255, 210, 31, 0.55);
+  background: #000;
+  color: #fff;
+  padding: 0 0 32px;
+  overflow: hidden;
+}
+
+/* Single column capped on tablets, so the square photo does not fill the screen. */
+.lp-b2b-quality__stage,
+.lp-b2b-quality__features {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lp-b2b-quality__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Copy */
+.lp-b2b-quality__copy {
+  position: relative;
+  z-index: 2;
+  padding: 32px 18px 0;
+}
+
+.lp-b2b-quality__eyebrow {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 18px;
+  border: 2px solid var(--q-yellow);
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.22em;
+  color: var(--q-yellow);
+}
+
+.lp-b2b-quality__heading {
+  margin: 16px 0 12px;
+  font-family: 'Oswald', 'Archivo Black', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 11.5vw, 72px);
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: #fff;
+}
+
+.lp-b2b-quality__heading-line {
+  display: block;
+}
+
+.lp-b2b-quality__heading-line--gold {
+  color: var(--q-yellow);
+}
+
+.lp-b2b-quality__sub {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #e6e6e6;
+}
+
+.lp-b2b-quality__sub span {
+  display: block;
+}
+
+/* Visual (photo + badges) */
+.lp-b2b-quality__visual {
+  position: relative;
+  z-index: 1;
+  margin-top: -16px;
+}
+
+/* Fade the photo into the black above (copy) and below (features). */
+.lp-b2b-quality__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0) 22%,
+    rgba(0, 0, 0, 0) 80%,
+    #000 100%);
+}
+
+.lp-b2b-quality__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.lp-b2b-quality__badges {
+  position: absolute;
+  z-index: 2;
+  right: 4%;
+  bottom: 9%;
+  width: 66%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 4%;
+}
+
+.lp-b2b-quality__fastwear {
+  flex: 0 0 48%;
+  width: 48%;
+  height: auto;
+  display: block;
+}
+
+.lp-b2b-quality__s3s {
+  flex: 0 0 34%;
+  width: 34%;
+  height: auto;
+  display: block;
+}
+
+/* Features */
+.lp-b2b-quality__features {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0 18px;
+}
+
+.lp-b2b-quality__feature {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+  gap: 0 16px;
+  padding: 20px 0;
+}
+
+.lp-b2b-quality__feature + .lp-b2b-quality__feature {
+  border-top: 1px solid var(--q-yellow-soft);
+}
+
+.lp-b2b-quality__icon {
+  width: 72px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+}
+
+.lp-b2b-quality__feature-body {
+  padding-left: 16px;
+  border-left: 2px solid var(--q-yellow-soft);
+}
+
+.lp-b2b-quality__feature-title {
+  margin: 0 0 4px;
+  font-family: 'Oswald', 'Archivo Black', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+
+.lp-b2b-quality__feature-text {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #dcdcdc;
+}
+
+@media (min-width: 990px) {
+  .lp-b2b-quality {
+    padding-bottom: 40px;
+  }
+
+  /*
+    The photo becomes the stage background. aspect-ratio keeps the crop stable,
+    so the badges (positioned in % of the stage) stay next to the shoe.
+  */
+  .lp-b2b-quality__stage,
+  .lp-b2b-quality__features {
+    max-width: none;
+  }
+
+  .lp-b2b-quality__stage {
+    display: block;
+    aspect-ratio: 1672 / 705;
+  }
+
+  .lp-b2b-quality__visual {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+  }
+
+  .lp-b2b-quality__visual picture {
+    display: block;
+    height: 100%;
+  }
+
+  .lp-b2b-quality__visual::after {
+    background:
+      linear-gradient(to right,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.35) 38%,
+        rgba(0, 0, 0, 0) 58%),
+      linear-gradient(to bottom,
+        rgba(0, 0, 0, 0) 82%,
+        #000 100%);
+  }
+
+  .lp-b2b-quality__img {
+    height: 100%;
+    aspect-ratio: auto;
+    /* Crop mostly from the bottom so the sole sits just above the features bar. */
+    object-position: center 62%;
+  }
+
+  .lp-b2b-quality__badges {
+    right: 3%;
+    bottom: 5%;
+    width: 30%;
+  }
+
+  .lp-b2b-quality__fastwear {
+    flex-basis: 44%;
+    width: 44%;
+    margin-bottom: 1%;
+  }
+
+  .lp-b2b-quality__s3s {
+    flex-basis: 44%;
+    width: 44%;
+  }
+
+  .lp-b2b-quality__copy {
+    max-width: 58%;
+    padding: clamp(32px, 5.6vw, 96px) 0 0 clamp(24px, 4.8vw, 80px);
+  }
+
+  .lp-b2b-quality__eyebrow {
+    padding: 0.55em 1.5em;
+    border-width: 3px;
+    font-size: clamp(12px, 1.5vw, 24px);
+  }
+
+  .lp-b2b-quality__heading {
+    margin: 0.4em 0 0.2em;
+    font-size: clamp(48px, 6.4vw, 110px);
+  }
+
+  .lp-b2b-quality__sub {
+    font-size: clamp(16px, 1.75vw, 30px);
+  }
+
+  .lp-b2b-quality__features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: clamp(24px, 2.4vw, 40px) clamp(16px, 3vw, 64px) 0;
+    border-top: 2px solid var(--q-yellow-soft);
+  }
+
+  .lp-b2b-quality__feature {
+    grid-template-columns: auto 1fr;
+    gap: 0 clamp(16px, 2vw, 36px);
+    padding: 8px clamp(16px, 2vw, 36px);
+  }
+
+  .lp-b2b-quality__feature + .lp-b2b-quality__feature {
+    border-top: 0;
+    border-left: 2px solid var(--q-yellow-soft);
+  }
+
+  .lp-b2b-quality__icon {
+    width: clamp(56px, 6vw, 110px);
+    height: clamp(48px, 5vw, 92px);
+  }
+
+  .lp-b2b-quality__feature-body {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .lp-b2b-quality__feature-title {
+    font-size: clamp(16px, 1.7vw, 30px);
+    white-space: nowrap;
+  }
+
+  .lp-b2b-quality__feature-text {
+    font-size: clamp(14px, 1.45vw, 24px);
+  }
+
+  .lp-b2b-quality__feature-text span {
+    display: block;
+  }
+}
