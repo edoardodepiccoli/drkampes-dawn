@@ -1,0 +1,114 @@
+{% comment %}
+  LP B2B — Quality ("Oltre la personalizzazione", B2B landing page)
+
+  Code-only LP element. Pill + headline over the shoe photo, Fastwear logo and
+  S3S badge on the photo, then 3 feature rows (Made in Italy / Fastwear /
+  artigianale). Hard-coded content per LP architecture.
+
+  Images ship as theme assets (assets/lp-b2b-quality-*) instead of store Files,
+  so the section deploys with git and needs no manual upload. The S3S badge is
+  the existing IT badge already used by custom-garanzie.
+
+  Layout: one <picture> swaps the 1:1 mobile crop for the wide desktop crop.
+  Mobile stacks copy above the photo; from 990px the copy overlays the photo's
+  dark left half, matching the desktop mockup.
+{% endcomment %}
+
+{{ 'lp-b2b-quality.css' | asset_url | stylesheet_tag }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap">
+
+<section class="lp-b2b-quality">
+
+  <div class="lp-b2b-quality__stage">
+
+    <div class="lp-b2b-quality__copy">
+      <p class="lp-b2b-quality__eyebrow">OLTRE LA PERSONALIZZAZIONE</p>
+
+      <h2 class="lp-b2b-quality__heading">
+        <span class="lp-b2b-quality__heading-line">BELLE DA VEDERE.</span>
+        <span class="lp-b2b-quality__heading-line lp-b2b-quality__heading-line--gold">FATTE PER</span>
+        <span class="lp-b2b-quality__heading-line lp-b2b-quality__heading-line--gold">LAVORARE.</span>
+      </h2>
+
+      <p class="lp-b2b-quality__sub">
+        <span>Qualità italiana, comodità e praticità.</span>
+        <span>Ogni giorno, ai piedi dei tuoi autisti.</span>
+      </p>
+    </div>
+
+    <div class="lp-b2b-quality__visual">
+      <picture>
+        <source media="(min-width: 990px)" srcset="{{ 'lp-b2b-quality-desktop.jpg' | asset_url }}" width="1672" height="941">
+        <img
+          class="lp-b2b-quality__img"
+          src="{{ 'lp-b2b-quality-mobile.jpg' | asset_url }}"
+          alt="Scarpa antinfortunistica Dr Kampes personalizzata con logo aziendale"
+          width="1000"
+          height="1000"
+          loading="lazy"
+        >
+      </picture>
+
+      <div class="lp-b2b-quality__badges">
+        <img
+          class="lp-b2b-quality__fastwear"
+          src="{{ 'lp-b2b-quality-fastwear-logo.png' | asset_url }}"
+          alt="Fastwear System"
+          width="520"
+          height="246"
+          loading="lazy"
+        >
+        <img
+          class="lp-b2b-quality__s3s"
+          src="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/IT_-_S3S.png?v=1782302724"
+          alt="S3S certificata: puntale rinforzato, lamina antiperforazione, suola antiscivolo"
+          width="828"
+          height="970"
+          loading="lazy"
+        >
+      </div>
+    </div>
+
+  </div>
+
+  <ul class="lp-b2b-quality__features">
+
+    <li class="lp-b2b-quality__feature">
+      <img class="lp-b2b-quality__icon" src="{{ 'lp-b2b-quality-icon-italy.png' | asset_url }}" alt="" width="240" height="240" loading="lazy">
+      <div class="lp-b2b-quality__feature-body">
+        <h3 class="lp-b2b-quality__feature-title">100% MADE IN ITALY</h3>
+        <p class="lp-b2b-quality__feature-text">
+          <span>Produzione italiana.</span>
+          <span>Cura in ogni dettaglio.</span>
+        </p>
+      </div>
+    </li>
+
+    <li class="lp-b2b-quality__feature">
+      <img class="lp-b2b-quality__icon lp-b2b-quality__icon--wide" src="{{ 'lp-b2b-quality-icon-fastwear.gif' | asset_url }}" alt="" width="1200" height="507" loading="lazy">
+      <div class="lp-b2b-quality__feature-body">
+        <h3 class="lp-b2b-quality__feature-title">SISTEMA FASTWEAR</h3>
+        <p class="lp-b2b-quality__feature-text">
+          <span>Rapide da indossare.</span>
+          <span>Pratiche ogni giorno.</span>
+        </p>
+      </div>
+    </li>
+
+    <li class="lp-b2b-quality__feature">
+      <img class="lp-b2b-quality__icon" src="{{ 'lp-b2b-quality-icon-craft.png' | asset_url }}" alt="" width="240" height="240" loading="lazy">
+      <div class="lp-b2b-quality__feature-body">
+        <h3 class="lp-b2b-quality__feature-title">QUALITÀ ARTIGIANALE</h3>
+        <p class="lp-b2b-quality__feature-text">
+          <span>Cura costruttiva,</span>
+          <span>durevolezza e comodità.</span>
+        </p>
+      </div>
+    </li>
+
+  </ul>
+
+</section>
