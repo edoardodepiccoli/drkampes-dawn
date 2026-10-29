@@ -444,6 +444,15 @@
       inFlightAbort = new AbortController();
       const tId = setTimeout(function () { try { inFlightAbort.abort(); } catch (e) {} }, REQUEST_TIMEOUT);
 
+      // Is the thank-you page reachable? A hidden page still passes the Liquid
+      // check but 404s. Started alongside the POST so the answer is usually in
+      // when it succeeds. Never rejects, so it can't reach handleFailure.
+      const thankYouReady = thankYouUrl
+        ? fetch(thankYouUrl, { method: 'HEAD', credentials: 'same-origin' })
+            .then(function (res) { return res.ok; })
+            .catch(function () { return false; })
+        : Promise.resolve(false);
+
       fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -459,7 +468,6 @@
           return res;
         })
         .then(function () {
-          modal.classList.remove('is-submitting');
           clearState();
           dkPublish('dk_b2b_application', {
             event_id: payload.meta.event_id,
@@ -468,17 +476,18 @@
             autisti: payload.autisti,
             camion: payload.camion
           });
-          goToStep('success');
-          if (thankYouUrl) {
-            // Check the page answers first: a hidden page still passes the Liquid
-            // check but 404s, and the in-modal success step beats a 404. Own catch,
-            // so a failed check can never reach handleFailure and resubmit.
-            fetch(thankYouUrl, { method: 'HEAD', credentials: 'same-origin' })
-              .then(function (res) {
-                if (res.ok) setTimeout(function () { location.href = thankYouUrl; }, 1200);
-              })
-              .catch(function () {});
-          }
+          // Page reachable: keep the spinner and go straight there, without
+          // flashing the in-modal success step. The delay leaves the custom
+          // pixels time to send the event before the page unloads.
+          // Otherwise the success step stays, as before the thank-you page.
+          return thankYouReady.then(function (ok) {
+            if (ok) {
+              setTimeout(function () { location.href = thankYouUrl; }, 1200);
+              return;
+            }
+            modal.classList.remove('is-submitting');
+            goToStep('success');
+          });
         })
         .catch(function (err) {
           clearTimeout(tId);
