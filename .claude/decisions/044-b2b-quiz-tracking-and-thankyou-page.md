@@ -9,7 +9,7 @@ Alessandro (ads) needs the B2B quiz to report `SubmitApplication` to Meta from b
 browser (custom pixel) and the server (Make → Conversions API), deduplicated by a shared
 `event_id`, plus Google Ads click ids saved for offline conversions. He also wants a
 dedicated thank-you URL for audiences and GA4. Brief: `_istruzioni-cliente/alessandro/`
-(gitignored).
+(gitignored). Full work log and next steps: `docs/2026-10-29-b2b-tracking-handoff.md`.
 
 ## Choice
 
