@@ -322,7 +322,7 @@ Vorrei chiederti piu' informazioni, grazie!
               <summary>
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: 'truck' %}
-                  <h2 class="h4 accordion__title">{% if is_en %}Fast shipping 1–2 days{% elsif is_fr %}Livraison rapide en 1 à 2 jours{% else %}Spedizione rapida 1-2 giorni{% endif %}</h2>
+                  <h2 class="h4 accordion__title">{% if is_en %}Fast shipping 1–2 days{% elsif is_fr %}Livraison rapide{% else %}Spedizione rapida 1-2 giorni{% endif %}</h2>
                 </div>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
@@ -330,7 +330,7 @@ Vorrei chiederti piu' informazioni, grazie!
                 {%- if is_en -%}
                   <p>Order today, receive them in 1–2 business days. Tracked shipping.</p>
                 {%- elsif is_fr -%}
-                  <p>Commandez aujourd'hui, recevez-les en 1 à 2 jours ouvrés. Expédition avec suivi.</p>
+                  <p>Expédition rapide et avec suivi.</p>
                 {%- else -%}
                   <p>Ordini oggi, le ricevi in 1-2 giorni lavorativi. Spedizione tracciata.</p>
                 {%- endif -%}
