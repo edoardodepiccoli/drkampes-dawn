@@ -9,7 +9,7 @@ Alessandro (ads) needs the B2B quiz to report `SubmitApplication` to Meta from b
 browser (custom pixel) and the server (Make → Conversions API), deduplicated by a shared
 `event_id`, plus Google Ads click ids saved for offline conversions. He also wants a
 dedicated thank-you URL for audiences and GA4. Brief: `../_cliente/istruzioni/alessandro/`
-(gitignored). Full work log and next steps: `docs/2026-10-29-b2b-tracking-handoff.md`.
+(gitignored). How the events flow across Meta, Make and Brevo: `../docs/tracking.md`.
 
 ## Choice
 
@@ -28,6 +28,9 @@ dedicated thank-you URL for audiences and GA4. Brief: `../_cliente/istruzioni/al
   first and caught on the live site).
   Without it the JS keeps the in-modal success step, so deploying before the page is
   created in the admin can't send a successful submit to a 404.
+  The `published_at` check didn't hold either (hidden pages still passed it and 404'd on the
+  live site), so the JS also sends a `HEAD` to the thank-you URL, in parallel with the POST to
+  Make, and redirects only on 200. It can never reject, so it can't trigger the resubmit logic.
 - Copy marked "DA CONFERMARE" in the brief (response times) is left out
   until Claudio confirms it. Bonus delivery by email was confirmed on 29/10. The WhatsApp block sits right after the intro so it's above
   the fold on mobile.
