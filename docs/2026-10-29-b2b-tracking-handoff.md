@@ -2,8 +2,8 @@
 
 **Date:** 2026-10-29
 **Who:** Edoardo (with Claude Code)
-**Source brief:** Alessandro's notes in `_istruzioni-cliente/alessandro/` (`PER_EDOARDO.md`,
-`PAGINA_GRAZIE_FLOTTE.md`, `lp-b2b-quiz-form.CON_TRACCIAMENTO.js`). The folder is gitignored on
+**Source brief:** Alessandro's notes in `../_cliente/istruzioni/alessandro/` (`PER_EDOARDO.md`,
+`PAGINA_GRAZIE_FLOTTE.md`, `lp-b2b-quiz-form.CON_TRACCIAMENTO.js`), outside the repo on
 purpose: `PER_EDOARDO.md` contains the Meta Conversions API token in plain text.
 **Architecture decision:** `.claude/decisions/044-b2b-quiz-tracking-and-thankyou-page.md`
 
@@ -155,7 +155,7 @@ layout/lp.liquid                    noindex for grazie_flotte
 sections/custom-buy-box.liquid      FR shipping copy
 sections/custom-features-intro.liquid FR sole copy
 sections/custom-hero-v2.liquid      FR hero badge
-.gitignore                          _istruzioni-cliente/ (secrets)
+.gitignore                          client briefs folder (secrets), since moved out of the repo
 .claude/decisions/044-*.md          decision record
 ```
 
@@ -285,5 +285,4 @@ For **Alex**:
 
 ### 5.7 Repo housekeeping
 
-- [ ] `run.sh` shows as deleted in the working tree, not committed: commit the deletion or
-      restore the file.
+- [x] `run.sh` deletion committed (01/11); dev servers now in the workspace's `.claude/launch.json`.

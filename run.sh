@@ -1,1 +1,0 @@
-shopify theme dev --store drkampes.myshopify.com
