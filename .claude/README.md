@@ -40,4 +40,4 @@ Do not let decisions live only in chat history. If it took thought, write it dow
 
 ## Out-of-band memory
 
-User-scope auto-memory lives at `~/.claude/projects/-Users-edoardo-main-repos-drkampes-dawn/memory/`. It captures user preferences and reference pointers that persist across all of this project's sessions but should not ship in the repo (e.g. "pull / push means git, never `shopify theme pull/push`"). Project-scope (this folder) captures decisions that ship with the code.
+Workspace-wide rules and cross-project notes live in `../CLAUDE.md`, at the root of the drkampes workspace. This folder captures decisions that ship with the code.
